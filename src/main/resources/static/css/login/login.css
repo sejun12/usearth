@@ -1,0 +1,200 @@
+@import url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css);
+
+html{
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.15;
+}
+body{
+    line-height: 1;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del,
+details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form,
+h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav,
+object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table,
+tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+article, aside, body, div, footer, header, section {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite,
+code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form,
+h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend,
+li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span,
+strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    border: 0;
+    font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.mainGrid {
+    width: 100%;
+    padding: 0;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+.loginRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -16px;
+    margin-left: -16px;
+}
+.loginStartWrap {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+    margin-bottom: 85px !important;
+}
+.loginView {
+    width: 343px;
+    margin: auto;
+    display: block;
+}
+.semiBold{
+    font-weight: 600!important;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-bottom: 20px!important;
+}
+.fontSize{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-bottom: 4px!important;
+}
+.fontSize2{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-top: 12px!important;
+    margin-bottom: 4px!important;
+}
+.loginBtn{
+    height: 48px!important;
+    margin: 24px 0;
+    width: 100%;
+    padding: 0 12px;
+    min-width: 49px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    background-color: #2a7de1;
+    color: #fff;
+    border: none;
+    display: flex!important;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+button{
+    -webkit-appearance: button;
+    text-transform: none;
+    outline: 0;
+    background: transparent;
+}
+button,input{
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+.relative{
+    position: relative;
+}
+.outline{
+    padding: 0 16px;
+    border: 1px solid #e1e4e6;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    color: #3c4144;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    transition: all .2s ease;
+}
+input{
+    appearance: none;
+    overflow: visible;
+    outline: none!important;
+    box-sizing: border-box;
+}
+.buttonIcon{
+    display: flex!important;
+}
+.login{
+    font-weight: 600!important;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: .02em;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+a{
+    background-color: transparent;
+    color: #495057;
+    text-decoration: none;
+    cursor: pointer;
+}
+.caption{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    display: block!important;
+}
+.okGo{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-bottom: 8px!important;
+}
+.caption1 {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+}
+input::placeholder{
+ color: #e1e4e6;
+}
+.caption2{
+    margin-top: 4px!important;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    word-break: keep-all;
+    word-wrap: break-word;
+    color: rgb(233, 37, 37);
+    text-align: left;
+}
+.applicationIcon{
+    fill: rgb(233, 37, 37);
+    cursor: auto;
+    background: transparent!important;
+    overflow: hidden;
+}
