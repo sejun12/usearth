@@ -1373,3 +1373,43 @@ ul {
   display: block;
   vertical-align: middle;
 }
+
+.barBtnOne {
+  text-align: center;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.barBtnOneSpan {
+  margin-right: 8px;
+}
+
+.upDownSvg {
+  width: 6px;
+  height: 10px;
+  display: block;
+  vertical-align: middle;
+}
+
+.noData {
+  margin-top: 23px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+.flexCenter {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
