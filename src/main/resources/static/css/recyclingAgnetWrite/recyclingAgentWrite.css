@@ -1,0 +1,372 @@
+@media only screen and (max-width: 768px){
+    .freeBoardMainTool {
+        max-width: 100vw;
+    }
+
+    /*.categoryWrapper .dropDown{*/
+    /*    width: 140px!important;*/
+    /*}*/
+
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+
+div, footer, header, section {
+    user-select: text;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, a, body, div, h1, h2, h3, h4, h5, h6,
+header, html, img, ul, p, span, strong {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul {
+    /*padding-left: 0;*/
+    list-style: none;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-weight: 400;
+}
+
+div, h1, h2, h3, h4, h5, h6, p, span {
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+h3, .h3 {
+    font-size: 26px;
+    line-height: 37px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+h4, .h4 {
+    font-size: 22px;
+    line-height: 34px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+button, select {
+    text-transform: none;
+}
+
+input, textarea {
+    appearance: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+textarea {
+    overflow: auto;
+    width: 100%;
+    min-height: 160px;
+    padding: 15px;
+    resize: none;
+    border: 1px solid #e1e4e7;
+    line-height: 150%!important;
+    color: #495057;
+    outline: none!important;
+}
+
+button, input, select, textarea {
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    color: #495057;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    background-color: #fff;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    font-size: 10px;
+    position: relative;
+    line-height: 1.15;
+}
+
+body ::selection {
+    color: inherit;
+    background-color: #e6e6e6;
+    /*background-color: fade(#000,10);*/
+    cursor: text;
+}
+
+.freeBoardMainLayout {
+    width: 100%;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    /*padding-right: 16px;*/
+    /*padding-left: 16px;*/
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+.mainLayoutFreeBoard {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -16px;
+    margin-left: -16px;
+}
+
+.layoutMainFreeBoard {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.freeBoardMainTool {
+    max-width: 100vw;
+    position: relative;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-top: 20px!important;
+    margin-bottom: 40px!important;
+}
+
+.freeBoardMainTool:before, #request .requestBox:before, #request .postTextSend:before {
+    content: " ";
+    display: table;
+}
+
+.freeBoardMainTool:after, #request .requestBox:after, #request .postTextSend:after {
+    clear: both;
+    content: " ";
+    display: table;
+}
+
+.toolFreeBoardMain {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+#request {
+    position: relative;
+}
+
+.mainBoardFreeTool {
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+
+#request .requestContainer {
+    margin-top: 40px;
+    margin-bottom: 160px;
+    background: #fff;
+}
+
+#request .requestContainerTitle {
+    font-size: 26px;
+    line-height: 37px;
+    color: #282c30;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+#request .requestContainerSubTitle {
+    color: #7e848a;
+}
+
+b, strong {
+    font-weight: inherit;
+    font-weight: 600;
+}
+
+#request .requestBox {
+    position: relative;
+}
+
+/* 카테고리 콤보박스는 어스어스와 성격이 달라 사용하지 않기로 함 */
+/*.categoryWrapper {*/
+/*    display: flex;*/
+/*    margin-bottom: 10px;*/
+/*    column-gap: 12px;*/
+/*}*/
+
+/*.dropDown {*/
+/*    position: relative;*/
+/*    display: inline-flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.small {*/
+/*    font-size: 13px;*/
+/*    color: #adb5bd;*/
+/*    font-weight: 400;*/
+/*}*/
+
+/*.dropDownItemGroup {*/
+/*    position: relative;*/
+/*}*/
+
+/*.small, .selectBoxBasic {*/
+/*    padding: 6.5px 12px;*/
+/*}*/
+
+/*.selectBoxBasic {*/
+/*    border-radius: 4px;*/
+/*    border: 1px solid #e1e4e6;*/
+/*    display: flex!important;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    cursor: pointer;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.selectItem {*/
+/*    width: 100%;*/
+/*    display: flex!important;*/
+/*}*/
+
+/*.selectInput, .selectItem.small .selectBoxBasic input {*/
+/*    font-size: 14px;*/
+/*    line-height: 20px;*/
+/*    font-weight: 400;*/
+/*    color: #202325;*/
+/*}*/
+
+/*.selectItem > div, .selectInput input {*/
+/*    width: 100%;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.selectInput {*/
+/*    border: none;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.selectIcon {*/
+/*    display: flex!important;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.iconSelect {*/
+/*    transition: .3s cubic-bezier(.25,.8,.5,1),visibility 0s;*/
+/*    cursor: pointer;*/
+/*    background: transparent!important;*/
+/*}*/
+
+.titleLineBox {
+    margin-bottom: 8px!important;
+}
+
+.lineBoxTitle {
+    position: relative;
+}
+
+.titleBoxLine {
+    position: relative;
+}
+
+.postWrite {
+    padding: 0 16px;
+    border: 1px solid #e1e4e6;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    color: #3c4144;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    transition: all .2s ease;
+}
+
+input {
+    outline: none!important;
+}
+
+.textAreaWrapper{
+    border-radius: 3px;
+    border: 1px solid #e1e4e7;
+    padding: 16px 12px 50px;
+    vertical-align: top;
+    transition: all .2s ease;
+}
+
+.writeTextArea {
+    float: inherit;
+    border: none;
+    padding: 0;
+}
+
+.numberCharacters {
+    margin-top: 10px!important;
+    color: #adb5bd!important;
+    float: left!important;
+    font-size: 13px!important;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+#request .postTextSend {
+    margin-top: 40px;
+    position: relative;
+}
+
+.sendTextPost {
+    width: 100%;
+    height: 60px;
+    padding: 0 26px;
+    min-width: 84px;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 400;
+    background-color: #2a7de1;
+    color: #fff;
+    border: none;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+button {
+    background: transparent;
+}
+
+.sendTextButtonIcon {
+    display: flex!important;
+}
+
