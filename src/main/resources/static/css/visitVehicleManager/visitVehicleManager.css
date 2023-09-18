@@ -915,7 +915,7 @@ li {
 
 .postBTN {
     text-align: right;
-    width: 250px;
+    width: 124px;
     display: block;
 }
 
@@ -973,7 +973,22 @@ li {
     margin-left: 32px;
 }
 
-.postDate, .visit, .writer, .hits, .reply {
+.vehicleNumber {
+    row-gap: 4px;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 85px;
+    display: flex;
+}
+.vehicle, .writer, .visit {
+    row-gap: 4px;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 55px;
+    display: flex;
+}
+
+.postDate, .hits, .reply {
     row-gap: 4px;
     align-items: flex-end;
     flex-direction: column;
@@ -981,15 +996,13 @@ li {
     display: flex;
 }
 
-.hitsCount, .replyCount, .postDateCount, .writerName, .visitName {
+.hitsCount, .replyCount, .postDateCount, .writerName, .visitName, .vehicleName, .vehicleNumberName {
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-
 }
 
-.hitsHeader, .replyHeader, .postDateHeader, .writerHeader, .visitHeader {
-    font-weight: 400;
+.hitsHeader, .replyHeader, .postDateHeader, .writerHeader, .visitHeader, .vehiclerHeader, .vehicleNumberHeader {
     font-size: 13px;
     line-height: 18px;
     color: #8a8a8b;
