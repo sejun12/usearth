@@ -324,6 +324,7 @@ header{
     overflow: auto;
     outline: 0;
     z-index: 1000;
+    background-color: #00000073;
 }
 .dialog{
     width: 800px !important;
@@ -409,4 +410,158 @@ header{
     height: 100%;
     overflow: hidden;
     position: relative;
+}
+/**/
+.app{
+    /*height: 625px;*/
+    color: rgb(32, 34, 37);
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-size-adjust: 100%;
+    border: none;
+    overflow: hidden;
+    width: 100%;
+    max-width: 768px;
+    position: relative;
+}
+.appWrap{
+    font-family: "Open Sans";
+    color: rgb(32, 34, 37);
+    display: grid;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-size-adjust: 100%;
+}
+.appContainer{
+    padding: 0px;
+    margin: 0px auto;
+    width: 100%;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-size-adjust: 100%
+}
+.appContainer2{
+    max-width: 480px;
+    margin: 0px auto;
+    transition: all 400ms ease 0s;
+    color: rgb(31, 31, 31);
+    background-color: transparent;
+    border-color: purple;
+    padding: 0px;
+    border-radius: 4px;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-size-adjust: 100%
+}
+.idAndPasswordSearch{
+    font-style: normal;
+    margin-bottom: 16px;
+    line-height: 28px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 24px;
+}
+.explanation{
+    font-style: normal;
+    word-break: break-word;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    line-height: 18px;
+}
+.inputWrap{
+    margin-bottom: 16px;
+}
+.subBtn{
+    box-shadow: rgba(0, 0, 0, 0.04) 1px 1px 3px;
+    transition: border-radius 200ms ease 0s;
+    height: unset;
+    padding: 8px 10px;
+    margin-top: 24px;
+    min-height: 48px;
+    border-radius: 4px;
+    line-height: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: rgb(42, 125, 225);
+    border: 0px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-family: inherit;
+    font-style: normal;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    outline: none;
+}
+.labelWrap{
+    margin-bottom: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+    font-style: normal;
+    word-break: break-word;
+}
+.inputNext{
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: normal;
+    line-height: inherit;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid rgb(209, 209, 209);
+    color: rgb(31, 31, 31);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.04) 1px 1px 3px;
+    transition: border-radius 200ms ease 0s;
+    height: 36px;
+    padding: 8px 10px;
+    border-radius: 4px;
+}
+.inputNext:hover{
+    box-shadow: rgba(0, 0, 0, 0.08) 2px 2px 5px;
+}
+.inputNext:focus{
+    border: 1px solid rgb(49, 122, 226);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 3px inset;
+    outline: none;
+}
+.whyWrite{
+    line-height: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    color: rgb(128, 128, 128);
+}
+.colorA{
+    text-decoration: none;
+    color: rgb(49, 122, 226);
+}
+.subBtn:hover{
+    background-color: rgb(55, 138, 238);
+}
+/**/
+.warning{
+    line-height: 16px;
+    margin-top: 4px;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(249, 72, 57);
+    display: flex;
+}
+.warningIcon{
+    margin-right: 4px;
 }
