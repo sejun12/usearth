@@ -1,8 +1,7 @@
-notice.jsdocument.addEventListener("DOMContentLoaded", function () {
+// 여기에 추가된 JavaScript 코드를 넣어주세요.
+document.addEventListener("DOMContentLoaded", function () {
     const paginationBtns = document.querySelectorAll(".paginationBtn");
     const pageLinks = document.querySelectorAll(".pageLink");
-    const firstPageContent = document.getElementById("firstPageContent");
-    const secondPageContent = document.getElementById("secondPageContent");
 
     // 초기 페이지 설정
     let currentPage = 1;
@@ -33,14 +32,5 @@ notice.jsdocument.addEventListener("DOMContentLoaded", function () {
         pageLinks.forEach((link, index) => {
             link.parentNode.classList.toggle("active", index + 1 === currentPage);
         });
-
-        // 페이지 전환 시 첫 번째 페이지와 두 번째 페이지의 내용을 토글
-        if (currentPage === 1) {
-            firstPageContent.style.display = "block";
-            secondPageContent.style.display = "none";
-        } else if (currentPage === 2) {
-            firstPageContent.style.display = "none";
-            secondPageContent.style.display = "block";
-        }
     }
 });
