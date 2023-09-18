@@ -316,3 +316,206 @@ a {
   background-color: #f3f3f4;
   cursor: pointer;
 }
+.backBtnSvg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  vertical-align: middle;
+}
+
+.uploadH1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.uploadRightBtn {
+  color: #b9b9bb;
+  fill: #b9b9bb;
+  background-color: #f3f3f4;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: default;
+}
+
+.uploadMain {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.InnerUploadMain {
+  padding-bottom: 64px;
+  row-gap: 0;
+  column-gap: 16px;
+  grid-template-columns: repeat(12,minmax(0,1fr));
+  width: 944px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uploadSideBar {
+  border-right-width: 1px;
+  grid-column: span 4/span 4;
+  border-color: #f3f3f4;
+}
+
+.uploadMainPart {
+  padding-left: 80px;
+  grid-column-start: 6;
+  grid-column: span 7/span 7;
+}
+
+.sideBarInner {
+  top: 174px;
+  position: sticky;
+}
+
+ul, ol, menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uploadList {
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.uploadListInnerDiv {
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  margin-right: 18px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #2a2826;
+}
+
+.uploadListInnerStrong {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.confirmSvg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  vertical-align: middle;
+}
+
+.uploadSection {
+  margin-bottom: 48px;
+}
+
+.imposingMonth {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #333334;
+  fill: #333334;
+}
+
+.imposingMonthLabel {
+  padding-right: 16px;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  border-width: 1px;
+  border-radius: 8px;
+  align-items: center;
+  cursor: pointer;
+  height: 48px;
+  display: flex;
+  border-color: rgba(0,0,0,.1);
+  background-color: #fff;
+}
+
+.flex {
+  display: flex;
+}
+
+.imposingYear {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+
+}
+
+.downSvg {
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  color: #333334;
+  fill: #333334;
+  display: block;
+  vertical-align: middle;
+}
+
+.fileUploadBtn {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  min-width: 88px;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #3a3a3a;
+}
+
+.flexCenter {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.noViewInput {
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: block;
+  top: 0;
+  position: absolute;
+}
+
+.csvSvg {
+  flex-shrink: 0;
+  margin-right: 4px;
+  display: block;
+  vertical-align: middle;
+}
