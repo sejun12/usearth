@@ -1,48 +1,20 @@
-*, :after, :before {
-    box-sizing: border-box;
-    outline: none;
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
+html {
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.15;
 }
 
-#mainWrap {
-    padding-top: 0!important;
+body {
+    line-height: 1;
 }
 
-.mainWrapper {
-    height: 100%;
-    overflow-x: hidden;
-    padding: 0;
+a {
+    background-color: transparent;
 }
 
-.mainWrapper, .mainSection {
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    width: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-    .mainWrapper {
-        padding-top: 70px!important;
-    }
-}
-
-body, div, footer, header, section {
-    user-select: text;
-}
-
-.h1, .h2, .h3, .h4, .h5, .h6, a, h1, h2, h3, h4, h5, h6, aside, article,
-body, div, html, i, img, li, ol, ul, p, table, section, span {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-a, aside, body, div, footer, form, h1, h2, h3, h4, h5, h6,
-header, html, i, img, ul, section, span {
-    font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    font-size: 100%;
-    vertical-align: baseline;
+button, select {
+    text-transform: none;
 }
 
 a, a:active, a:focus, a:hover {
@@ -50,613 +22,67 @@ a, a:active, a:focus, a:hover {
     text-decoration: none;
 }
 
-body {
-    line-height: 1;
-}
-
-@media only screen and (min-width: 768px) {
-    html ::-webkit-scrollbar {
-        border: 3px solid #fff;
-        height: 8px;
-        width: 8px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    html ::-webkit-scrollbar-thumb {
-        background: #eaecee;
-        border-radius: 8px;
-        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1);
-        height: 50px;
-        width: 50px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    html ::-webkit-scrollbar-track {
-        background: #f3f4f5;
-        border-radius: 10px;
-        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2);
-    }
-
-}
-
-body ::selection {
-    background-color: #e6e6e6;
-    /*background-color: fade(#000,10);*/
-    color: inherit;
-    cursor: text;
-}
-
-.mainToolLine, .mainBody {
-    display: flex;
-    flex-wrap: wrap;
-    /*margin-left: -8px;*/
-    /*margin-right: -8px*/
-}
-
-@media only screen and (min-width: 768px){
-    .mainToolLine {
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-}
-
-.mainTool {
-    padding-left: 0;
-    padding-right: 0;
-    box-sizing: border-box;
-    position: relative;
-    width: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-    .mainTool {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
-/* .mainTool보다 우선순위가 높아 해당 미디어 부분이 적용되어 주석처리함 */
-@media only screen and (min-width: 768px){
-    .mainTool{
-        /*padding-left: 12px;*/
-        /*padding-right: 12px;*/
-        margin-bottom: 100px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .mainSection {
-        max-width: 1140px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .mainSection {
-        margin-bottom: 100px;
-    }
-}
-
-.mainSection {
-    /* 미디어 'max-width: 1140px;'가 우선순위에서 밀려 일단 주석처리함 */
-    /*max-width: 100vw;*/
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-@media only screen and (min-width: 768px){
-    .mainBody {
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .mainBodyLeftLine {
-        flex: 0 0 25%;
-        max-width: 25%;
-    }
-}
-
-@media only screen and (min-width: 768px){
-    .mainBodyLeftLine {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
-
-.mainBodyLeftLine {
-    box-sizing: border-box;
-    position: relative;
-    width: 100%;
-}
-
-.mainLeftSideBox {
-    position: fixed;
-    width: 243px;
-    z-index: 90;
-}
-
-article, aside, footer, header, section {
-    display: block;
-}
-
-.loginScreenBox {
-    position: relative!important;
-    /*position: relative;*/
-}
-
-.mainLeftSideBox .userProfileSection {
-    margin-bottom: 16px;
-}
-
-.userProfileSection {
-    align-items: center;
-    display: flex!important;
-    flex-direction: row;
-    position: relative;
-}
-
-.userProfileImageBox {
-    margin-right: 10px!important;
-}
-
-.userProfileImage {
-    height: 68px;
-    line-height: 68px;
-    width: 68px;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-}
-
-.imagesUpLoadWrapper label {
-    cursor: pointer;
-    display: block;
-    position: relative;
-}
-
-.cameraImage {
-    display: block;
-    height: 68px;
-    line-height: 68px;
-    width: 68px;
-    /*display: inline-block;*/
-    position: relative;
-    text-align: center;
-}
-
-
-.profileImage {
-    background: #f3f4f5;
-    height: 68px;
-    line-height: 68px;
-    width: 68px;
-    border-radius: 100%;
-    display: block;
-}
-
-.imageCamera {
-    background-size: 100% 100%;
-    height: 68px;
-    line-height: 68px;
-    width: 68px;
-    border-radius: 100%;
-    display: block;
-}
-
-.imgItem, .cameraItem {
-    display: flex;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.imgIcon, .iconBookMark {
-    background: transparent!important;
-    cursor: auto;
-}
-
-#imagesUpLoadWrapper input[type=file] {
-    clip: rect(0,0,0,0);
+.h1, .h2, .h3, .h4, .h5, .h6, a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+    margin: 0;
     padding: 0;
-    position: absolute;
-    width: 1px;
 }
 
-svg:not(:root){
-    overflow: hidden;
-}
-
-.loginTextLine {
-    font-size: 16px;
-    letter-spacing: .02em;
-    font-weight: 400!important;
-    cursor: pointer!important;
-    margin-bottom: 6px!important;
-}
-
-/* div data-v-6fdd2b64 등과 같은 코드는 삭제했음
-삭제하니 아래 코드가 언제어디서든 코드 노출이 되는데,
-원본코드에서는 없는 경우도 있음, 있으나 없으나 영향이
-없는듯 하여 그냥 노출시켜놓았음,
-'bookMarkLine'등과 같은 클래스에 전혀 영향이 없음*/
-div, h1, h2, h3, h4, h5 h6, p, span{
-    word-wrap: break-word;
-    word-break: keep-all;
-}
-
-.loginTextDecoration {
-    text-decoration: underline!important;
-}
-
-.textSection, .department, .replyText, .nickNameLine  {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-}
-
-@media only screen and (min-width: 768px){
-    .checkManagementFee:hover {
-        background-color: #e1e4e6;
-    }
-}
-
-.checkManagementFee {
-    width: 100%;
-    border-radius: 6px;
-    font-size: 10px;
-    font-weight: 400;
-    height: 24px;
-    line-height: 13px;
-    min-width: 36px;
-    padding: 0 8px;
-    display: flex!important;
-    justify-content: flex-start!important;
-    margin-bottom: 4px;
-    background-color: #f3f4f5;
-    color: #767d82;
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    position: relative;
-}
-
-[type=submit], button, html [type=button] {
-    -webkit-appearance: button;
-}
-
-button, select {
-    text-transform: none;
-}
-
-button, input, select, textarea {
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    border: 0;
+    font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-size: 100%;
-    line-height: 1.15;
     margin: 0;
+    padding: 0;
+    vertical-align: baseline;
 }
 
-.idName, .schoolName, .major {
-    word-wrap: break-word;
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
 }
 
-.idName {
-    font-size: 16px;
-    /*font-weight: 400;*/
-    letter-spacing: .02em;
-    line-height: 25px;
-    font-weight: 400!important;
-    margin-bottom: 4px!important;
-}
-.schoolName, .major {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
+article, aside, body, div, footer, header, section {
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
-.checkIcon {
-    display: flex!important;
-    margin-left: 2px!important;
-}
-
-
-.iconCheck, .iconButton {
-    background: transparent!important;
-    cursor: auto;
-}
-
-.buttonIcon {
-    display: flex!important;
-    margin-right: 2px!important;
-}
-
-.usEarthService {
-    border-radius: 4px 4px 0 0;
-    cursor: pointer;
-    display: flex!important;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.serviceText, .oneLineContent, .eyeIconCount,
-.goodsIconCount, .bookMarkText, .postTime {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-}
-
-.textService {
-    cursor: pointer;
-    transition: .3s cubic-bezier(.25,.8,.5,1),visibility 0s;
-    background: transparent!important;
-}
-
-/* 접기 전 */
-.freeContentNotice {
-    display: none;
-    transition: max-height 0.3s ease;
-    overflow: hidden;
-    max-height: 0;
-}
-
-/* 접은 후 */
-.freeContentNotice {
-    max-height: 135px;
-    overflow: hidden;
-    transition: all .2s linear;
-}
-
-.divisionLine {
-    border-style: dashed;
-    border-top: 1px;
-    height: 0;
-    width: inherit;
-    border: 0;
-    margin: 0;
-}
-
-hr {
-    box-sizing: content-box;
-    overflow: visible;
-}
-
-.noticeBox {
-    border-radius: 0 0 4px 4px;
-    display: flex!important;
-    flex-direction: row;
-}
-
-.noticeWrapper {
-    width: 100%;
-}
-
-.noticeBox .noticeWrapper li {
-    display: flex!important;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.managementFee, .freeText, .visitVehicle, .recyclingSeparate{
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-}
-
-.freeText {
-    font-weight: 400!important;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-.orText, .adText {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 13px;
-}
-
-.separateRecycling, .visitVehicleFree {
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: 400!important;
-}
-
-#visitVehicleArea {
-    margin-bottom: 0;
-    display: flex!important;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.separateRecyclingApply {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-}
-
-@media only screen and (min-width: 768px){
-    .qnaButtonBox {
-         display: none!important;
-     }
-}
-
-.qnaButtonBox {
-    font-size: 12px;
-    font-weight: 400;
-    height: 18px;
-    line-height: 15px;
-    padding: 2px;
-    background: transparent;
-    border: 0;
-    border-radius: 4px;
-    cursor: pointer;
-    justify-content: center;
-    margin-top: 16px!important;
-
-}
-
-@media only screen and (min-width: 768px){
-    .qnaButtonBox:hover {
-        background-color: #f3f4f5;
-    }
-}
-
-button, input{
-    overflow: visible;
-}
-
-input {
-    appearance: none;
-}
-
-.firstUsEarth {
-    align-items: center;
-    display: flex!important;
-}
-
-@media only screen and (min-width: 768px){
-    .boxQnaButton:hover {
-        background-color: #1b5192;
-    }
-}
-
-.boxQnaButton {
-    width: 100%;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    height: 36px;
-    line-height: 20px;
-    min-width: 49px;
-    padding: 0 12px;
-    background-color: #2a7de1;
-    align-items: center;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    display: flex!important;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    margin-top: 16px!important;
-    margin-bottom: 16px!important;
-}
-
-.actionButtonContainer {
-    display: flex!important;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-a {
-    background-color: transparent;
-    text-decoration: none; /* 글씨 밑에 밑줄에 생겨서 해당 코드를 넣었음 */
-}
-
-.aptNotice, .aptManagementFeeSearch,
-.aptApplySeparateRecycling, .aptVisitVehicle {
-    align-items: center;
-    border-radius: 8px!important;
-    display: flex!important;
-    justify-content: center;
-    border: 1px solid;
-}
-
-.noticeApt, .managementFeeSearchApt,
-.applySeparateRecyclingApt, .payVisitVehicleApt {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-}
-
-/* 모달 창 CSS */
-/*.modal {*/
-/*    display: none;*/
-/*    position: fixed;*/
-/*    z-index: 1;*/
-/*    left: 0;*/
-/*    top: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    overflow: auto;*/
-/*    background-color: rgba(0,0,0,0.4);*/
-/*}*/
-
-/*.modal-content {*/
-/*    position: relative;*/
-/*    background-color: #fefefe;*/
-/*    margin: 15% auto;*/
-/*    padding: 20px;*/
-/*    border: 1px solid #888;*/
-/*    width: 80%;*/
-/*}*/
-
-/*.close {*/
-/*    color: #aaaaaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-/*.close:hover, .close:focus {*/
-/*    color: #000;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
-/* 556번까지 모달창 Css */
-
-.communityBanner {
-    cursor: pointer;
-    display: flex!important;
-    margin-top: 24px!important;
-}
-
-@media only screen and (min-width: 768px){
-    .recruitGuard {
-        border-radius: 10px;
-    }
-}
-
-img {
-    border-style: none;
-    max-width: 100%;
-}
-
-.recruitGuard {
-    cursor: pointer;
-    display: flex!important;
-}
-
-@media only screen and (min-width: 768px) {
-    .listBox {
-        flex: 0 0 75%;
-        max-width: 75%;
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
-
-.listBox {
+*, :after, :before {
     box-sizing: border-box;
+    outline: none;
+}
+
+@media only screen and (max-width: 768px)
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.mainGrid {
+    padding-top: 0!important;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 100%;
 }
 
-.postList {
+@media only screen and (max-width: 768px) {
+    .mainGrid {
+        z-index: auto;
+    }
+}
+
+.postsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.postsContainer {
     padding-left: 0;
     padding-right: 0;
     box-sizing: border-box;
@@ -664,268 +90,47 @@ img {
     width: 100%;
 }
 
-/* 우선순위가 먼저 잡혀서 주석처리함 */
-@media only screen and (min-width: 768px){
-    .postList {
-        /*padding-left: 12px;*/
-        /*padding-right: 12px;*/
-    }
+.postsBox {
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    width: 100%;
 }
 
-.postListTimeLine {
-    background-color: #fff;
+.postsSection {
+    background-color: #f3f4f5;
 }
 
-.onePostTable {
-    margin-bottom: 20px!important;
-}
 
-@media only screen and (min-width: 768px){
-    .guardRecruit {
-        border: 1px solid #eaecee;
-        border-radius: 10px;
-    }
-}
-
-.guardRecruit {
-    background-color: #fff;
-    cursor: pointer!important;
-}
-
-.postOneTable {
-    display: block;
-    position: relative!important;
-}
-
-.postTitleLine {
-    color: #040505;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 25px;
-    margin-bottom: 12px!important;
-}
-
-.postContentBox {
-    margin-bottom: 12px!important;
-}
-
-.postContentInner {
-    border: 1px solid #f3f4f5;
-    border-radius: 10px 10px 0 0;
-    display: block;
-    position: relative!important;
-}
-
-.replyLine {
-    justify-content: space-between;
-    display: flex;
-    margin-bottom: 12px!important;
-}
-
-.replyLineBox {
-    align-items: center;
-    display: flex;
-}
-
-.bannerRecruit {
-    border: 1px solid #f3f4f5;
-    border-radius: 100%;
-    height: 24px;
-    width: 24px;
-    margin-right: 6px!important;
-}
-
-.replyCompanyName {
-    align-items: center;
-    display: flex;
-    margin-right: 8px!important;
-}
-
-.companyNameBox {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    margin-right: 4px!important;
-}
-
-.department {
-    margin-right: 2px!important;
-}
-
-.vCheckIcon {
-    background: transparent!important;
-    cursor: auto;
-}
-
-.replyText {
-    margin-right: 4px!important;
-}
-
-.moreText {
-    color: #adb3b8;
-}
-
-.recruitBanner {
-    border-radius: 0 0 10px 10px;
-}
-
-.bookMarkLine {
-    align-items: center;
-    display: flex;
-}
-
-.bookMarkBox {
-    display: flex!important;
-    flex-direction: row;
-}
-
-.eyeIcon, .goodsIconBox {
-    align-items: center;
-    display: flex!important;
-    margin-right: 12px;
-}
-
-.iconEye, .iconBalloon {
-    background: transparent!important;
-    cursor: auto;
-    margin-right: 4px!important;
-}
-
-.markBookBox {
-    margin-right: 0;
-    align-items: center;
-    display: flex!important;
-}
-
-.iconBookMark {
-    margin-right: 4px!important;
-}
-
-@media only screen and (min-width: 768px){
-    .communityList {
-        border: 1px solid #eaecee;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-}
-
-.communityList {
+.agentCard {
     background: #fff;
     cursor: pointer;
+    margin-bottom: 12px;
     position: relative;
 }
 
-.communityDescription {
-    align-items: center;
-    display: flex!important;
-    flex-direction: row;
-    padding: 8px 20px;
-}
-
-.markIcon {
-    display: flex;
-    margin-right: 4px!important;
-}
-
-.nickNameMarkIcon, .nickNameAvatar {
-    font-size: 10px;
-    font-weight: 400;
-    height: 16px;
-    line-height: 13px;
-    width: 16px;
-}
-
-.nickNameMarkIcon{
-    display: inline-block;
-    position: relative;
-    text-align: center;
-}
-
-.nickNameAvatar {
-    border-radius: 100%;
-    display: block;
-}
-
-.avatarItem {
-    display: flex;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.symbolMark{
-    font-size: 10px;
-    /*font-weight: 400;*/
-    line-height: 13px;
-    font-weight: 600!important;
-}
-
-.contour {
-    border-style: dashed;
-    border-top: 1px;
-    height: 0;
-    width: inherit;
-    border: 0;
-    margin: 0;
-}
-
-.communityContent {
+.agentWrap {
     display: block;
     position: relative!important;
 }
 
-@media only screen and (min-width: 768px) {
-    .mainContentContainer {
-        display: flex!important;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
-
-.mainContentWrapper {
+.agentContentContainer {
     max-width: 100%;
 }
 
-.info {
-    font-size: 10px;
-    font-weight: 400;
-    height: 16px;
-    line-height: 13px;
-    line-height: 16px;
-    padding: 1.5px 4px;
-    background-color: #f3f4f5;
-    border: 1px solid #f3f4f5;
-    color: #595f63;
-    align-items: center;
-    border-radius: 4px;
-    box-sizing: border-box;
-    display: inline-flex;
-    justify-content: center;
-    position: relative;
-    text-align: center;
-    margin-bottom: 12px!important;
-}
-
-.contentTitleLine {
+.agentContentTitle {
     word-wrap: break-word;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
     font-size: 18px;
-    font-weight: 400;
     line-height: 25px;
     margin-bottom: 12px!important;
 }
 
-@media only screen and (min-width: 768px) {
-    .contentLine {
-        min-height: 40px;
-    }
-}
-
-.contentLine {
+.agentContent {
     margin-bottom: 8px;
     position: relative;
     word-wrap: break-word;
@@ -934,11 +139,14 @@ img {
     text-overflow: ellipsis;
     word-break: keep-all;
     font-size: 14px;
-    font-weight: 400;
     line-height: 20px;
 }
 
-.contentWrapper {
+.moreText {
+    color: #adb3b8;
+}
+
+.bottomContentWrap {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
@@ -946,9 +154,121 @@ img {
     margin-top: 24px!important;
 }
 
-.wrapperContent {
+.bottomContentContainer {
     display: flex!important;
     flex-direction: row;
 }
 
+.hits, .reply {
+    align-items: center;
+    display: flex!important;
+    margin-right: 12px;
+}
 
+.hitsSVG, .replySVG, .bookmarkSVG {
+    background: transparent!important;
+    cursor: auto;
+    overflow: hidden;
+    margin-right: 4px!important;
+}
+
+.hitsCount, .replyCount, .bookmarkCount {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+
+.bookmark {
+    margin-right: 0;
+    align-items: center;
+    display: flex!important;
+}
+
+.writeModalWrap {
+    background: rgba(0,0,0,.6);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.writeBTNContainer {
+    bottom: 146px;
+    position: fixed;
+    right: 20px;
+}
+
+.agentWriteBTM, .communityWriteBTN {
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    letter-spacing: .02em;
+    line-height: 25px;
+    min-width: 56px;
+    padding: 0 14px;
+    display: flex!important;
+    justify-content: flex-start!important;
+    background-color: #d4e5f9;
+    color: #2a7de1;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.agentWrite, .communityWrite {
+    align-items: center;
+    display: flex!important;
+}
+
+.agentWriteSVG, .communityWriteSVG {
+    margin-right: 12px;
+    background: transparent!important;
+    cursor: auto;
+    overflow: hidden;
+}
+
+.agentWriteHeader, .communityWriteHeader {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.communityWriteBTN {
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #fff;
+    margin-bottom: 12px!important;
+}
+
+.writeContainer {
+    transition: all .3s ease;
+    align-items: center;
+    background-color: #2a7de1;
+    border-radius: 48px;
+    bottom: 72px;
+    box-shadow: 0 3px 7px 0 rgba(0,0,0,.06);
+    cursor: pointer;
+    display: flex!important;
+    height: 58px;
+    justify-content: center;
+    position: fixed;
+    right: 20px;
+    width: 58px;
+    z-index: 9;
+}
+
+.writeContainer.close {
+    transform: rotate(45deg);
+    z-index: 10000;
+}
+
+.writeSVG {
+    cursor: pointer;
+    background: transparent!important;
+}
