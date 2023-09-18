@@ -1,0 +1,555 @@
+article, aside, body, div, footer, header, section {
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 100%;
+    vertical-align: baseline;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+div{display: block;}
+body{line-height: 1}
+:root{
+    --swiper-navigation-size: 44px;
+}
+:root{
+    --swiper-theme-color: #007aff;
+}
+body ::selection{
+    background-color: #e6e6e6;
+    color: inherit;
+    cursor:text;
+}
+@media only screen and (max-width: 768px){
+    #mainGrid{
+        z-index: auto;
+    }
+}
+#mainGrid{
+    padding-top: 0!important;
+}
+.newGrid.fluid{padding:0;}
+.mainGridComponent{
+    height: 100%;
+    overflow-x: hidden;
+}
+.newGrid{
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 100%;
+}
+.newRow{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.newCol1{
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    width: 100%;
+}
+.divider.line{
+    border-style: solid;
+}
+.divider.horizontal{
+    border-top: 1px;
+    height: 0;
+    width: inherit;
+}
+.divider{
+    border: 0;
+    margin: 0;
+}
+hr{
+    box-sizing: content-box;
+    overflow: visible;
+
+}
+hr{
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start:0.5em ;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+.myPageMobileProfile{
+    align-items: center;
+    background-color: #fff;
+    display: flex!important;
+    flex-wrap:wrap;
+    margin-bottom: 12px;
+    padding: 24px 16px;
+}
+.imageUpLoadWrapper label{
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+.large{line-height: 68px}
+.avatarContainer{
+    position: relative;
+    text-align: center;
+}
+.avatar.image{background-size: 100% 100%}
+.avatar{
+    border-radius: 100%;
+    display: block;
+}
+i{
+    font-style: italic;
+}
+.imageUpLoadWrapper input{
+    clip: rect(0,0,0,0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+input, textarea{
+    appearance: none;
+}
+input[type="file"]{
+    writing-mode: horizontal-tb!important;
+}
+input[type="file" i]{
+    background-color: initial;
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space-collapse: preserve;
+    text-wrap: normal;
+    text-align: start !important;
+}
+input{
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+}
+.flex.flexColumn{
+    flex-direction: column;
+}
+.flex{display: flex;}
+.inform2{
+    margin-left: 12px !important;
+}
+.flex.alignItemsCenter{
+    align-items: center;
+}
+.userName2{
+    margin-bottom: 6px !important;
+}
+.icon0 {
+    background: transparent!important;
+}
+svg:not(:root){
+    overflow: hidden;
+}
+.inform{margin-left: 4px !important;}
+.icon3{margin-top: 4px !important;}
+svg:not(:root){
+    overflow-clip-margin: content-box;
+}
+/*:not(svg){*/
+/*    transform-origin: 0 0;*/
+/*}*/
+.socialIconWrapper{
+    align-items: center;
+    border-radius: 50%;
+    display: flex !important;
+    justify-content: center;
+}
+
+img{
+    width: 8px;
+    height: 8px;
+    border-style: none;
+    max-width: 100%;
+    aspect-ratio: auto;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.headLine5{
+    font-size: 22px;
+    line-height: 28px;
+}
+.semiBold{font-weight: 600!important;}
+.kakao{background: #fee500;}
+.flex.alignItemsCenter{
+    align-items: center;
+}
+.caption1{
+    font-size: 12px;
+    line-height: 15px;
+}
+.newCol1.noGutters{
+    padding-left:0 ;
+    padding-right: 0;
+}
+@media only screen and (max-width: 768px){
+    .newCol6{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.myPageMobileMenu,.myPageMobileMenuItem {display: flex!important;}
+.myPageMobileMenu{
+    background-color: #fff;
+    flex-direction: column;
+    padding: 24px 16px 60px;
+}
+.myPageMobileMenuItem{
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 12px 4px;
+    position: relative;
+}
+.full{width: 100%}
+a{background-color: transparent;
+    text-decoration: none;
+}
+a, a:active, a:focus, a:hover{
+    color:inherit;;
+    text-decoration: none;
+}
+.myPageMobileMenuItem.isShowBottomBorder{margin-bottom: 60px}
+.myPageMobileMenuItem.isShowBottomBorder::after{
+    background: #f3f4f5;
+    bottom: -36px;
+    content: "";
+    height: 12px;
+    left: 0;
+    margin-left: -16px;
+    position: absolute;
+    width: calc(100% + 32px);
+}
+.headerWrapper{
+    background-color: #fff;
+}
+.topBar{
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
+}
+.newGrid.container{
+    max-width: 100vw;
+}
+.topBarContainer{
+    align-items: center;
+    display: flex !important;
+    height: 52px;
+    justify-content: space-between;
+}
+.topBarBackward.topBarLogoType{
+    display: flex !important;
+    justify-content: center;
+}
+.topBarBackward{
+    align-items: flex-start;
+
+}
+.pointer{
+    cursor:pointer !important;
+}
+.back{
+    margin-right: 4px!important;
+}
+.body1{
+    font-size: 16px;
+    letter-spacing: .02em;
+    line-height: 25px;
+}
+.topTitle{
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+.topBarContent{
+    display: flex;
+}
+.flex.alignCenter{
+    align-items: center;
+}
+.headerInfoSectionList{
+    align-items: center;
+    display: flex !important;
+}
+.inform3{
+    margin-left: 16px !important;
+}
+ol,ul{
+    list-style: none;
+}
+ul{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.fakeHeader.noSub{
+    height: 52px;
+}
+.noTiDrawer{
+    position: relative;
+    z-index: 100;
+}
+@media only screen and (max-width: 768px) {
+    .myPageNavContainer{
+        height: 44px;
+        margin-left: 8px !important;
+        position: fixed!important;
+        top: 52px;
+        z-index: 1;
+    }
+}
+.newRow.noGutters{
+    margin-left: 0;
+    margin-right: 0;
+}
+.tabsMenuContainer:not(.tabVertical){
+    border-bottom: 1px solid #eaecee;
+}
+@media only screen and (max-width: 768px){
+    .myPageNav{
+        border-color: #f3f4f5!important;
+        overflow: visible;
+        padding: 0 16px;
+        z-index: 0!important;
+    }
+}
+.tabsMenuContainer{
+    background-color: #fff;
+    width: 100%;
+}
+.swiperContainer{
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.swiperWrapper{
+    box-sizing: content-box;
+    display: flex;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    transition-property: transform;
+    z-index: 1;
+}
+.swiperContainerFreeMode.swiperWrapper{
+    margin: 0 auto;
+    transition-timing-function: ease-out;
+}
+.swiperSlide:not(:last-child){
+    margin-right: 12px;
+}
+.swiperSlide{
+    width: auto;
+}
+.swiperSlide{
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+.active:after{
+    background-color: #595f63;
+    bottom: -1px;
+    content: "";
+    display: flex;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.swiperWrapper{
+    transform: translateZ(0px);
+    box-sizing: content-box;
+    display: flex;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    width: 100%;
+    z-index:1;
+}
+.swiperContainerFreeMode>.swiperWrapper{
+    margin: 0 auto;
+    transition-timing-function: ease-out;
+}
+.tabsMenuButton{
+    align-items:center;
+    display: flex !important;
+    position: relative;
+}
+a{
+    background-color: transparent;
+}
+.myPageNav.swiperWrapper.tabsMenuButton.cButton{
+    margin: 4px 0 9px;
+    min-width: 40px;
+}
+.active.cButton{
+    color: #040505;
+    font-weight: 500;
+}
+.tabsMenuButton.cButton{
+    background: none!important;
+    border: 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+    outline: 0;
+    padding: 4px;
+    width: fit-content;
+}
+.cButton.medium{
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 36px;
+    line-height: 20px;
+    min-width: 49px;
+    padding: 0 12px;
+}
+
+.all.cButton{
+    height: 30px!important;
+}
+.cButton{
+    background: none;
+    border: #e6e6e6;
+    align-items: center;
+    display: flex!important;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+button,select{
+    text-transform: none;
+}
+button, input, optgroup, select, textarea {
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+button{
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    writing-mode: horizontal-tb !important;
+    padding-block: 1px;
+    padding-inline: 6px;
+}
+.buttonIcon{
+    display: flex !important;
+}
+.all.swiperSlide:not(:last-child){
+    margin-right: 12px;
+}
+.all.swiperSlide{
+    width: auto;
+}
+.all.swiperSlide{
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+.swiperContainer .swiperNotification{
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    z-index: -1000;
+}
+.fakeMyPageNav{
+    display: block;
+    height: 44px;
+    position: relative;
+}
+@media only screen and (max-width: 768px) {
+    .myPageCommunity{
+        padding-top: 24px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .newCol6{
+        max-width: 100%;
+    }
+}
+@media only screen and (max-width: 768px){
+    .myPageCommunityList{
+        padding: 0 16px;
+    }
+}
+.myPageCommunityList{
+    display: flex !important;
+    flex-direction: column;
+}
+.List{
+    background: #fff;
+}
+.infiniteLoadingContainer{
+    clear: both;
+    text-align: center;
+}
+.myPageNoResultsBox{
+    display: flex!important;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+}
+.goButton{margin: 24px auto 0;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    display: flex !important;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.lightPrimary{background-color: #d4e5f9; color: #2a7de1}
+.regular{
+    font-weight: 400!important;
+}
+.reTry{
+    margin-top: 5px;
+    padding: 5px 10px;
+    color: #999;
+    font-size: 14px;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
