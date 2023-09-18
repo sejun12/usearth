@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>관리자 페이지 : 재활용 대행</title>
+    <link rel="stylesheet" href="/static/css/visitVehicleManager/visitVehicleManager.css"/>
+</head>
+<body>
+<div class="wrap">
+    <div class="innerWrapper">
+        <nav class="innerWrapperNav">
+            <div>
+                <div class="navInner">
+                    <a href="">
+                        <img class="svg2" src="/static/images/recyclingAgentManagerImage/usearthLogo.png"/>
+                    </a>
+                    <div class="aBelow"></div>
+                    <div class="wrapperBody">
+                        <span>| 관리자 페이지</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="overflow">
+            <nav class="surfaceSecondary">
+                <div class="surfaceInner">
+                    <div class="flexCol">
+                        <div class="margin12">
+                            <button class="profileImageBTN">
+                                <span style="box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; inset: 0px;">
+                                    <img alt="관리자 이미지" sizes="100vw" decoding="async" src="/static/images/recyclingAgentManagerImage/profile.png" class=" profileIMG">
+                                </span>
+                                <span></span>
+                            </button>
+                        </div>
+                        <h2 class="userName">관지라 계정</h2>
+                        <a href="">
+                            <button type="button" class="myPageButton">
+                                <div class="myPageButtonInner">
+                                    <div>로그아웃</div>
+                                    <svg
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="16px"
+                                            width="16px"
+                                            class="svg3"
+                                    >
+                                        <path d="M11 7a1 1 0 0 0-1-1H4v14h14v-6a1 1 0 1 0-2 0v4H6V8h4a1 1 0 0 0 1-1Z"></path>
+                                        <path
+                                                d="M19.01 3.829H20v6.656a1 1 0 1 1-2 0V7.244l-5.293 5.293a1 1 0 0 1-1.414-1.415l5.293-5.292h-3.243a1 1 0 1 1 0-2H19.01Z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <!-- 사이드바 시작 -->
+                <ul class="surfaceUl">
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg4" src="/static/images/recyclingAgentManagerImage/profile-user.png"/>
+                            <span class="surfaceCategory">입주민 목록</span>
+                        </a>
+                    </li>
+                    <li id="flex" class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/coin.png"/>
+                            <span class="surfaceCategory">아파트 관리비</span>
+                        </a>
+                        <button>
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/down.png">
+                        </button>
+                    </li>
+                    <li id="flex2" class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/feedback.png"/>
+                            <span class="surfaceCategory">민원 관리</span>
+                        </a>
+                        <button>
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/down.png">
+                        </button>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/trash-can.png"/>
+                            <span class="surfaceCategory">재활용 대행</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists here">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/car-fill-from-frontal-view.png"/>
+                            <span class="surfaceCategory">방문 차량</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/report.png"/>
+                            <span class="surfaceCategory">공지사항 목록</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="">
+                            <img class="svg5" src="/static/images/recyclingAgentManagerImage/4.png"/>
+                            <span class="surfaceCategory">자유게시판</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- 여기까지 사이드바 -->
+            </nav>
+            <!--관리자비페이지시작-->
+            <div class="entireWrapper">
+                <div class="entireWrapperInner">
+                    <div class="wrapperInnerGrid">
+                        <div class="headerWrap">
+                            <header class="headerTag">
+                                <h1 class="headerTitle">방문차량 등록 목록</h1>
+                            </header>
+                            <div class="sortWrap">
+                                <div>
+                                    <span class="totalTitle">전체</span>
+                                    <!-- 재활용 대행 게시판에 등록되 게시글의 수 입력 -->
+                                    <span class="totalCount">1</span>
+                                </div>
+                                <div class="sortContainer">
+                                    <div class="sortYearBox">
+                                        <button type="button" class="sortYearBTN" style="border-color: rgba(0,0,0,.1);">
+                                            <span class="sortYear">연도 전체</span>
+                                            <!-- 아래방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortYearDownArrow" style="display: block">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
+                                            </svg>
+                                            <!-- 위방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortYearUpArrow" style="display: none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.73 15.58a1.076 1.076 0 0 1-1.587.13L12 9.168 4.857 15.71a1.076 1.076 0 0 1-1.586-.13 1.26 1.26 0 0 1 .122-1.695L12 6l8.607 7.885a1.26 1.26 0 0 1 .122 1.695Z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="years" style="display: none;">
+                                            <ul class="yearsListWrap">
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">연도 전체</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2023년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2022년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2021년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2020년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2019년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2018년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2017년</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="yearsListBTN">2016년</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="sortMonthBox">
+                                        <button type="button" class="sortMonthBTN">
+                                            <span class="sortMonth">월 전체</span>
+                                            <!-- 아래방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortMonthDownArrow" style="display: block">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
+                                            </svg>
+                                            <!-- 위방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortMonthUpArrow" style="display: none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.73 15.58a1.076 1.076 0 0 1-1.587.13L12 9.168 4.857 15.71a1.076 1.076 0 0 1-1.586-.13 1.26 1.26 0 0 1 .122-1.695L12 6l8.607 7.885a1.26 1.26 0 0 1 .122 1.695Z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="month" style="display: none;">
+                                            <ul class="monthListWrap">
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">월 전체</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">1월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">2월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">3월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">4월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">5월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">6월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">7월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">8월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">9월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">10월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">11월</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="monthListBTN">12월</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="sortPriorityBox">
+                                        <button type="button" class="sortPriorityBTN">
+                                            <span class="sortPriority">일 전체</span>
+                                            <!-- 아래방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortPriorityDownArrow" style="display: block">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
+                                            </svg>
+                                            <!-- 위방향 화살표 -->
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sortPriorityUpArrow" style="display: none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.73 15.58a1.076 1.076 0 0 1-1.587.13L12 9.168 4.857 15.71a1.076 1.076 0 0 1-1.586-.13 1.26 1.26 0 0 1 .122-1.695L12 6l8.607 7.885a1.26 1.26 0 0 1 .122 1.695Z"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="priority" style="display: none;">
+                                            <ul class="priorityListWrap">
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">일 전체</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">1일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">2일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">3일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">4일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">5일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">6일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">7일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">8일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">9일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">10일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">11일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">12일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">13일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">14일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">15일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">16일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">17일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">18일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">19일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">20일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">21일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">22일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">23일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">24일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">25일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">26일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">27일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">28일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">29일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">30일</button>
+                                                </li>
+                                                <li tabindex="-1">
+                                                    <button  type="button" class="priorityListBTN">31일</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 게시글 생성 시 추가하는 위치 -->
+                        <ul class="postListWrap">
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="postItemWrap">
+                                <button class="postBTN">
+                                    <div class="postHDAndCTWrap">
+                                        <div class="postHDAndCTContainer">
+                                            <div class="postHDAndCTBox">
+                                                <div class="postHeaderBox">
+                                                    <p class="postHeader">OO동 OOOO호</p>
+                                                </div>
+                                                <p class="postContent">등록자 주소</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                                <div class="postInfoWrap">
+                                    <div class="writer">
+                                        <p class="writerName">닉네임1</p>
+                                        <p class="writerHeader">등록자</p>
+                                    </div>
+                                    <div class="visit">
+                                        <p class="visitName">TV수리</p>
+                                        <p class="visitHeader">방문 목적</p>
+                                    </div>
+                                    <div class="hits">
+                                        <p class="hitsCount">2023/01/01</p>
+                                        <p class="hitsHeader">방문 시작일</p>
+                                    </div>
+                                    <div class="reply">
+                                        <p class="replyCount">2023/01/01</p>
+                                        <p class="replyHeader">방문 종료일</p>
+                                    </div>
+                                    <div class="postDate">
+                                        <p class="postDateCount">2023/01/01</p>
+                                        <p class="postDateHeader">등록일</p>
+                                    </div>
+                                </div>
+                                <div class="postDelete">
+                                    <button type="button" class="postDeleteBTN">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="postDeleteSVG">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="zIndex0"></div>
+    <div class="zIndex10" style="display: block;">
+        <div class="modalWindow" style="display: none">
+            <h4 class="modalTitle">게시글 삭제</h4>
+            <div class="modalContent">해당 게시글을 삭제하시겠습니까?</div>
+            <div class="modalBtns">
+                <div class="cancelWrapper">
+                    <button type="button" class="cancelBtn">취소</button>
+                </div>
+                <!-- 확인 클릭 시 데이터 삭제 및 html삭제 필요 -->
+                <div class="confirmWrapper">
+                    <button type="button" class="confirmBtn">확인</button>
+                </div>
+            </div>
+        </div>
+        <div class="deleteMessageWrap" style="display: none">
+            <div class="deleteMessage">게시글이 삭제되었습니다.</div>
+        </div>
+        <div class="modalWrapperGray"  style="display: none"></div>
+    </div>
+</div>
+</body>
+<script src="/static/js/visitVehicleManager/visitVehicleManager.js"></script>
+</html>
