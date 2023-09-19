@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>관리자 페이지 : 재활용 대행</title>
+    <title>관리자 페이지 : 방문차량 등록</title>
     <link rel="stylesheet" href="/static/css/visitVehicleManager/visitVehicleManager.css"/>
 </head>
 <body>
@@ -117,13 +117,14 @@
                     <div class="wrapperInnerGrid">
                         <div class="headerWrap">
                             <header class="headerTag">
-                                <h1 class="headerTitle">방문차량 등록 목록</h1>
+                                <h1 class="headerTitle">방문 차량등록 목록</h1>
                             </header>
                             <div class="sortWrap">
                                 <div>
                                     <span class="totalTitle">전체</span>
                                     <!-- 재활용 대행 게시판에 등록되 게시글의 수 입력 -->
                                     <span class="totalCount">1</span>
+                                    <button type="button" class="registrationBTN">방문 차량등록</button>
                                 </div>
                                 <div class="sortContainer">
                                     <div class="sortYearBox">
@@ -872,10 +873,11 @@
         </div>
     </div>
     <div class="zIndex0"></div>
-    <div class="zIndex10" style="display: block;">
-        <div class="modalWindow" style="display: none">
-            <h4 class="modalTitle">게시글 삭제</h4>
-            <div class="modalContent">해당 게시글을 삭제하시겠습니까?</div>
+<!--    삭제 모달창-->
+    <div class="zIndex10">
+        <div class="modalWindow" style="display: none;">
+            <h4 class="modalTitle">등록 삭제</h4>
+            <div class="modalContent">해당 등록을 삭제하시겠습니까?</div>
             <div class="modalBtns">
                 <div class="cancelWrapper">
                     <button type="button" class="cancelBtn">취소</button>
@@ -886,10 +888,59 @@
                 </div>
             </div>
         </div>
+        <!-- 삭제 완료 메시지-->
         <div class="deleteMessageWrap" style="display: none">
-            <div class="deleteMessage">게시글이 삭제되었습니다.</div>
+            <div class="deleteMessage">등록이 삭제되었습니다.</div>
         </div>
         <div class="modalWrapperGray"  style="display: none"></div>
+    </div>
+    <!-- 방문 차량등록 모달창-->
+    <div class="registrationModal">
+        <div class="registrationModalWrap" style="display: none;">
+            <h4 class="visitTitle">방문 차량등록</h4>
+            <div class="visitDateWrap">
+                <div class="visitDate">방문 일자</div>
+                <label class="dateLabel">
+                    <input type="text" class="startVisitDateInput" placeholder="yyyy/mm/dd">
+                </label>
+                <strong class="wave">~</strong>
+                <label class="dateLabel">
+                    <input type="text" class="endVisitDateInput" placeholder="yyyy/mm/dd">
+                </label>
+            </div>
+            <div class="visitPurposeWrap">
+                <div class="visitPurpose">방문 목적</div>
+                <label class="PurposeLabel">
+                    <input type="text" class="visitPurposeInput" placeholder="예) 가족모임">
+                </label>
+            </div>
+            <div class="vehicleKindWrap">
+                <div class="vehicleKind">방문 차종</div>
+                <label class="vehicleKindLabel">
+                    <input type="text" class="vehicleKindInput" placeholder="예) 아반떼">
+                </label>
+            </div>
+            <div class="vehicleNumberWrap">
+                <div class="vehicleNumberDIV">차량 번호</div>
+                <label class="vehicleNumberLabel">
+                    <input type="text" class="vehicleNumberInput" placeholder="예) 000서0000">
+                </label>
+            </div>
+            <div class="modalBtns">
+                <div class="cancelRegistrationWrap">
+                    <button type="button" class="cancelRegistrationBtn">취소</button>
+                </div>
+                <!-- 확인 클릭 시 데이터 삭제 및 html삭제 필요 -->
+                <div class="confirmRegistrationWrap">
+                    <button type="button" class="confirmRegistrationBtn">확인</button>
+                </div>
+            </div>
+        </div>
+        <!-- 등록 완료 메시지-->
+        <div class="registrationMessageWrap" style="display: none">
+            <div class="registrationMessage">방문 차량등록이 완료되었습니다.</div>
+        </div>
+        <div class="registrationModalGray" style="display: none;"></div>
     </div>
 </div>
 </body>

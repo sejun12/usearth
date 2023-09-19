@@ -52,6 +52,13 @@ const years = document.querySelector(".years");
 const yearsListBTNs =document.querySelectorAll(".yearsListBTN");
 
 sortYearBTN.addEventListener("click", () => {
+    //
+    sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    month.style.display = 'none';
+    //
+    sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    priority.style.display = 'none';
+
     if(sortYearBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
         years.style.display = 'none';
@@ -77,6 +84,13 @@ const month = document.querySelector(".month");
 const monthListBTNs =document.querySelectorAll(".monthListBTN");
 
 sortMonthBTN.addEventListener("click", () => {
+    //
+    sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    years.style.display = 'none';
+    //
+    sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    priority.style.display = 'none';
+
     if(sortMonthBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
         month.style.display = 'none';
@@ -102,6 +116,13 @@ const priority = document.querySelector(".priority");
 const priorityListBTNs =document.querySelectorAll(".priorityListBTN");
 
 sortPriorityBTN.addEventListener("click", () => {
+    //
+    sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    years.style.display = 'none';
+    //
+    sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    month.style.display = 'none';
+
     if(sortPriorityBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
         priority.style.display = 'none';
@@ -120,3 +141,46 @@ priorityListBTNs.forEach((priorityListBTN) => priorityListBTN.addEventListener("
     sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
     priority.style.display = 'none';
 }))
+
+// 방문 차량등록 모달창 열기
+const registrationBTN = document.querySelector(".registrationBTN");
+const registrationModalWrap = document.querySelector(".registrationModalWrap");
+const registrationModalGray = document.querySelector(".registrationModalGray");
+
+registrationBTN.addEventListener("click", () => {
+    registrationModalWrap.style.display = 'block';
+    registrationModalGray.style.display = 'block';
+})
+
+// 방문 차량등록 모달창 내 취소버튼 클릭 시 모달창 닫기
+const cancelRegistrationBtn = document.querySelector(".cancelRegistrationBtn");
+
+cancelRegistrationBtn.addEventListener("click", () => {
+    registrationModalWrap.style.display = 'none';
+    registrationModalGray.style.display = 'none';
+})
+
+// 방문 차량등록 모달창 내 확인버튼 클릭 시 입력받은 데이터 보내고 모달창 닫기
+const confirmRegistrationBtn = document.querySelector(".confirmRegistrationBtn");
+
+confirmRegistrationBtn.addEventListener("click", () => {
+    registrationModalWrap.style.display = 'none';
+    registrationModalGray.style.display = 'none';
+    registrationMessageUpDown();
+})
+
+// 등록완료 메시지 뛰우는 메소드
+const registrationMessageWrap = document.querySelector(".registrationMessageWrap");
+function registrationMessageUpDown() {
+    registrationMessageWrap.style.display = 'flex';
+
+    registrationMessageWrap.classList.remove('slideDown');
+    registrationMessageWrap.classList.add('slideUp');
+    setTimeout(() => {
+        registrationMessageWrap.classList.remove('slideUp');
+        registrationMessageWrap.classList.add('slideDown');
+        setTimeout(() => {
+            registrationMessageWrap.style.display = 'none';
+        }, 200);
+    }, 2000);
+}

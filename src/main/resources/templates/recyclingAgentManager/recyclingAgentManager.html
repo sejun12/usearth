@@ -709,14 +709,14 @@
                                 </div>
                             </li>
                         </ul>
-                        <div></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="zIndex0"></div>
-    <div class="zIndex10" style="display: block;">
+    <!-- 게시글 삭제 모달창-->
+    <div class="zIndex10">
         <div class="modalWindow" style="display: none">
             <h4 class="modalTitle">게시글 삭제</h4>
             <div class="modalContent">해당 게시글을 삭제하시겠습니까?</div>
@@ -734,6 +734,95 @@
             <div class="deleteMessage">게시글이 삭제되었습니다.</div>
         </div>
         <div class="modalWrapperGray"  style="display: none"></div>
+    </div>
+    <!-- 게시글 상세보기 모달창-->
+    <div class="recyclingPostModal">
+        <div class="recyclingPostModalWrap" style="display: none;">
+            <!-- 포스트 정보 -->
+            <div class="recyclingPost">
+                <h2 class="recyclingPostHeader">분리수거 옮기는 것 좀 도와주실~</h2>
+                <p class="recyclingPostContent">
+                    <span class="recyclingPostContentText">
+                        분리수거 양이 너무 많아서 혼자 옮기기엔 힘들것 같아요..<br>
+                        도와주실분 있으신가요?<br>
+                        수고비는 따로 드리겠습니다.
+                    </span>
+                </p>
+                <!-- 게시글 작성 날짜 가져와서 입력 -->
+                <p class="recyclingPostWriteDate" style="color: rgb(207, 212, 215);">2023.09.13</p>
+            </div>
+            <!-- 답글 목록 -->
+            <div class="replyWrap">
+                <div class="memberInfoAndDelete">
+                    <div class="memberInfo">
+                        <div class="memberName">닉네임</div>
+                        <div class="address">힐스테이트 105동</div>
+                    </div>
+                    <button type="button" class="replyDeleteBTN">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="replyDeleteSVG">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="replyContent">
+                    <span class="replyContentText">
+                        제가 도와드릴게요! 언제까지 어디로 가면 될까요?
+                    </span>
+                </p>
+                <!-- 게시글 작성 날짜 가져와서 입력 -->
+                <p class="replyWriteDate" style="color: rgb(207, 212, 215);">2023.09.13</p>
+                <div class="memberInfoAndDelete">
+                    <div class="memberInfo">
+                        <div class="memberName">닉네임</div>
+                        <div class="address">힐스테이트 105동</div>
+                    </div>
+                    <button type="button" class="replyDeleteBTN">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="replyDeleteSVG">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="replyContent">
+                    <span class="replyContentText">
+                        제가 도와드릴게요! 언제까지 어디로 가면 될까요?
+                    </span>
+                </p>
+                <!-- 게시글 작성 날짜 가져와서 입력 -->
+                <p class="replyWriteDate" style="color: rgb(207, 212, 215);">2023.09.13</p>
+                <div class="memberInfoAndDelete">
+                    <div class="memberInfo">
+                        <div class="memberName">닉네임</div>
+                        <div class="address">힐스테이트 105동</div>
+                    </div>
+                    <button type="button" class="replyDeleteBTN">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="replyDeleteSVG">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="replyContent">
+                    <span class="replyContentText">
+                        제가 도와드릴게요! 언제까지 어디로 가면 될까요?
+                    </span>
+                </p>
+                <!-- 게시글 작성 날짜 가져와서 입력 -->
+                <p class="replyWriteDate" style="color: rgb(207, 212, 215);">2023.09.13</p>
+            </div>
+            <!-- 닫기 버튼 -->
+            <div class="modalBtns">
+                <div class="closeWrap">
+                    <button type="button" class="closeBtn">닫기</button>
+                </div>
+            </div>
+        </div>
+        <!-- 댓글 삭제 완료 메시지-->
+        <div class="replyDeleteMessageWrap" style="display: none">
+            <div class="replyDeleteMessage">댓글이 성공적으로 삭제되었습니다.</div>
+        </div>
+        <div class="recyclingPostModalGray" style="display: none;"></div>
     </div>
 </div>
 </body>

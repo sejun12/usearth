@@ -52,6 +52,13 @@ const years = document.querySelector(".years");
 const yearsListBTNs =document.querySelectorAll(".yearsListBTN");
 
 sortYearBTN.addEventListener("click", () => {
+    //
+    sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    month.style.display = 'none';
+    //
+    sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    priority.style.display = 'none';
+
     if(sortYearBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
         years.style.display = 'none';
@@ -77,6 +84,13 @@ const month = document.querySelector(".month");
 const monthListBTNs =document.querySelectorAll(".monthListBTN");
 
 sortMonthBTN.addEventListener("click", () => {
+    //
+    sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    years.style.display = 'none';
+    //
+    sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    priority.style.display = 'none';
+
     if(sortMonthBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
         month.style.display = 'none';
@@ -102,6 +116,13 @@ const priority = document.querySelector(".priority");
 const priorityListBTNs =document.querySelectorAll(".priorityListBTN");
 
 sortPriorityBTN.addEventListener("click", () => {
+    //
+    sortYearBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    years.style.display = 'none';
+    //
+    sortMonthBTN.style.borderColor = 'rgba(0,0,0,.1)';
+    month.style.display = 'none';
+
     if(sortPriorityBTN.style.borderColor === "rgb(91, 68, 234)") {
         sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
         priority.style.display = 'none';
@@ -120,3 +141,44 @@ priorityListBTNs.forEach((priorityListBTN) => priorityListBTN.addEventListener("
     sortPriorityBTN.style.borderColor = 'rgba(0,0,0,.1)';
     priority.style.display = 'none';
 }))
+
+// 게시글 제목 및 내용 버튼을 누를 경우 해당 게시글 상세보기 모달창 열기
+const postBTNs = document.querySelectorAll(".postBTN");
+const recyclingPostModalWrap = document.querySelector(".recyclingPostModalWrap");
+const recyclingPostModalGray = document.querySelector(".recyclingPostModalGray");
+
+postBTNs.forEach((postBTN) => postBTN.addEventListener("click", () => {
+    recyclingPostModalWrap.style.display = 'block';
+    recyclingPostModalGray.style.display = 'block';
+}))
+
+// 게시글 모달창에서 댓글 삭제버튼 클릭 시 삭제 및 삭제 완료 메시지
+const replyDeleteBTNs = document.querySelectorAll(".replyDeleteBTN");
+
+replyDeleteBTNs.forEach((replyDeleteBTN) => replyDeleteBTN.addEventListener("click", () => {
+    replayDeleteMessageUpDown();
+}))
+
+// 댓글 삭제완료 메시지 뛰우는 메소드
+const replyDeleteMessageWrap = document.querySelector(".replyDeleteMessageWrap");
+function replayDeleteMessageUpDown() {
+    replyDeleteMessageWrap.style.display = 'flex';
+
+    replyDeleteMessageWrap.classList.remove('slideDown');
+    replyDeleteMessageWrap.classList.add('slideUp');
+    setTimeout(() => {
+        replyDeleteMessageWrap.classList.remove('slideUp');
+        replyDeleteMessageWrap.classList.add('slideDown');
+        setTimeout(() => {
+            replyDeleteMessageWrap.style.display = 'none';
+        }, 200);
+    }, 2000);
+}
+
+// 닫기 버튼 클릭 시 게시글 상세보기 모달창 닫기
+const closeBtn = document.querySelector(".closeBtn");
+
+closeBtn.addEventListener("click", () => {
+    recyclingPostModalWrap.style.display = 'none';
+    recyclingPostModalGray.style.display = 'none';
+})

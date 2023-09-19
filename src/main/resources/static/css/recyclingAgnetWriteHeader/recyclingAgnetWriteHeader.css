@@ -1,0 +1,357 @@
+
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+
+div, footer, header, section {
+    user-select: text;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, a, body, div, h1, h2, h3, h4, h5, h6,
+header, html, img, ul, p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul {
+    /*padding-left: 0;*/
+    list-style: none;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-weight: 400;
+}
+
+div, h1, h2, h3, h4, h5, h6, p, span {
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+h3, .h3 {
+    font-size: 26px;
+    line-height: 37px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+h4, .h4 {
+    font-size: 22px;
+    line-height: 34px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+button, select {
+    text-transform: none;
+}
+
+input, textarea {
+    appearance: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, select, textarea {
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    color: #495057;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    background-color: #fff;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    font-size: 10px;
+    position: relative;
+    line-height: 1.15;
+}
+
+body ::selection {
+    color: inherit;
+    background-color: #e6e6e6;
+    /*background-color: fade(#000,10);*/
+    cursor: text;
+}
+
+.blinderFirst {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    width: 100%;
+    height: 2000px;
+    background-color: #000;
+    display: none;
+    opacity: .7;
+}
+
+.blinderSecond {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    width: 100%;
+    height: 2000px;
+    background-color: #fff;
+    display: none;
+    opacity: .7;
+}
+
+.customFeedBlinder {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    height: 2000px;
+    background-color: #000;
+    display: none;
+    opacity: .7;
+}
+
+.loading {
+    display: none;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 9998;
+}
+
+.headerWrapper {
+    background-color: #fff;
+}
+
+.requestLine {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.requestLineBox {
+    max-width: 100vw;
+    position: relative;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+.requestLineBox > .container {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    *zoom: 1;
+}
+
+.container:before, .container:after {
+    content: " ";
+    display: table;
+}
+
+.lineBoxRequest {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.requestBox {
+    position: relative;
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+
+.boxRequest {
+    height: 52px;
+    display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrowRequestLine {
+    display: flex!important;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.arrowIcon {
+    cursor: pointer!important;
+    background: transparent!important;
+    margin-right: 4px!important;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.request {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: .02em;
+}
+
+.topBarContent {
+    display: flex;
+}
+
+.emptyPlace {
+    align-items: center;
+    display: flex;
+}
+
+.headerInfoSectionList {
+    display: flex!important;
+    align-items: center;
+    margin-left: 16px!important;
+}
+
+.fakeHeader {
+    height: 52px;
+}
+
+.modalMark {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000b3;
+    transition: opacity .3s ease;
+    box-sizing: border-box;
+}
+
+.modalContainer {
+    min-width: 460px;
+    width: auto;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px #00000054;
+    transition: all .3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+}
+
+.juniorNaver {
+    font-size: 13px;
+    color: #adb5bd;
+    font-weight: 400;
+    margin-bottom: 15px!important;
+}
+
+.inputBox {
+    box-sizing: border-box;
+    margin-bottom: 20px!important;
+    display: block!important;
+    height: 40px;
+    line-height: 38px;
+    padding-left: 12px;
+    border-radius: 0;
+    border: 1px solid #e1e4e7;
+    display: -moz-inline-stack;
+    zoom: 1;
+}
+
+input {
+    outline: none!important;
+}
+
+.changeButton {
+    float: right!important;
+    min-width: 92px;
+    height: 40px;
+    line-height: 38px;
+    background-color: #2a7de1;
+    border: 1px solid #2A7DE1;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    display: -moz-inline-stack;
+    zoom: 1;
+    padding: 0 16px;
+}
+
+.textCenter {
+    text-align: center!important;
+}
+
+.popUpTitle {
+    margin-bottom: 20px!important;
+    text-align: center!important;
+}
+
+.headText {
+    margin-bottom: 20px!important;
+    color: #282c30!important;
+    text-align: center!important;
+}
+
+.modalMessage {
+    color: #282c30;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+.placeEmpty {
+    margin-bottom: 20px!important;
+}
+
+.buttonText {
+    text-align: center!important;
+    min-width: 92px;
+    min-width: 92px;
+    height: 40px;
+    line-height: 38px;
+    background-color: #2a7de1;
+    border: 1px solid #2A7DE1;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    display: -moz-inline-stack;
+    zoom: 1;
+    /*display: inline-block;*/
+    padding: 0 16px;
+}
+
+
+
