@@ -914,12 +914,17 @@ ol, ul {
 /* 신고하기 모달창 */
 .application {
     display: none;
-    background: rgba(0,0,0,.6);
-    height: 100%;
-    left: 0;
+    background: rgba(0, 0, 0, 0.6);
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
+    z-index: 3;
+    bottom: 0;
+    overflow-y: hidden;
+    transition: transform 0.3s ease-in-out;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .declarationModal {

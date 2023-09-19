@@ -3,7 +3,6 @@
 
     #managementMain {
         z-index: auto;
-        padding-top: 0!important;
     }
 
     .mainIntroSection {
@@ -57,15 +56,17 @@ html {
 body {
     line-height: 1;
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 20px;
+}
+
+#managementMain {
+    padding-top: 0!important;
 }
 
 .aptManagementMain {
     padding: 0;
     height: 100%;
     /* 이중 스크롤이 생겨 주석처리 */
-    /*overflow-x: hidden;*/
+    overflow-x: hidden;
     padding-top: 48px!important;
     box-sizing: border-box;
     margin-left: auto;
@@ -82,11 +83,10 @@ div, footer, header, section {
 h4, h5, h6, header, html, img, li, ol, output, p, q, section, ul, li{
     border: 0;
     margin: 0;
-    /* 앱상으로 보기가 더 좋아 padding을 제외*/
-    /*padding: 0;*/
+    padding: 0;
 }
 
-a, div, h1, h2, h3, h4, h5, h6, header, html, p, section, img, ul, li, footer {
+a, div, h1, h2, h3, h4, h5, h6, header, body, p, section, img, ul, li, footer {
     font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-size: 100%;
     vertical-align: baseline;
@@ -112,11 +112,8 @@ body ::selection {
 .aptManagementMainTool {
     display: flex;
     flex-wrap: wrap;
-    /*margin-left: -8px;*/
-    /*margin-right: -8px;*/
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    margin-left: -8px;
+    margin-right: -8px;
 }
 
 .aptManagementMainBox {
@@ -418,11 +415,21 @@ button, input, select, textarea {
     margin: 10px 0;
 }
 
-.feeText, .item, .public, .headOfHousehold, .monthBilling, .amountBilling {
+.feeText, .item, .monthBilling, .amountBilling {
     margin-left: 20px;
     display: flex;
     justify-content: space-between;
-    /*margin: 10px 0;*/
+}
+
+.headOfHousehold {
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.public {
+    display: flex;
+    justify-content: space-between;
 }
 
 .item, .public, .monthBilling, .amountBilling {
