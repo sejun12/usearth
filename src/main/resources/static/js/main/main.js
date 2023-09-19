@@ -383,24 +383,31 @@ arrows.forEach((arrow) => {
 // mobileX.addEventListener("click",()=>{
 //     fullScreenMobile.style.display="none";
 // })
-//
+// 화면 크기가 변경될 때 크기 조정
+window.addEventListener("resize", function() {
+    if (window.innerWidth >= 768) {
+        setSVGSize(48, 48);
+    } else {
+        setSVGSize(36, 36);
+    }
+});
 // // 창 너비를 확인하여 웹과 앱 SVG
-// if (window.innerWidth >= 768) {
-//     // 웹 환경에서는 SVG의 width와 height를 48
-//     setSVGSize(48, 48);
-// } else {
-//     // 앱 환경에서는 SVG의 width와 height를 36
-//     setSVGSize(36, 36);
-// }
-//
-// // SVG의 width와 height를 설정하는 함수
-// function setSVGSize(width, height) {
-//     const svgElements = document.querySelectorAll(".communityIcon");
-//     svgElements.forEach(function(svgElement) {
-//         svgElement.setAttribute("width", width);
-//         svgElement.setAttribute("height", height);
-//     });
-// }
+if (window.innerWidth >= 768) {
+    // 웹 환경에서는 SVG의 width와 height를 48
+    setSVGSize(48, 48);
+} else {
+    // 앱 환경에서는 SVG의 width와 height를 36
+    setSVGSize(36, 36);
+}
+
+// SVG의 width와 height를 설정하는 함수
+function setSVGSize(width, height) {
+    const svgElements = document.querySelectorAll(".communityIcon");
+    svgElements.forEach(function(svgElement) {
+        svgElement.setAttribute("width", width);
+        svgElement.setAttribute("height", height);
+    });
+}
 
 // 마우스 touch로 움직이는 슬라이드
 // 요소 & 사이즈
