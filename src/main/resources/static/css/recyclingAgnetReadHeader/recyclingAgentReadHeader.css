@@ -1,0 +1,200 @@
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+
+div, footer, header, section {
+    user-select: text;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, a, body, div, h1, h2, h3, h4, h5, h6,
+header, html, img, ul, p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul {
+    /*padding-left: 0;*/
+    list-style: none;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-weight: 400;
+}
+
+div, h1, h2, h3, h4, h5, h6, p, span {
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+h3, .h3 {
+    font-size: 26px;
+    line-height: 37px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+h4, .h4 {
+    font-size: 22px;
+    line-height: 34px;
+    color: #282c30;
+    font-weight: 600;
+}
+
+button, select {
+    text-transform: none;
+}
+
+input, textarea {
+    appearance: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, select, textarea {
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+
+/*body {*/
+/*    width: 100%;*/
+/*    color: #495057;*/
+/*    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,sans-serif;*/
+/*    font-weight: 400;*/
+/*    font-size: 16px;*/
+/*    line-height: 25px;*/
+/*    background-color: #fff;*/
+/*}*/
+
+html {
+    width: 100%;
+    min-height: 100%;
+    font-size: 10px;
+    position: relative;
+    line-height: 1.15;
+}
+
+body ::selection {
+    color: inherit;
+    background-color: #e6e6e6;
+    /*background-color: fade(#000,10);*/
+    cursor: text;
+}
+
+a, aside, body, caption, div, footer, h1, h2, h3, h4, h5, h6, header, html,
+img, label, li, ol, p, section, table, span, ul {
+    border: 0;
+    font-family: "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.headerWrapper {
+    background-color: #fff;
+}
+
+.topBar {
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
+}
+
+.topBarContainer {
+    max-width: 100vw;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    width: 100%;
+}
+
+.viewWrittenPostLine {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.postWrittenViewLine {
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    width: 100%;
+}
+
+.barTopContainer {
+    align-items: center;
+    display: flex!important;
+    height: 52px;
+    justify-content: space-between;
+}
+
+.topBarBackward {
+    display: flex!important;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.arrowBackButton {
+    background: transparent!important;
+    cursor: pointer!important;
+    margin-right: 4px!important;
+}
+
+.postViewText {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    line-height: 25px;
+}
+
+.topBarContent {
+    display: flex;
+}
+
+.emptyPlace {
+    align-items: center;
+    display: flex;
+}
+
+.headerInfoSectionList {
+    display: flex!important;
+    align-items: center;
+    margin-left: 16px!important;
+}
+
+.fakeHeader {
+    height: 52px;
+}
+
+.notiDrawer {
+    position: relative;
+    z-index: 100;
+}
+
