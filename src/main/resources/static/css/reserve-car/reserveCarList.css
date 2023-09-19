@@ -1,0 +1,248 @@
+article, aside, body, div, footer, header, section {
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+*, :after, :before {
+    box-sizing: border-box;
+    outline: none;
+}
+div{display: block;}
+body {
+    width: 100%;
+    color: #495057;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    background-color: #fff;
+}
+:root {
+    --swiper-navigation-size: 44px;
+}
+:root {
+    --swiper-theme-color: #007aff;
+}
+html {
+    width: 100%;
+    min-height: 100%;
+    font-size: 10px;
+    position: relative;
+}
+body ::selection {
+    color: inherit;
+    background-color: #e6e6e6;
+    cursor: text;
+}
+.headerWrapper{
+    background-color: #fff;
+}
+.topBar {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 100;
+}
+.newGrid.container{
+    max-width: 100vw;
+}
+.newGrid{
+    position: relative;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+.container:before{
+    content: " ";
+    display: table;
+}
+.container:after{
+    clear: both;
+    content: " ";
+    display: table;
+}
+.newRow{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+.newCol1{
+    position: relative;
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    box-sizing: border-box;
+}
+.topBarContainer{
+    height: 52px;
+    display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+}
+.topBarBackward{
+    display: flex!important;
+    justify-content: center;
+    align-items: flex-start;
+}
+.icon0{
+    background: transparent !important;
+}
+svg:not(:root){
+    overflow: hidden;
+}
+svg:not(:root){
+    overflow-clip-margin: content-box;
+}
+.pointer{
+    cursor: pointer!important;
+}
+.image0{
+    margin-right: 4px !important;
+}
+.body1{
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: .02em;
+}
+.topTitle{
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+.topBarContent{
+    display: flex;
+}
+.flex.alignCenter{
+    align-items: center;
+}
+.flex{
+    display: flex;
+}
+.headerInfoSectionList{
+    display: flex !important;
+    align-items: center;
+}
+.inform3{
+    margin-left: 16px!important;
+}
+ul{
+    list-style: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.fakeHeader.noSub{
+    height: 52px;
+}
+.newCol1.noGutters{
+    padding-left: 0;
+    padding-right: 0;
+}
+@media only screen and(max-width: 768px) {
+    .myPageCommunity{
+        padding-top: 24px;
+    }
+}
+@media only screen and(max-width: 768px){
+    .newColSm4{
+        max-width: 100%;
+    }
+}
+.myPageCommunityList{
+    display: flex!important;
+    flex-direction: column;
+    padding: 0 16px;
+}
+.list{
+    background: #fff;
+}
+.myPageCommunityCard{
+    width: 100%;
+}
+.listItem{
+    align-items: center;
+    border-radius: 6px;
+    display: flex !important;
+    justify-content: space-between;
+    padding: 8px 4px;
+}
+.body2 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.wFull{
+    width: 100%;
+}
+.flex.justifyContentBetween{
+    justify-content: space-between;
+}
+.flex.alignItemsCenter{
+    align-items: center;
+}
+.myPageCommunityListItemTitle{
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+}
+.body3{
+    font-size: 14px;
+    letter-spacing: .02em;
+}
+.divider.line{
+    border-style: solid;
+}
+.flex.flexColumn{
+    flex-direction: column;
+}
+.textRight{
+    text-align: right;
+}
+.cButton.medium{
+    padding: 0 12px;
+    min-width: 49px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+.applyView{
+    height: 36px!important;
+}
+.cButton{
+    color: #fff;
+    border: none;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+.primary{
+    background-color: #2A7DE1;
+}
+button{
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-indent: 0;
+    text-shadow: none;
+    text-align: center;
+    writing-mode: horizontal-tb !important;
+    padding-block: 1px;
+    padding-inline: 6px;
+}

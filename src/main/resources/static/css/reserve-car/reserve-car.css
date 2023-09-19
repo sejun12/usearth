@@ -530,6 +530,24 @@ thead{
     cursor: pointer;
     user-select: none;
 }
-
-
-
+.applyView.full{
+    height: 48px!important;
+}
+.applyView{
+    margin: 24px 0;
+}
+.cButton.medium{
+    padding: 0 12px;
+    min-width: 49px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+button,select{
+    text-transform: none;
+}
+.cButtonIcon{
+    display: flex!important;
+}
+.
