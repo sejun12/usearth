@@ -379,16 +379,16 @@ ul{
     position: relative;
     transition-property: transform;
 }
-.active:after{
-    background-color: #595f63;
-    bottom: -1px;
-    content: "";
-    display: flex;
-    height: 2px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-}
+/*.active:after{*/
+/*    background-color: #595f63;*/
+/*    bottom: -1px;*/
+/*    content: "";*/
+/*    display: flex;*/
+/*    height: 2px;*/
+/*    left: 0;*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*}*/
 .swiperWrapper{
     transform: translateZ(0px);
     box-sizing: content-box;
