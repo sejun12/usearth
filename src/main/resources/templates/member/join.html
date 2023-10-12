@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/css/member/join.css">
+<body>
+<div>
+<!--    nav-->
+    <di th:replace="~{/fix/nav/nav  :: recycling-nav}"></di>
+<!--    -->
+    <div class="mainGrid" style="min-height: calc(100vh - 324px); background-color: rgb(255, 255, 255);">
+        <div class="loginRow">
+            <div class="loginStartWrap">
+                <div class="loginView">
+                    <div class="loginViewList" style="background-color: rgb(255, 255, 255); padding: 60px 38.5px;">
+                        <div class="semiBold" style="color: rgb(32, 35, 37); line-height: 140%; font-size: 24px;">
+                           US EARTH<br>
+                            회원 가입
+                        </div>
+                    <div class="add">
+                        <div class="fontSize" style="color: rgb(60, 65, 68);">번호</div>
+                        <span>
+                            <div class="relative">
+                                <div class="relative">
+                                  <input id="id"  name="id" autocomplete="off" type="email" color="primary" class="outline" style="text-align: left;">
+                                </div>
+                            </div>
+                        </span>
+                        <div class="fontSize" style="color: rgb(60, 65, 68);">이메일</div>
+                        <span>
+                            <div class="relative">
+                                <div class="relative">
+                                  <input id="email" placeholder="your@email.com" name="email" autocomplete="off" type="email" color="primary" class="outline" style="text-align: left;">
+                                </div>
+                            </div>
+                        </span>
+                        <div class="fontSize2" style="color: rgb(60, 65, 68);">비밀번호</div>
+                        <span>
+                            <div class="relative">
+                                <div class="relative">
+                                 <input id="password" placeholder="비밀번호" name="password"  autocomplete="off" type="password" color="primary" class="outline" style="text-align: left;">
+                                </div>
+                            </div>
+                        </span>
+                    <button class="loginBtn">
+                        <div class="buttonIcon"></div>
+                        <div class="login" style="color: inherit;">회원가입</div>
+                        <div class="buttonIcon"></div>
+                    </button>
+                    <div>
+                    <div>
+                        <p class="okGo" style="color: rgb(173, 179, 184); text-align: center;">
+                            <a href="">
+                                <u class="caption1" style="color: rgb(118, 125, 130);"> 이용약관 </u></a>
+                            및
+                            <a href="">
+                                <u class="caption1" style="color: rgb(118, 125, 130);"> 개인정보 처리방침 </u></a>
+                            확인 후 동의합니다
+                        </p>
+                        <a href="" >
+                            <u class="caption" style="color: rgb(42, 125, 225); text-align: center;"> 이미 가입하셨나요? </u></a>
+                    </div>
+                        </div>
+<!--              모달 회원가입 완료시&ndash;&gt;&ndash;&gt;-->
+                <div class="modalFin" style="display: block">
+                    <div class="modalContainer">
+                        <img src="/images/main/gray-remove.svg" alt="" class="boxRemove">
+                        <div class="modalBody">
+                            <h2 class="textNormal">회원 가입 완료</h2>
+                            <form>
+                                <section class="apply">
+                                    <div>US EARTH 가입을 축하드려요!
+                                        <br> 함께 특별한 US 문화를 준비해보세요.</div>
+                                </section>
+                                <section>
+                                    <button type="button" class="applyBtn"> 시작하기 </button>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    footerNav-->
+    <div></div>
+</div>
+</div>
+</body>
+<script src="/js/member/join.js"></script>
+</html>

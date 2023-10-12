@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Us Earth</title>
+    <link rel="stylesheet" href="/css/fix/header/freeboard-writeheader.css">
+</head>
+<body>
+    <div id="app">
+        <div class="blinderFirst"></div>
+        <div id="blinderSecond" class="blinderSecond"></div>
+        <div class="customFeedBlinder"></div>
+        <lottie-player src="https://comento-s3-bucket.s3.ap-northeast-2.amazonaws.com/images/loading-spinner.json" background="transparent" speed="1" loop="" id="loading" autoplay="" class="loading" style="width: 70px; height: 70px;"></lottie-player>
+<!--        header: 요청하기 line 시작-->
+<!--         <div th:fragment="freewrite-header">-->
+        <div>
+            <div class="headerContainer">
+                <div class="headerWrapper">
+                    <div class="requestLine">
+                        <div class="requestLineBox container" style="background-color: inherit;">
+                            <div class="lineBoxRequest">
+                                <div class="requestBox">
+                                    <div class="boxRequest">
+                                        <div class="arrowRequestLine">
+                                            <svg data-v-bd9f2bcc="" data-v-09aeb421="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="arrowIcon" data-v-59015b26="" style="fill: rgb(60, 65, 68);">
+                                                <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M4.21913 11.3753C3.92696 11.7405 3.92696 12.2595 4.21913 12.6247L8.21913 17.6247C8.56414 18.056 9.19343 18.1259 9.62469 17.7809C10.056 17.4359 10.1259 16.8066 9.78087 16.3753L6.28062 12L9.78087 7.6247C10.1259 7.19344 10.056 6.56415 9.62469 6.21914C9.19343 5.87413 8.56414 5.94405 8.21913 6.37531L4.21913 11.3753Z"></path><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M20 12C20 11.4477 19.5523 11 19 11H6C5.44771 11 5 11.4477 5 12C5 12.5523 5.44771 13 6 13H19C19.5523 13 20 12.5523 20 12Z"></path>
+                                            </svg>
+                                            <div class="request" style="color: rgb(4, 5, 5); font-weight: 500;">요청하기</div>
+                                        </div>
+                                        <div class="topBarContent">
+                                            <div class="emptyPlace">
+                                                <ul class="headerInfoSectionList"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fakeHeader"></div>
+                </div>
+                <div class="modalMark" style="display: none;">
+                    <div class="modalContainer">
+                        <div class="modalBody">
+                            <h3>이메일 변경</h3>
+                            <p class="juniorNaver">주니어네이버 이메일은 사용이 불가합니다.</p>
+                            <input type="text" placeholder="이메일 주소" class="inputBox" style="width: 100%;">
+                            <div class="changeButton">변경하기</div>
+                        </div>
+                    </div>
+                </div>
+<!--                숨겨진 모달창 중 아래 빈 div는 원본코드에서 'div data-v-317efa65 data-v-8b291c5a'를 나타냄 -->
+                <div></div>
+                <div class="modalMark" style="display: none;">
+                    <div class="modalContainer">
+                        <div id="alertComponent" class="modalBody textCenter">
+                            <h4 class="popUpTitle">AlertModalTitle</h4>
+                            <div class="headText">
+                                <p class="modalMessage">AlertModalMessage</p>
+                            </div>
+                            <div class="placeEmpty"></div>
+                            <button class="buttonText" style="height: 40px; line-height: 40px; padding: 0px 50px !important;">AlertModalButtonName</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    질문하기 시작    -->
+    </div>
+</body>
+</html>

@@ -243,7 +243,7 @@ firstDiv.innerHTML = `
                    <div class="swiperControllerMainText"style="color: rgb(255, 255, 255);">오늘 밤, 12시<br>
                       <p style="font-weight:300">놓치면 사라지는</p>할인캠프</div>
                           </div> 
-                      <img src="/images/main/mainBanner.jpg" alt="" class="swiperImage">
+                      <img src="/images/main/main-banner.jpg" alt="" class="swiperImage">
                   </section>
               </div>
           </div>

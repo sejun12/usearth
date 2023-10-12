@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>아파트 관리비 내역</title>
+    <link rel="stylesheet" href="/css/anagement-feebill/anagement-feebill.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript"></script>
+</head>
+<body>
+<!-- 아파트 관리페이지 메인-->
+<div id="managementMain" class="aptManagementMain" style="emin-height: calc(100vh - 324px);">
+    <div class="aptManagementMainTool">
+        <div class="aptManagementMainBox">
+            <section class="mainIntro">
+                <div class="mainIntroTool" style="background-color: inherit;">
+                    <div class="mainIntroBox">
+                        <div class="mainIntroToolBox">
+                            <div class="mainIntroSection">
+                                <h2 class="mainFirstText" style="color: rgb(0, 0, 0); text-align: center;">
+                                    아파트 관리의 모든 것!<br> With Us Earth!!!
+                                </h2>
+                                <h3 class="mainSecondTextLine" style="color: rgb(89, 95, 99); text-align: center; font-weight: 400;">
+                                    프리미엄 라이프를 완성 시켜주는 <br> 스마트 주거 생활 플랫폼 Us Earth
+                                </h3>
+                                <div id="billSection" class="introButtons">
+                                    <!--                                        원본 코드에는 a태그에 class명이 없으나 반응형 속성을 주기 위해 class명 부여 -->
+                                    <a href="" target="_blank" rel="" class="buttonIntro">
+                                        <button id="billingDetail" class="comparePreviousMonth">
+                                            <div class="comparePreviousMonthButton">
+                                                <svg data-v-bd9f2bcc="" data-v-6f3f4218="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="monthButton" data-v-4e8c2e4a="" style="fill: rgb(255, 255, 255);">
+                                                    <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M18.2451 19.6611C17.5919 18.9263 17.5697 17.8257 18.1927 17.0651C19.3232 15.685 20 13.9242 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20L18.5463 20L18.2451 19.6611ZM22 12C22 14.403 21.1524 16.608 19.7399 18.3324L21.5206 20.3356C22.0938 20.9805 21.636 22 20.7732 22L12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"></path>
+                                                    <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M12 9C11.1716 9 10.5 9.67157 10.5 10.5C10.5 11.0523 10.0523 11.5 9.5 11.5C8.94772 11.5 8.5 11.0523 8.5 10.5C8.5 8.567 10.067 7 12 7C13.933 7 15.5 8.567 15.5 10.5C15.5 12.433 13.933 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.8284 12 13.5 11.3284 13.5 10.5C13.5 9.67157 12.8284 9 12 9Z"></path><path data-v-bd9f2bcc="" d="M13.0619 16C13.0619 16.5523 12.6141 17 12.0619 17C11.5096 17 11.0619 16.5523 11.0619 16C11.0619 15.4477 11.5096 15 12.0619 15C12.6141 15 13.0619 15.4477 13.0619 16Z"></path>
+                                                </svg>
+                                            </div>
+                                            청구내역조회
+                                            <div class="claimDetails"></div>
+                                        </button>
+                                    </a>
+                                    <!-- 원본 코드에는 a태그에 class명이 없으나 반응형 속성을 주기 위해 class명 부여 -->
+                                    <a href="" target="_blank" rel="" class="buttonIntro">
+                                        <button onclick="drawComparisonChart()" class="previousMonthOutline">
+                                            <div class="previousMonthOutlineButton"></div>
+                                            전월 비교
+                                            <div class="claimDetails"></div>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="aptManagementFeeBox">
+                <div class="aptManagementFee">
+                    <!--                        <svg data-v-bd9f2bcc="" data-v-bb43ede8="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="aptManagementFeeIcon" data-v-59015b26="" style="fill: rgb(32, 35, 37);">-->
+                    <!--                            <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M12 9C13.1046 9 14 8.10457 14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M16.7098 16.6703L16.5547 16.4376C15.5394 14.9147 13.8303 14 12 14C10.1697 14 8.46055 14.9147 7.44529 16.4376L7.29018 16.6703C6.62629 17.6661 7.34016 19 8.53701 19H15.463C16.6598 19 17.3737 17.6661 16.7098 16.6703ZM12 12C9.50102 12 7.16738 13.2489 5.78119 15.3282L5.62608 15.5609C4.07611 17.8858 5.74277 21 8.53701 21H15.463C18.2572 21 19.9239 17.8858 18.3739 15.5609L18.2188 15.3282C16.8326 13.2489 14.499 12 12 12Z"></path>-->
+                    <!--                        </svg>-->
+                    <div class="aptFee" style="color: rgb(32, 35, 37); font-weight: 700;"> 관리비 </div>
+                    <div class="aptManagementText" style="color: rgb(89, 95, 99); font-weight: 400;">
+                        우리 아파트 관리비 적정할까? <br> 우리 아파트 관리비를 한눈에 볼 수 있습니다.
+                        <span class="moreButton" onclick="toggleMore()">[우리집 관리비 보기]</span>
+                    </div>
+                    <hr class="middleLine">
+                </div>
+            </div>
+            <div class="firstHiddenLine" style="display: none;">
+                <div class="aptNameBox">
+                    <!--                        <svg data-v-bd9f2bcc="" data-v-bb43ede8="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="aptManagementFeeIcon" data-v-59015b26="" style="fill: rgb(32, 35, 37);">-->
+                    <!--                            <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M15 7H4L4 17H15V7ZM4 5C2.89543 5 2 5.89543 2 7V17C2 18.1046 2.89543 19 4 19H15C16.1046 19 17 18.1046 17 17V7C17 5.89543 16.1046 5 15 5H4Z"></path><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M17 10.5086V13.4914L20 14.3485V9.65146L17 10.5086ZM15 15L20.7253 16.6358C21.3641 16.8183 22 16.3386 22 15.6743V8.32573C22 7.66135 21.3641 7.18168 20.7253 7.3642L15 9V15Z"></path>-->
+                    <!--                        </svg>-->
+                    <div class="aptName" style="color: rgb(32, 35, 37); font-weight: 600;">힐스테이트 3단지</div>
+                    <div class="buildingNumber" style="color: rgb(89, 95, 99); font-weight: 400;">302동 2301호</div>
+                </div>
+                <div class="feeSectionBox">
+                    <div class="feeSection" style="background-color: inherit;">
+                        <div class="sectionFee">
+                            <div class="sectionFeeBox">
+                                2023년 08월 납부금액 <br>
+                                <h5 class="dateText" style="color: rgb(4, 5, 5); font-weight: 600; display: inline;">307,000</h5>원입니다. <br>
+                                납부 마감일은 <h5 class="fee" style="display: inline;">10월 01일</h5>까지 입니다.
+                            </div>
+                            <hr class="middleLine">
+                        </div>
+                    </div>
+                </div>
+                <p class="feeDetails" style="color: rgb(32, 35, 37); font-weight: 400;">납부금 상세내역</p>
+                <select id="dateSelector">
+                    <option>2023년 08월</option>
+                </select>
+                <h3 class="subTitle">※ 청구금액</h3>
+                <hr class="middleLineStrong">
+                <div class="chargeAmount">
+                    <span class="feeText">08월분 부과금액</span>
+                    <span class="feeManagement">307,000 원</span>
+                </div>
+                <hr class="middleLineStrong">
+                <div class="chargeAmount">
+                    <span class="feeText">할인총계</span>
+                    <span class="discountFee">0 원</span>
+                </div>
+                <div class="chargeAmount">
+                    <span class="feeText">미납액</span>
+                    <span class="unpaidFee">0 원</span>
+                </div>
+                <div class="chargeAmount">
+                    <span class="feeText">미납 연체료</span>
+                    <span class="nonPaymentLateFees">0 원</span>
+                </div>
+                <div class="chargeAmount">
+                    <span class="feeText">납부할 금액(납기내)</span>
+                    <span class="managementFee">307,000 원</span>
+                </div>
+                <div class="chargeAmount">
+                    <span class="feeText">납부할 금액(납기후)</span>
+                    <span class="payAfterDelivery">309,000 원</span>
+                </div>
+                <hr class="middleLineStrong">
+                <div class="subTotal">
+                    <span class="feeText">소계</span>
+                    <span class="managementFeeSubtotal">307,000 원</span>
+                </div>
+                <hr class="middleLineStrong">
+                <span class="detailMoreButton" onclick="toggleDetails()" style="color: rgb(89, 95, 99); font-weight: 400;">[상세내역 보기]</span>
+                <div id="secondHiddenLine" style="display: none;">
+                    <h3 class="subTitle">※ 상세내역</h3>
+                    <div class="chargeAmount">
+                        <span class="item">항목</span>
+                        <span class="public" >공용</span>
+                        <span class="headOfHousehold">세대별</span>
+                    </div>
+                    <hr class="middleLineStrong">
+                    <div class="chargeAmount">
+                        <span class="item">일반관리비</span>
+                        <span class="public">34,000 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">청소비</span>
+                        <span class="public">11,000 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">승강기 유지비</span>
+                        <span class="public">6,780 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">공동 전기료</span>
+                        <span class="public">3,270 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">수선 유지비</span>
+                        <span class="public">5,610 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">장기수선충담금</span>
+                        <span class="public">6,400 원</span>
+                        <span class="headOfHousehold">0 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">전기 773kw</span>
+                        <span class="public">0 원</span>
+                        <span class="headOfHousehold">217,730 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">TV 수신료</span>
+                        <span class="public">0 원</span>
+                        <span class="headOfHousehold">2,500 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <span class="item">생활폐기물수</span>
+                        <span class="public">0 원</span>
+                        <span class="headOfHousehold">1,130 원</span>
+                    </div>
+                    <div class="chargeAmount">
+                        <!--                        숫자 3을 윗첨자를 사용하기 위해 <sub></sub>을 사용했으나 15m과 너무 떨어져서 화면 표시됨 -->
+                        <span class="item">수도료15m3</span>
+                        <span class="public">0 원</span>
+                        <span class="headOfHousehold">18,580 원</span>
+                    </div>
+                    <hr class="middleLineStrong">
+                    <div class="subTotal">
+                        <span class="feeText">합계</span>
+                        <span class="managementFeeSubtotal">307,000 원</span>
+                    </div>
+                    <hr class="middleLineStrong">
+                </div>
+                <button onclick="scrollToTop()" id="topButton" style="display:none; position:fixed; bottom:20px; right:20px;">Top</button>
+                <hr class="middleLine">
+            </div>
+            <!--            그래프 -->
+            <div id="top_x_div" style=" width: 600px; height: 400px;"></div>
+            <div id="columnchart_values" style="width: 600px;"></div>
+            <!--            월 청구 금액 비교 -->
+            <hr class="graphMiddleLine">
+            <div class="numberBuilding" style="color: rgb(89, 95, 99); font-weight: 200;">월별 금액 비교</div>
+            <hr class="graphMiddleLineStrong">
+            <div class="chargeAmountView">
+                <span class="monthBilling">청구월</span>
+                <span class="amountBilling">청구금액</span>
+            </div>
+            <hr class="graphMiddleLineStrong">
+            <div class="compareMonthlyAmounts">
+                <span class="monthBilling">2023년 05월</span>
+                <span class="amountBilling">275,000 원</span>
+            </div>
+            <div class="compareMonthlyAmounts">
+                <span class="monthBilling">2023년 06월</span>
+                <span class="amountBilling">169,000 원</span>
+            </div>
+            <div class="compareMonthlyAmounts">
+                <span class="monthBilling">2023년 07월</span>
+                <span class="amountBilling">290,000 원</span>
+            </div>
+            <div class="compareMonthlyAmounts">
+                <span class="monthBilling">2023년 08월</span>
+                <span class="amountBilling">307,000 원</span>
+            </div>
+            <hr class="graphMiddleLine">
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/anagement-feebill/anagement-feebill.js"></script>
+</html>

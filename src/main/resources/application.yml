@@ -2,14 +2,6 @@
 server:
   port: 10000
 
-#JDBC
-#spring:
-#  datasource:
-#    driver-class-name: oracle.jdbc.OracleDriver
-#    url: jdbc:oracle:thin:@//localhost:1521/XE
-#    username: hr
-#    password: hr
-
 #MyBatis
 spring:
   datasource:
@@ -18,3 +10,28 @@ spring:
       jdbc-url: jdbc:oracle:thin:@//localhost:1521/XE
       username: hr
       password: hr
+
+  #multipart
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 40MB
+      max-file-size: 40MB
+      file-size-threshold: 100MB
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${mail.username}
+    password: ${mail.password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
