@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>재활용 대행</title>
+    <link rel="stylesheet" href="/css/fix/nav/nav.css">
     <link rel="stylesheet" href="/css/recycling-agent/recycling-agent.css">
 </head>
 <body>
@@ -13,14 +14,14 @@
         <div id="__layout">
             <div>
                 <!-- header를 감싸고있는 div -->
-                <div  th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
+                <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
                 <!-- 게시글을 감싸고있는 div -->
                 <div class="postsGrid" style="min-height: calc(100vh - 324px);">
                     <div class="postsWrap">
-                        <div class="postsContainer">
+                        <div class="postsContainer" >
                             <div class="postsBox">
                                 <section class="postsSection">
-                                    <div class="posts">
+                                    <div class="posts" >
                                         <!-- 게시글 주소 -->
                                         <a href="">
                                             <article class="agentCard">
@@ -825,5 +826,6 @@
         </div>
     </div>
 </body>
+<script src="/js/fix/nav/nav.js"></script>
 <script src="/js/recycling-agent/recycling-agent.js"></script>
 </html>
