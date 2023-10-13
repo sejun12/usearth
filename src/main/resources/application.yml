@@ -8,8 +8,8 @@ spring:
     hikari:
       driver-class-name: oracle.jdbc.OracleDriver
       jdbc-url: jdbc:oracle:thin:@//43.201.19.7:1521/XE
-      username: hr
-      password: hr
+      username: scott
+      password: 1234
 
   #multipart
   servlet:
@@ -23,15 +23,3 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${mail.username}
-    password: ${mail.password}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          timeout: 5000
-          starttls:
-            enable: true

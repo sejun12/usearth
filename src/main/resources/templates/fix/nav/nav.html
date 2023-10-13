@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,7 +17,7 @@
                 <div class="headerFa">
                     <div class="headerWrap">
                         <!-- 반응 으로 나오는 거 -->
-                        <div class="mibileTop">
+                        <div class="mobileTop">
                             <div class="mobileWrap">
                                 <div class="mobileNewLow">
                                     <div class="mobileNewCol">
@@ -99,17 +99,17 @@
                                                         </div>
                                                     </h1>
                                                     <ul class="ulStart">
-                                                        <li id="li" class="navList">
+                                                        <li class="navList">
                                                             <a href="" class="clickNavFirst">
                                                                 커뮤니티
                                                             </a>
                                                         </li>
-                                                        <li id="li" class="navList">
+                                                        <li class="navList">
                                                             <a href="" class="clickSecond">
                                                                 클래스
                                                             </a>
                                                         </li>
-                                                        <li id="li" class="navList">
+                                                        <li class="navList">
                                                             <a href="" class="clickThird">
                                                                 채용
                                                             </a>
@@ -122,7 +122,7 @@
                                                     <div class="navIn"style="max-width: 300px;">
                                                         <div>
                                                             <div class="navInIn">
-                                                                <label class="width" data-v-02656bf6 for="">
+                                                                <label class="width" data-v-02656bf6>
                                                                     <input type="text" style="display: none;">
                                                                     <input autocomplete="off" type="text" placeholder="커리어 고민이 있나요?" data-cy="searchInput" value="" class="searchInput">
                                                                 </label>
@@ -206,7 +206,7 @@
                                 </div>
                             </div>
                         </nav>
-                        <div class="fakeHeader"></div>
+<!--                        <div class="fakeHeader"></div>-->
                     </div>
                     <div class="drawer">
                         <div class="sideDrawer"></div>
@@ -227,7 +227,7 @@
                                                                 <path  fill-rule="evenodd" clip-rule="evenodd" d="M18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289Z"></path></svg>
                                                         </div>
                                                         <div class="mobileSearchInputWrap">
-                                                            <label for="" class="mobileSearchInputWrap" style="display: block">
+                                                            <label class="mobileSearchInputWrap" style="display: block">
                                                                 <input hidden="true" style="display: none;">
                                                                 <input autocomplete="off" type="text" placeholder="무엇을 검색 하시겠어요?" data-cy="searchInput" class="searchInputFull">
                                                             </label>
