@@ -14,7 +14,7 @@ public class RecyclingAgentController {
 
     @GetMapping("recycling")
     public String goToRecycling(){
-        return "recycling-adagent/recycling-agent";
+        return "recycling-agent/recycling-agent";
     }
 
 }
