@@ -38,7 +38,7 @@ public class MyPageController {
 //            fileVO.setFilePath(getPath());
 //            fileService.register(fileVO);
         }
-        return new RedirectView("/member/detail");
+        return new RedirectView("/user/detail");
     }
     @GetMapping("reserve-car")
     public void goToMyReserveCar(){;}
