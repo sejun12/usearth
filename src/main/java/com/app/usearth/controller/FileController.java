@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,32 +20,24 @@ import java.util.UUID;
 @Slf4j
 public class FileController {
     @PostMapping("upload")
-    // 리턴하는 것으 바디에담은 .html을 붙는것을 방지
+    // 리턴하는 것을 바디에담은 .html을 붙는것을 방지
     @ResponseBody
-    public List<String> upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
-        log.info(uploadFiles.toString());
+    public String upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
         String rootPath = "C:/upload/" + getPath();
-        List<String> uuids = new ArrayList<>();
+        String uuid  = UUID.randomUUID().toString();
         File file = new File(rootPath);
         if(!file.exists()){
             file.mkdirs();
         }
-        for (int i = 0; i < uploadFiles.size(); i++) {
-            //랜덤한 문자 파일앞에 붙음
-            uuids.add(UUID.randomUUID().toString());
-            //uuids[i]  _언더바로 split으로 원본 파일알수있게
-            uploadFiles.get(i).transferTo(new File(rootPath, uuids.get(i) + "_" + uploadFiles.get(i).getOriginalFilename()));
-            //그업로드 파일이 이미지 구분 용량 축소 썸내일로 만들려고
-            if (uploadFiles.get(i).getContentType().startsWith("image")) {
-                //썸내일을 t_로 구분
-                FileOutputStream out = new FileOutputStream(new File(rootPath, "t_" + uuids.get(i) + "_" + uploadFiles.get(i).getOriginalFilename()));
-                //이미지는 2개가 업로드 됨 out 출력
-                Thumbnailator.createThumbnail(uploadFiles.get(i).getInputStream(), out, 100, 100);
-                out.close();
-            }
+
+        uploadFiles.get(0).transferTo(new File(rootPath, uuid + "_" + uploadFiles.get(0).getOriginalFilename()));
+        if(uploadFiles.get(0).getContentType().startsWith("image")){
+            FileOutputStream out = new FileOutputStream(new File(rootPath, "t_" + uuid + "_" + uploadFiles.get(0).getOriginalFilename()));
+            Thumbnailator.createThumbnail(uploadFiles.get(0).getInputStream(), out, 60, 60);
+            out.close();
         }
 
-        return uuids;
+        return uuid;
     }
     //파일 가져오기
     @GetMapping("display")

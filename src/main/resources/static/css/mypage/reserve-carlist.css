@@ -1,3 +1,4 @@
+@import url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css);
 article, aside, body, div, footer, header, section {
     -moz-user-select: text;
     -ms-user-select: text;
@@ -245,4 +246,7 @@ button{
     writing-mode: horizontal-tb !important;
     padding-block: 1px;
     padding-inline: 6px;
+}
+a{
+    text-decoration: none;
 }

@@ -20,3 +20,9 @@ function confirmPassword(){
     }
 
 }
+const iconLink =document.querySelector(".iconLink ");
+
+iconLink.addEventListener("click",()=>{
+    window.location.href="/mypage/inquiry";
+
+})
