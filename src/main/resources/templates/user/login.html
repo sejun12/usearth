@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KAKAO-LOGIN</title>
+</head>
+<link rel="stylesheet" href="/css/user/login.css">
+<link rel="stylesheet" href="/css/fix/nav/nav.css">
+<link rel="stylesheet" href="/css/fix/footer/mainfooter.css">
+<body>
+    <div>
+    <!--  nav-->
+        <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
+    <!--  -->
+        <div class="mainGrid" style="min-height: calc(100vh - 324px); background-color: rgb(255, 255, 255);">
+            <div class="loginRow">
+                <div class="loginStartWrap">
+                    <div class="loginView" style="background-color: rgb(255, 255, 255); padding: 60px 38.5px;">
+                        <div>
+                            <div class="semiBold" style="color: rgb(32, 35, 37); line-height: 140%; font-size: 24px;">
+                                이웃 주민들과<br>
+                                함께하는 커뮤니티
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=25b3d09e151aff5ebf73ce67ed0f05f6&redirect_uri=http://localhost:10000/kakao/login&response_type=code">
+                                <div class="socialWrap">
+                                    <div class="registerKakao">
+                                        <div class="registerIcon">
+                                            <img src="https://cdn.comento.kr/icon/icon-kakao-medium.svg" alt="">
+                                        </div>
+                                        <div class="ml">
+                                            <div class="regular" style="color: inherit;"> 카카오로 1초만에 시작하기 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div>
+                                <p class="okGo" style="color: rgb(173, 179, 184); text-align: center;">
+                                    <a href=""><u class="caption1" style="color: rgb(118, 125, 130);"> 이용약관 </u></a>
+                                    및
+                                    <a href=""><u class="caption1" style="color: rgb(118, 125, 130);"> 개인정보 처리방침 </u></a>
+                                    확인 후 동의합니다
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--  footerNav-->
+        <nav th:replace="~{/fix/footer/mobilefooter  :: mobile-footer}"></nav>
+    <!--  -->
+    </div>
+</body>
+<script src="/js/fix/nav/nav.js"></script>
+<script src="/js/fix/footer/mainfooter.js"></script>
+</html>

@@ -2,6 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+        <typeAlias type="com.app.usearth.domain.UserVO" alias="userVO"/>
+        <typeAlias type="com.app.usearth.domain.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.app.usearth.domain.ApartmentVO" alias="apartmentVO"/>
+        <typeAlias type="com.app.usearth.domain.UserProfileVO" alias="userProfileVO"/>
         <typeAlias type="com.app.usearth.domain.PostVO" alias="postVO" />
     </typeAliases>
 </configuration>

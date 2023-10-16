@@ -37,7 +37,6 @@ strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, 
     padding: 0;
     vertical-align: baseline;
 }
-
 .mainGrid {
     width: 100%;
     padding: 0;
@@ -46,14 +45,10 @@ strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, 
     margin-left: auto;
     box-sizing: border-box;
 }
-
 .loginRow {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -16px;
-    margin-left: -16px;
 }
-
 .loginStartWrap {
     position: relative;
     margin-left: auto;
@@ -61,34 +56,51 @@ strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, 
     margin-top: 10vh;
     margin-bottom: 85px !important;
 }
-
 .loginView {
     width: 343px;
     margin: auto;
     display: block;
 }
+.semiBold{
+    font-weight: 600!important;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-bottom: 40px!important;
+}
+.socialWrap{
+    width: 100%;
+    -webkit-box-pack: start;
+    margin-bottom: 24px;
+}
 
-.loginHeadLine {
-    font-weight: 600 !important;
-    margin-bottom: 40px !important;
+.registerIcon{
+    margin-right: 2px;
+    idth: 24px;
+    height: 24px;
+}
+.ml{
+    margin-left: 6px!important;
+}
+.regular{
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: .02em;
+    font-weight: 400!important;
     word-break: keep-all;
     word-wrap: break-word;
 }
-
-.loginBtnWrap::before {
-    content: " ";
-    display: table;
+.registerIconImg{
+    display: block;
+    width: 100%!important;
+    height: 100%!important;
 }
-
-.loginBtnWrap::after {
-    clear: both;
-    content: " ";
-    display: table;
+img {
+    border-style: none;
+    max-width: 100%;
 }
-
-.registerBtn {
-    background: #EAECEE;
-    color: #949ba0;
+.registerKakao{
+    background: #fee500;
+    color: #181600;
     border-radius: 4px;
     height: 48px;
     width: 100%;
@@ -97,67 +109,29 @@ strike, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, 
     -webkit-box-pack: start;
     justify-content: flex-start;
     display: flex;
-    align-items: center;
-    cursor: pointer !important;
-    margin-bottom: 12px !important;
-}
-
-.registerBtnIcon {
-    margin-right: 2px;
-    width: 24px;
-    height: 24px;
-}
-
-.ml {
-    margin-left: 6px !important;
-}
-
-.bodyLe {
-    font-size: 16px;
-    line-height: 25px;
-    letter-spacing: .02em;
-    font-weight: 400 !important;
-    color: inherit;
-    word-break: keep-all;
-    word-wrap: break-word;
-}
-
-.anotherLoginBtn {
-    display: flex;
-    -webkit-box-pack: start;
-    justify-content: flex-start;
     -webkit-box-align: center;
     align-items: center;
-    border-radius: 4px;
-    height: 48px;
-    padding-left: 16px;
-    background-color: #fcfcfc;
-    cursor: pointer !important;
+    cursor: pointer!important;
 }
-
-.loginIcon {
-    cursor: auto;
-    background: transparent !important;
-    overflow: hidden;
+.okGo{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-bottom: 8px!important;
 }
-
-.regular {
-    font-size: 16px;
-    line-height: 25px;
-    letter-spacing: .02em;
-    font-weight: 400 !important;
-    color: rgb(173, 179, 184);
-    margin-left: 8px!important;
+.caption1 {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
 }
-
-img {
-    border-style: none;
-    max-width: 100%;
+input::placeholder{
+    color: #e1e4e6;
 }
-
-.loginBtnIcon2 {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
+a{
+    background-color: transparent;
+    color: #495057;
+    text-decoration: none;
+    cursor: pointer;
 }
-

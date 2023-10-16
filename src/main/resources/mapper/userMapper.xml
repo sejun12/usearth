@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.usearth.mapper.UserMapper">
+    <insert id="insertUserProfile">
+        INSERT INTO TBL_USER_PROFILE(ID, USER_KAKAO_PROFILE_URL)
+        VALUES (SEQ_USER_PROFILE.NEXTVAL, #{userKakaoProfileUrl})
+    </insert>
+
+    <insert id="insertUser">
+        INSERT INTO TBL_USER(ID, USER_NAME, USER_KAKAO_EMAIL, USER_PROFILE_ID)
+        VALUES (SEQ_USER.NEXTVAL, #{userName}, #{userKakaoEmail}, (SELECT ID FROM TBL_USER_PROFILE WHERE USER_KAKAO_PROFILE_URL = #{userKakaoProfileUrl}))
+    </insert>
+    
+    <select id="select" resultType="userDTO">
+        SELECT U.ID, USER_NAME, USER_KAKAO_EMAIL, USER_APPROVAL, USER_DONG, USER_HO, USER_PROFILE_ID, APARTMENT_ID, USER_PROFILE_NAME, USER_PROFILE_PATH, USER_KAKAO_PROFILE_URL
+        FROM TBL_USER U
+        JOIN TBL_USER_PROFILE UP
+        ON U.USER_PROFILE_ID = UP.ID
+        WHERE U.USER_KAKAO_EMAIL = #{userKakaoEmail}
+    </select>
+
+    <update id="updateKakaoProfileUrl">
+        UPDATE TBL_USER_PROFILE
+        SET USER_KAKAO_PROFILE_URL = #{userKakaoProfileUrl}
+        WHERE ID = #{userProfileId}
+    </update>
+</mapper>

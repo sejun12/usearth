@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>미인증 사용자 차단</title>
+</head>
+<link rel="stylesheet" href="/css/user/blocking.css">
+<link rel="stylesheet" href="/css/fix/nav/nav.css">
+<link rel="stylesheet" href="/css/fix/footer/mainfooter.css">
+<body>
+<div id="loginStart">
+<!--    nav 붙이는곳-->
+    <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
+<!--    -->
+    <div class="mainGrid" style="min-height: calc(100vh - 324px); background-color: rgb(255, 255, 255);">
+        <div class="loginRow">
+            <div class="loginStartWrap">
+                <div class="loginView" style="background-color: rgb(255, 255, 255); padding: 60px 0; text-align: center;">
+                    <svg width="60" height="60" viewBox="0 0 12 12" fill="black" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(42, 125, 225);">
+                        <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6ZM6 3.25C6.27614 3.25 6.5 3.47386 6.5 3.75V6.25C6.5 6.52614 6.27614 6.75 6 6.75C5.72386 6.75 5.5 6.52614 5.5 6.25V3.75C5.5 3.47386 5.72386 3.25 6 3.25ZM6 8.75C6.41421 8.75 6.75 8.41421 6.75 8C6.75 7.58579 6.41421 7.25 6 7.25C5.58579 7.25 5.25 7.58579 5.25 8C5.25 8.41421 5.58579 8.75 6 8.75Z"></path>
+                    </svg>
+                    <div>
+                        <div class="loginHeadLine" style="color: rgb(42, 125, 225); line-height: 140%; font-size: 24px;">
+                            미인증 사용자는<br>
+                            해당 서비스를 이용할 수 없습니다.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="line-height: 140%;">
+                            관리사무소에 입주민 승인요청이 접수되었습니다.<br>
+                            승인관련 문의는 관리사무소로 연락하시기 바랍니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            footerNav부분-->
+            <div>
+                <nav th:replace="~{/fix/footer/mobilefooter  :: mobile-footer}"></nav>
+            </div>
+<!--            -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
