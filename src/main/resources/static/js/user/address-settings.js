@@ -8,6 +8,7 @@ const applyBtn=document.querySelector(".applyBtn");
 boxRemove.addEventListener("click", ()=>{
     modalFin.style.display="none";
 });
+
 applyBtn.addEventListener("click",()=>{
     modalFin.style.display="none";
 });
