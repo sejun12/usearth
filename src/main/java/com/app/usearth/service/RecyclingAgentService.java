@@ -1,8 +1,11 @@
 package com.app.usearth.service;
 
-import org.springframework.stereotype.Service;
+import com.app.usearth.domain.PostVO;
 
-@Service
+import java.util.List;
+
 public interface RecyclingAgentService {
-    
+
+    public List<PostVO> getByRecycling();
+
 }

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.app.usearth.mapper.MemberMapper">
-
+<mapper namespace="com.app.usearth.mapper.RecyclingAgentMapper">
+    <select id="selectByRecycling" resultType="postVO">
+        SELECT ID, USER_ID, POST_TITLE, POST_CONTENT,
+            POST_WRITE_DATE, POST_VIEW_COUNT, POST_LIKE_COUNT,
+            POST_STATUS, POST_CATEGORY
+        FROM TBL_POST
+        WHERE POST_CATEGORY = '재활용'
+    </select>
 </mapper>
