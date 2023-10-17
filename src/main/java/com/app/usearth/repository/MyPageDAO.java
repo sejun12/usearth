@@ -1,9 +1,6 @@
 package com.app.usearth.repository;
 
-import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.ComplainDTO;
-import com.app.usearth.domain.PostVO;
-import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.domain.*;
 import com.app.usearth.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -45,5 +42,9 @@ public class MyPageDAO {
 
     public Long getUser(Long id){
         return  myPageMapper.selectUserId(id);
+    }
+
+    public void changeProfile(UserProfileVO userProfileVO){
+        myPageMapper.updatePhoto(userProfileVO);
     }
 }

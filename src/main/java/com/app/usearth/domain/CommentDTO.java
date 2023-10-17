@@ -17,4 +17,5 @@ public class CommentDTO {
     private String postContent;
     private String postWriteDate;
     private String userName;
+    private String postCategory;
 }
