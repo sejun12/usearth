@@ -2,13 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.UserMapper">
     <insert id="insertUserProfile">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE">
+            SELECT SEQ_USER_PROFILE.NEXTVAL as id FROM dual
+        </selectKey>
         INSERT INTO TBL_USER_PROFILE(ID, USER_KAKAO_PROFILE_URL)
-        VALUES (SEQ_USER_PROFILE.NEXTVAL, #{userKakaoProfileUrl})
+        VALUES (#{id}, #{userKakaoProfileUrl})
     </insert>
 
     <insert id="insertUser">
         INSERT INTO TBL_USER(ID, USER_NAME, USER_KAKAO_EMAIL, USER_PROFILE_ID)
-        VALUES (SEQ_USER.NEXTVAL, #{userName}, #{userKakaoEmail}, (SELECT ID FROM TBL_USER_PROFILE WHERE USER_KAKAO_PROFILE_URL = #{userKakaoProfileUrl}))
+        VALUES (SEQ_USER.NEXTVAL, #{userName}, #{userKakaoEmail}, #{id})
     </insert>
     
     <select id="select" resultType="userDTO">

@@ -24,15 +24,12 @@ public class KakaoController {
         Optional<UserDTO> foundInfo = kakaoService.getKakaoInfo(token);
 
         if(foundInfo.isPresent()) {
+            userService.join(foundInfo.get());
+            UserDTO userDTO = userService.getUser(foundInfo.get().getUserKakaoEmail()).get();
+            session.setAttribute("user", userDTO);
             if(foundInfo.get().getApartmentId() == null){
-                userService.join(foundInfo.get());
-                UserDTO userDTO = userService.getUser(foundInfo.get().getUserKakaoEmail()).get();
-                session.setAttribute("user", userDTO);
                 return new RedirectView("/user/address-settings");
             }else{
-                userService.join(foundInfo.get());
-                UserDTO userDTO = userService.getUser(foundInfo.get().getUserKakaoEmail()).get();
-                session.setAttribute("user", userDTO);
                 return new RedirectView("/user/blocking");
             }
         }
