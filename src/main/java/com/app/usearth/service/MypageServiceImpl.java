@@ -1,9 +1,6 @@
 package com.app.usearth.service;
 
-import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.ComplainDTO;
-import com.app.usearth.domain.PostVO;
-import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.domain.*;
 import com.app.usearth.repository.MyPageDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,4 +64,12 @@ public class MypageServiceImpl implements MypageService {
     public Long getUser(Long id) {
         return myPageDAO.getUser(id);
     }
+
+    @Override
+    public void changeProfile(UserProfileVO userProfileVO) {
+        //세션에있는 user 프로필 아이디를 넣어준다
+        myPageDAO.changeProfile(userProfileVO);
+    }
+
+
 }

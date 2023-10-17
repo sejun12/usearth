@@ -1,9 +1,6 @@
 package com.app.usearth.mapper;
 
-import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.ComplainDTO;
-import com.app.usearth.domain.PostVO;
-import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -33,6 +30,9 @@ public interface MyPageMapper {
     //카테고리 아이디 찾기
     public Long selectName(String categoryName);
 
-    //아파트 아이 찾기
+    //아파트 아이디 찾기
     public Long selectUserId(Long id);
+
+    //프로필 이지지 수정
+    public void updatePhoto(UserProfileVO userProfileVO);
 }
