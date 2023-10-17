@@ -1,0 +1,70 @@
+package com.app.usearth.service;
+
+import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.ComplainDTO;
+import com.app.usearth.domain.PostVO;
+import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.repository.MyPageDAO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+@Service
+@RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
+@Slf4j
+public class MypageServiceImpl implements MypageService {
+    private final MyPageDAO myPageDAO;
+    @Override
+    public void saveCar(ReserveCarVO reserveCarVO) {
+          reserveCarVO.setUserId(1L);
+        reserveCarVO.setApartmentId(myPageDAO.getUser(reserveCarVO.getUserId()));
+            myPageDAO.saveCar(reserveCarVO);
+    }
+
+    @Override
+    public List<ReserveCarVO> searchCar(Long id) {
+        return myPageDAO.searchCar(id);
+    }
+
+    @Override
+    public List<ComplainDTO> myComplainList(Long id) {
+        return myPageDAO.myComplainList(id);
+    }
+
+    @Override
+    public List<PostVO> myRecycleList(Long id) {
+        return myPageDAO.myRecycleList(id);
+    }
+
+    @Override
+    public List<PostVO> myFreeList(Long id) {
+        return myPageDAO.myFreeList(id);
+    }
+
+    @Override
+    public List<CommentDTO> myReply(Long id) {
+        return myPageDAO.myReply(id);
+    }
+
+    @Override
+    public void addComplain(ComplainDTO complainDTO) {
+        complainDTO.setUserId(1L);
+        Long foundCaId= myPageDAO.getName(complainDTO.getCategoryComplainName());
+        complainDTO.setCategoryComplainId(foundCaId);
+           myPageDAO.addComplain(complainDTO);
+    }
+
+    @Override
+    public Long getName(String categoryName) {
+        return myPageDAO.getName(categoryName);
+    }
+
+    @Override
+    public Long getUser(Long id) {
+        return myPageDAO.getUser(id);
+    }
+}

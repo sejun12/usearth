@@ -1,3 +1,4 @@
+@import url(https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css);
 article, aside, body, div, footer, header, section {
     -moz-user-select: text;
     -ms-user-select: text;
@@ -113,6 +114,10 @@ hr{
 }
 i{
     font-style: italic;
+}
+.application.newGrid.container {
+    padding-left: 16px;
+    padding-right: 16px;
 }
 .imageUpLoadWrapper input{
     clip: rect(0,0,0,0);
@@ -267,7 +272,7 @@ a, a:active, a:focus, a:hover{
     height: 52px;
     justify-content: space-between;
 }
-.topBarBackward.topBarLogoType{
+.topBarBackward,.topBarLogoType{
     display: flex !important;
     justify-content: center;
 }
@@ -552,4 +557,105 @@ button{
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+}
+.active:after{
+    background-color: #595f63;
+    bottom: -1px;
+    content: "";
+    display: flex;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.infiniteStatusPrompt{
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 24px;
+    position: relative;
+    width: 100%;
+}
+.applicationList{
+    padding: 0 16px;
+    display: flex!important;
+    flex-direction: column;
+    background: #fff;
+}
+.applicationHr{
+    border-style: solid;
+    border-top: 1px;
+    height: 0;
+    width: inherit;
+    border: 0;
+    margin: 0;
+    margin-bottom: 12px!important;
+    margin-top: 12px!important;
+    box-sizing: content-box;
+    overflow: visible;
+}
+.communityList{
+    width: 100%;
+    align-items: center;
+    border-radius: 6px;
+    display: flex!important;
+    justify-content: space-between;
+    padding: 8px 4px;
+    cursor: pointer!important;
+}
+.typography{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    width: 100%;
+}
+.ListTitle{
+    word-wrap: break-word;
+    display: -webkit-box;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    line-height: 25px;
+}
+.text-right{
+    text-align: right;
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+.justify{
+    justify-content: space-between;
+}
+.align{
+    align-items: center;
+}
+.semi-bold{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 600!important;
+}
+.narrow-button{
+    font-size: 12px;
+    font-weight: 400;
+    height: 18px;
+    line-height: 15px;
+    padding: 2px;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex!important;
+    justify-content: center;
+    text-transform: none;
+    overflow: visible;
+}
+.button--icon{
+    align-items: center;
+    display: flex!important;
 }

@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.MyPageMapper">
+    <!--        <select id="selectComplain">-->
+    <!--            SELECT C.COMPLAIN_TITLE,C.COMPLAIN_CONTENT,C.COMPLAIN_DATE,C.COMPLAIN_STATUS,-->
+    <!--                   U.-->
+    <!--            FROM TBL_COMPLAIN C-->
+    <!--            JOIN TBL_USER U-->
+    <!--            ON U.ID=C.USER_ID-->
+    <!--            WHERE U.ID=#{id}-->
+    <!--        </select>-->
 
+    <select id="selectCar" resultType="reserveCarVO">
+        SELECT ID,USER_ID,VISIT_BOOKING_START_DATE,VISIT_BOOKING_END_DATE,VISIT_BOOKING_PURPOSE,VISIT_BOOKING_CAR_NUMBER,VISIT_BOOKING_CAR_TYPE,VISIT_BOOKING_REGISTER_DATE
+        FROM TBL_VISIT_BOOKING
+        WHERE USER_ID=#{userId}
+    </select>
+
+    <insert id="insertCar">
+        INSERT INTO TBL_VISIT_BOOKING(ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_ID,APARTMENT_ID)
+        VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{visitBookingStartDate}, #{visitBookingEndDate}, #{visitBookingPurpose}, #{visitBookingCarNumber}, #{visitBookingCarType}, #{userId}, #{apartmentId})
+    </insert>
+
+    <select id="selectComplain" resultType="complainDTO">
+        SELECT C.ID, C.USER_ID, C.CATEGORY_COMPLAIN_ID, C.COMPLAIN_TITLE, C.COMPLAIN_CONTENT, C.COMPLAIN_DATE, C.COMPLAIN_STATUS, CC.CATEGORY_COMPLAIN_NAME
+        FROM TBL_COMPLAIN C
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+        WHERE C.USER_ID = #{userId}
+    </select>
+
+    <select id="selectFree" resultType="postVO">
+        SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
+        FROM TBL_POST
+        WHERE POST_CATEGORY='자유' AND USER_ID=#{userId}
+    </select>
+
+    <select id="selectRecycle" resultType="postVO">
+        SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
+        FROM TBL_POST
+        WHERE POST_CATEGORY='재활용' AND USER_ID=#{userId}
+    </select>
+
+    <select id="selectReply" resultType="commentDTO">
+        SELECT C.ID AS COMMENT_ID, C.USER_ID, C.POST_ID, C.PARENT_COMMENT_ID, C.COMMENT_WRITE_DATE, C.COMMENT_CONTENT,
+               P.ID AS POST_ID, P.USER_ID AS POST_USER_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               U.USER_NAME
+        FROM TBL_COMMENT C
+                 JOIN TBL_USER U ON C.USER_ID = U.ID
+                 JOIN TBL_POST P ON C.POST_ID = P.ID
+        WHERE U.ID = #{userId}
+    </select>
+
+    <insert id="insertComplain">
+        INSERT INTO TBL_COMPLAIN(ID, USER_ID, CATEGORY_COMPLAIN_ID, COMPLAIN_TITLE, COMPLAIN_CONTENT)
+        VALUES (SEQ_COMPLAIN.NEXTVAL, #{userId}, #{categoryComplainId}, #{complainTitle}, #{complainContent})
+    </insert>
+
+    <select id="selectName" resultType="Long">
+        SELECT ID,CATEGORY_COMPLAIN_NAME  FROM TBL_CATEGORY_COMPLAIN
+        WHERE CATEGORY_COMPLAIN_NAME=#{categoryComplainName}
+    </select>
+
+    <select id="selectUserId" resultType="Long">
+        SELECT APARTMENT_ID  FROM TBL_USER U
+                                      JOIN TBL_APARTMENT A ON U.APARTMENT_ID=A.ID
+        WHERE U.ID=#{id}
+    </select>
 </mapper>
