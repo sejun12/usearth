@@ -298,3 +298,20 @@ a{
     justify-content: space-between;
     margin-bottom: 24px;
 }
+#send{
+    border: 0;
+    bottom: 40px;
+    left: 190px;
+    border-radius: 8px;
+    letter-spacing: .02em;
+    line-height: 25px;
+    min-width: 56px;
+    background-color: #2a7de1;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}

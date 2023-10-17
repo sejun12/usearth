@@ -38,7 +38,8 @@
                 <div class="imageUpLoadWrapper">
                     <label for="imageUpLoadWrapper">
                         <div class="application avatarContainer large" style="width: 60px; height: 60px">
-                            <i class="avatar image large" style="background-image: url(/images/photo-camera.png); width: 60px; height: 60px;"></i>
+                            <img class="avatar image large"
+                                 src="/images/photo-camera.png" style="width: 60px; height: 60px;">
                             <div class="avatarItem">
                                 <!---->
                                 <!---->
@@ -46,7 +47,9 @@
                             </div>
                         </div>
                     </label>
-                    <input type="file" id="imageUpLoadWrapper" accept="image/jpg,image/png,image/jpeg,image/gif">
+                    <form th:action="@{/mypage/inquiry}" name="file-form" method="post" enctype="multipart/form-data">
+                    <input type="file" id="imageUpLoadWrapper" name="uploadFile" accept="image/jpg,image/png,image/jpeg,image/gif">
+                    </form>
                 </div>
                 <div class="flex flexColumn inform2">
                     <div class="flex alignItemsCenter userName2">
@@ -60,6 +63,7 @@
                             Us@Earth.com
                         </div>
                     </div>
+                    <button id="send">저장</button>
                 </div>
             </div>
             <div class="application newCol1 newCol2 newCol3 noGutters"></div>
