@@ -73,7 +73,7 @@ img {
     max-width: 100%;
 }
 /**/
-.fontSize{
+.fontSize:first-child{
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
@@ -81,7 +81,7 @@ img {
     word-wrap: break-word;
     margin-bottom: 4px!important;
 }
-.fontSize2{
+.fontSize{
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;

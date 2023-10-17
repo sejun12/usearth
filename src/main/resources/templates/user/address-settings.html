@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                 </span>
-                                <div class="fontSize2" style="color: rgb(60, 65, 68);">호</div>
+                                <div class="fontSize" style="color: rgb(60, 65, 68);">호</div>
                                 <span>
                                     <div class="relative">
                                         <div class="relative">
@@ -90,6 +90,7 @@
 <script src="/js/fix/nav/nav.js"></script>
 <script src="/js/fix/footer/mainfooter.js"></script>
 <script th:inline="javascript">
-    const member = [[${user}]]
+    const user = [[${user}]]
+    console.log(user);
 </script>
 </html>

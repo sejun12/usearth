@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
         Optional<UserDTO> foundUser = getUser(userDTO.getUserKakaoEmail());
 //          1. 최초 로그인 검사
         if(foundUser.isEmpty()){
-            userDAO.saveUser(userDTO);
             userDAO.saveUserProfile(userDTO);
+            userDAO.saveUser(userDTO);
         }else{ // 이메일 정보가 있을 경우
             UserDTO user = foundUser.get();
 //          1-2 카카오회원일 경우 프사 검사
