@@ -4,9 +4,9 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>USEARTH: 아파트 민원 답변</title>
+    <title>USEARTH: 공지사항 작성</title>
     <link rel="icon" href="/images/maintenance-fee-image/"/>
-    <link rel="stylesheet" href="/css/admin/complain-reply.css"/>
+    <link rel="stylesheet" href="/css/admin/announcement-write.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -19,7 +19,7 @@
                     </a>
                     <div class="aBelow"></div>
                     <div class="wrapperBody">
-                        <span>관리자 페이지 | 민원 답변</span>
+                        <span>관리자 페이지 | 공지사항 관리</span>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                             </a>
                         </li>
                     </ul>
-                    <li style="background-color: rgba(162, 218, 255, 0.35);" id="flex2" class="surfaceUlLists">
+                    <li id="flex2" class="surfaceUlLists">
                         <a class="aList" href="#">
                             <img class="svg5" src="/images/maintenance-fee-image/feedback.png"/>
                             <span class="surfaceCategory">민원 관리</span>
@@ -185,7 +185,7 @@
                             <span class="surfaceCategory">방문 차량</span>
                         </a>
                     </li>
-                    <li class="surfaceUlLists">
+                    <li style="background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
                         <a class="aList" href="">
                             <img class="svg5" src="/images/maintenance-fee-image/report.png"/>
                             <span class="surfaceCategory">공지사항 목록</span>
@@ -205,17 +205,17 @@
                 <div class="entireWrapperInner">
                     <div class="wrapperInnerGrid">
                         <header class="innerGridHeader">
-                            <h1 class="maintenanceFeeHeader"><span style="color: #2A7DE1">민원</span> 답변  |</h1>
+                            <h1 class="maintenanceFeeHeader"><span style="color: #2A7DE1">공지사항</span> 작성  |</h1>
                         </header>
                         <div class="maintenanceFeeBanner">
                             <div class="flex1">
                                 <div style="max-width: 100%">
-                                    <h1 class="registerFee"> 세대별 입주민의 관리비 정보 등록을 위해 부과내역.csv 파일을 첨부해주세요. 관리비를 업로드할 부과년월과 납부마감일을 선택하신 후 등록하기 버튼을 눌러주세요.
+                                    <h1 class="registerFee"> 공지할 카테고리를 먼저 선택해주세요. 공지사항을 등록하고 입주민에게 우리 단지 소식을 알리세요.
                                     </h1>
                                         <div class="grid">
                                             <span class="maintenanceFeeSpan">카테고리 |</span>
                                             <span class="maintenanceFeeSpan">작성자명 |</span>
-                                            <span class="maintenanceFeeSpan">동/호 |</span>
+
                                         </div>
                                     <div class="flexGap12">
                                         <div class="searchContainer">
@@ -281,8 +281,7 @@
                                             </div>
                                         </div>
                                         <div style="display: flex;" class="searchContainer">
-                                            <div style="max-width: 205px; margin-right: 10px; background-color: rgba(219,231,246,0.18)" type="" class="imposeYear"></div>
-                                            <div style="max-width: 205px; background-color: rgba(219,231,246,0.18)" class="imposeYear"></div>
+                                            <div style="max-width: 400px; margin-right: 10px; background-color: rgba(219,231,246,0.18)" type="" class="imposeYear"></div>
                                         </div>
 
                                     </div>
@@ -295,9 +294,9 @@
                                 <h2 class="imposingMonth">제목</h2>
                                 <div>
                                     <div>
-                                        <div style="background-color: rgba(213,227,246,0.18);" class="imposingMonthLabel">
-                                            <div class="imposingYear"></div>
-                                        </div>
+                                        <label style="background-color: rgba(213,227,246,0.18);" class="imposingMonthLabel">
+                                            <input placeholder="제목을 작성해주세요." class="imposingYear">
+                                        </label>
                                     </div>
                                 </div>
                             </section>
@@ -305,26 +304,17 @@
                                 <h2 class="imposingMonth">내용</h2>
                                 <div>
                                     <div>
-                                        <div style="background-color: rgba(213,227,246,0.18); height: 130px;" class="imposingMonthLabel">
-                                            <div class="imposingYear"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section class="uploadSection">
-                                <h2 class="imposingMonth">민원 답변</h2>
-                                <div>
-                                    <div>
-                                        <label style="background-color: rgba(143,199,238,0.18); height: 100px" class="imposingMonthLabel">
-                                            <textarea class="imposingYear" placeholder="답변을 작성하세요."></textarea>
+                                        <label style="position: relative; background-color: rgba(213,227,246,0.18); height: 130px;" class="imposingMonthLabel">
+                                            <input style="position: absolute; top: 20px" placeholder="내용을 작성해주세요." class="imposingYear">
                                         </label>
                                     </div>
                                 </div>
                             </section>
+
                             <section style="display: flex;column-gap: 12px;" class="uploadSection">
 
                                 <button style="background-color: #757272; " type="button" class="fileUploadBtn">
-                                   취소
+                                   목록으로 가기
                                 </button>
                                 <button style="background-color: #3c80d9" type="button" class="fileUploadBtn">
                                    등록하기
@@ -344,5 +334,5 @@
 
 </div>
 </body>
-<script src="/js/admin/complain-reply.js"></script>
+<script src="/js/admin/announcement-write.js"></script>
 </html>

@@ -87,7 +87,7 @@ body {
   left: 0;
   top: 0;
   position: sticky;
-  background-color: rgb(234, 226, 204);
+  background-color: rgb(68, 154, 239);
 }
 
 .navInner {
@@ -113,10 +113,10 @@ a {
 .wrapperBody {
   align-items: center;
   display: flex;
-  font-weight: 400;
+  font-weight: 5000;
   font-size: 18px;
-  line-height: 24px;
-  color: #3a310d;
+  line-height: 22px;
+  color: #ffffff;
   fill: #fff;
 }
 
@@ -209,7 +209,7 @@ a {
   line-height: 22px;
   color: #1d1d1e;
   fill: #1d1d1e;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .surfaceUlLists {
@@ -234,7 +234,7 @@ a {
 }
 
 .surfaceUlLists:hover {
-  background-color: rgba(225, 207, 188, 0.35);
+  background-color: rgba(162, 218, 255, 0.35);
   border-radius: 4px;
 }
 
@@ -252,6 +252,22 @@ a {
   color: #1d1d1e;
   fill: #1d1d1e;
 }
+
+/* 초기에 숨겨져야 하는 요소 */
+.feeLists {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out; /* max-height 속성에 대한 0.5초의 트랜지션 효과 */
+}
+
+/* 버튼 스타일 */
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
 
 .basicShrink {
   overflow-x: auto;
@@ -698,8 +714,8 @@ ul {
 
 .svg2 {
   display: block;
-  width: 50px;
-  height: 40px;
+  width: 68px;
+  height: 38px;
 }
 
 .svg3 {
@@ -1172,8 +1188,8 @@ ul {
 .maintenanceFeeBanner {
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: 32px;;
+  padding-bottom: 16px;
   border-width: 1px;
   border-radius: 16px;
   justify-content: flex-start;
@@ -1192,12 +1208,21 @@ ul {
 }
 
 .maintenanceFeeBar {
-  padding-left: 8px;
-  padding-right: 8px;
   padding-top: 9px;
   padding-bottom: 9px;
   border-bottom-width: 1px;
   border-top-width: 1px;
+  column-gap: 24px;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
+  border-color: #e6e6e7;
+}
+
+.maintenanceFeeList {
+  padding-top: 4px;
+  padding-bottom: 9px;
+  border-bottom-width: 1px;
   column-gap: 24px;
   align-items: center;
   display: flex;
@@ -1229,12 +1254,13 @@ ul {
 
 .flex-shrink {
   flex-shrink: 0;
+  width: 480px;
 }
 
 .registerFee {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 28px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 23px;
   color: #1d1d1e;
   fill: #1d1d1e;
   margin: 0;
@@ -1242,6 +1268,12 @@ ul {
 
 .marginTop16 {
   margin-top: 16px;
+}
+
+.marginTop8 {
+  margin-top: 8px;
+  height: 40px;
+  position: relative;
 }
 
 .registerMaintenanceFeeBtn {
@@ -1252,19 +1284,24 @@ ul {
   align-items: center;
   height: 40px;
   display: flex;
-  position: relative;
+  position: absolute;
+  right: 0;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   color: #fff;
   fill: #fff;
-  background-color: #1d1d1e;
+  background-color: rgb(63, 149, 232);
   cursor: pointer;
+}
+
+.registerMaintenanceFeeBtn:hover {
+  background-color: rgb(149, 173, 199); /* 호버 시 배경 색상 변경 */
 }
 
 .maintenanceFeePicture {
   width: 383px;
-  height: 148px;
+  height: 100%;
   right: 0;
   top: 0;
   position: absolute;
@@ -1337,6 +1374,11 @@ ul {
   cursor: pointer;
 }
 
+.searchContainer {
+  position: relative;
+  max-width: 100px;
+}
+
 .imposeYear {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1347,7 +1389,7 @@ ul {
   border-width: 1px;
   border-radius: 16px;
   align-items: center;
-  max-width: 164px;
+  width: 100%;
   height: 32px;
   display: flex;
   border-color: rgba(0, 0, 0, .1);
@@ -1374,10 +1416,53 @@ ul {
   vertical-align: middle;
 }
 
+.rangeModal {
+  width: 248px;
+  z-index: 10;
+  right: 0;
+  top: 42px;
+  position: absolute;
+  display: none;
+}
+
+.rangeModalUl {
+  --tw-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
+  --tw-shadow-colored: 0px 1px 0px var(--tw-shadow-color), 0px 2px 6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.rangeModalBtn {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  background-color: #fff;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.rangeModalBtn:hover {
+  background-color: #8a8a8b20;
+  border-radius: 4px;
+}
+
 .barBtnOne {
   text-align: center;
   width: 80px;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   display: flex;
   font-weight: 500;
@@ -1385,6 +1470,92 @@ ul {
   line-height: 18px;
   color: #1d1d1e;
   fill: #1d1d1e;
+}
+
+.approvalBtn {
+  background-color: #ccc;
+  border: 1px solid #d3d0d0;
+  min-width: 36px;
+  background-image: unset;
+  margin: 0;
+  padding: 0;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: "tnum","tnum";
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none;
+  text-transform: none;
+  overflow: visible;
+  touch-action: manipulation;
+  padding-block: 1px;
+  padding-inline: 6px;
+  writing-mode: horizontal-tb !important;
+  --fc-list-event-dot-width: 10px;
+  --fc-list-event-hover-bg-color: #f5f5f5;
+}
+
+.handled {
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  transition: all .2s ease-in-out;
+  top: 2px;
+  box-sizing: border-box;
+}
+
+.handled::before {
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  border-radius: 9px;
+  box-shadow: 0 2px 4px 0 rgba(0,35,11,.2);
+  content: "";
+  position: absolute;
+  transition: all .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.toggle-inner {
+  margin: 0 25px 0 7px;
+  display: block;
+  color: #fff;
+  font-size: 12px;
+  transition: margin .2s;
+  box-sizing: border-box;
+  vertical-align: baseline;
+  list-style: none;
+  user-select: none;
+}
+
+.click-mode {
+  border: none;
+  box-shadow: none;
+  animation: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+
 }
 
 .barBtnOneSpan {
