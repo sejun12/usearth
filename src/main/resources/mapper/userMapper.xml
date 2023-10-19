@@ -22,9 +22,25 @@
         WHERE U.USER_KAKAO_EMAIL = #{userKakaoEmail}
     </select>
 
+    <select id="selectSearchApt" resultType="apartmentVO">
+        SELECT APARTMENT_ADDRESS FROM TBL_APARTMENT
+        WHERE APARTMENT_ADDRESS LIKE '%' || #{keyword} || '%'
+    </select>
+
+    <select id="selectAptId" resultType="long">
+        SELECT ID FROM TBL_APARTMENT
+        WHERE APARTMENT_ADDRESS = #{apartmentAddress}
+    </select>
+
     <update id="updateKakaoProfileUrl">
         UPDATE TBL_USER_PROFILE
         SET USER_KAKAO_PROFILE_URL = #{userKakaoProfileUrl}
         WHERE ID = #{userProfileId}
+    </update>
+
+    <update id="updateAptAddress">
+        UPDATE TBL_USER
+        SET APARTMENT_ID = #{apartmentId}, USER_DONG = #{userDong}, USER_HO = #{userHo}
+        WHERE ID = #{id}
     </update>
 </mapper>

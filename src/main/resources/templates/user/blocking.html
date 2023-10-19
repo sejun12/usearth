@@ -45,4 +45,8 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    const user = [[${session.user}]]
+    console.log(user);
+</script>
 </html>
