@@ -1,11 +1,12 @@
 package com.app.usearth.service;
 
-import com.app.usearth.domain.UserDTO;
+import com.app.usearth.domain.*;
 import com.app.usearth.repository.UserDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.DayOfWeek;
 import java.util.Optional;
@@ -40,4 +41,17 @@ public class UserServiceImpl implements UserService {
 //    카카오 프사 수정
     @Override
     public void updateKakaoProfileUrl(UserDTO userDTO) { userDAO.updateKakaoProfileUrl(userDTO); }
+
+//    아파트 주소 검색
+    public SearchAptDTO getSearchApt(Search search){
+        SearchAptDTO searchAptDTO = new SearchAptDTO();
+        searchAptDTO.setSearchApts(userDAO.findSearchApt(search));
+
+        return searchAptDTO;
+    }
+//    아파트 주소로 아파트 ID 검색
+    public Long getAptName(String apartmentAddress) { return userDAO.findByAptName(apartmentAddress); }
+
+//    아파트 주소 입력
+    public void updateAptAddress(UserDTO userDTO){userDAO.updateAptAddress(userDTO);}
 }

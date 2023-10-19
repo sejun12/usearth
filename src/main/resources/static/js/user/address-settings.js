@@ -1,43 +1,82 @@
-// 회원가입 성공시
-const modalFin=document.querySelector(".modalFin");
-const boxRemove=document.querySelector(".boxRemove");
-const applyBtn=document.querySelector(".applyBtn");
+// 아파트 주소 검색창 클릭 시 모달창 열기
+const aptAddress = document.getElementById("aptAddress");
+const modalFin= document.querySelector(".modalFin");
 
-// 성공시 나와야할텐디
+aptAddress.addEventListener("click", () => {
+    modalFin.style.display = "block";
+})
+
+// X버튼 클릭 시 아파트 주소 검색 모달창 닫기
+const boxRemove= document.querySelector(".boxRemove");
 
 boxRemove.addEventListener("click", ()=>{
-    modalFin.style.display="none";
+    modalFin.style.display = "none";
 });
 
-applyBtn.addEventListener("click",()=>{
-    modalFin.style.display="none";
-});
+// 검색 버튼 클릭 시 검색 결과 뿌리기
+document.querySelector(".aptAddressSearchBTN").addEventListener("click", async () => {
+    let keyword = document.querySelector(".searchAptAddress").value;
+    let response = await fetch(`/results/search-apts?keyword=${keyword}`)
+    let json = await response.json();
+    if(response.ok){
+        let searchApts = json.searchApts;
+        if(searchApts.length > 0){
+            let searchAptData = '';
+            searchApts.forEach(searchApt => {
+                searchAptData += `<li>`
+                searchAptData += `<div class="searchList">`
+                searchAptData += `<input type="text" name="searchAddressResult" readonly class="searchAddressResult" value="${searchApt.apartmentAddress}">`
+                searchAptData += `<button type="button" class="resultSelectBTN">선택하기</button>`
+                searchAptData += `</div>`
+                searchAptData += `</li>`
+            });
+            document.querySelector("section>ul").innerHTML = searchAptData;
+        }else{
+            let searchAptData = '';
+            searchAptData += `<div style="font-size: 20px; font-weight: 600; display: block; margin-bottom: 20px; text-align: center;">`
+            searchAptData += `<svg width="60" height="60" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="mobileIcon" style="fill: rgb(173, 179, 184);margin: 30px 0;">`
+            searchAptData += `<path fill-rule="evenodd" clip-rule="evenodd" d="M11 16C14.3137 16 17 13.3137 17 10C17 6.68629 14.3137 4 11 4C7.68629 4 5 6.68629 5 10C5 13.3137 7.68629 16 11 16ZM11 18C15.4183 18 19 14.4183 19 10C19 5.58172 15.4183 2 11 2C6.58172 2 3 5.58172 3 10C3 14.4183 6.58172 18 11 18Z"></path>`
+            searchAptData += `<path fill-rule="evenodd" clip-rule="evenodd" d="M15.2929 15.2929C15.6834 14.9024 16.3166 14.9024 16.7071 15.2929L20.7071 19.2929C21.0976 19.6834 21.0976 20.3166 20.7071 20.7071C20.3166 21.0976 19.6834 21.0976 19.2929 20.7071L15.2929 16.7071C14.9024 16.3166 14.9024 15.6834 15.2929 15.2929Z"></path>`
+            searchAptData += `</svg>`
+            searchAptData += `<p>아파트 검색결과가 없습니다</p>`
+            searchAptData += `</div>`
+            searchAptData += `<div style="font-size: 14px; display: flex; flex-wrap: wrap; justify-content: center; line-height: 140%;">`
+            searchAptData += `<p>계약 단지의 경우에도 게약 등록된 아파트 단지 주소를</p>`
+            searchAptData += `<p>정확히 입력하지 않으면 확인 안될 수 있습니다.</p>`
+            searchAptData += `<p>아파트 단지 주소를 확인 후 검색해 보세요.</p>`
+            searchAptData += `</div>`
 
-
-// 아이디 비번 입력
-const inputs =document.querySelectorAll("input");
-const loginBtn=document.querySelector(".loginBtn");
-const  caption2 =document.querySelector(".caption2");
-
-
-let  spanElement = document.querySelectorAll('.add span');
-// Create a new div element
-let newDiv = document.createElement('div');
-newDiv.innerHTML = `<div  class="caption2">
-  <svg  width="12" height="12" viewBox="0 0 12 12" fill="black" xmlns="http://www.w3.org/2000/svg" class="applicationIcon">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6ZM6 3.25C6.27614 3.25 6.5 3.47386 6.5 3.75V6.25C6.5 6.52614 6.27614 6.75 6 6.75C5.72386 6.75 5.5 6.52614 5.5 6.25V3.75C5.5 3.47386 5.72386 3.25 6 3.25ZM6 8.75C6.41421 8.75 6.75 8.41421 6.75 8C6.75 7.58579 6.41421 7.25 6 7.25C5.58579 7.25 5.25 7.58579 5.25 8C5.25 8.41421 5.58579 8.75 6 8.75Z"></path></svg> 번호 아이디 비밀번호를 입력해주세요. </div>`
-loginBtn.addEventListener("click", validation);
-function validation() {
-    let isAnyInputEmpty = false;
-
-    inputs.forEach(input => {
-        if (input.value.trim() === "") {
-            isAnyInputEmpty = true;
+            document.querySelector("section>ul").innerHTML = searchAptData;
         }
-    });
-    if (isAnyInputEmpty) {
-        spanElement[2].parentNode.insertBefore(newDiv, spanElement[2].nextSibling);
-    } else {
-        spanElement[2].parentNode.removeChild(newDiv)
+
+        // 선택 버튼 클릭 시 모달 창이 닫히면서 주소 정보 전달
+        const resultSelectBTNs = document.querySelectorAll(".resultSelectBTN");
+
+        resultSelectBTNs.forEach(resultSelectBTN => {
+            resultSelectBTN.addEventListener("click", (e) => {
+                aptAddress.value = e.target.previousElementSibling.value
+                modalFin.style.display = "none";
+            })
+        })
     }
+})
+
+// 아파트 주소, 동, 호 중 하나라도 비어있다면 설정하기 버튼 비활성화
+const aptAddressInputs = document.querySelectorAll('input[name="aptAddress"]');
+const userDong = document.querySelector('#userDong');
+const userHo = document.querySelector('#userHo');
+const settingBtn = document.querySelector('.settingBtn');
+
+function checkInputValue() {
+    console.log(aptAddress.value)
+    console.log(userDong.value)
+    console.log(userHo.value)
+    settingBtn.disabled = aptAddress.value === "" || userDong.value === "" || userHo.value === "";
 }
+
+// input 요소의 값이 변경될 때마다 checkInputValue 함수를 실행
+aptAddressInputs.forEach(aptAddressInput => {
+    aptAddressInput.addEventListener('change', checkInputValue);
+})
+
+checkInputValue();

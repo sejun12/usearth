@@ -25,50 +25,50 @@
                                 아파트 주소 설정
                             </div>
                             <div class="add">
-                                <div class="fontSize" style="color: rgb(60, 65, 68);">아파트 주소</div>
-                                <span>
-                                    <div class="relative">
+                                <form th:action="@{/user/address-settings}" name="apartment-address-settings" method="post">
+                                    <div class="fontSize" style="color: rgb(60, 65, 68);">아파트 주소</div>
+                                    <span>
                                         <div class="relative">
-                                          <input id="id"  name="id" autocomplete="off" type="email" color="primary" class="outline" style="text-align: left;">
+                                            <div class="relative">
+                                              <input id="aptAddress" placeholder="아파트를 검색해주세요" name="aptAddress" readonly autocomplete="off" type="text" color="primary" class="outline" style="text-align: left;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </span>
-                                <div class="fontSize" style="color: rgb(60, 65, 68);">동</div>
-                                <span>
-                                    <div class="relative">
+                                    </span>
+                                    <div class="fontSize" style="color: rgb(60, 65, 68);">동</div>
+                                    <span>
                                         <div class="relative">
-                                          <input id="email" placeholder="your@email.com" name="email" autocomplete="off" type="email" color="primary" class="outline" style="text-align: left;">
+                                            <div class="relative">
+                                              <input id="userDong" placeholder="동을 입력해주세요" name="aptAddress" autocomplete="off" type="text" color="primary" class="outline" style="text-align: left;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </span>
-                                <div class="fontSize" style="color: rgb(60, 65, 68);">호</div>
-                                <span>
-                                    <div class="relative">
+                                    </span>
+                                    <div class="fontSize" style="color: rgb(60, 65, 68);">호</div>
+                                    <span>
                                         <div class="relative">
-                                            <input id="password" placeholder="비밀번호" name="password"  autocomplete="off" type="password" color="primary" class="outline" style="text-align: left;">
+                                            <div class="relative">
+                                                <input id="userHo" placeholder="호를 입력해주세요" name="aptAddress" autocomplete="off" type="text" color="primary" class="outline" style="text-align: left;">
+                                            </div>
                                         </div>
-                                    </div>
-                                </span>
-                                <button class="loginBtn">
-                                    <div class="buttonIcon"></div>
-                                    <div class="login" style="color: inherit;">설정하기</div>
-                                    <div class="buttonIcon"></div>
-                                </button>
-            <!--              모달 회원가입 완료시&ndash;&gt;&ndash;&gt;-->
-                                <div class="modalFin" style="display: block">
+                                    </span>
+                                    <button class="settingBtn" disabled>
+                                        <div class="setting" style="color: inherit;">설정하기</div>
+                                    </button>
+                                </form>
+            <!--              아파트 주소입력 칸 클릭 시 활성화 되는 모달창-->
+                                <div class="modalFin" style="display: none">
                                     <div class="modalContainer">
                                         <img src="/images/main/gray-remove.svg" alt="" class="boxRemove">
                                         <div class="modalBody">
-                                            <h2 class="textNormal">서비스에 등록되지 않은 아파트입니다.</h2>
+                                            <h2 class="textNormal">아파트 검색</h2>
                                             <form>
                                                 <section class="apply">
-                                                    <div>
-                                                        USEARTH서비스에 등록되지 않은<br>
-                                                        아파트입니다. 주소를 다시 확인해주세요.
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <input type="text" name="searchAptAddress" placeholder="도로명주소로 입력해주세요" class="searchAptAddress">
+                                                        <button type="button" class="aptAddressSearchBTN">검색</button>
                                                     </div>
                                                 </section>
                                                 <section>
-                                                    <button type="button" class="applyBtn"> 다시하기 </button>
+                                                    <ul></ul>
                                                 </section>
                                             </form>
                                         </div>
@@ -90,7 +90,7 @@
 <script src="/js/fix/nav/nav.js"></script>
 <script src="/js/fix/footer/mainfooter.js"></script>
 <script th:inline="javascript">
-    const user = [[${user}]]
+    const user = [[${session.user}]]
     console.log(user);
 </script>
 </html>

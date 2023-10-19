@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,7 @@ public class KakaoController {
             userService.join(foundInfo.get());
             UserDTO userDTO = userService.getUser(foundInfo.get().getUserKakaoEmail()).get();
             session.setAttribute("user", userDTO);
-            if(foundInfo.get().getApartmentId() == null){
+            if(userDTO.getApartmentId() == null){
                 return new RedirectView("/user/address-settings");
             }else{
                 return new RedirectView("/user/blocking");
