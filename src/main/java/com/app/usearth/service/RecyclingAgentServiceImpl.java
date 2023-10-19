@@ -1,6 +1,6 @@
 package com.app.usearth.service;
 
-import com.app.usearth.domain.PostVO;
+import com.app.usearth.domain.PostDTO;
 import com.app.usearth.repository.RecyclingAgentDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,16 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
     private final RecyclingAgentDAO recyclingAgentDAO;
 
     @Override
-    public List<PostVO> getByRecycling() {
+    public List<PostDTO> getByRecycling() {
 
         return recyclingAgentDAO.selectByRecycling();
     }
+
+    @Override
+    public List<PostDTO> getByRecyclingRead(Long postId) {
+
+        return recyclingAgentDAO.updateByRecycling();
+    }
+
 
 }

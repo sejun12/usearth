@@ -11,5 +11,6 @@
         <typeAlias type="com.app.usearth.domain.ReserveCarVO" alias="reserveCarVO" />
         <typeAlias type="com.app.usearth.domain.ComplainDTO" alias="complainDTO" />
         <typeAlias type="com.app.usearth.domain.CommentDTO" alias="commentDTO" />
+        <typeAlias type="com.app.usearth.domain.PostVO" alias="postDTO" />
     </typeAliases>
 </configuration>
