@@ -183,6 +183,7 @@
 </body>
 <script src="/js/mypage/mycommunity.js"></script>
 <script th:inline="javascript">
+
     const infiniteLoadingContainer=document.querySelector(".infiniteLoadingContainer");
     // 페이징 밑 무한 스크롤
     let page = 1;
@@ -199,6 +200,7 @@
     }
     return reversedPosts;
     }
+
     function appendPost(complain) {
       const div = document.createElement('div');
       div.innerHTML = `
