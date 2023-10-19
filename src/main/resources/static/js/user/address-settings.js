@@ -20,7 +20,7 @@ document.querySelector(".aptAddressSearchBTN").addEventListener("click", async (
     let json = await response.json();
     if(response.ok){
         let searchApts = json.searchApts;
-        if(searchApts.length > 0){
+        if(keyword !== ''){
             let searchAptData = '';
             searchApts.forEach(searchApt => {
                 searchAptData += `<li>`
