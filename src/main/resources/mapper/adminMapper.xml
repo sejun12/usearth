@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.usearth.mapper.AdminMapper">
+    <select id="selectUser" resultType="userVO">
+        SELECT ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE
+        FROM TBL_USER
+        ORDER BY ID
+    </select>
+
+    <select id="select" resultType="userVO">
+        SELECT ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE
+        FROM TBL_USER
+        WHERE ID = #{id}
+    </select>
+
+    <update id="updateStatus">
+        UPDATE TBL_USER
+        SET USER_APPROVAL = #{userApproval}
+        WHERE ID = #{id}
+    </update>
+</mapper>

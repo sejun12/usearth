@@ -181,24 +181,134 @@ toggleButtons.forEach((button, index) => {
 
 // 토글버튼
 
-const approvalBtns = document.querySelectorAll('.approvalBtn');
+const totalNumber = document.querySelector('#totalNumber');
+let orderNumber = 1;
+let lastOrderNumber = 1;
 
-approvalBtns.forEach((btn) => {
+const deleteMessageWrap = document.querySelector(".deleteMessageWrap");
+function deleteMessageUpDown() {
+    deleteMessageWrap.style.display = 'flex';
+
+    deleteMessageWrap.classList.remove('slideDown');
+    deleteMessageWrap.classList.add('slideUp');
+    setTimeout(() => {
+        deleteMessageWrap.classList.remove('slideUp');
+        deleteMessageWrap.classList.add('slideDown');
+        setTimeout(() => {
+            deleteMessageWrap.style.display = 'none';
+        }, 200);
+    }, 2000);
+}
+
+function getNextOrderNumber() {
+    lastOrderNumber = orderNumber++;
+    totalNumber.innerText = `총 ${lastOrderNumber}건`;
+    return lastOrderNumber;
+}
+
+const first = document.querySelector(".first")
+// 서버에서 데이터를 가져오는 메소드
+async function getPosts() {
+    //     fetch에 데이터를 가져 올 주소 입력
+    const response = await fetch("/lists/api/resident/")
+    const posts = await response.json();
+    const reversedPosts = posts.reverse(); // 최신순 정렬을 위해 역순
+    return reversedPosts;
+}
+
+
+async function sendUpdateRequest(residentId, approvalStatus) {
+    const url = 'http://localhost:10000/lists/api/update'; // 실제 서버 URL로 대체해야 함
+
+    const data = {
+        id: residentId,
+        userApproval: approvalStatus
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            console.log('업데이트 성공');
+            // 여기서 추가 작업을 수행할 수 있습니다.
+        } else {
+            console.log(response);
+            console.error('업데이트 실패');
+        }
+    } catch (error) {
+        console.error('요청 실패:', error);
+    }
+}
+
+
+function appendPost(resident) {
+    const li = document.createElement('li');
+    const approvalText = resident.userApproval ? '승인' : '대기';
+    const modifiedUserName = resident.userName.substring(0, 1) + '*' + resident.userName.substring(2);
+    li.innerHTML = `
+         <div class="maintenanceFeeList">
+            <div style="width: 60px;" class="barBtnOne">${getNextOrderNumber()}</div>
+            <div class="barBtnOne">${resident.userDong}</div>
+            <div class="barBtnOne">${resident.userHo}</div>
+            <div style="width: 120px;" class="barBtnOne">${modifiedUserName}</div>
+            <div style="width: 280px;" class="barBtnOne">${resident.userJoinDate}</div>
+            <div class="barBtnOne">${approvalText}</div>
+            <div class="barBtnOne">
+                <button type="button" role="switch" aria-checked="true" class="approvalBtn">
+                    <div class="handled"></div>
+                    <span class="toggle-inner"></span>
+                    <div class="click-mode"></div>
+                </button>
+            </div>
+        </div>
+    `;
+
+    first.appendChild(li);
+
+    // 새로 생성한 버튼에 클릭 이벤트 핸들러 등록
+    const approvalBtn = li.querySelector('.approvalBtn');
     let isHandledOnRight = false;
-    btn.addEventListener('click', function() {
-        const handled = btn.querySelector('.handled');
+    approvalBtn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        const handled = approvalBtn.querySelector('.handled');
         if (handled) {
             if (isHandledOnRight) {
                 handled.style.left = '2px';
-                btn.style.backgroundColor = '#ccc'; // 연한 회색
+                approvalBtn.style.backgroundColor = '#ccc'; // 연한 회색
+                // 여기서 서버로 update 요청 보내기
+
+                sendUpdateRequest(resident.id, false); // 예: 0은 대기 상태를 나타내는 값
+
             } else {
                 handled.style.left = 'calc(100% - 18px)';
-                btn.style.backgroundColor = '#3e90e0'; // 파란색
+                approvalBtn.style.backgroundColor = '#3e90e0'; // 파란색
+                // 여기서 서버로 update 요청 보내기
+                sendUpdateRequest(resident.id, true); // 예: 1은 승인 상태를 나타내는 값
+                console.log(resident);
+                console.log(typeof resident.id);
+                deleteMessageUpDown();
+
             }
             isHandledOnRight = !isHandledOnRight;
         }
     });
-});
+}
 
 
+
+function showList() {
+    getPosts().then((posts) => {
+        posts.forEach((post) => {
+            appendPost(post);
+        });
+    });
+}
+
+showList();
 
