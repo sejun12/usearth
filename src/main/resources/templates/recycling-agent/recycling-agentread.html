@@ -43,59 +43,56 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div id="dropDownBox" class="dropDownBox">
-                                        <div class="dropDownItemGroup" style="max-width: 200px;">
-                                            <div>
-                                                <button type="button" class="buttonIconMedium" onclick="openModal('modalFirst')">
-                                                    <svg data-v-bd9f2bcc="" data-v-3035bc76="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="circleIcon" style="fill: rgb(148, 155, 160);">
-                                                        <circle data-v-bd9f2bcc="" cx="12" cy="5.5" r="1.5"></circle>
-                                                        <circle data-v-bd9f2bcc="" cx="12" cy="12" r="1.5"></circle>
-                                                        <circle data-v-bd9f2bcc="" cx="12" cy="18.5" r="1.5"></circle>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="dropDownBottom">
                                         <!-- 첫번째 모달창 -->
-                                        <div id="modalFirst" class="modal">
-                                            <div class="modalContent">
-                                                <button onclick="closeModal('modalFirst')">신고하기</button>
-                                                <button onclick="closeModal('modalFirst')">차단하기</button>
-                                                <button onclick="closeModal('modalFirst')">취소</button>
-                                            </div>
-                                        </div>
+<!--                                        <div id="modalFirst" class="modal">-->
+<!--                                            <div class="modalContent">-->
+<!--                                                <button onclick="closeModal('modalFirst')">신고하기</button>-->
+<!--                                                <button onclick="closeModal('modalFirst')">차단하기</button>-->
+<!--                                                <button onclick="closeModal('modalFirst')">취소</button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                             <p class="aptBuildingNumber" style="color: rgb(173, 179, 184);"> 힐스테이트 / 201동 </p>
-                            <h2 class="contentTitle" style="color: rgb(4, 5, 5);">
-                                <span class="headlineTitle" style="color: inherit;">분리수거 옮기는 것 좀 도와주실~</span>
-                            </h2>
-                            <p class="contentBox" style="color: rgb(32, 35, 37);">
-                                    <span class="contentText">
-                                        분리수거 양이 너무 많아서 혼자 옮기기엔 힘들것 같아요..<br>
-                                        도와주실분 있으신가요?<br>
-                                        수고비는 따로 드리겠습니다.
+<!--                            게시글 -->
+                            <div id="selectPost">
+                                <h2 class="contentTitle" style="color: rgb(4, 5, 5);">
+                                    <span class="headlineTitle" style="color: inherit;">
+<!--                                        게시글의 제목 text 삭제함-->
                                     </span>
+                                </h2>
+                                <p class="contentBox" style="color: rgb(32, 35, 37);">
+                                    <span class="contentText">
+<!--                                        게시글 text 삭제함 -->
+                                    </span>
+                                </p>
+                            </div>
+                            <p class="contentDate" style="color: rgb(207, 212, 215);">
+<!--                                게시글의 수정날짜 text 삭제함-->
                             </p>
-                            <p class="contentDate" style="color: rgb(207, 212, 215);">2023.09.18</p>
                             <div class="cardActionContainer">
+                                <div class="cardActionWrapper">
+                                    <div class="hits">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="hitsSVG" style="fill: rgb(148, 155, 160);">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8766 8C11.3452 12.6334 4.65478 12.6334 2.12331 8C4.65478 3.36658 11.3452 3.36658 13.8766 8ZM14.8923 7.78461C12.0525 2.10504 3.94746 2.10504 1.10767 7.78461C1.03988 7.9202 1.03988 8.07979 1.10767 8.21538C3.94746 13.895 12.0525 13.895 14.8923 8.21538C14.9601 8.07979 14.9601 7.9202 14.8923 7.78461Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 9.5C8.82843 9.5 9.5 8.82843 9.5 8C9.5 7.17157 8.82843 6.5 8 6.5C7.17157 6.5 6.5 7.17157 6.5 8C6.5 8.82843 7.17157 9.5 8 9.5ZM8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5Z"></path>
+                                        </svg>
+                                        <div class="hitsCount" style="color: rgb(148, 155, 160);"> ${post.postViewCount} </div>
+                                    </div>
+                                </div>
+<!--                                &lt;!&ndash; 함께 읽을 글 &ndash;&gt;-->
+<!--                                <div id="relatedPosts">-->
+<!--                                    <h2>함께 읽을 글</h2>-->
+<!--                                    &lt;!&ndash; JavaScript에서 이 곳에 함께 읽을 글들을 채웁니다. &ndash;&gt;-->
+<!--                                </div>-->
+                                <hr class="dividerLineVertical" style="border-color: rgb(234, 236, 238); height: 16px;">
                                 <div class="cardActionWrapper">
                                     <button class="detailLikeInfoButton">
                                         <svg data-v-bd9f2bcc="" data-v-fbfe33cc="" width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="heartIcon" style="fill: rgb(148, 155, 160);">
                                             <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M8 5.79179L7.16516 4.5257C6.75467 3.90318 6.05854 3.5 5.27273 3.5C4.02534 3.5 3 4.5219 3 5.8C3 6.46253 3.27323 7.21871 3.78425 8.03207C4.28965 8.8365 4.98019 9.62153 5.6981 10.3215C6.41239 11.0179 7.13067 11.6079 7.67232 12.0246C7.79109 12.116 7.90097 12.1988 8 12.2722C8.09904 12.1988 8.20892 12.116 8.32768 12.0246C8.86934 11.6079 9.58761 11.0179 10.3019 10.3215C11.0198 9.62153 11.7103 8.8365 12.2157 8.03207C12.7268 7.21871 13 6.46253 13 5.8C13 4.5219 11.9747 3.5 10.7273 3.5C9.94146 3.5 9.24533 3.90318 8.83485 4.5257L8 5.79179ZM8 13.5C8 13.5 2 9.5 2 5.8C2 3.97746 3.46525 2.5 5.27273 2.5C6.0432 2.5 6.75149 2.76846 7.31061 3.21768C7.57757 3.43217 7.81052 3.68786 8 3.97522C8.18948 3.68786 8.42244 3.43217 8.6894 3.21768C9.24851 2.76846 9.9568 2.5 10.7273 2.5C12.5348 2.5 14 3.97746 14 5.8C14 9.5 8 13.5 8 13.5Z"></path>
                                         </svg>
                                         <div class="detailLikeInfoNumber" style="color: rgb(148, 155, 160);">10</div>
-                                    </button>
-                                </div>
-                                <hr class="dividerLineVertical" style="border-color: rgb(234, 236, 238); height: 16px;">
-                                <div class="cardActionWrapper">
-                                    <button class="detailBookmarkInfoButton">
-                                        <svg data-v-bd9f2bcc="" data-v-fbfe33cc="" width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="bookmarkIcon" style="fill: rgb(148, 155, 160);">
-                                            <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M12 3H4V12.5504L6.88646 10.6157C7.56015 10.1642 8.43985 10.1642 9.11354 10.6157L12 12.5504V3ZM4 2C3.44772 2 3 2.44772 3 3V13.4875C3 13.8874 3.44619 14.1255 3.77839 13.9028L7.44323 11.4464C7.78008 11.2206 8.21992 11.2206 8.55677 11.4464L12.2216 13.9028C12.5538 14.1255 13 13.8874 13 13.4875V3C13 2.44772 12.5523 2 12 2H4Z"></path>
-                                        </svg>
-                                        <div class="detailBookmarkInfoNumber" style="color: rgb(148, 155, 160);">2</div>
                                     </button>
                                 </div>
                             </div>
@@ -113,13 +110,19 @@
                                     <div class="containerReply" style="background-color: rgb(255, 255, 255); padding: 20px 16px;">
                                         <div class="textFieldAdditional">
                                             <div class="replyContentBox">
-                                                <input id="textField" placeholder="답변을 남겨보세요!" name="fieldText" label align="left" autocomplete="off" type="text" class="inputFieldOutline" style="text-align: left;">
+                                                <input id="textField" placeholder="댓글을 남겨보세요!" name="fieldText" label align="left" autocomplete="off" type="text" class="inputFieldOutline" style="text-align: left;">
                                             </div>
+                                        </div>
+<!--                                        사용자 댓글 -->
+                                        <div id="commentsPost">
+                                            <h2>
+<!--                                                댓글 text 삭제-->
+                                            </h2>
                                         </div>
                                         <div class="buttonWrapper">
                                             <button class="buttonMedium">
                                                 <div class="buttonIcon"></div>
-                                                답변 등록
+                                                댓글 등록
                                                 <div class="buttonIcon"></div>
                                             </button>
                                         </div>
@@ -180,110 +183,97 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div id="downBoxDrop" class="dropDownBox">
-                                                            <div class="dropDownItemGroup" style="max-width: 200px;">
-                                                                <div>
-                                                                    <button type="button" class="buttonIconMedium" onclick="openModal('modalSecond')">
-                                                                        <svg data-v-bd9f2bcc="" data-v-3035bc76="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="circleIcon" style="fill: rgb(148, 155, 160);">
-                                                                            <circle data-v-bd9f2bcc="" cx="12" cy="5.5" r="1.5"></circle>
-                                                                            <circle data-v-bd9f2bcc="" cx="12" cy="12" r="1.5"></circle>
-                                                                            <circle data-v-bd9f2bcc="" cx="12" cy="18.5" r="1.5"></circle>
-                                                                        </svg>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="contentActionDropdown">
                                                             <!-- 두번째 모달창  -->
-                                                            <div id="modalSecond" class="modal">
-                                                                <div class="modalContent">
-                                                                    <button onclick="closeModal('modalSecond')">신고하기</button>
-                                                                    <button onclick="closeModal('modalSecond')">차단하기</button>
-                                                                    <button onclick="closeModal('modalSecond')">취소</button>
-                                                                </div>
-                                                            </div>
+<!--                                                            <div id="modalSecond" class="modal">-->
+<!--                                                                <div class="modalContent">-->
+<!--                                                                    <button onclick="closeModal('modalSecond')">신고하기</button>-->
+<!--                                                                    <button onclick="closeModal('modalSecond')">차단하기</button>-->
+<!--                                                                    <button onclick="closeModal('modalSecond')">취소</button>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
                                                             <div id="overlay" class="overlay"></div>
                                                         </div>
                                                         <!--                                                       신고하기 모달창 -->
-<!--                                                                                                                <div class="application">-->
-<!--                                                                                                                    <aside class="appOverlayDimmer"  style="z-index: 9998;">-->
-<!--                                                                                                                        <div class="declarationModal" style="max-height: 86vh; width: 100%;">-->
-<!--                                                                                                                            <div class="modalCloseButton">-->
-<!--                                                                                                                                <svg data-v-bd9f2bcc="" data-v-bb5971ce="" width="28" height="28" viewBox="0 0 28 28" fill="black" xmlns="http://www.w3.org/2000/svg" class="modalicon" data-v-34c6c156="" style="fill: rgb(173, 179, 184);">-->
-<!--                                                                                                                                    <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M5.79289 5.79289C6.18342 5.40237 6.81658 5.40237 7.20711 5.79289L22.2071 20.7929C22.5976 21.1834 22.5976 21.8166 22.2071 22.2071C21.8166 22.5976 21.1834 22.5976 20.7929 22.2071L5.79289 7.20711C5.40237 6.81658 5.40237 6.18342 5.79289 5.79289Z"></path><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M22.2071 5.79289C22.5976 6.18342 22.5976 6.81658 22.2071 7.20711L7.20711 22.2071C6.81658 22.5976 6.18342 22.5976 5.79289 22.2071C5.40237 21.8166 5.40237 21.1834 5.79289 20.7929L20.7929 5.79289C21.1834 5.40237 21.8166 5.40237 22.2071 5.79289Z"></path>-->
-<!--                                                                                                                                </svg>-->
-<!--                                                                                                                            </div>-->
-<!--                                                                                                                            <div class="modalWinWrapper">-->
-<!--                                                                                                                                <div class="modalWinTitleWrapper">-->
-<!--                                                                                                                                    <div class="modalDeclaration" style="color: rgb(4, 5, 5); text-align: left;"> 신고하기 </div>-->
-<!--                                                                                                                                </div>-->
-<!--                                                                                                                                <div class="modalContentWrapper">-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryFirst" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryFirst">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 채택 요구 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimarySecond" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimarySecond">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 다른 작성자의 답변 표절 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryThird" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryThird">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 비방/욕설 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryFourth" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryFourth">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 허위사실 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryFifth" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryFifth">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 개인정보노출 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimarySixth" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimarySixth">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 음란성 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimarySeventh" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimarySeventh">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 부적절한 홍보 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryEighth" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryEighth">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 게시글 도배 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                    <div class="radioButtonPrimary">-->
-<!--                                                                                                                                        <input id="radioPrimaryNinth" type="radio" name="reportRadio">-->
-<!--                                                                                                                                        <label for="radioPrimaryNinth">-->
-<!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 기타 </div>-->
-<!--                                                                                                                                        </label>-->
-<!--                                                                                                                                    </div>-->
-<!--                                                                                                                                </div>-->
-<!--                                                                                                                                <div class="modalActionButtonWrapper">-->
-<!--                                                                                                                                    <button class="buttonLargePrimary" disabled="disabled">-->
-<!--                                                                                                                                        <div class="buttonIcon"></div>-->
-<!--                                                                                                                                        신고 접수-->
-<!--                                                                                                                                        <div class="buttonIcon"></div>-->
-<!--                                                                                                                                    </button>-->
-<!--                                                                                                                                </div>-->
-<!--                                                                                                                            </div>-->
-<!--                                                                                                                        </div>-->
-<!--                                                                                                                    </aside>-->
-<!--                                                                                                                </div>-->
+                                                        <!--                                                                                                                <div class="application">-->
+                                                        <!--                                                                                                                    <aside class="appOverlayDimmer"  style="z-index: 9998;">-->
+                                                        <!--                                                                                                                        <div class="declarationModal" style="max-height: 86vh; width: 100%;">-->
+                                                        <!--                                                                                                                            <div class="modalCloseButton">-->
+                                                        <!--                                                                                                                                <svg data-v-bd9f2bcc="" data-v-bb5971ce="" width="28" height="28" viewBox="0 0 28 28" fill="black" xmlns="http://www.w3.org/2000/svg" class="modalicon" data-v-34c6c156="" style="fill: rgb(173, 179, 184);">-->
+                                                        <!--                                                                                                                                    <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M5.79289 5.79289C6.18342 5.40237 6.81658 5.40237 7.20711 5.79289L22.2071 20.7929C22.5976 21.1834 22.5976 21.8166 22.2071 22.2071C21.8166 22.5976 21.1834 22.5976 20.7929 22.2071L5.79289 7.20711C5.40237 6.81658 5.40237 6.18342 5.79289 5.79289Z"></path><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M22.2071 5.79289C22.5976 6.18342 22.5976 6.81658 22.2071 7.20711L7.20711 22.2071C6.81658 22.5976 6.18342 22.5976 5.79289 22.2071C5.40237 21.8166 5.40237 21.1834 5.79289 20.7929L20.7929 5.79289C21.1834 5.40237 21.8166 5.40237 22.2071 5.79289Z"></path>-->
+                                                        <!--                                                                                                                                </svg>-->
+                                                        <!--                                                                                                                            </div>-->
+                                                        <!--                                                                                                                            <div class="modalWinWrapper">-->
+                                                        <!--                                                                                                                                <div class="modalWinTitleWrapper">-->
+                                                        <!--                                                                                                                                    <div class="modalDeclaration" style="color: rgb(4, 5, 5); text-align: left;"> 신고하기 </div>-->
+                                                        <!--                                                                                                                                </div>-->
+                                                        <!--                                                                                                                                <div class="modalContentWrapper">-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryFirst" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryFirst">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 채택 요구 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimarySecond" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimarySecond">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 다른 작성자의 답변 표절 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryThird" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryThird">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 비방/욕설 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryFourth" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryFourth">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 허위사실 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryFifth" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryFifth">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 개인정보노출 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimarySixth" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimarySixth">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 음란성 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimarySeventh" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimarySeventh">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 부적절한 홍보 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryEighth" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryEighth">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 게시글 도배 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                    <div class="radioButtonPrimary">-->
+                                                        <!--                                                                                                                                        <input id="radioPrimaryNinth" type="radio" name="reportRadio">-->
+                                                        <!--                                                                                                                                        <label for="radioPrimaryNinth">-->
+                                                        <!--                                                                                                                                            <div class="requestAdoption" style="color: rgb(148, 155, 160);"> 기타 </div>-->
+                                                        <!--                                                                                                                                        </label>-->
+                                                        <!--                                                                                                                                    </div>-->
+                                                        <!--                                                                                                                                </div>-->
+                                                        <!--                                                                                                                                <div class="modalActionButtonWrapper">-->
+                                                        <!--                                                                                                                                    <button class="buttonLargePrimary" disabled="disabled">-->
+                                                        <!--                                                                                                                                        <div class="buttonIcon"></div>-->
+                                                        <!--                                                                                                                                        신고 접수-->
+                                                        <!--                                                                                                                                        <div class="buttonIcon"></div>-->
+                                                        <!--                                                                                                                                    </button>-->
+                                                        <!--                                                                                                                                </div>-->
+                                                        <!--                                                                                                                            </div>-->
+                                                        <!--                                                                                                                        </div>-->
+                                                        <!--                                                                                                                    </aside>-->
+                                                        <!--                                                                                                                </div>-->
                                                     </div>
                                                 </div>
                                                 <p class="contentBody" style="color: rgb(32, 35, 37);">
@@ -303,11 +293,11 @@
                                                     </div>
                                                     <hr class="dividerLineVertical" style="border-color: rgb(234, 236, 238); height: 16px;">
                                                     <div class="cardActionWrapper">
-                                                        <button class="detailBookmarkInfoButton">
-                                                            <svg data-v-bd9f2bcc="" data-v-fbfe33cc="" width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="bookmarkIcon" style="fill: rgb(148, 155, 160);">
-                                                                <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M12 3H4V12.5504L6.88646 10.6157C7.56015 10.1642 8.43985 10.1642 9.11354 10.6157L12 12.5504V3ZM4 2C3.44772 2 3 2.44772 3 3V13.4875C3 13.8874 3.44619 14.1255 3.77839 13.9028L7.44323 11.4464C7.78008 11.2206 8.21992 11.2206 8.55677 11.4464L12.2216 13.9028C12.5538 14.1255 13 13.8874 13 13.4875V3C13 2.44772 12.5523 2 12 2H4Z"></path>
+                                                        <button class="detailLikeInfoButton">
+                                                            <svg data-v-bd9f2bcc="" data-v-fbfe33cc="" width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="heartIcon" style="fill: rgb(148, 155, 160);">
+                                                                <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M8 5.79179L7.16516 4.5257C6.75467 3.90318 6.05854 3.5 5.27273 3.5C4.02534 3.5 3 4.5219 3 5.8C3 6.46253 3.27323 7.21871 3.78425 8.03207C4.28965 8.8365 4.98019 9.62153 5.6981 10.3215C6.41239 11.0179 7.13067 11.6079 7.67232 12.0246C7.79109 12.116 7.90097 12.1988 8 12.2722C8.09904 12.1988 8.20892 12.116 8.32768 12.0246C8.86934 11.6079 9.58761 11.0179 10.3019 10.3215C11.0198 9.62153 11.7103 8.8365 12.2157 8.03207C12.7268 7.21871 13 6.46253 13 5.8C13 4.5219 11.9747 3.5 10.7273 3.5C9.94146 3.5 9.24533 3.90318 8.83485 4.5257L8 5.79179ZM8 13.5C8 13.5 2 9.5 2 5.8C2 3.97746 3.46525 2.5 5.27273 2.5C6.0432 2.5 6.75149 2.76846 7.31061 3.21768C7.57757 3.43217 7.81052 3.68786 8 3.97522C8.18948 3.68786 8.42244 3.43217 8.6894 3.21768C9.24851 2.76846 9.9568 2.5 10.7273 2.5C12.5348 2.5 14 3.97746 14 5.8C14 9.5 8 13.5 8 13.5Z"></path>
                                                             </svg>
-                                                            <div class="detailBookmarkInfoNumber" style="color: rgb(148, 155, 160);">2</div>
+                                                            <div class="detailLikeInfoNumber" style="color: rgb(148, 155, 160);">10</div>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -315,13 +305,21 @@
                                             <hr class="dividerDashLine" style="border-color: rgb(234, 236, 238); background: white;">
                                             <div class="replyTextareaContainer" style="background-color: rgb(255, 255, 255); padding: 16px;">
                                                 <div id="commentInput" class="commentContentWrapper" style="background-color: rgb(255, 255, 255); padding: 0px;">
-                                                    <div class="commentTextareaReply">
-                                                        <div class="textareaReplyLine">
-                                                            <textarea placeholder="댓글을 남겨보세요~" disabled="disabled" style="max-height: 256px; min-height: 38px; overflow-y: auto;"></textarea>
-                                                            <button type="button" disabled="disabled" class="rightArrow">
-                                                                <svg data-v-bd9f2bcc="" data-v-3035bc76="" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="rightArrowIcon" style="fill: rgb(234, 236, 238);"><path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M20.4582 12.9062C21.2277 12.5471 21.2277 11.4529 20.4582 11.0938L5.42255 4.07716C4.57275 3.68059 3.69362 4.5666 4.09681 5.41328L6.75715 11H11C11.5523 11 12 11.4477 12 12C12 12.5523 11.5523 13 11 13H6.75712L4.09681 18.5867C3.69362 19.4333 4.57275 20.3193 5.42255 19.9228L20.4582 12.9062Z"></path>
-                                                                </svg>
-                                                            </button>
+                                                    <div class="replyContainer">
+                                                        <hr class="lineVerticalDivider" style="border-color: rgb(234, 236, 238);">
+                                                        <div class="containerReply" style="background-color: rgb(255, 255, 255); padding: 20px 16px;">
+                                                            <div class="textFieldAdditional">
+                                                                <div class="replyContentBox">
+                                                                    <input placeholder="댓글을 남겨보세요!" name="fieldText" label align="left" autocomplete="off" type="text" class="inputFieldOutline" style="text-align: left;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="buttonWrapper">
+                                                                <button class="buttonMedium">
+                                                                    <div class="buttonIcon"></div>
+                                                                    댓글 등록
+                                                                    <div class="buttonIcon"></div>
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
