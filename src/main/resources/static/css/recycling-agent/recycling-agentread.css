@@ -887,6 +887,19 @@ ol, ul {
     z-index: 1;
 }
 
+.hits {
+    align-items: center;
+    display: flex!important;
+    margin-right: 12px;
+}
+
+.hitsSVG, .replySVG {
+    background: transparent!important;
+    cursor: auto;
+    overflow: hidden;
+    margin-right: 4px!important;
+}
+
 .modalContent {
     padding: 20px;
     width: 100%;

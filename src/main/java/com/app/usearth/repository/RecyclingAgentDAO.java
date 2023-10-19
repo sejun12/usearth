@@ -1,5 +1,6 @@
 package com.app.usearth.repository;
 
+import com.app.usearth.domain.PostDTO;
 import com.app.usearth.domain.PostVO;
 import com.app.usearth.mapper.RecyclingAgentMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,12 @@ public class RecyclingAgentDAO {
 
     private final RecyclingAgentMapper recyclingAgentMapper;
 
-    public List<PostVO> selectByRecycling() {
+    public List<PostDTO> selectByRecycling() {
 
         return recyclingAgentMapper.selectByRecycling();
     }
 
+    public List<PostDTO> updateByRecycling() {
+        return recyclingAgentMapper.updateByRecycling();
+    }
 }
