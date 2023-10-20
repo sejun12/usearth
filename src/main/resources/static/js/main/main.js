@@ -675,3 +675,5 @@ forthCardImagContainer.forEach((forthCardImag, index) => {
 function scales(index, factors) {
     forthCardImage[index].style.transform = `scale(${factors})`;
 }
+
+// 모바일 더보기 

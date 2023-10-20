@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Us Earth</title>
     <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" href="/css/fix/nav/nav.css">
+    <link rel="stylesheet" href="/css/fix/footer/mainfooter.css">
 </head>
 <body>
 <div id="mainWrap">
     <div id="layOut">
         <div class="mainWrapReal">
             <!--                네비 wrap-->
+            <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
 <!--            <div></>div>-->
 <!--                      main-->
             <div class="mainWrap" style="min-height: calc(100vh - 324px);">
@@ -1024,11 +1027,14 @@
                 </div>
             </div>
             <!--                footer-->
-            <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>
-<!--         <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>-->
+<!--            <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>-->
+         <div class="FooterMain" th:replace="~{/fix/footer/mobilefooter :: mobile-footer}"></div>
+        </div>
+    </div>
         </div>
     </div>
 </div>
 </body>
+<script src="/js/fix/nav/nav.js"></script>
 <script src="/js/main/main.js"></script>
 </html>
