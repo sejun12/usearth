@@ -31,7 +31,11 @@ public class KakaoController {
             if(userDTO.getApartmentId() == null){
                 return new RedirectView("/user/address-settings");
             }else{
-                return new RedirectView("/user/blocking");
+                if(!userDTO.isUserApproval()) {
+                    return new RedirectView("/user/blocking");
+                }else {
+                    return new RedirectView("/");
+                }
             }
         }
         return new RedirectView("/user/login");

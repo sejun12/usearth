@@ -47,4 +47,37 @@ public class MyPageDAO {
     public void changeProfile(UserProfileVO userProfileVO){
         myPageMapper.updatePhoto(userProfileVO);
     }
+
+    public Optional<ComplainDTO> detail(Long id){
+        return myPageMapper.selectPostDetail(id);
+    }
+
+    public void removeComplain(Long id){
+        myPageMapper.deleteComplain(id);
+    }
+    public void removeFee(Long id){
+        myPageMapper.deleteFee(id);
+    }
+    public void removeLike(Long id){
+        myPageMapper.deleteLike(id);
+    }
+    public void removeComment(Long id){
+        myPageMapper.deleteComment(id);
+    }
+    public void removePost(Long id){
+        myPageMapper.deletePost(id);
+    }
+    public void removeVisit(Long id){
+        myPageMapper.deleteVisit(id);
+    }
+    public void removeUser(Long id){
+        myPageMapper.deleteUser(id);
+    }
+
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination){
+        return  myPageMapper.selectVisit(pagination);
+    }
+    public  int getTotal(){
+        return   myPageMapper.selectTotal();
+    }
 }

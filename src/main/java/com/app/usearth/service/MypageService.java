@@ -21,4 +21,13 @@ public interface MypageService {
     public Long getUser(Long id);
 
     public void changeProfile(UserProfileVO userProfileVO);
+
+    public Optional<ComplainDTO> detail(Long id);
+
+    public void removeAll(Long id);
+
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination);
+
+    public  int getTotal();
+
 }

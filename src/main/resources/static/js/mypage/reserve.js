@@ -60,8 +60,8 @@ function handleSubmit(event) {
         error.innerHTML = "";
         error.appendChild(errorIcon);
         error.appendChild(document.createTextNode( " 올바른 날짜 형식 (yyyy/mm/dd)으로 입력해 주십시오."));
-        error.style.display = "block"; // 에러 메시지 표시
-        event.preventDefault(); // 기본 동작 차단
+        error.style.display = "block";
+        event.preventDefault();
     }
 }
 // 폼 제출 이벤트 리스너 등록

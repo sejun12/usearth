@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -866,14 +866,40 @@
                                 </div>
                             </li>
                         </ul>
-                        <div></div>
+                        <!--                        버튼-->
+                        <div class="col-span-full margins">
+                            <ul class="flex-me">
+                                <li>
+                                    <button  type="button" class="rounded-full">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <li class="li-ml">
+                                    <button type="button" class="buttonNumber">
+                                        <span class="content-primary">1</span>
+                                    </button>
+                                </li>
+                                <li class="li-ml">
+                                    <button type="button" class="rounded-full">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--                        -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="zIndex0"></div>
-<!--    삭제 모달창-->
+    <!--    삭제 모달창-->
     <div class="zIndex10">
         <div class="modalWindow" style="display: none;">
             <h4 class="modalTitle">등록 삭제</h4>
@@ -944,5 +970,9 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    const visits=[[${visits}]];
+    const pagination=[[${pagination}]];
+</script>
 <script src="/js/admin/visit-vehiclemanager.js"></script>
 </html>
