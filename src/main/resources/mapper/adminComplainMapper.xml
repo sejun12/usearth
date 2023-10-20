@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.usearth.mapper.AdminComplainMapper">
+    <select id="selectByLogin" resultType="adminVO">
+        SELECT ID, APARTMENT_ID, ADMIN_IDENTIFICATION, ADMIN_PASSWORD, ADMIN_NAME FROM TBL_ADMIN
+        WHERE ADMIN_IDENTIFICATION = #{adminIdentification} AND ADMIN_PASSWORD = #{adminPassword}
+    </select>
+
+    <select id="selectByEmail" resultType="adminVO">
+        SELECT ADMIN_IDENTIFICATION, ADMIN_PASSWORD FROM TBL_ADMIN
+        WHERE ADMIN_IDENTIFICATION = #{adminIdentification}
+    </select>
+</mapper>
