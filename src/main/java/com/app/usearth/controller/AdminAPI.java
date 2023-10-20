@@ -3,8 +3,7 @@ package com.app.usearth.controller;
 import com.app.usearth.domain.UserVO;
 import com.app.usearth.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -31,4 +31,9 @@ public class AdminController {
 
     @GetMapping("resident-list")
     public void goToResidentList(){;}
+
+    @GetMapping("visit-vehicle")
+    public void goTovisitvehicle(){;}
+    @GetMapping("visit-vehiclemanager")
+    public void goTovisitvehicleManager(){;}
 }
