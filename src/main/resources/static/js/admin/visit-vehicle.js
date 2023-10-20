@@ -59,7 +59,7 @@ document.addEventListener("click", (event) => {
     const target = event.target;
 
     // 모달 영역인지 확인
-    const isModalContent = rangeBuilding.contains(target) || categoryBtn.contains(target) || rangeCategory.contains(target) || categoryBtn2.contains(target);
+    const isModalContent = rangeBuilding.contains(target) || categoryBtn.contains(target) || rangeCategory.contains(target);
 
     if (!isModalContent && (isShowBuilding || isShowCategory)) {
         // 모달이 열려있고, 모달 영역 외부를 클릭한 경우 모달을 닫음
@@ -226,3 +226,9 @@ function registrationMessageUpDown() {
         }, 200);
     }, 2000);
 }alWrapperGray = document.querySelector(".modalWrapperGray");
+
+document.querySelector(".resetBtn").addEventListener("click", function() {
+    location.reload(); // 현재 페이지를 새로고침합니다.
+});
+
+

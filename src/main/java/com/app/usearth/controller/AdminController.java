@@ -33,7 +33,6 @@ public class AdminController {
     public void goToResidentList(){;}
 
     @GetMapping("visit-vehicle")
-    public void goTovisitvehicle(){;}
-    @GetMapping("visit-vehiclemanager")
-    public void goTovisitvehicleManager(){;}
+    public void goToVisitVehicle(){;}
+
 }
