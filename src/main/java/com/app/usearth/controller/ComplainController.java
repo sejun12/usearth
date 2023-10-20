@@ -14,7 +14,7 @@ public class ComplainController {
     @GetMapping("admin-login")
     public void goToAdminLogin(){;}
 
-    @GetMapping("complain")
+    @GetMapping("complain-management")
     public void goToAdminComplain(){;}
 
     @GetMapping("complain-reply")
