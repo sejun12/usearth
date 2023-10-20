@@ -7,19 +7,14 @@ import com.app.usearth.service.MypageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,16 +28,26 @@ public class MyPageController {
     public RedirectView complainSubmit(ComplainDTO complainDTO){
         //세션아이디 넣고
         mypageService.addComplain(complainDTO);
-        return new RedirectView("/mypage/complain-detail");
+        return new RedirectView("/mypage/community");
     }
-    @GetMapping("complain-detail")
-    public void goToMyComplainDetail(){;}
+    @GetMapping("complain-detail/{id}")
+    public String goToMyComplainDetail(@PathVariable Long id){
+        return "/mypage/complain-detail";
+    }
     @GetMapping("edit-personal")
     public void goToMyEditPersonal(){;}
     @GetMapping("inquiry")
     public void goToMyInquiry(){;}
     @GetMapping("member-withdrawal")
     public void goToMyMemberWithDrawl(){;}
+    @PostMapping("member-withdrawal")
+    public RedirectView goToMyWithDrawl(){
+        //세션의아이디
+//        Long id=1L;
+//        mypageService.removeAll(id);
+        return new RedirectView("/");
+    }
+
     @GetMapping("mypage")
     public void goToMyPage(){;}
     @PostMapping("inquiry")
@@ -74,6 +79,7 @@ public class MyPageController {
     public void goToMyReserveCarList(){
         //        세션에서 가지고온 id로 넣고
     }
+//    작성 이동 목록
     @GetMapping("community")
     public void goToMyCommunity(){;}
     @GetMapping("recycling")

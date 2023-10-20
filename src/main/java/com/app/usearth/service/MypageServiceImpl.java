@@ -17,9 +17,9 @@ public class MypageServiceImpl implements MypageService {
     private final MyPageDAO myPageDAO;
     @Override
     public void saveCar(ReserveCarVO reserveCarVO) {
-          reserveCarVO.setUserId(1L);
+        reserveCarVO.setUserId(1L);
         reserveCarVO.setApartmentId(myPageDAO.getUser(reserveCarVO.getUserId()));
-            myPageDAO.saveCar(reserveCarVO);
+        myPageDAO.saveCar(reserveCarVO);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MypageServiceImpl implements MypageService {
         complainDTO.setUserId(1L);
         Long foundCaId= myPageDAO.getName(complainDTO.getCategoryComplainName());
         complainDTO.setCategoryComplainId(foundCaId);
-           myPageDAO.addComplain(complainDTO);
+        myPageDAO.addComplain(complainDTO);
     }
 
     @Override
@@ -71,5 +71,30 @@ public class MypageServiceImpl implements MypageService {
         myPageDAO.changeProfile(userProfileVO);
     }
 
+    @Override
+    public Optional<ComplainDTO> detail(Long id) {
+        return myPageDAO.detail(id);
+    }
+
+    @Override
+    public void removeAll(Long id) {
+        myPageDAO.removeComplain(id);
+        myPageDAO.removeFee(id);
+        myPageDAO.removeLike(id);
+        myPageDAO.removeComment(id);
+        myPageDAO.removePost(id);
+        myPageDAO.removeVisit(id);
+        myPageDAO.removeUser(id);
+    }
+
+    @Override
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination) {
+        return myPageDAO.visitBookingList(pagination);
+    }
+
+    @Override
+    public int getTotal() {
+        return myPageDAO.getTotal();
+    }
 
 }

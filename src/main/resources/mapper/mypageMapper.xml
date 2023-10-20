@@ -16,7 +16,7 @@
     <select id="selectComplain" resultType="complainDTO">
         SELECT C.ID, C.USER_ID, C.CATEGORY_COMPLAIN_ID, C.COMPLAIN_TITLE, C.COMPLAIN_CONTENT, C.COMPLAIN_DATE, C.COMPLAIN_STATUS, CC.CATEGORY_COMPLAIN_NAME
         FROM TBL_COMPLAIN C
-        JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
         WHERE C.USER_ID = #{userId}
         ORDER BY C.COMPLAIN_DATE
     </select>
@@ -37,12 +37,12 @@
 
     <select id="selectReply" resultType="commentDTO">
         SELECT
-        C.ID AS COMMENT_ID, C.USER_ID, C.POST_ID, C.PARENT_COMMENT_ID, C.COMMENT_WRITE_DATE, C.COMMENT_CONTENT,C.COMMENT_UPDATE_DATE,
-        P.ID AS POST_ID, P.USER_ID AS POST_USER_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,P.POST_CATEGORY,
-        U.USER_NAME
+            C.ID AS COMMENT_ID, C.USER_ID, C.POST_ID, C.PARENT_COMMENT_ID, C.COMMENT_WRITE_DATE, C.COMMENT_CONTENT,C.COMMENT_UPDATE_DATE,
+            P.ID AS POST_ID, P.USER_ID AS POST_USER_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,P.POST_CATEGORY,
+            U.USER_NAME
         FROM TBL_COMMENT C
-        JOIN TBL_USER U ON C.USER_ID = U.ID
-        JOIN TBL_POST P ON C.POST_ID = P.ID
+                 JOIN TBL_USER U ON C.USER_ID = U.ID
+                 JOIN TBL_POST P ON C.POST_ID = P.ID
         WHERE U.ID = #{userId}
         ORDER BY C.COMMENT_UPDATE_DATE
     </select>
@@ -59,21 +59,102 @@
 
     <select id="selectUserId" resultType="Long">
         SELECT APARTMENT_ID  FROM TBL_USER U
-        JOIN TBL_APARTMENT A ON U.APARTMENT_ID=A.ID
+                                      JOIN TBL_APARTMENT A ON U.APARTMENT_ID=A.ID
         WHERE U.ID=#{id}
     </select>
-    
+
     <update id="updatePhoto">
         UPDATE  TBL_USER_PROFILE
         SET USER_PROFILE_NAME=#{userProfileName},USER_PROFILE_PATH=#{userProfilePath}
         WHERE ID=#{id}
     </update>
 
-<!--    <select id="selectProfile">-->
-<!--        SELECT *-->
-<!--        FROM TBL_USER U-->
-<!--        JOIN TBL_USER_PROFILE P ON U.USER_PROFILE_ID = P.ID-->
-<!--        WHERE U.ID =#{id}-->
-<!--    </select>-->
+    <!--    <select id="selectProfile">-->
+    <!--        SELECT *-->
+    <!--        FROM TBL_USER U-->
+    <!--        JOIN TBL_USER_PROFILE P ON U.USER_PROFILE_ID = P.ID-->
+    <!--        WHERE U.ID =#{id}-->
+    <!--    </select>-->
+    <select id="selectPostDetail" resultType="complainDTO">
+        SELECT C.ID, C.USER_ID, C.CATEGORY_COMPLAIN_ID, C.COMPLAIN_TITLE, C.COMPLAIN_CONTENT, C.COMPLAIN_DATE, C.COMPLAIN_STATUS, CC.CATEGORY_COMPLAIN_NAME,
+               CR.ID AS REPLY_ID, CR.ADMIN_ID, CR.COMPLAIN_REPLY_TITLE, CR.COMPLAIN_REPLY_CONTENT, CR.COMPLAIN_REPLY_DATE
+        FROM TBL_COMPLAIN C
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 LEFT JOIN TBL_COMPLAIN_REPLY CR ON C.ID = CR.COMPLAIN_ID
+        WHERE C.ID=#{id}
+    </select>
+
+    <delete id="deleteComplain">
+        DELETE TBL_COMPLAIN
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deleteFee">
+        DELETE TBL_MAINTENANCE_FEE
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deleteLike">
+        DELETE TBL_LIKE
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deleteComment">
+        DELETE TBL_COMMENT
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deletePost">
+        DELETE TBL_POST
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deleteVisit">
+        DELETETBL_VISIT_BOOKING
+        WHERE USER_ID={id}
+    </delete>
+
+    <delete id="deleteUser">
+        DELETETBL_VISIT_BOOKING
+        WHERE ID={id}
+    </delete>
+
+    <select id="selectVisit" resultType="reserveCarDTO">
+        SELECT * FROM
+            (
+                SELECT ROWNUM R, AL.*
+                FROM (
+                         SELECT
+                             V.ID,
+                             V.USER_ID,
+                             V.APARTMENT_ID,
+                             VISIT_BOOKING_START_DATE,
+                             VISIT_BOOKING_END_DATE,
+                             VISIT_BOOKING_REGISTER_DATE,
+                             VISIT_BOOKING_PURPOSE,
+                             VISIT_BOOKING_CAR_NUMBER,
+                             VISIT_BOOKING_CAR_TYPE,
+                             U.USER_DONG,
+                             U.USER_HO
+                         FROM TBL_VISIT_BOOKING V
+                                  JOIN TBL_USER U ON V.USER_ID = U.ID
+                         ORDER BY ID DESC
+                     ) AL
+    <![CDATA[
+                WHERE ROWNUM <= #{pagination.endRow}
+            ) AL2
+        WHERE AL2.R >=#{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(ID) FROM TBL_VISIT_BOOKING
+    </select>
+
+    <delete id="deleteOne">
+        DELETETBL_VISIT_BOOKING
+        WHERE ID={id}
+    </delete>
+
 
 </mapper>

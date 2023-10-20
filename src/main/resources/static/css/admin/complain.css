@@ -148,6 +148,7 @@ ul{
     height: 52px;
 }
 .grid.fluid{
+    position: fixed;
     width: 100%;
     padding: 0;
 }
