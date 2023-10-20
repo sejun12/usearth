@@ -1,4 +1,3 @@
-
 //focus
 //input 색 고정
 const inputWrappers = document.querySelectorAll('.inputWrapper');
@@ -12,16 +11,7 @@ inputWrappers.forEach(inputWrapper => {
         inputWrapper.classList.remove('focused');
     });
 });
-//아이디 비밀번호 모달창
-const searchBUt=document.querySelector(".searchBUt");
-const modalWrap =document.querySelector(".modalWrap");
-const modalClose=document.querySelector(".modalClose");
-searchBUt.addEventListener("click",()=>{
-    modalWrap.style.display="block"
-});
-modalClose.addEventListener("click",()=>{
-    modalWrap.style.display="none"
-});
+
 //비밀번호 text로
 const passwordInput = document.getElementById('user_pw');
 const eyeIcon = document.querySelector('.anticonSvg');
@@ -44,45 +34,82 @@ eyeIcon.addEventListener('click', () => {
     `;
     }
 });
-//아이디/비밀번호 찾기에서 경고 메시지
-const warnings = document.querySelectorAll(".warning");
-const subBtn = document.querySelector(".subBtn");
 
-warnings.forEach((warning) => {
-    // 입력 필드 찾기
-    const inputField = warning.previousElementSibling;
+// 아이디 비밀번호 작성 유무에 따른 버튼 활성/비활성화
+const primary = document.querySelector(".primary");
+const user_id = document.getElementById("user_id");
+const antInputs = document.querySelectorAll(".antInput");
 
-    // 입력 필드에 입력 이벤트 추가
-    inputField.addEventListener("input", () => {
-        // 입력 필드의 값이 비어 있는 경우에만 경고 메시지를 표시하도록 설정
-        if (inputField.value.trim() === "") {
-            warning.style.display = "block";
-        } else {
-            warning.style.display = "none";
-        }
-    });
+function checkInputValue() {
+    primary.disabled = user_id.value === "" || passwordInput.value === "";
+}
+
+antInputs.forEach(antInput => {
+    antInput.addEventListener('change', checkInputValue)
+})
+
+checkInputValue()
+
+//아이디 비밀번호 틀릴 경우 모달창
+const modalWrap = document.querySelector(".modalWrap");
+const modalClose= document.querySelector(".modalClose");
+const appContainer2 = document.querySelector(".appContainer2");
+
+if(idFlag !== null){
+    console.log(idFlag)
+    appContainer2.innerHTML += `<div class="idAndPasswordSearch">등록되어 있지 않은 아이디입니다.</div>`
+    appContainer2.innerHTML += `<div class="explanation">입력한 아이디를 다시 한번 확인해주세요.<br><br>만약 아이디를 잊어 버렸을 경우 서비스담당자에게 연락하시면 빠른 조치가 가능합니다.</div>`
+    modalWrap.style.display = "block";
+}else if(passwordFlag !== null){
+    console.log(passwordFlag)
+    appContainer2.innerHTML += `<div class="idAndPasswordSearch">옳바르지 못한 비밀번호입니다.</div>`
+    appContainer2.innerHTML += `<div class="explanation">입력한 비밀번호를 다시 한번 확인해주세요.<br><br>만약 비밀번호를 잊어 버렸을 경우 서비스담당자에게 연락하시면 빠른 조치가 가능합니다.</div>`
+    modalWrap.style.display = "block";
+}
+
+modalClose.addEventListener("click",()=>{
+    modalWrap.style.display="none"
 });
 
-// 제출 버튼 클릭 시 유효성 검사 수행
-subBtn.addEventListener("click", () => {
-    let isValid = true;
-
-    warnings.forEach((warning) => {
-        const inputField = warning.previousElementSibling;
-        if (inputField.value.trim() === "") {
-            warning.style.display = "block";
-            isValid = false;
-        } else {
-            warning.style.display = "none";
-        }
-    });
-
-    // 유효성 검사 통과 여부 확인
-    if (isValid) {
-        // 유효성 검사 통과: 제출 로직 실행
-        // 여기에 제출 동작을 추가하세요
-    } else {
-        // 유효성 검사 실패: 제출을 막거나 오류 메시지를 표시하세요
-        // 여기에 유효성 검사 실패 처리를 추가하세요
-    }
-});
+// //아이디/비밀번호 찾기에서 경고 메시지
+// const warnings = document.querySelectorAll(".warning");
+// const subBtn = document.querySelector(".subBtn");
+//
+// warnings.forEach((warning) => {
+//     // 입력 필드 찾기
+//     const inputField = warning.previousElementSibling;
+//
+//     // 입력 필드에 입력 이벤트 추가
+//     inputField.addEventListener("input", () => {
+//         // 입력 필드의 값이 비어 있는 경우에만 경고 메시지를 표시하도록 설정
+//         if (inputField.value.trim() === "") {
+//             warning.style.display = "block";
+//         } else {
+//             warning.style.display = "none";
+//         }
+//     });
+// });
+//
+// // 제출 버튼 클릭 시 유효성 검사 수행
+// subBtn.addEventListener("click", () => {
+//     let isValid = true;
+//
+//     warnings.forEach((warning) => {
+//         const inputField = warning.previousElementSibling;
+//         if (inputField.value.trim() === "") {
+//             warning.style.display = "block";
+//             isValid = false;
+//         } else {
+//             warning.style.display = "none";
+//         }
+//     });
+//
+//     // 유효성 검사 통과 여부 확인
+//     if (isValid) {
+//         // 유효성 검사 통과: 제출 로직 실행
+//         // 여기에 제출 동작을 추가하세요
+//     } else {
+//         // 유효성 검사 실패: 제출을 막거나 오류 메시지를 표시하세요
+//         // 여기에 유효성 검사 실패 처리를 추가하세요
+//     }
+// });
