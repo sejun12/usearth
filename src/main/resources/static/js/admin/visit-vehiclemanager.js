@@ -184,3 +184,5 @@ function registrationMessageUpDown() {
         }, 200);
     }, 2000);
 }
+console.log(visits);
+console.log(pagination);

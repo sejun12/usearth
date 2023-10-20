@@ -3,23 +3,19 @@ import { timeForToday, handleTopBarBackward} from './common.js';
 handleTopBarBackward();
 
 
-async function getPosts() {
-    const infiniteLoadingContainer = document.querySelector(".infiniteLoadingContainer");
-
+export async function getPosts() {
+    const infiniteLoadingContainer=document.querySelector(".infiniteLoadingContainer");
     // fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/lists/api/complain/1")
+    const response = await fetch("/lists/api/recyle/1")
     const posts = await response.json();
     const reversedPosts = posts.reverse(); // 최신순으로 가져오도록 역순으로 정렬
-    //데이터 없으면 "없어요" 하는 페이지 보여주기
     if (reversedPosts.length === 0) {
         infiniteLoadingContainer.style.display = "block";
     }
     return reversedPosts;
 }
-
-function appendPost(complain)
-{
-    const first = document.querySelector(".first");
+export function appendPost(recyle) {
+    const first=document.querySelector(".first");
     const div = document.createElement('div');
     div.innerHTML = `
       <div class="community-list">
@@ -27,7 +23,7 @@ function appendPost(complain)
             <div class="c-typography">
                 <div class="justify-content-between">
                     <div class="align-items-center">
-                    <div class="f-semi-bold">${complain.categoryComplainName}</div>
+                    <div class="f-semi-bold">${recyle.postCategory}</div>
                     </div>
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
@@ -37,24 +33,18 @@ function appendPost(complain)
                     </button>
                     </div>
                 </div>
-                <div class="my-page-community">${complain.complainTitle}</div>
+                <div class="my-page-community">${recyle.postTitle}</div>
+                  <div class="my-page-community-list-item-content">${recyle.postContent}</div>
                 <div class="flex-column">
-                    <div class="text-right">${timeForToday(complain.complainDate)}</div>
+                    <div class="text-right">${timeForToday(recyle.postWriteDate)}</div>
                 </div>
             </div>
-        </div>
       </div>
-      <hr class="horizontal line">
+       <hr class="horizontal line">
       `
-    // 게시글 목록 항목에 클릭 이벤트 핸들러 추가
-    div.addEventListener('click', function () {
-        const complainId = complain.id;
-        window.location.href = `/mypage/complain-detail/${complainId}`;
 
-    });
     first.appendChild(div);
 }
-
 let page = 1;
 let isLoading = false;
 
@@ -69,7 +59,7 @@ function showList() {
         const limit = offset + rowCount;
         posts = posts.slice(offset, limit);
 
-        if (posts.length > 0) {
+        if(posts.length > 0) {
             posts.forEach((post) => {
                 appendPost(post);
             });
@@ -93,8 +83,5 @@ function handleScroll() {
         showList();
     }
 }
-
 window.addEventListener("scroll", handleScroll);
 showList();
-
-
