@@ -1,10 +1,12 @@
 package com.app.usearth.controller;
 
 import com.app.usearth.domain.Pagination;
+import com.app.usearth.domain.Search;
 import com.app.usearth.domain.UserVO;
 import com.app.usearth.service.AdminService;
 import lombok.RequiredArgsConstructor;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -22,7 +24,7 @@ public class AdminAPI {
 
     // 입주민 목록 조회
     @GetMapping("resident")
-    public List<UserVO> residentList(Pagination pagination, Model model) {
+    public List<UserVO> residentList(Pagination pagination, Model model,  @Param("search") Search search) {
         pagination.setTotal(adminService.getTotal());
         pagination.progress();
         model.addAttribute("pagination", pagination);

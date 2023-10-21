@@ -39,7 +39,5 @@ public class AdminController {
         model.addAttribute("residents",adminService.getResidentListByPagination(pagination));
     }
 
-    @GetMapping("visit-vehicle")
-    public void goToVisitVehicle(){;}
 
 }
