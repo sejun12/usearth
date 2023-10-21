@@ -41,6 +41,7 @@ public interface MyPageMapper {
     public Optional<ComplainDTO> selectPostDetail(Long id);
 
     //회원 탈퇴(다 삭제 !!)
+    public void deleteComplainReply(Long id);
     public void deleteComplain(Long id);
     public void deleteFee(Long id);
     public void deleteLike(Long id);
@@ -48,6 +49,9 @@ public interface MyPageMapper {
     public void deletePost(Long id);
     public void deleteVisit(Long id);
     public void deleteUser(Long id);
+    // complain 답변 삭체 찾기
+    public Long selectId(Long id);
+
 
     //관리자 방문 차량 예약 리스트
     public List<ReserveCarDTO> selectVisit(@Param("pagination")Pagination pagination);

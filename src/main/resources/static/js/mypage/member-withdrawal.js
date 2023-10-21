@@ -60,12 +60,17 @@ radioButtons.forEach((radio, index) => {
 });
 
 button.addEventListener('click', () => {
-    // 폼 요소 생성
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/mypage/member-withdrawal';
+    const isAnyChecked = [...radioButtons].some((radio) => radio.checked);
 
-    // 폼을 body에 추가하고 자동으로 제출
-    document.body.appendChild(form);
-    form.submit();
+    if (isAnyChecked&&!button.hasAttribute('disabled')) {
+
+        // 폼 요소 생성
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/mypage/member-withdrawal';
+
+        // 폼을 body에 추가하고 자동으로 제출
+        document.body.appendChild(form);
+        form.submit();
+    }
 });

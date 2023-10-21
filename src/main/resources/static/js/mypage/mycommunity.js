@@ -1,33 +1,77 @@
 import { timeForToday, handleTopBarBackward} from './common.js';
 
 handleTopBarBackward();
+const buttonService = (function(){
+    async function go(type, callback){
+        switch (type) {
+            case '민원목록':
+                const response = await fetch(`/lists/api/complain/${user}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (callback) {
+                        callback(data)
+                    }
+                }
+                break;
+            case '재활용 대행':
+                const response2  = await fetch(`/lists/api/recyle/${user}`);
+                if (response2 .ok) {
+                    const data = await response2.json();
+                    if (callback) {
+                        callback(data)
+                    }
+                }
+                break;
+            case '자유게시판':
+                const response3  = await fetch(`/lists/api/free/${user}`);
+                if (response3 .ok) {
+                    const data = await response3.json();
+                    if (callback) {
+                        callback(data)
+                    }
+                }
+            break;
 
+            case '내 댓글':
+                const response4 = await fetch(`/lists/api/reply/${user}`);
+                if (response4.ok) {
+                    const data = await response4.json();
+                    if (callback) {
+                        callback(data)
+                    }
+                }
+                break;
+            }
+        }
+    return { go: go}
+})();
 
-async function getPosts() {
-    const infiniteLoadingContainer = document.querySelector(".infiniteLoadingContainer");
-
-    // fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/lists/api/complain/1")
-    const posts = await response.json();
-    const reversedPosts = posts.reverse(); // 최신순으로 가져오도록 역순으로 정렬
-    //데이터 없으면 "없어요" 하는 페이지 보여주기
-    if (reversedPosts.length === 0) {
-        infiniteLoadingContainer.style.display = "block";
-    }
-    return reversedPosts;
-}
-
-function appendPost(complain)
-{
+function showInfo(dataType, data) {
     const first = document.querySelector(".first");
     const div = document.createElement('div');
+    div.classList.add('dynamically-added-data');
+    if (dataType === '민원목록') {
+        showComplainInfo(div, data);
+    } else if (dataType === '재활용 대행') {
+        showRecycleInfo(div, data);
+    }
+    else if (dataType === '자유게시판') {
+        showFreeBoardInfo(div, data);
+    }
+    else if (dataType === '내 댓글') {
+        showCommentInfo(div, data);
+    }
+    first.appendChild(div);
+}
+
+function showComplainInfo(div, data){
     div.innerHTML = `
       <div class="community-list">
         <div class="my-page-community-list">
             <div class="c-typography">
                 <div class="justify-content-between">
                     <div class="align-items-center">
-                    <div class="f-semi-bold">${complain.categoryComplainName}</div>
+                    <div class="f-semi-bold">${data.categoryComplainName}</div>
                     </div>
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
@@ -37,9 +81,9 @@ function appendPost(complain)
                     </button>
                     </div>
                 </div>
-                <div class="my-page-community">${complain.complainTitle}</div>
+                <div class="my-page-community">${data.complainTitle}</div>
                 <div class="flex-column">
-                    <div class="text-right">${timeForToday(complain.complainDate)}</div>
+                    <div class="text-right">${timeForToday(data.complainDate)}</div>
                 </div>
             </div>
         </div>
@@ -48,53 +92,203 @@ function appendPost(complain)
       `
     // 게시글 목록 항목에 클릭 이벤트 핸들러 추가
     div.addEventListener('click', function () {
-        const complainId = complain.id;
+        const complainId = data.id;
         window.location.href = `/mypage/complain-detail/${complainId}`;
 
     });
-    first.appendChild(div);
 }
+//재활용
+function showRecycleInfo(div, data){
+    div.innerHTML = `
+      <div class="community-list">
+        <div class="my-page-community-list">
+            <div class="c-typography">
+                <div class="justify-content-between">
+                    <div class="align-items-center">
+                    <div class="f-semi-bold">${data.postCategory}</div>
+                    </div>
+                    <div class="align-items-center">
+                    <button type="button" class="c-narrow-button">
+                    <div class="c-narrow-button--icon"></div>
+                        취소
+                    <div class="c-narrow-button--icon"></div>
+                    </button>
+                    </div>
+                </div>
+                <div class="my-page-community">${data.postContent}</div>
+                <div class="flex-column">
+                    <div class="text-right">${timeForToday(data.postWriteDate)}</div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <hr class="horizontal line">
+      `
+}
+// 자유
+function  showFreeBoardInfo(div, data) {
+    div.innerHTML = `
+      <div class="community-list">
+        <div class="my-page-community-list">
+            <div class="c-typography">
+                <div class="justify-content-between">
+                      <div class="align-items-center">
+                    <div class="f-semi-bold">${data.postCategory}</div>
+                    </div>
+                    <div class="align-items-center">
+                    <button type="button" class="c-narrow-button">
+                    <div class="c-narrow-button--icon"></div>
+                        취소
+                    <div class="c-narrow-button--icon"></div>
+                    </button>
+                    </div>
+                </div>
+                <div class="my-page-community">${data.postTitle}</div>
+                 <div class="my-page-community-list-item-content">${data.postContent}</div>
+                <div class="flex-column">
+                    <div class="text-right">${timeForToday(data.postWriteDate)}</div>
+                </div>
+            </div>
+        </div>
+      </div>
+       <hr class="horizontal line">
+      `
+}
+//댓글
+  function  showCommentInfo(div,data){
+    div.innerHTML = `
+      <div class="community-list">
+        <div class="my-page-community-list">
+            <div class="c-typography">
+                <div class="justify-content-between">
+                    <div class="align-items-center">
+                    <div class="f-semi-bold">${data.postCategory}</div>
+                    </div>
+                    <div class="align-items-center">
+                    <button type="button" class="c-narrow-button">
+                    <div class="c-narrow-button--icon"></div>
+                        취소
+                    <div class="c-narrow-button--icon"></div>
+                    </button>
+                    </div>
+                </div>
+                <div class="my-page-reply">${data.commentContent}</div>
+                <div class="my-page-community-list-item-content">${data.postContent}</div>
+                <div class="flex-column">
+                    <div class="text-right">${timeForToday(data.commentWriteDate)}</div>
+                </div>
+            </div>
+        </div>
+      </div>
+       <hr class="horizontal line">
+      `
+}
+const infiniteLoadingContainer = document.querySelector(".infiniteLoadingContainer");
+const swiperSlides =document.querySelectorAll(".swiperSlide ");
 
-let page = 1;
 let isLoading = false;
-
-function showList() {
-
-    if (isLoading) return;
-
-    isLoading = true;
-    getPosts().then((posts) => {
-        const rowCount = 5;
-        const offset = (page - 1) * rowCount;
-        const limit = offset + rowCount;
-        posts = posts.slice(offset, limit);
-
-        if (posts.length > 0) {
-            posts.forEach((post) => {
-                appendPost(post);
-            });
-            page++;
-        }
-        isLoading = false;
-    })
+function translateDataTypeToEnglish(dataType) {
+    const translations = {
+        '민원목록': 'complain',
+        '재활용 대행': 'recycle',
+        '자유게시판':'free',
+        '내 댓글':'reply'
+    };
+    return translations[dataType];
 }
-
-
-// 스크롤의 위치를 검색하고 조건에 맞춰 실행하는 함수
-function handleScroll() {
-    // 현재 문서의 상단에서 스크롤바의 위치까지의 거리를 나타내는 값을 가져온다.
-    const scrollTop = document.documentElement.scrollTop;
-    // 현재 창의 뷰포트 높이를 나타낸다.
-    const windowHeight = window.innerHeight;
-    // 문서의 총 높이를 나타내는 값을 가져온다.
-    const totalHeight = document.documentElement.scrollHeight;
-    // 스크롤바가 문서의 아래쪽 끝에 도달했을 때 아래의 코드를 실행한다.
-    if (scrollTop + windowHeight >= totalHeight - 1) {
-        showList();
+async function getPosts(dataType, page) {
+    const translatedType = translateDataTypeToEnglish(dataType);
+    // 이곳에서 실제 API 요청을 보내고 데이터를 가져오는 로직을 구현
+    const response = await fetch(`/lists/api/${translatedType}/${user}`);
+    if (response.ok) {
+        return  await response.json();
     }
 }
 
-window.addEventListener("scroll", handleScroll);
-showList();
 
+function showList(dataType) {
+  // 중복되어 실행되는 경우가 있어 그것을 막기위해 로딩 유무 파악
+  if (isLoading) return;
+  isLoading = true;
+    const currentPage = pages[dataType];
+  getPosts(dataType, currentPage).then((posts) => {
+   const dataPerPage =8;
+    const offset = (currentPage  - 1) * dataPerPage;
+    const limit = offset + dataPerPage;
+      posts = posts.slice(offset, limit);
+    if(posts.length > 0) {
+        posts.forEach((post) => {
+            showInfo(dataType, post);
+      });
+        pages[dataType]++;
+    }
+    isLoading = false;
+  })
+}
+// 각 swiperSlide 요소에 클릭 이벤트 리스너를 추가
+window.removeEventListener("scroll", handleScroll);
+swiperSlides.forEach((slide) => {
+    slide.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const dataType = e.target.innerText;
+        clearDynamicallyAddedData();
+        pages[dataType] =1;
+        const response = await buttonService.go(dataType,async (data)=>{
+            if (data && data.length>0) {
+                infiniteLoadingContainer.style.display = "none";
+                data.forEach(item => {
+                    showList(dataType);
+                });
+            }
+            else {
+                infiniteLoadingContainer.style.display = "block";
+            }
+        });
+        swiperSlides.forEach((otherSlide) => {
+            if (otherSlide !== slide) {
+                otherSlide.classList.remove("active");
+            }
+            else {
+                slide.classList.add("active");
+        }
+    });
+});
+});
+// 스크롤 이벤트 핸들러
+function handleScroll() {
+    if (isScrollingToBottom() && !isLoading) {
+        swiperSlides.forEach((slide) => {
+            if (slide.classList.contains("active")) {
+                const dataType = slide.innerText;
+                    showList(dataType);
+            }
+        });
+    }
+}
+
+
+window.addEventListener("DOMContentLoaded",  () => {
+    const dataType = '민원목록';
+    showList(dataType);
+    window.addEventListener("scroll", handleScroll);
+});
+function isScrollingToBottom() {
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
+}
+
+//데이터 지우기
+function clearDynamicallyAddedData() {
+    const dynamicallyAddedData = document.querySelectorAll('.dynamically-added-data');
+    console.log(dynamicallyAddedData)
+    dynamicallyAddedData.forEach((element) => {
+        element.remove();
+    });
+}
+
+const pages = {
+    '민원목록': 1,
+    '재활용 대행': 1,
+    '자유게시판': 1,
+    '내 댓글': 1
+};
 

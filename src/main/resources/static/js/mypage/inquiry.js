@@ -1,8 +1,7 @@
-const topBarBackward=document.querySelector(".topBarBackward");
-topBarBackward.addEventListener("click",()=>{
-    window.location.href="/mypage/mypage"
-})
-
+const topBarBackward = document.querySelector(".topBarBackward");
+topBarBackward.addEventListener("click", () => {
+    window.location.href = "/mypage/mypage";
+});
 const fileInput = document.getElementById('imageUpLoadWrapper');
 const imageElement = document.querySelector('.avatar.image.large');
 const send =document.querySelector("#send");
@@ -22,17 +21,18 @@ fileInput.addEventListener('change', function (event) {
         body: formData
     }).then((response) => response.text())
         .then((uuid) => {
+            let profileUuid =uuid
             let now = new Date();
             let year = now.getFullYear();
             let month = now.getMonth() + 1;
             let date = now.getDate();
             month = month < 10 ? '0' + month : month;
             date = date < 10 ? '0' + date : date;
-            let fileName = `${year}/${month}/${date}/t_${uuid}_${name}`;
+            let fileName = `${year}/${month}/${date}/t_${profileUuid}_${name}`;
             imageElement.setAttribute("src", `/file/display?fileName=${fileName}`);
             let input = document.createElement("input");
             input.name = "uuid";
-            input.value = uuid[0];
+            input.value = profileUuid;
             input.type = "hidden";
             form.append(input);
         })
