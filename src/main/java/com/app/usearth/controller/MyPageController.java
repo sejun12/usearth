@@ -2,6 +2,7 @@ package com.app.usearth.controller;
 
 import com.app.usearth.domain.ComplainDTO;
 import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.domain.UserDTO;
 import com.app.usearth.domain.UserProfileVO;
 import com.app.usearth.service.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,9 @@ public class MyPageController {
     @GetMapping("complain")
     public void goToMyComplain(ComplainDTO complainDTO){;}
     @PostMapping("complain")
-    public RedirectView complainSubmit(ComplainDTO complainDTO){
-        //세션아이디 넣고
+    public RedirectView complainSubmit(ComplainDTO complainDTO,HttpSession session){
+        UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        complainDTO.setUserId(userDTO.getId());
         mypageService.addComplain(complainDTO);
         return new RedirectView("/mypage/community");
     }
@@ -41,10 +43,11 @@ public class MyPageController {
     @GetMapping("member-withdrawal")
     public void goToMyMemberWithDrawl(){;}
     @PostMapping("member-withdrawal")
-    public RedirectView goToMyWithDrawl(){
-        //세션의아이디
-//        Long id=1L;
-//        mypageService.removeAll(id);
+    public RedirectView goToMyWithDrawl(HttpSession session){
+        UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        Long id=userDTO.getId();
+        log.info("{}",id);
+        mypageService.removeAll(id);
         return new RedirectView("/");
     }
 
@@ -52,11 +55,11 @@ public class MyPageController {
     public void goToMyPage(){;}
     @PostMapping("inquiry")
     //업로드 된개수 ,INPUT 3개
-    public RedirectView updateProfile(@RequestParam("uuid") String uuid, @RequestParam("uploadFile") List<MultipartFile> uploadFiles) {
-//        MemberVO memberVO = ((MemberVO)session.getAttribute("member"));
+    public RedirectView updateProfile(@RequestParam("uuid") String uuid, @RequestParam("uploadFile") List<MultipartFile> uploadFiles ,HttpSession session) {
+       UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
         //업로드한거만 보냄
         UserProfileVO userProfileVO=new UserProfileVO();
-        userProfileVO.setId(1L);
+        userProfileVO.setId(userDTO.getUserProfileId());
         userProfileVO.setUserProfileName(uuid + "_" + uploadFiles.get(0).getOriginalFilename());
         userProfileVO.setUserProfilePath(getPath());
         mypageService.changeProfile(userProfileVO);
@@ -69,15 +72,14 @@ public class MyPageController {
     @GetMapping("reserve-car")
     public void goToMyReserveCar(ReserveCarVO reserveCarVO){;}
     @PostMapping("reserve-car")
-    public RedirectView reserve(ReserveCarVO reserveCarVO){
-//        세션에 아이디 가져와서 밑에 넣고 실행 하면 될듯
-//        reserveCarVO.setUserId(1L);
+    public RedirectView reserve(ReserveCarVO reserveCarVO,HttpSession session){
+      UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        reserveCarVO.setUserId(userDTO.getId());
         mypageService.saveCar(reserveCarVO);
         return new RedirectView("/mypage/reserve-carlist");
     }
     @GetMapping("reserve-carlist")
     public void goToMyReserveCarList(){
-        //        세션에서 가지고온 id로 넣고
     }
 //    작성 이동 목록
     @GetMapping("community")

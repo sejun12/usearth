@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -17,7 +18,6 @@ public class MypageServiceImpl implements MypageService {
     private final MyPageDAO myPageDAO;
     @Override
     public void saveCar(ReserveCarVO reserveCarVO) {
-        reserveCarVO.setUserId(1L);
         reserveCarVO.setApartmentId(myPageDAO.getUser(reserveCarVO.getUserId()));
         myPageDAO.saveCar(reserveCarVO);
     }
@@ -49,8 +49,8 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void addComplain(ComplainDTO complainDTO) {
-        complainDTO.setUserId(1L);
         Long foundCaId= myPageDAO.getName(complainDTO.getCategoryComplainName());
+        complainDTO.setApartmentId(myPageDAO.getUser(complainDTO.getUserId()));
         complainDTO.setCategoryComplainId(foundCaId);
         myPageDAO.addComplain(complainDTO);
     }
@@ -67,7 +67,6 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void changeProfile(UserProfileVO userProfileVO) {
-        //세션에있는 user 프로필 아이디를 넣어준다
         myPageDAO.changeProfile(userProfileVO);
     }
 
@@ -78,6 +77,7 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void removeAll(Long id) {
+        removeComplainReply(id);
         myPageDAO.removeComplain(id);
         myPageDAO.removeFee(id);
         myPageDAO.removeLike(id);
@@ -96,5 +96,12 @@ public class MypageServiceImpl implements MypageService {
     public int getTotal() {
         return myPageDAO.getTotal();
     }
+
+    @Override
+    public void removeComplainReply(Long id) {
+      Long complainId=  myPageDAO.searchComplainId(id);
+        myPageDAO.removeComplainReply(complainId);
+    }
+
 
 }

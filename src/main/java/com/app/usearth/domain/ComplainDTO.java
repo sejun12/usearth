@@ -35,4 +35,5 @@ public class ComplainDTO {
     private String complainReplyContent;
     @ApiModelProperty(value = "민원 처리 날짜", example = "YYYY/MM/DD/hh/mm/ss")
     private String complainReplyDate;
+    private Long apartmentId;
 }

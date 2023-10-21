@@ -29,5 +29,6 @@ public interface MypageService {
     public List<ReserveCarDTO> visitBookingList(Pagination pagination);
 
     public  int getTotal();
+    public void removeComplainReply(Long id);
 
 }

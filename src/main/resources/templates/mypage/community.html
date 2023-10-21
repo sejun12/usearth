@@ -54,7 +54,7 @@
                                                             <div class="swiperWrapper">
                                                                 <div class="all swiperSlide swiperSlideActive active">
                                                                     <div class="all tabsMenuButton">
-                                                                        <a href="/mypage/community"  class="LinkExactActive">
+                                                                        <a   class="LinkExactActive">
                                                                             <button class="application cButton medium primary fill">
                                                                                 <div class="buttonIcon"></div>
                                                                                 민원목록
@@ -65,7 +65,7 @@
                                                                 </div>
                                                                 <div class="swiperSlide swiperSlideNext">
                                                                     <div class="tabsMenuButton">
-                                                                        <a href="/mypage/recycling"  class="LinkExactActive">
+                                                                        <a   class="LinkExactActive">
                                                                             <button class="application cButton medium primary fill">
                                                                                 <div class="buttonIcon"></div>
                                                                                 재활용 대행
@@ -76,7 +76,7 @@
                                                                 </div>
                                                                 <div class="swiperSlide swiperSlideNext">
                                                                     <div class="tabsMenuButton">
-                                                                        <a href="/mypage/free"  class="LinkExactActive">
+                                                                        <a   class="LinkExactActive">
                                                                             <button class="application cButton medium primary fill">
                                                                                 <div class="buttonIcon"></div>
                                                                                 자유게시판
@@ -87,7 +87,7 @@
                                                                 </div>
                                                                 <div class="swiperSlide swiperSlideNext">
                                                                     <div class="tabsMenuButton">
-                                                                        <a href="/mypage/reply"  class="LinkExactActive">
+                                                                        <a   class="LinkExactActive">
                                                                             <button class="application cButton medium primary fill">
                                                                                 <div class="buttonIcon"></div>
                                                                                 내 댓글
@@ -126,11 +126,6 @@
                                                                      "게시글을 등록하고 자유롭게 이야기를 나눠보세요."
                                                                 </span>
                                                             </div>
-                                                            <button class="goButton application cButton medium lightPrimary fill">
-                                                                <div class="buttonIcon"></div>
-                                                                <div class="topTitle application typography regular" style="color: inherit">커뮤니티 입장하기</div>
-                                                                <div class="buttonIcon"></div>
-                                                            </button>
                                                         </div>
                                                     </span>
                                             </div>
@@ -181,7 +176,9 @@
     </div>
 </div>
 </body>
-<script th:inline="javascript"></script>
+<script th:inline="javascript">
+    const user=[[${session.user.id}]];
+</script>
 <script type="module" src="/js/mypage/common.js"></script>
 <script type="module" src="/js/mypage/mycommunity.js"></script>
 </html>
