@@ -16,4 +16,6 @@ public class UserVO implements Serializable {
     private Long userProfileId;
     private Long apartmentId;
     private String userJoinDate;
+    private Long userTempNo;
+
 }
