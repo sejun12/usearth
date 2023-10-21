@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <div class="maintenanceFeeTitle">
-                            <span id="totalNumber" class="maintenanceFeeSpan">총 5건</span>
+                            <span th:text="'총 ' + ${pagination.total} + '건'" id="totalNumber" class="maintenanceFeeSpan"></span>
                             <div class="flexGap12">
                                 <div class="searchContainer">
                                     <button id="rangeCategory2Btn" type="button" class="imposeYear">
@@ -337,6 +337,29 @@
                         </div>
                         <ul class="first">
                         </ul>
+                        <!--                        버튼-->
+                        <div id="pagination" class="col-span-full margins">
+                            <ul class="flex-me">
+                                <li>
+                                    <button id="prevButton"  type="button" class="rounded-full">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </li>
+                                <ul class="pageButtonLists"></ul>
+                                <li class="li-ml">
+                                    <button id="nextButton" type="button" class="rounded-full">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--                        -->
                     </div>
                 </div>
             </div>
@@ -348,5 +371,41 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    let paginationInfo = [[${pagination}]];
+    let maxPage = paginationInfo.endPage;
+
+    function createPaginationButtons() {
+
+        const ulElement = document.querySelector('.pageButtonLists');
+        ulElement.innerHTML = ''; // 기존 버튼을 지웁니다.
+
+
+        for (let i = paginationInfo.startPage; i <= paginationInfo.endPage; i++) {
+            const liElement = document.createElement('li');
+            liElement.classList.add('li-ml');
+
+            const buttonElement = document.createElement('button');
+            buttonElement.type = 'button';
+            buttonElement.classList.add('buttonNumber');
+
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('content-primary');
+            spanElement.textContent = i; // 페이지 번호
+
+            if (i === paginationInfo.startPage) {
+                spanElement.classList.add('blueText'); // 첫 번째 페이지 번호에 blueText 클래스 추가
+            }
+
+            buttonElement.appendChild(spanElement);
+            liElement.appendChild(buttonElement);
+            ulElement.appendChild(liElement);
+        }
+    }
+
+    createPaginationButtons();
+
+
+</script>
 <script src="/js/admin/resident-list.js"></script>
 </html>
