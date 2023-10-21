@@ -38,8 +38,8 @@
                 <div class="imageUpLoadWrapper">
                     <label for="imageUpLoadWrapper">
                         <div class="application avatarContainer large" style="width: 60px; height: 60px">
-                            <img class="avatar image large"
-                                 src="/images/photo-camera.png" style="width: 60px; height: 60px;">
+                            <img class="avatar image large" style="width: 60px; height: 60px;"
+                                 th:src="@{${session.user.userProfileName == null ? session.user.userKakaoProfileUrl : '/file/display?fileName=' + session.user.userProfilePath + '/t_' + session.user.userProfileName}}"   alt="User Profile Image"/>
                             <div class="avatarItem">
                                 <!---->
                                 <!---->
@@ -53,14 +53,16 @@
                 </div>
                 <div class="flex flexColumn inform2">
                     <div class="flex alignItemsCenter userName2">
-                        <div class="application typography headLine5 semiBold" style="color: rgb(32,35,37)">00</div>
+                        <div class="application typography headLine5 semiBold" style="color: rgb(32,35,37)">
+                            <span th:text="${session.user.userName}">00</span>
+                        </div>
                     </div>
                     <div class="flex">
                         <div class="socialIconWrapper icon1 icon2 kakao" style="height: 14px; min-width: 14px">
                             <img width="8" height="8" src="https://cdn.comento.kr/icon/icon-kakao-medium.svg" alt>
                         </div>
                         <div class="application typography inform caption1" style="color: rgb(89,95,99); font-weight: 300;">
-                            Us@Earth.com
+                            <span th:text="${session.user.userKakaoEmail}">Us@Earth.com</span>
                         </div>
                     </div>
                     <button id="send">저장</button>
@@ -94,5 +96,6 @@
     </div>
  </div>
 </body>
-<script src="/js/mypage/inquiry.js"></script>
+<script type="module" src="/js/mypage/common.js"></script>
+<script type="module" src="/js/mypage/inquiry.js"></script>
 </html>

@@ -1,12 +1,13 @@
 
-function handleTopBarBackward() {
+
+export function handleTopBarBackward() {
     const topBarBackward = document.querySelector(".topBarBackward");
     topBarBackward.addEventListener("click", () => {
         window.location.href = "/mypage/mypage"
     })
 }
 
-function timeForToday(datetime) {
+ export function timeForToday(datetime) {
     const today = new Date();
     const date = new Date(datetime);
     let gap = Math.floor((today.getTime() - date.getTime()) / 1000 / 60);
@@ -42,4 +43,3 @@ function timeForToday(datetime) {
     return `${gap}년 전`
 }
 
-export { timeForToday,handleTopBarBackward};
