@@ -200,23 +200,166 @@ function deleteMessageUpDown() {
     }, 2000);
 }
 
-function getNextOrderNumber() {
-    lastOrderNumber = orderNumber++;
-    totalNumber.innerText = `총 ${lastOrderNumber}건`;
-    return lastOrderNumber;
+
+
+const pagination = document.getElementById('pagination');
+const first = document.querySelector('.first');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+let currentPage = 1; // 현재 페이지
+
+// 페이지 번호 클릭 이벤트 처리
+pagination.addEventListener('click', function (event) {
+    if (event.target.classList.contains('buttonNumber')) {
+        // 모든 페이지 번호에서 파란색 스타일 제거
+        const pageButtons = document.querySelectorAll('.content-primary');
+        pageButtons.forEach(button => button.classList.remove('blueText'));
+
+        const newPage = parseInt(event.target.textContent);
+        if (!isNaN(newPage)) {
+            currentPage = newPage;
+            updatePagination();
+
+            // 클릭한 페이지 번호에 파란색 스타일 추가
+            event.target.querySelector('.content-primary').classList.add('blueText');
+        }
+    }
+});
+
+
+// 이전 페이지 버튼 클릭 이벤트 처리
+prevButton.addEventListener('click', function () {
+    if (currentPage > 1) {
+        // 모든 페이지 번호에서 파란색 스타일 제거
+        const pageButtons = document.querySelectorAll('.content-primary');
+        pageButtons.forEach(button => button.classList.remove('blueText'));
+
+        currentPage--;
+        updatePagination();
+
+        // 현재 페이지 번호에 파란색 스타일 추가
+        const currentButton = document.querySelector(`.content-primary:nth-child(${currentPage})`);
+        if (currentButton) {
+            currentButton.classList.add('blueText');
+            console.log(currentButton);
+        }
+    }
+});
+
+// 다음 페이지 버튼 클릭 이벤트 처리
+nextButton.addEventListener('click', function () {
+    const pageButtons = document.querySelectorAll('.content-primary'); // 모든 페이지 번호 요소를 선택합니다.
+    const maxPage = pageButtons.length; // 페이지 번호 요소의 개수를 최대 페이지로 설정합니다.
+
+    // 현재 페이지 번호에서 파란색 스타일 제거
+    pageButtons[currentPage - 1].classList.remove('blueText');
+
+    // 다음 페이지로 이동
+    currentPage++;
+
+    if (currentPage > maxPage) {
+        currentPage--;
+    }
+
+    // 다음 페이지 번호에 파란색 스타일 추가
+    pageButtons[currentPage - 1].classList.add('blueText');
+
+    updatePagination()
+});
+
+
+
+// 페이지 업데이트 함수
+function updatePagination() {
+    getPosts(currentPage);
+    console.log("updatePagination함수 실행됨.");
 }
 
-const first = document.querySelector(".first")
 // 서버에서 데이터를 가져오는 메소드
-async function getPosts() {
-    //     fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/lists/api/resident/")
-    const posts = await response.json();
-    const reversedPosts = posts.reverse(); // 최신순 정렬을 위해 역순
-    return reversedPosts;
+async function getPosts(page) {
+    const url = `/lists/api/resident?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            // 데이터 가져오기 성공
+
+            renderData(data);
+        } else {
+            console.error('데이터를 가져오는데 실패했습니다.');
+        }
+    } catch (error) {
+        console.error('데이터를 가져오는데 실패했습니다.', error);
+    }
+}
+
+// 데이터를 화면에 렌더링하는 함수
+function renderData(data) {
+    first.innerHTML = ''; // 기존 데이터 지우기
+
+    data.forEach((resident) => {
+        appendPost(resident);
+    });
 }
 
 
+
+// appendPost 함수 (이전 코드 예제에서 정의한 함수 그대로 사용)
+function appendPost(resident) {
+    const li = document.createElement('li');
+    const approvalText = resident.userApproval ? '승인' : '대기';
+    const modifiedUserName = resident.userName.substring(0, 1) + '*' + resident.userName.substring(2);
+    li.innerHTML = `
+         <div class="maintenanceFeeList">
+            <div style="width: 60px;" class="barBtnOne">${resident.userTempNo}</div>
+            <div class="barBtnOne">${resident.userDong}</div>
+            <div class="barBtnOne">${resident.userHo}</div>
+            <div style="width: 120px;" class="barBtnOne">${modifiedUserName}</div>
+            <div style="width: 280px;" class="barBtnOne">${resident.userJoinDate}</div>
+            <div class="barBtnOne">${approvalText}</div>
+            <div class="barBtnOne">
+                <button type="button" role="switch" aria-checked="true" class="approvalBtn">
+                    <div class="handled"></div>
+                    <span class="toggle-inner"></span>
+                    <div class="click-mode"></div>
+                </button>
+            </div>
+        </div>
+    `;
+
+    first.appendChild(li);
+
+    const approvalBtn = li.querySelector('.approvalBtn');
+    let isHandledOnRight = false;
+    approvalBtn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        const handled = approvalBtn.querySelector('.handled');
+        if (handled) {
+            if (isHandledOnRight) {
+                handled.style.left = '2px';
+                approvalBtn.style.backgroundColor = '#ccc';
+                // 여기서 서버로 update 요청 보내기
+                sendUpdateRequest(resident.id, false);
+            } else {
+                handled.style.left = 'calc(100% - 18px)';
+                approvalBtn.style.backgroundColor = '#3e90e0';
+                // 여기서 서버로 update 요청 보내기
+                sendUpdateRequest(resident.id, true);
+                deleteMessageUpDown();
+            }
+            isHandledOnRight = !isHandledOnRight;
+        }
+    });
+}
+
+// 서버로 업데이트 요청 보내는 함수
 async function sendUpdateRequest(residentId, approvalStatus) {
     const url = 'http://localhost:10000/lists/api/update'; // 실제 서버 URL로 대체해야 함
 
@@ -246,69 +389,9 @@ async function sendUpdateRequest(residentId, approvalStatus) {
     }
 }
 
-
-function appendPost(resident) {
-    const li = document.createElement('li');
-    const approvalText = resident.userApproval ? '승인' : '대기';
-    const modifiedUserName = resident.userName.substring(0, 1) + '*' + resident.userName.substring(2);
-    li.innerHTML = `
-         <div class="maintenanceFeeList">
-            <div style="width: 60px;" class="barBtnOne">${getNextOrderNumber()}</div>
-            <div class="barBtnOne">${resident.userDong}</div>
-            <div class="barBtnOne">${resident.userHo}</div>
-            <div style="width: 120px;" class="barBtnOne">${modifiedUserName}</div>
-            <div style="width: 280px;" class="barBtnOne">${resident.userJoinDate}</div>
-            <div class="barBtnOne">${approvalText}</div>
-            <div class="barBtnOne">
-                <button type="button" role="switch" aria-checked="true" class="approvalBtn">
-                    <div class="handled"></div>
-                    <span class="toggle-inner"></span>
-                    <div class="click-mode"></div>
-                </button>
-            </div>
-        </div>
-    `;
-
-    first.appendChild(li);
-
-    // 새로 생성한 버튼에 클릭 이벤트 핸들러 등록
-    const approvalBtn = li.querySelector('.approvalBtn');
-    let isHandledOnRight = false;
-    approvalBtn.addEventListener('click', function (event) {
-        event.stopPropagation();
-        const handled = approvalBtn.querySelector('.handled');
-        if (handled) {
-            if (isHandledOnRight) {
-                handled.style.left = '2px';
-                approvalBtn.style.backgroundColor = '#ccc'; // 연한 회색
-                // 여기서 서버로 update 요청 보내기
-
-                sendUpdateRequest(resident.id, false); // 예: 0은 대기 상태를 나타내는 값
-
-            } else {
-                handled.style.left = 'calc(100% - 18px)';
-                approvalBtn.style.backgroundColor = '#3e90e0'; // 파란색
-                // 여기서 서버로 update 요청 보내기
-                sendUpdateRequest(resident.id, true); // 예: 1은 승인 상태를 나타내는 값
-                console.log(resident);
-                console.log(typeof resident.id);
-                deleteMessageUpDown();
-
-            }
-            isHandledOnRight = !isHandledOnRight;
-        }
-    });
-}
-
-
-
+// 페이지 로딩 시 데이터를 가져오고 렌더링하는 함수
 function showList() {
-    getPosts().then((posts) => {
-        posts.forEach((post) => {
-            appendPost(post);
-        });
-    });
+    getPosts(currentPage);
 }
 
 showList();
-
