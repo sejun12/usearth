@@ -52,6 +52,12 @@ public class MyPageDAO {
         return myPageMapper.selectPostDetail(id);
     }
 
+    public void removeComplainReply(Long id){
+        myPageMapper.deleteComplainReply(id);
+    }
+    public Long searchComplainId(Long id){
+      return  myPageMapper.selectId(id);
+    }
     public void removeComplain(Long id){
         myPageMapper.deleteComplain(id);
     }

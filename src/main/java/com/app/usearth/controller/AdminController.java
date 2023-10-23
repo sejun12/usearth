@@ -1,9 +1,11 @@
 package com.app.usearth.controller;
 
+import com.app.usearth.domain.Pagination;
 import com.app.usearth.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,5 +32,12 @@ public class AdminController {
     public void goToMaintenanceFeeView(){;}
 
     @GetMapping("resident-list")
-    public void goToResidentList(){;}
+    public void goToResidentList(Pagination pagination, Model model){
+        pagination.setTotal(adminService.getTotal());
+        pagination.progress();
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("residents",adminService.getResidentListByPagination(pagination));
+    }
+
+
 }

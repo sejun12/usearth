@@ -1,3 +1,8 @@
+//뒤로 가기 함수
+const topBarBackward = document.querySelector(".topBarBackward");
+topBarBackward.addEventListener("click", () => {
+    window.location.href = "/mypage/mypage";
+});
 $(function () {
     let isArrowRotated = false;
     const category = $("#category");
@@ -31,11 +36,6 @@ $(".category").on("click", function () {
     categoryIcon.css("transform", "rotate(0deg)");
 });
 });
-
-const topBarBackward=document.querySelector(".topBarBackward");
-topBarBackward.addEventListener("click",()=>{
-    window.location.href="/mypage/mypage"
-})
 
 const input = document.querySelector("input[name=complainTitle]");
 const textarea = document.querySelector("textarea");

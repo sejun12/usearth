@@ -277,6 +277,7 @@ a {
 }
 
 .desktopGrid {
+
   padding-bottom: 64px;
   row-gap: 0;
   column-gap: 16px;
@@ -1185,6 +1186,29 @@ ul {
   display: flex;
 }
 
+.registerCarBtn {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 10px;
+  align-items: center;
+  height: 36px;
+  display: flex;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgba(30, 129, 224, 0.76);
+  border: 1px solid rgba(30, 129, 224, 0.76); /* 테두리 스타일, 두께, 및 색상 설정 */
+  fill: #fff;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.registerCarBtn:hover {
+  background-color:rgba(30, 129, 224, 0.76);
+  color: #fff;
+}
+
+
 .maintenanceFeeBanner {
   padding-left: 40px;
   padding-right: 40px;
@@ -1201,10 +1225,25 @@ ul {
 }
 
 .maintenanceFeeTitle {
-  justify-content: space-between;
-  align-items: center;
   display: flex;
-  margin-top: 32px;
+  flex-direction: column;
+  margin: 32px 0;
+}
+
+hr {
+  margin: 32px 0;
+}
+
+.complainTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid {
+  padding-left: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 두 개의 동일한 너비의 열을 생성 */
+  gap: 30px; /* 열 사이의 간격 설정 (선택사항) */
 }
 
 .maintenanceFeeBar {
@@ -1273,31 +1312,52 @@ ul {
 .marginTop8 {
   margin-top: 8px;
   height: 40px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 
 .registerMaintenanceFeeBtn {
   padding-left: 16px;
   padding-right: 16px;
-  border-radius: 20px;
-  justify-content: center;
+  border-radius: 10px;
   align-items: center;
-  height: 40px;
+  height: 36px;
   display: flex;
-  position: absolute;
-  right: 0;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   color: #fff;
   fill: #fff;
-  background-color: rgb(63, 149, 232);
+  background-color: rgba(30, 129, 224, 0.76);
   cursor: pointer;
 }
 
 .registerMaintenanceFeeBtn:hover {
   background-color: rgb(149, 173, 199); /* 호버 시 배경 색상 변경 */
 }
+
+.resetBtn {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 8px;
+  align-items: center;
+  height: 28px;
+  margin-right: 10px;
+}
+
+.resetSpan {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  color: rgba(74, 127, 196, 0.85);
+}
+
 
 .maintenanceFeePicture {
   width: 383px;
@@ -1341,16 +1401,27 @@ ul {
 }
 
 .maintenanceFeeSpan {
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 20px;
   color: #1d1d1e;
   fill: #1d1d1e;
 }
 
+.complainSpan {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  padding: 0 4px;
+}
+
 .flexGap12 {
-  column-gap: 12px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 8px 0;
 }
 
 .fileSelection {
@@ -1376,7 +1447,7 @@ ul {
 
 .searchContainer {
   position: relative;
-  max-width: 100px;
+  max-width: 440px;
 }
 
 .imposeYear {
@@ -1387,11 +1458,12 @@ ul {
   padding-left: 16px;
   padding-right: 16px;
   border-width: 1px;
-  border-radius: 16px;
+  border-radius: 8px;
   align-items: center;
   width: 100%;
-  height: 32px;
+  height: 40px;
   display: flex;
+  justify-content: space-between;
   border-color: rgba(0, 0, 0, .1);
   background-color: #fff;
 }
@@ -1470,6 +1542,22 @@ ul {
   line-height: 18px;
   color: #1d1d1e;
   fill: #1d1d1e;
+}
+
+.showDetailBtn {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: rgba(36, 126, 190, 0.84);
+  fill: #fff;
+  background-color: rgb(212, 227, 255);
+  cursor: pointer;
 }
 
 .approvalBtn {
@@ -1585,8 +1673,242 @@ ul {
   display: flex;
 }
 
+/*경덕씨의 모달창 css 복사 붙여넣기*/
 
-.deleteMessageWrap {
+.registrationModalWrap {
+  box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+  --tw-shadow: 0px 2px 8px rgba(0,0,0,.08);
+  --tw-shadow-colored: 0px 2px 8px var(--tw-shadow-color);
+  padding: 32px;
+  border-width: 1px;
+  border-radius: 16px;
+  justify-content: center;
+  flex-direction: column;
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-translate-x: -50%;
+  min-width: 540px;
+  display: flex;
+  box-sizing: border-box;
+  z-index: 50;
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  border-color: #e6e6e7;
+  background-color: #fff;
+}
+
+.modalTitle {
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.visitDateWrap {
+  gap: 20px;
+  display: flex;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.visitPurposeWrap, .vehicleKindWrap, .vehicleNumberWrap {
+  margin-top: 12px;
+  gap: 20px;
+  display: flex;
+  align-items: left;
+}
+
+.visitTitle {
+  text-align: center;
+  margin: 12px 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgb(52, 137, 203);
+  fill: #1d1d1e;
+}
+
+.visitHr {
+  width: 100%;
+  height: 1.2px;
+  background-color: rgba(133, 133, 133, 0.71);
+  margin: 15px 0 30px 0;
+}
+
+.modalContent {
+  text-align: center;
+  max-width: 276px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333334;
+  fill: #333334;
+}
+
+.visitDate, .visitPurpose, .vehicleKind, .vehicleNumberDIV {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgb(52, 137, 203);;
+  fill: #333334;
+  min-width: 80px;
+}
+
+.dateLabel {
+  display: flex;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1px;
+  border-radius: 20px;
+  align-items: center;
+  width: 160px;
+  height: 40px;
+  border-color: rgba(0,0,0,.1);
+}
+
+.dongHoLabel {
+  display: flex;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1px;
+  border-radius: 20px;
+  align-items: center;
+  width: 135px;
+  height: 40px;
+  border-color: rgba(0,0,0,.1);
+}
+
+.dateLabel:focus-within {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-width: 2px;
+  border-color:  #2a77c4;
+}
+
+.PurposeLabel, .vehicleKindLabel, .vehicleNumberLabel {
+  display: flex;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1px;
+  border-radius: 20px;
+  align-items: center;
+  width: 370px;
+  height: 40px;
+  border-color: rgba(0,0,0,.1);
+}
+
+.PurposeLabel:focus-within, .vehicleKindLabel:focus-within, .vehicleNumberLabel:focus-within {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-width: 2px;
+  border-color:  #2a77c4;
+}
+
+.startVisitDateInput, .endVisitDateInput, .visitPurposeInput, .vehicleKindInput, .vehicleNumberInput {
+  --tw-content: none;
+  content: var(--tw-content);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.modalBtns {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+}
+
+.cancelWrapper, .cancelRegistrationWrap {
+  flex: 1 1 0%;
+}
+
+.cancelBtn, .cancelRegistrationBtn {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333334;
+  fill: #333334;
+  background-image: none;
+  background-color: #f3f3f4;
+}
+
+.cancelRegistrationBtn:hover {
+  background-color: rgba(161, 210, 255, 0.42);
+}
+
+.confirmWrapper, .confirmRegistrationWrap {
+  flex: 1 1 0%;
+  margin-left: 16px;
+}
+
+.confirmBtn, .confirmRegistrationBtn {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #2a77c4;
+  background-image: none;
+}
+
+.confirmRegistrationBtn:hover {
+  background-color: #4e5257;
+}
+
+.modalWrapperGray, .registrationModalGray {
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.deleteMessageWrap, .registrationMessageWrap {
   box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
   --tw-shadow: 0px 2px 8px rgba(0,0,0,.08);
   --tw-shadow-colored: 0px 2px 8px var(--tw-shadow-color);
@@ -1606,10 +1928,10 @@ ul {
   top: 50%;
   left: 50%;
   position: fixed;
-  background-color: #3e90e0;
+  background-color: #3a77b6;
 }
 
-.deleteMessage {
+.deleteMessage, .registrationMessage {
   text-align: left;
   font-weight: 700;
   font-size: 14px;
@@ -1650,70 +1972,3 @@ ul {
   animation: slideDown 0.2s  ease-in-out;
 }
 
-/**/
-.col-span-full{
-  justify-content: center;
-  display: flex;
-  margin-bottom: 104px;
-  margin-top: 40px;
-}
-.margins{
-  margin-left: auto;
-  margin-right: auto;
-}
-.flex-me{
-  display: flex;
-}
-
-.pageButtonLists{
-  display: flex;
-}
-
-.li-ml{
-  margin-left: 16px;
-}
-.rounded-full{
-  padding: 5px;
-  opacity: .3;
-  border-width: 1px;
-  border-radius: 9999px;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  display: flex;
-  border-color: #e6e6e7;
-  color: #1d1d1e;
-  fill: #1d1d1e;
-}
-.buttonNumber{
-  border-radius: 9999px;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  color: #1d1d1e;
-  fill: #1d1d1e;
-
-  background-color: #f3f3f4;
-}
-
-.buttonNumber:hover {
-  background-color: #8f8f96;
-}
-
-.blueText {
-  color: #3e90e0 !important; /* 파란색으로 변경할 스타일 */
-}
-
-.hw16{
-  width: 16px;
-  height: 16px;
-}
-.content-primary{
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
-  color: #1d1d1e;
-  fill: #1d1d1e;
-}
