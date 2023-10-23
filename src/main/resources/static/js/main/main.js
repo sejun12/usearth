@@ -676,4 +676,9 @@ function scales(index, factors) {
     forthCardImage[index].style.transform = `scale(${factors})`;
 }
 
-// 모바일 더보기 
+// 모바일 더보기
+const moBtn= document.querySelector(".mlobilePrimaryFull");
+moBtn.addEventListener("click", clickHandler);
+function clickHandler(){
+    window.location.href="http://localhost:10000/recycling-agent/recycling-agent";
+}
