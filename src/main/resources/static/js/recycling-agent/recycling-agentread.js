@@ -1,6 +1,9 @@
 // 상세보기 및 댓글, 함께 읽는 글
 // getCurrentPostId()는 URL의 마지막 부분을 가져옴
 function getCurrentPostId() {
+    // 웹브라우저에서 현재 페이지의 전체 URL을 가져옴 즉, 현재 웹 페이지의 URL에서 마지막 세그먼트나 경로 이름을 가져옴
+    // split('/') : 문자열 메소드인 split을 사용하여 URL을 '/' 문자를 기준으로 나눔
+    // .pop() : 배열 메소드인 pop을 사용하여 배열의 마지막 요소를 가져옴
     return window.location.href.split('/').pop();
 }
 
@@ -8,10 +11,10 @@ function getCurrentPostId() {
 const postId = getCurrentPostId();
 
 // 게시물 데이터를 서버에서 가져옴
-async function getPostDetail(postId) {
+async function getPostDetail() {
     // postId를 사용하여 서버에서 해당 게시물의 정보를 가져옴
-    const response = await fetch(`/recycling-agent/recycling-agentread/${postId}`);
-    console.log(await response.json());
+    const response = await fetch(`/api/recycling-reads/${postId}`);
+    console.log();
     // 요청이 성공적이지 않은 경우 오류를 발생(오류 메시지에는 HTTP 응답의 상태 코드를 포함)
     if (!response.ok) {
         //  JSON 형식으로 파싱하여 반환
@@ -23,44 +26,31 @@ async function getPostDetail(postId) {
 
 const postedBox=document.querySelector(".postedBox");
 
-function appendPostHTML(post) {
-    const startDate = post.postWriteDate;
+function appendPost(post) {
+    // post 객체의 postWriteDate 속성을 사용하여 특정 포맷의 날짜 문자열을 추출 후
+    // 그 날짜를 보여주기 위한 새로운 <div> 요소를 생성하는 작업을 수행
+
+    // post 객체의 postWriteDate 속성 값을 startDate라는 상수에 할당
+    const startDate = post.postModifyDate;
+    // startDate를 공백(' ')을 기준으로 나눠줌 즉, 날짜와 시간 부분을 분리
+    // 날짜 부분(즉, 첫 번째 세그먼트)을 '-'로 분리하여 년, 월, 일을 배열의 형태로 startDateParts에 저장
     const startDateParts = startDate.split(' ')[0].split('-');
+    // 문자열 리터럴 템플릿을 사용하여 startDateParts 배열의 각 세그먼트(년, 월, 일)를 하나의 문자열로 조합
+    // startDateFormatted는 "2023-10-24"와 같은 형태의 문자열을 가지게 됨
     const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
+    // 웹 페이지의 DOM에 새로운 <div> 요소를 생성 후, postContainer라는 상수에 할당
     const postContainer = document.createElement('div');
+    // 생성된 postContainer <div> 요소의 클래스 이름을 'postContainer'로 설정
+    // CSS 스타일링이나 JavaScript 조작을 위한 선택자로 사용 가능
     postContainer.className = 'postContainer';
     postContainer.innerHTML = `
          <article class="postedBox" style="background-color: rgb(255, 255, 255); padding: 32px 16px 16px;">
-            <div class="nickNameLine">
-                <div class="nickNameLineBox">
-                    <div class="avatarWrapper">
-                        <div>
-                            <div class="avatarMark">
-                                <i class="avatarNickName" style="background: rgb(172, 197, 234);"></i>
-                                <div class="avatarItem">
-                                    <div class="avatarItemIcon" style="color: rgb(255, 255, 255);"> R </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="informationWrapper">
-                        <div class="nameCompanyWrapper">
-                            <div class="nameIconWrapper">
-                                <div class="nameWrapper">
-                                    <div class="userInfoName" style="color: inherit; font-weight: 600;">${post.userName}</div>
-                                </div>
-                                <div class="userInfoWrapper"></div>
-                            </div>
-                        </div>
-                        <div class="otherWrapper"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="dropDownBottom"></div>
-                </div>
-            </div>
-            <p class="aptBuildingNumber" style="color: rgb(173, 179, 184);">${post.userName}</p>
-            <!-- 게시글 -->
+           <div>
+             <div class="dropDownBottom"></div>
+           </div>
+         
+<!--            유저이름-->
+<!--   게시글 -->
             <div id="selectPost">
                 <h2 class="contentTitle" style="color: rgb(4, 5, 5);">
                     <span class="headlineTitle" style="color: inherit;">${post.postTitle}</span>
@@ -70,6 +60,7 @@ function appendPostHTML(post) {
                 </p>
             </div>
             <p class="contentDate" style="color: rgb(207, 212, 215);">${startDateFormatted}</p>
+            <div>
             <div class="cardActionContainer">
                 <div class="cardActionWrapper">
                     <div class="hits">
@@ -90,63 +81,47 @@ function appendPostHTML(post) {
                     </button>
                 </div>
             </div>
+            </div>
         </article>`;
     postedBox.appendChild(postContainer);
 }
 
 
-// function viewPost(post) {
-//     // 게시물의 정보를 웹 페이지에 표시하는 코드
-//
-//     // 제목 채우기
-//     document.querySelector('.headlineTitle').textContent = post.postTitle;
-//     // 내용 채우기
-//     document.querySelector('.contentText').textContent = post.postContent;
-//     // 날짜 채우기
-//     document.querySelector('.contentDate').textContent = post.postWriteDate;
-//     // 조회수 채우기
-//     document.querySelector('.hitsCount').textContent = post.postViewCount;
-//     // 좋아요 수 채우기
-//     document.querySelector('.detailLikeInfoNumber').textContent = post.likeCount;
-//
-//     // 댓글, 이미지 등 추가적인 내용들도 웹 페이지에 표시
-// }
-
-
 
 // 함께 읽을 수 있는 글
 // 관련 게시물들을 서버에서 가져옴 (주어진 게시물 ID와 관련된 다른 게시물들을 가져옴)
-async function getRelatedPost(postId) {
-    const response = await fetch(`/recycling-agent/recycling-agentread/${postId}/related`);
-    if (!response.ok) {
-        throw new Error(`HTTP 오류 상태 : ${response.status}`);
-    }
-    return response.json();
-}
+// async function getRelatedPost(postId) {
+//     const response = await fetch(`/recycling-agent/recycling-read/${postId}/related`);
+//     if (!response.ok) {
+//         throw new Error(`HTTP 오류 상태 : ${response.status}`);
+//     }
+//     return response.json();
+// }
 
-async function showList(postId) {
+async function showList() {
     try {
-        const postDetail = await getPostDetail(postId);
+        const postDetail = await getPostDetail();
         appendPost(postDetail);
     } catch (error) {
-        console.error("게시물을 불러오는 중 에러 발생:", error);
+        console.error("게시글을 불러오는 중 에러 발생:", error);
+
     }
+
 }
 
-showList(postId);
-
+showList();
 
 
 window.onload = async function() {
     try {
-        // 각각의 함수를 호출하여 게시물의 정보, 댓글, 관련 게시물들을 가져옴
+        // 각각의 함수를 호출하여 게시물의 정보, 댓글, 관련 게시글들을 가져옴
         // 가져온 데이터를 웹 페이지에 표시
-        // 현재 페이지의 게시물 ID를 가져옴
+        // 현재 페이지의 게시글 ID를 가져옴
         const postId = getCurrentPostId();
         console.log(postId);
         const post = await getPostDetail(postId);
         console.log(post);
-        const relatedPosts = await getRelatedPost(postId);
+        // const relatedPosts = await getRelatedPost(postId);
         // console.log('들어옴3');
 
         // viewPost(post);
@@ -189,4 +164,3 @@ document.getElementById("submitCommentButton").addEventListener("click", functio
         textField.value = "";
     }
 });
-
