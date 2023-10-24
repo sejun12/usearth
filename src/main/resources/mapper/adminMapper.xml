@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.AdminMapper">
-    <select id="selectUser" resultType="userVO">
+    <select id="selectUser" resultType="userDTO">
         SELECT ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO
         FROM TBL_USER
         ORDER BY ID
     </select>
 
-    <select id="select" resultType="userVO">
+    <select id="select" resultType="userDTO">
         SELECT ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE
         FROM TBL_USER
         WHERE ID = #{id}
@@ -19,24 +19,88 @@
         WHERE ID = #{id}
     </update>
 
-    <select id="selectUserByPagination" resultType="userVO">
-        SELECT * FROM
-            (
-                SELECT ROWNUM R, AL.*
-                FROM (
-                         SELECT
-                            ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO
-                         FROM TBL_USER
-                         ORDER BY ID
-                     ) AL
-    <![CDATA[
-                WHERE ROWNUM <= #{pagination.endRow}
-            ) AL2
-        WHERE AL2.R >=#{pagination.startRow}
+    <select id="selectUserByPagination" resultType="userDTO">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM R, AL.*
+                 FROM (
+                          SELECT
+                              U.ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO, U.APARTMENT_ID, AM.ADMIN_IDENTIFICATION, AM.ADMIN_NAME
+                          FROM TBL_USER U
+                                   JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+                                   JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
+                          WHERE AM.ID = #{id}
+                          ORDER BY ID
+                      ) AL
+        <![CDATA[
+                 WHERE ROWNUM <= #{pagination.endRow}
+             ) AL2
+        WHERE AL2.R >= #{pagination.startRow}
         ]]>
     </select>
 
     <select id="selectTotal" resultType="int">
-        SELECT COUNT(ID) FROM TBL_USER
+        SELECT COUNT(U.ID) AS USER_COUNT FROM TBL_USER U
+        JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+        JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
+        WHERE AM.ID = #{id}
+        <choose>
+        <when test="userDTO.userApproval == 1">
+            AND U.USER_APPROVAL = 1
+        </when>
+        <when test="userDTO.userApproval == 0">
+            AND U.USER_APPROVAL = 0
+        </when>
+        <otherwise>
+            AND U.USER_APPROVAL IN (1, 0);
+        </otherwise>
+        </choose>
+        <if test="userDTO.userDong != null and userDTO.userDong != ''" >
+            AND U.USER_DONG LIKE '%' || #{userDTO.userDong} || '%'
+        </if>
+        <if test="userDTO.userHo != null and userDTO.userHo != ''">
+            AND U.USER_HO LIKE '%' || #{userDTO.userHo} || '%'
+        </if>
+        <if test="userDTO.userName != null and userDTO.userName != ''">
+            AND U.USER_NAME LIKE '%' || #{userDTO.userName} || '%'
+        </if>
+    </select>
+
+    <select id="selectSearch" resultType="userDTO">
+        SELECT *
+        FROM (SELECT ROWNUM R, AL.*
+              FROM (
+                       SELECT
+                           U.ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO, U.APARTMENT_ID, AM. ADMIN_IDENTIFICATION, AM.ADMIN_NAME
+                            FROM TBL_USER U
+                            JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+                            JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
+                             WHERE AM.ID = #{id}
+        <choose>
+            <when test="userDTO.userApproval == 1">
+                AND U.USER_APPROVAL = 1
+            </when>
+            <when test="userDTO.userApproval == 0">
+                AND U.USER_APPROVAL = 0
+            </when>
+            <otherwise>
+                AND U.USER_APPROVAL IN (1, 0);
+            </otherwise>
+        </choose>
+        <if test="userDTO.userDong != null and userDTO.userDong != ''" >
+            AND U.USER_DONG LIKE '%' || #{userDTO.userDong} || '%'
+        </if>
+        <if test="userDTO.userHo != null and userDTO.userHo != ''">
+            AND U.USER_HO LIKE '%' || #{userDTO.userHo} || '%'
+        </if>
+        <if test="userDTO.userName != null and userDTO.userName != ''">
+            AND U.USER_NAME LIKE '%' || #{userDTO.userName} || '%'
+        </if>
+                ORDER BY USER_TEMP_NO
+                ) AL
+        <![CDATA[
+              WHERE ROWNUM <= #{pagination.endRow}) AL2
+        WHERE AL2.R >= #{pagination.startRow}
+        ]]>
     </select>
 </mapper>

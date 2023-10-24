@@ -214,7 +214,7 @@
                                         호, 입주자명, 이메일 정보를 확인하여 해당 세대에 거주하는<br> 입주민이 맞다면 <strong>'승인여부'</strong> 토글버튼을 눌러주세요.
                                     </h1>
                                     <div class="marginTop8">
-                                        <button type="button" class="registerMaintenanceFeeBtn">입주민 조회</button>
+                                        <button type="button" id="search" class="registerMaintenanceFeeBtn">입주민 조회</button>
                                     </div>
                                 </div>
                                 <div class="maintenanceFeePicture">
@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <div class="maintenanceFeeTitle">
-                            <span th:text="'총 ' + ${pagination.total} + '건'" id="totalNumber" class="maintenanceFeeSpan"></span>
+                            <span id="totalNumber" class="maintenanceFeeSpan"></span>
                             <div class="flexGap12">
                                 <div class="searchContainer">
                                     <button id="rangeCategory2Btn" type="button" class="imposeYear">
@@ -241,17 +241,17 @@
                                     <div id="rangeCategory" class="rangeModal">
                                         <ul class="rangeModalUl">
                                             <li>
-                                                <button type="button" class="rangeModalBtn categoryBtns2">카테고리 선택
+                                                <button type="button" class="rangeModalBtn categoryBtns2">전체
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="rangeModalBtn categoryBtns2">
+                                                    승인
                                                 </button>
                                             </li>
                                             <li>
                                                 <button type="button" class="rangeModalBtn categoryBtns2">
                                                     대기
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="rangeModalBtn categoryBtns2">
-                                                    거절
                                                 </button>
                                             </li>
                                         </ul>
@@ -319,7 +319,7 @@
                                     <input type="text" id="searchNumber" class="imposeYear" placeholder="호">
                                 </div>
                                 <div style="max-width: 200px" class="searchContainer">
-                                    <input type="text" id="searchTitle" placeholder="이름, 이메일로 찾기"
+                                    <input type="text" id="searchTitle" placeholder="입주민 이름으로 찾기"
                                            class="imposeYear">
                                 </div>
                             </div>
@@ -373,7 +373,6 @@
 </body>
 <script th:inline="javascript">
     let paginationInfo = [[${pagination}]];
-    let maxPage = paginationInfo.endPage;
 
     function createPaginationButtons() {
 
@@ -404,6 +403,8 @@
     }
 
     createPaginationButtons();
+
+
 
 
 </script>
