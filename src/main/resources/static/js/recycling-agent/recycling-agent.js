@@ -21,14 +21,13 @@ let page = 1;
 
 async function getPosts() {
     // fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/recycling-agent/api/recycling-agents/recycling-list")
+    const response = await fetch("/recycling-agent/recycling-list")
     return await response.json();
 }
 
     function getList(post){
-
                 postsListRecycling.innerHTML += `
-                    <a href="">
+                    <a href="/recycling-agent/recycling-agentread/${post.id}">
                         <article class="agentCard">
                             <div class="agentWrap" style="padding: 20px;">
                                 <div class="agentContentWrap">
