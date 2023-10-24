@@ -924,6 +924,18 @@ ol, ul {
     background: rgba(0,0,0,0.05);
 }
 
+.commentInputContainer {
+    display: flex;
+    align-items: center;
+}
+
+.textFieldAdditional, .buttonWrapper {
+    margin: 10px;
+}
+
+
+
+
 /* 신고하기 모달창 */
 /*.application {*/
 /*    display: none;*/
