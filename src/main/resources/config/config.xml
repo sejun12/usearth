@@ -14,5 +14,7 @@
         <typeAlias type="com.app.usearth.domain.CommentDTO" alias="commentDTO" />
         <typeAlias type="com.app.usearth.domain.PostDTO" alias="postDTO" />
         <typeAlias type="com.app.usearth.domain.ReserveCarDTO" alias="reserveCarDTO" />
+        <typeAlias type="com.app.usearth.domain.AdminVisitDTO" alias="adminVisitDTO" />
+        <typeAlias type="com.app.usearth.domain.SearchVisitDTO" alias="searchVisitDTO"/>
     </typeAliases>
 </configuration>

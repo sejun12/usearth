@@ -16,7 +16,6 @@ async function getPosts() {
     return await response.json();
 }
 function appendPost(complain) {
-
     const startDate = complain.complainDate;
     const startDateParts = startDate.split(' ')[0].split('-');
     const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
@@ -60,6 +59,7 @@ function appendPost(complain) {
         </div>
       `
     first.appendChild(newDiv);
+    //답변이있을때 밑에가 실행입니다
     if (complain.replyId !== null) {
         // 답변을 추가
         const replyLayoutBox = document.createElement('div');

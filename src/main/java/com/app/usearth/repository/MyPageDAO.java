@@ -80,10 +80,23 @@ public class MyPageDAO {
         myPageMapper.deleteUser(id);
     }
 
-    public List<ReserveCarDTO> visitBookingList(Pagination pagination){
-        return  myPageMapper.selectVisit(pagination);
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id){
+        return  myPageMapper.selectVisit(pagination,id);
     }
-    public  int getTotal(){
-        return   myPageMapper.selectTotal();
+    public  int getTotal(Long id){
+        return   myPageMapper.selectTotal(id);
+    }
+
+    public List<AdminVisitDTO>  selectSearch(SearchVisitDTO searchDTO,Pagination pagination,Long id){
+     return myPageMapper.selectSearch(searchDTO,pagination,id);
+    }
+
+
+    public Optional<Long> searchUserId(UserVO userVO){
+        return myPageMapper.selectHo(userVO);
+    }
+
+    public void adminBooking(ReserveCarDTO reserveCarDTO){
+        myPageMapper.insertAdminBooking(reserveCarDTO);
     }
 }
