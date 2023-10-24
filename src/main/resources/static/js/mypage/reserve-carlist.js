@@ -66,11 +66,10 @@ function showList() {
 
     isLoading = true;
     getPosts().then((posts) => {
-        const rowCount = 5;
-        const offset = (page - 1) * rowCount;
-        const limit = offset + rowCount;
-        posts = posts.slice(offset, limit);
-
+        // const rowCount = 5;
+        // const offset = (page - 1) * rowCount;
+        // const limit = offset + rowCount;
+        // posts = posts.slice(offset, limit);
         if(posts.length > 0) {
             posts.forEach((post) => {
                 appendPost(post);
@@ -84,13 +83,9 @@ function showList() {
 
 // 스크롤의 위치를 검색하고 조건에 맞춰 실행하는 함수
 function handleScroll() {
-    // 현재 문서의 상단에서 스크롤바의 위치까지의 거리를 나타내는 값을 가져온다.
     const scrollTop = document.documentElement.scrollTop;
-    // 현재 창의 뷰포트 높이를 나타낸다.
     const windowHeight = window.innerHeight;
-    // 문서의 총 높이를 나타내는 값을 가져온다.
     const totalHeight = document.documentElement.scrollHeight;
-    // 스크롤바가 문서의 아래쪽 끝에 도달했을 때 아래의 코드를 실행한다.
     if (scrollTop + windowHeight >= totalHeight - 1) {
         showList();
     }

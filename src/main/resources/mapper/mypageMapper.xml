@@ -119,7 +119,7 @@
         WHERE ID={id}
     </delete>
 
-    <select id="selectVisit" resultType="reserveCarDTO">
+    <select id="selectVisit" resultType="adminVisitDTO">
         SELECT * FROM
             (
                 SELECT ROWNUM R, AL.*
@@ -134,10 +134,13 @@
                              VISIT_BOOKING_PURPOSE,
                              VISIT_BOOKING_CAR_NUMBER,
                              VISIT_BOOKING_CAR_TYPE,
-                             U.USER_DONG,
-                             U.USER_HO
-                         FROM TBL_VISIT_BOOKING V
-                        JOIN TBL_USER U ON V.USER_ID = U.ID
+                             U.USER_DONG, U.USER_HO,
+                             AM.ADMIN_IDENTIFICATION,AM.ADMIN_NAME
+                         FROM TBL_USER U
+                         JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+                         JOIN TBL_ADMIN AM ON A.ID = AM.APARTMENT_ID
+                         JOIN TBL_VISIT_BOOKING V ON U.ID = V.USER_ID
+                         WHERE AM.ID = #{id}
                          ORDER BY ID DESC
                      ) AL
     <![CDATA[
@@ -148,7 +151,12 @@
     </select>
 
     <select id="selectTotal" resultType="int">
-        SELECT COUNT(ID) FROM TBL_VISIT_BOOKING
+        SELECT COUNT(V.ID) AS VISIT_BOOKING_COUNT
+        FROM TBL_USER U
+         JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+         JOIN TBL_ADMIN AM ON A.ID = AM.APARTMENT_ID
+         JOIN TBL_VISIT_BOOKING V ON U.ID = V.USER_ID
+        WHERE AM.ID =#{id}
     </select>
 
     <delete id="deleteOne">
@@ -167,4 +175,59 @@
     ON R.COMPLAIN_ID=C.ID
     WHERE  C.USER_ID=#{id}
     </select>
+
+    <select id="selectSearch" resultType="searchVisitDTO">
+        SELECT *
+        FROM (SELECT ROWNUM R, AL.*
+              FROM (SELECT V.ID,
+                           V.USER_ID,
+                           V.APARTMENT_ID,
+                           VISIT_BOOKING_START_DATE,
+                           VISIT_BOOKING_END_DATE,
+                           VISIT_BOOKING_REGISTER_DATE,
+                           VISIT_BOOKING_PURPOSE,
+                           VISIT_BOOKING_CAR_NUMBER,
+                           VISIT_BOOKING_CAR_TYPE,
+                           U.USER_DONG,
+                           U.USER_HO,
+                           AM.ADMIN_IDENTIFICATION,
+                           AM.ADMIN_NAME
+                            FROM TBL_USER U
+                             JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+                             JOIN TBL_ADMIN AM ON A.ID = AM.APARTMENT_ID
+                             JOIN TBL_VISIT_BOOKING V ON U.ID = V.USER_ID
+                            WHERE AM.ID = #{id}
+        <if test="searchDTO.visitBookingCarNumber != null and searchDTO.visitBookingCarNumber != ''">
+            AND V.VISIT_BOOKING_CAR_NUMBER LIKE '%' || #{searchDTO.visitBookingCarNumber} || '%'
+        </if>
+        <if test="searchDTO.userDong != null and searchDTO.userDong != ''">
+            AND U.USER_DONG LIKE '%' || #{searchDTO.userDong} || '%'
+        </if>
+        <if test="searchDTO.userHo != null and searchDTO.userHo != ''">
+            AND U.USER_HO LIKE '%' || #{searchDTO.userHo} || '%'
+        </if>
+        <if test="searchDTO.visitBookingStartDate != null and searchDTO.visitBookingStartDate != ''">
+            AND V.VISIT_BOOKING_START_DATE &gt;= #{searchDTO.visitBookingStartDate}
+        </if>
+        <if test="searchDTO.visitBookingEndDate != null and searchDTO.visitBookingEndDate != ''">
+            AND V.VISIT_BOOKING_END_DATE &lt;= #{searchDTO.visitBookingEndDate}
+        </if>
+                    ORDER BY ID DESC
+                    ) AL
+    <![CDATA[
+              WHERE ROWNUM <= #{pagination.endRow}) AL2
+        WHERE AL2.R >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectHo" resultType="Long">
+        SELECT ID FROM TBL_USER
+        WHERE USER_DONG=#{userDong} AND USER_HO=#{userHo}
+    </select>
+
+  <insert id="insertAdminBooking">
+      INSERT INTO TBL_VISIT_BOOKING(ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER)
+      VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{userId}, #{apartmentId}, #{visitBookingStartDate}, #{visitBookingEndDate}, #{visitBookingPurpose}, #{visitBookingCarNumber})
+  </insert>
+
 </mapper>

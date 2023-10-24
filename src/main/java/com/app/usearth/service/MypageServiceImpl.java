@@ -88,19 +88,39 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public List<ReserveCarDTO> visitBookingList(Pagination pagination) {
-        return myPageDAO.visitBookingList(pagination);
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id) {
+        return myPageDAO.visitBookingList(pagination,id);
     }
 
     @Override
-    public int getTotal() {
-        return myPageDAO.getTotal();
+    public int getTotal(Long id) {
+        return myPageDAO.getTotal(id);
     }
 
     @Override
     public void removeComplainReply(Long id) {
       Long complainId=  myPageDAO.searchComplainId(id);
         myPageDAO.removeComplainReply(complainId);
+    }
+
+    @Override
+    public List<AdminVisitDTO>  selectSearch(SearchVisitDTO searchDTO ,Pagination pagination,Long id) {
+        return myPageDAO.selectSearch(searchDTO,pagination,id);
+    }
+
+    @Override
+    public void adminBooking(ReserveCarDTO reserveCarDTO) {
+        //세션에있는 id로 apartid 찾아서 넣어야함
+        UserVO userVO=new UserVO();
+        userVO.setUserDong(reserveCarDTO.getUserDong());
+        userVO.setUserHo(reserveCarDTO.getUserHo());
+        Optional<Long>foundUserId=myPageDAO.searchUserId(userVO);
+        if(foundUserId.isPresent()){
+            long userId = foundUserId.get();
+            reserveCarDTO.setUserId(userId);
+            reserveCarDTO.setApartmentId(1L);
+            myPageDAO.adminBooking(reserveCarDTO);
+        }
     }
 
 
