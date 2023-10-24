@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin/*")
 @RequiredArgsConstructor
 public class AdminVisitController {
+    private final MypageService mypageService;
     @GetMapping("visit-vehicle")
     public void allVisit(Pagination pagination, Model model, HttpSession session){
         Long id=1L;
