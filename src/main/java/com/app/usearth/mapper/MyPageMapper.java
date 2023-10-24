@@ -54,9 +54,17 @@ public interface MyPageMapper {
 
 
     //관리자 방문 차량 예약 리스트
-    public List<ReserveCarDTO> selectVisit(@Param("pagination")Pagination pagination);
+    public List<ReserveCarDTO> selectVisit(@Param("pagination")Pagination pagination,Long id);
 
     //방문 차량 전체 개수
-    public  int selectTotal();
+    public  int selectTotal(Long id);
+
+    //관리자 방문 차량 검색 리스트
+    public List<AdminVisitDTO>  selectSearch(@Param("searchDTO") SearchVisitDTO searchDTO,@Param("pagination") Pagination pagination,Long id);
+
+    //관리자 방문차량 등록
+    public Optional<Long> selectHo(UserVO userVO);
+
+    public void insertAdminBooking(ReserveCarDTO reserveCarDTO);
 
 }

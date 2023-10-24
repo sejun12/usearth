@@ -26,9 +26,12 @@ public interface MypageService {
 
     public void removeAll(Long id);
 
-    public List<ReserveCarDTO> visitBookingList(Pagination pagination);
+    public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id);
 
-    public  int getTotal();
+    public  int getTotal(Long id);
     public void removeComplainReply(Long id);
+    public List<AdminVisitDTO> selectSearch(SearchVisitDTO searchDTO ,Pagination pagination,Long id);
+
+    public void adminBooking(ReserveCarDTO reserveCarDTO);
 
 }

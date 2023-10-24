@@ -1,24 +1,24 @@
 package com.app.usearth.controller;
 
-import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.ComplainDTO;
-import com.app.usearth.domain.PostVO;
-import com.app.usearth.domain.ReserveCarVO;
+import com.app.usearth.domain.*;
 import com.app.usearth.service.MypageService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/lists/api/")
+@Slf4j
 public class MypageAPI {
     private final MypageService mypageService;
     @ApiOperation(value = "회원의 민원 접수", notes = "회원 아이디 입력시 회원 민원 API")
@@ -100,9 +100,19 @@ public class MypageAPI {
         return mypageService.detail(id);
    }
 
-//   @GetMapping("visit")
-//    public List<ReserveCarDTO> visitList(Pagination pagination){
-//        return mypageService.visitBookingList(pagination);
-//   }
+   @GetMapping("visit/{id}")
+    public List<ReserveCarDTO> visitList(Pagination pagination,@PathVariable Long id){
+       pagination.setTotal(mypageService.getTotal(id));
+       pagination.progress();
+        return mypageService.visitBookingList(pagination,id);
+   }
 
+    @GetMapping("results/search/{id}")
+    public List<AdminVisitDTO> getResult(@PathVariable Long id,SearchVisitDTO searchDTO, Pagination pagination)  {
+        pagination.setTotal(mypageService.getTotal(id));
+        pagination.progress();
+        return  mypageService.selectSearch(searchDTO,pagination,id);
+    }
 }
+
+
