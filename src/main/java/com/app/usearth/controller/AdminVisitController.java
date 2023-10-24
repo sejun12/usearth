@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class AdminVisitController {
     private final MypageService mypageService;
-    @GetMapping("visit-vehiclemanager")
+    @GetMapping("visit-vehicle")
     public void allVisit(Pagination pagination, Model model){
         pagination.setTotal(mypageService.getTotal());
         pagination.progress();

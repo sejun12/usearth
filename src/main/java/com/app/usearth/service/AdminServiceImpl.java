@@ -1,7 +1,8 @@
 package com.app.usearth.service;
 
 import com.app.usearth.domain.Pagination;
-import com.app.usearth.domain.UserVO;
+import com.app.usearth.domain.UserDTO;
+import com.app.usearth.domain.UserDTO;
 import com.app.usearth.repository.AdminDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,27 +19,33 @@ public class AdminServiceImpl implements AdminService {
     private final AdminDAO adminDAO;
 
     @Override
-    public List<UserVO> getResidentList() {
+    public List<UserDTO> getResidentList() {
         return adminDAO.getUserList();
     }
 
     @Override
-    public List<UserVO> getResidentListByPagination(Pagination pagination) {
-        return adminDAO.getUserListByPagination(pagination);
+    public List<UserDTO> getResidentListByPagination(Pagination pagination, Long id) {
+        return adminDAO.getUserListByPagination(pagination, id);
     }
 
     @Override
-    public int getTotal() {
-        return adminDAO.getTotal();
+    public int getTotal(UserDTO userDTO, Long id) {
+        return adminDAO.getTotal(userDTO, id);
     }
 
     @Override
-    public <Optional> UserVO getUserById(Long id) {
+    public <Optional> UserDTO getUserById(Long id) {
         return adminDAO.getUser(id);
     }
 
     @Override
-    public void modifyApproval(UserVO userVO) {
-        adminDAO.modifyStatus(userVO);
+    public void modifyApproval(UserDTO userDTO) {
+        adminDAO.modifyStatus(userDTO);
     }
+
+    @Override
+    public List<UserDTO> selectSearch(UserDTO userDTO, Pagination pagination, Long id) {
+        return adminDAO.selectSearch(userDTO, pagination, id);
+    }
+
 }

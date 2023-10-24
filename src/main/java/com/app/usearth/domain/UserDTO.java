@@ -16,6 +16,8 @@ public class UserDTO implements Serializable {
     private String userHo;
     private Long userProfileId;
     private Long apartmentId;
+    private String userJoinDate;
+    private Long userTempNo;
     private String userProfileName;
     private String userProfilePath;
     private String userKakaoProfileUrl;
