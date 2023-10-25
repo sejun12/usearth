@@ -1,75 +1,69 @@
 package com.app.usearth.controller;
 
 import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.PostDTO;
 import com.app.usearth.service.RecyclingAgentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-@RequestMapping("/recycling-agent/*")
+    @RequestMapping("/recycling-agent/*")
 @RequiredArgsConstructor
 @Slf4j
 public class RecyclingAgentController {
 
     private final RecyclingAgentService recyclingAgentService;
 
-    //    '/recycling-agent/recycling-list' 경로에 GET 요청이 오면 해당 메소드를 실행하도록 지정
-    @RequestMapping(value = "recycling-list")
-    @ResponseBody
-    public List<PostDTO> getByRecycling() {
-//      recyclingAgentService의 getByRecycling 메소드를 호출하고 그 결과를 반환
-        return recyclingAgentService.getByRecycling();
-    }
-
     @GetMapping("recycling-agent")
-    public void showRecycling() {;}
-
-    @RequestMapping(value = "recycling-read/{id}")
-    @ResponseBody
-    public Optional<PostDTO> getByRecyclingRead(@PathVariable("id") Long postId) {
-        return recyclingAgentService.selectByRecyclingRead(postId);
-    }
-
+    public void getByRecycling() {;}
 
     @GetMapping("recycling-agentread/{id}")
-    public String showRecyclingRead(@PathVariable Long id, Model model) {
-        // 'id' 변수에는 URL에서 추출한 글의 ID가 할당
-        // 이 ID를 사용하여 해당 글을 DB에서 가져옴
-//        즉, post라는 Optional에 결과를 저장
-        Optional<PostDTO> post = recyclingAgentService.selectByRecyclingRead(id);
-
-        // 글을 DB에서 가져오지 못한 경우에 대한 처리
-        if (!post.isPresent()) {
-            return "errorPage"; // 에러 페이지의 뷰 이름
-        }
-
-//      post.get()를 사용하여 Optional에 저장된 게시글 (PostDTO 객체)를 가져와서 모델에 "post"라는 이름으로 추가
-        model.addAttribute("post", post.get());
-
+    public String getByRecyclingRead(@PathVariable Long id) {
         return "/recycling-agent/recycling-agentread";
     }
 
+    // '/api/recycling-reads/recycling-read/{id}' 형태의 URL로 오는 GET 요청을 처리하는 메소드
+    // '{id}'는 URL의 일부로 들어오는 게시글의 ID
+//    @GetMapping("recycling-read/{id}")
+//    // goToRecyclingRead() : 주어진 게시글 ID에 해당하는 게시글을 찾아 해당 게시글의 상세 페이지를 보여주는 데 사용
+//    // '@PathVariable Long id' : URL에서 {id} 부분을 추출하여 Long 타입의 id 매개변수에 할당
+//    // Model model : Spring의 Model 객체는 뷰(View)에 데이터를 전달하는 데 사용
+//    // model 객체를 사용하여 컨트롤러에서 뷰로 데이터를 전달할 수 있음
+//    public String goToRecyclingRead(@PathVariable Long id, Model model) {
+//        // Optional : 값이 있을 수도 있고 없을 수도 있는 컨테이너 객체
+//        // 즉, PostDTO 타입의 값이 있을 수도 있고 없을 수도 있다는 의미
+//        // recyclingAgentService.selectByRecyclingRead(id) :
+//        // 해당 ID에 해당하는 게시글 정보를 가져오는 서비스 메소드를 호출하고, 그 결과를 post 변수에 할당
+//        Optional<PostDTO> post = recyclingAgentService.selectByRecyclingRead(id);
+//        // post 객체가 값을 포함하고 있지 않다면(즉, 해당 ID의 게시글이 없다면) 아래의 코드 블록을 실행
+//        if (!post.isPresent()) {
+//            // 여기서 뷰이름은 보통 src/main/resources/templates 디렉토리 아래에 있는
+//            // 해당 이름의 Thymeleaf 또는 JSP 페이지와 매핑
+//            return "errorPage"; // 오류 페이지의 이름(뷰 이름)을 반환
+//        }
+//        // post 객체가 값을 포함하고 있다면, 그 값을 model 객체에 "post"라는 이름으로 추가
+//        // 뷰에서 "post"라는 이름으로 해당 데이터에 액세스할 수 있게 됨
+//        model.addAttribute("post", post.get());
+//        // 게시글의 상세 정보를 보여주는 페이지의 이름(뷰 이름)을 반환
+//        // 앞서 언급한 바와 같이 여기서의 뷰이름 역시 보통 src/main/resources/templates 디렉토리
+//        // 아래에 있는 해당 이름의 Thymeleaf 또는 JSP 페이지와 매핑
+//        return "/recycling-agent/recycling-agentread";
+//    }
+
 
     @GetMapping("recycling-agentwrite")
-    public String goToRecyclingWrite(){
-//      goToRecyclingWrite()는  "recycling-agent/recycling-agentwrite"라는 뷰 이름을 반환
+    public String goToRecyclingWrite() {
         return "recycling-agent/recycling-agentwrite";
     }
 
 
-//    댓글 관련
+    //    댓글 관련
 //    게시글의 ID를 이용하여 댓글목록을 조회하고 새로운 댓글을 추가
 //    특정 게시글에 대한 댓글 목록 반환
-    @GetMapping("/post/{postId}")
+    @GetMapping("post/{postId}")
     @ResponseBody
 //  매개변수로 @PathVariable Long postId를 받는데,
 //  @PathVariable 어노테이션은 URL의 변수 부분에서 값을 추출할 때 사용
@@ -93,23 +87,6 @@ public class RecyclingAgentController {
 //      댓글이 추가된 게시글의 상세 페이지로 리다이렉트
         return "redirect:/recycling-agent/recycling-read/" + comment.getPostId();
     }
-
-
-
-    // 새 댓글 추가
-//    @PostMapping("/addComment")
-//    public ResponseEntity<String> addComment(@RequestBody CommentDTO comment) {
-//        try {
-//            // addComment 메소드를 호출하여 comment 객체에 담긴 댓글 정보를 DB에 추가
-//            recyclingAgentService.addComment(comment);
-//            // 댓글 추가 성공 시 200 OK 응답 반환
-//            return ResponseEntity.ok("댓글이 성공적으로 추가되었습니다.");
-//        } catch (Exception e) {
-//            // 댓글 추가 실패 시 500 Internal Server Error 응답 반환
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 추가에 실패했습니다.");
-//        }
-//    }
-
 
 }
 
