@@ -21,7 +21,7 @@ let page = 1;
 
 async function getPosts() {
     // fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/recycling-agent/recycling-list")
+    const response = await fetch("/api/recycling-reads/recycling-list")
     return await response.json();
 }
 
