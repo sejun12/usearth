@@ -37,6 +37,7 @@ const buttonService = (function(){
                 if (response4.ok) {
                     const data = await response4.json();
                     if (callback) {
+                        console.log(data)
                         callback(data)
                     }
                 }
@@ -225,6 +226,7 @@ function showList(dataType) {
     isLoading = false;
   })
 }
+
 // 각 swiperSlide 요소에 클릭 이벤트 리스너를 추가
 window.removeEventListener("scroll", handleScroll);
 swiperSlides.forEach((slide) => {
@@ -236,9 +238,7 @@ swiperSlides.forEach((slide) => {
         const response = await buttonService.go(dataType,async (data)=>{
             if (data && data.length>0) {
                 infiniteLoadingContainer.style.display = "none";
-                data.forEach(item => {
                     showList(dataType);
-                });
             }
             else {
                 infiniteLoadingContainer.style.display = "block";
@@ -279,7 +279,6 @@ function isScrollingToBottom() {
 //데이터 지우기
 function clearDynamicallyAddedData() {
     const dynamicallyAddedData = document.querySelectorAll('.dynamically-added-data');
-    console.log(dynamicallyAddedData)
     dynamicallyAddedData.forEach((element) => {
         element.remove();
     });

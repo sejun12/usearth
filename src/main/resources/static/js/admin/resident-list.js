@@ -277,7 +277,47 @@ function updatePagination() {
 
 // 서버에서 데이터를 가져오는 메소드
 async function getPosts(page) {
-    const url = `/lists/api/resident?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
+
+    const searchApproval = document.getElementById("categorySpan2").textContent;
+    const searchDong = document.getElementById("categorySpan").textContent.match(/\d+/g);
+    const searchHo = document.getElementById("searchNumber").value.trim();
+    const searchTitle = document.getElementById("searchTitle").value.trim();
+    const params = [];
+
+    // 변환 함수 추가
+    // 프론트엔드
+    function convertApproval(approval) {
+        if (approval === '대기') {
+            return 0;
+        } else if (approval === '승인') {
+            return 1;
+        } else {
+            return null; // 다른 값이면 null
+        }
+    }
+
+    if (searchApproval) {
+        const userApproval = convertApproval(searchApproval);
+        console.log(userApproval);
+        console.log(searchApproval);
+        if(userApproval !== null){
+            params.push(`userApproval=${userApproval}`);
+        } else{
+            params.push(`userApproval=${1}`);
+            params.push(`userApproval=${0}`);
+        }
+    }
+    if (searchDong && searchDong.length > 0) {
+        params.push(`userDong=${searchDong.join(',')}`);
+    }
+    if (searchHo) {
+        params.push(`userHo=${searchHo}`);
+    }
+    if (searchTitle) {
+        params.push(`userName=${searchTitle}`);
+    }
+
+    const url = `/lists/api/resident/1?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
 
     try {
         const response = await fetch(url, {
@@ -290,8 +330,10 @@ async function getPosts(page) {
         if (response.ok) {
             const data = await response.json();
             // 데이터 가져오기 성공
-
+            console.log(data);
             renderData(data);
+            const initialCount = response.headers.get('X-Initial-Total-Count');
+            totalNumberElement.innerText = `총 ${initialCount}건`;
         } else {
             console.error('데이터를 가져오는데 실패했습니다.');
         }
@@ -300,13 +342,21 @@ async function getPosts(page) {
     }
 }
 
+let initialCount = 0;
+
 // 데이터를 화면에 렌더링하는 함수
 function renderData(data) {
     first.innerHTML = ''; // 기존 데이터 지우기
 
     data.forEach((resident) => {
+        // 이곳에 검색 후 참고하기
         appendPost(resident);
     });
+
+    // 요소의 텍스트 내용 변경
+    if (totalNumberElement) {
+        totalNumberElement.innerText = `총 ${total}건`;
+    }
 }
 
 
@@ -395,3 +445,110 @@ function showList() {
 }
 
 showList();
+
+// 검색 기능
+
+        let total = 0;
+        let startPage = 0;
+        let endPage = 0;
+        // ID가 'totalNumber'인 요소 가져오기
+        const totalNumberElement = document.getElementById('totalNumber');
+
+        async function fetchData() {
+            const searchApproval = document.getElementById("categorySpan2").textContent;
+            const searchDong = document.getElementById("categorySpan").textContent.match(/\d+/g);
+            const searchHo = document.getElementById("searchNumber").value.trim();
+            const searchTitle = document.getElementById("searchTitle").value.trim();
+
+
+
+            const id = 1;  // 예시로 사용한 ID
+            const baseUrl = `/lists/api/resident/result/${id}`;
+            let url = baseUrl;
+            const params = [];
+
+            // 변환 함수 추가
+            // 프론트엔드
+            function convertApproval(approval) {
+                if (approval === '대기') {
+                    return 0;
+                } else if (approval === '승인') {
+                    return 1;
+                } else {
+                    return null; // 다른 값이면 null
+                }
+            }
+
+            if (searchApproval) {
+                const userApproval = convertApproval(searchApproval);
+                console.log(userApproval);
+                console.log(searchApproval);
+                if(userApproval !== null){
+                    params.push(`userApproval=${userApproval}`);
+                } else{
+                    params.push(`userApproval=${1}`);
+                    params.push(`userApproval=${0}`);
+                }
+            }
+            if (searchDong && searchDong.length > 0) {
+                params.push(`userDong=${searchDong.join(',')}`);
+            }
+            if (searchHo) {
+                params.push(`userHo=${searchHo}`);
+            }
+            if (searchTitle) {
+                params.push(`userName=${searchTitle}`);
+            }
+
+
+
+            // URL에 검색 조건 추가
+            if (params.length > 0) {
+                console.log(params);
+                const paramString = params.join("&");
+                url = `${baseUrl}?${paramString}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
+                }
+                // HTTP 응답 헤더에서 pagination 정보를 읽어옴
+                total = response.headers.get('X-Total-Count');
+                startPage = response.headers.get('X-Start-Page');
+                endPage = response.headers.get('X-End-Page');
+                console.log(response);
+                console.log(total);
+                const data = await response.json(); // JSON 데이터를 가져옵니다.
+                console.log(data); // 데이터 출력
+                return data; // 가져온 데이터를 반환
+
+            } catch (error) {
+                // 오류 처리
+                console.error("오류 발생: ", error);
+                return null; // 실패한 경우 null 반환
+            }
+          }
+
+document.getElementById("search").addEventListener("click", () => {
+    fetchData().then((data) => {
+        if (data !== null) { // 데이터가 유효한 경우에만 렌더링
+
+
+            paginationInfo.total = total;
+            paginationInfo.startPage = startPage;
+            paginationInfo.endPage = endPage;
+            console.log(paginationInfo);
+            createPaginationButtons(); // pagination 정보를 업데이트한 후 버튼을 다시 생성
+            renderData(data);
+            // 요소의 텍스트 내용 변경
+            if (totalNumberElement) {
+                totalNumberElement.innerText = `총 ${total}건`;
+            }
+        }
+    });
+});
+
+
+
