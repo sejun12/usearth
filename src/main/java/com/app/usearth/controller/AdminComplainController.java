@@ -1,17 +1,23 @@
 package com.app.usearth.controller;
 
 import com.app.usearth.domain.AdminVO;
+import com.app.usearth.domain.ComplainAdminDTO;
+import com.app.usearth.domain.Pagination;
+import com.app.usearth.domain.SearchComplain;
 import com.app.usearth.service.AdminComplainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -41,8 +47,13 @@ public class AdminComplainController {
     }
 
     @GetMapping("complain-management")
-    public void goToAdminComplainManagement(){;}
+    public void goToAdminComplainManagement() {;}
 
-    @GetMapping("complain-reply")
-    public void goToAdminComplainReply(){;}
+    @GetMapping("complain-reply/{id}")
+    public String goToAdminComplainReply(@PathVariable Long id, HttpSession session, Model model){
+        AdminVO adminVO = ((AdminVO)session.getAttribute("admin"));
+        Optional<ComplainAdminDTO> foundComplain = adminComplainService.getComplainById(adminVO.getApartmentId(), id);
+        foundComplain.ifPresent(complainAdminDTO -> model.addAttribute("complain", complainAdminDTO));
+        return "/admin/complain-reply";
+    }
 }
