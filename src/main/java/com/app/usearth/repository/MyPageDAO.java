@@ -83,8 +83,8 @@ public class MyPageDAO {
     public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id){
         return  myPageMapper.selectVisit(pagination,id);
     }
-    public  int getTotal(Long id){
-        return   myPageMapper.selectTotal(id);
+    public  int getTotal(SearchVisitDTO searchVisitDTO,Long id){
+        return   myPageMapper.selectTotal(searchVisitDTO,id);
     }
 
     public List<AdminVisitDTO>  selectSearch(SearchVisitDTO searchDTO,Pagination pagination,Long id){
@@ -98,5 +98,10 @@ public class MyPageDAO {
 
     public void adminBooking(ReserveCarDTO reserveCarDTO){
         myPageMapper.insertAdminBooking(reserveCarDTO);
+    }
+
+
+    public void removeBooking(Long id){
+        myPageMapper.deleteBooking(id);
     }
 }

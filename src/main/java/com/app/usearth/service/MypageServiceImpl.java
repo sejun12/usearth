@@ -70,6 +70,7 @@ public class MypageServiceImpl implements MypageService {
         myPageDAO.changeProfile(userProfileVO);
     }
 
+
     @Override
     public Optional<ComplainDTO> detail(Long id) {
         return myPageDAO.detail(id);
@@ -93,8 +94,8 @@ public class MypageServiceImpl implements MypageService {
     }
 
     @Override
-    public int getTotal(Long id) {
-        return myPageDAO.getTotal(id);
+    public int getTotal(SearchVisitDTO searchVisitDTO,Long id) {
+        return myPageDAO.getTotal(searchVisitDTO,id);
     }
 
     @Override
@@ -110,7 +111,6 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void adminBooking(ReserveCarDTO reserveCarDTO) {
-        //세션에있는 id로 apartid 찾아서 넣어야함
         UserVO userVO=new UserVO();
         userVO.setUserDong(reserveCarDTO.getUserDong());
         userVO.setUserHo(reserveCarDTO.getUserHo());
@@ -118,9 +118,13 @@ public class MypageServiceImpl implements MypageService {
         if(foundUserId.isPresent()){
             long userId = foundUserId.get();
             reserveCarDTO.setUserId(userId);
-            reserveCarDTO.setApartmentId(1L);
             myPageDAO.adminBooking(reserveCarDTO);
         }
+    }
+
+    @Override
+    public void removeBooking(Long id) {
+        myPageDAO.removeBooking(id);
     }
 
 

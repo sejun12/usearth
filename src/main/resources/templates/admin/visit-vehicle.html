@@ -276,6 +276,31 @@
                           1003동
                         </button>
                       </li>
+                      <li>
+                        <button type="button" class="rangeModalBtn categoryBtns">
+                          1004동
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="rangeModalBtn categoryBtns">
+                          1005동
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="rangeModalBtn categoryBtns">
+                          1006동
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="rangeModalBtn categoryBtns">
+                          1007동
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="rangeModalBtn categoryBtns">
+                          1008동
+                        </button>
+                      </li>
                     </ul>
                   </div>
 
@@ -413,6 +438,10 @@
         <div class="registrationMessage">방문 차량등록이 완료되었습니다.</div>
       </div>
       <div class="registrationModalGray" style="display: none;"></div>
+      <div class="registrationMessageWrap-error" style="display: none">
+        <div class="registrationMessage-error">방문정보를 입력해주세요! </div>
+      </div>
+      <div class="registrationModalGray-error" style="display: none;"></div>
     </div>
 </div>
 </div>
@@ -420,6 +449,8 @@
 <script th:inline="javascript">
   const visits=[[${visits}]];
   const pagination=[[${pagination}]];
+  const adminId=[[${session.admin.id}]];
+  console.log(adminId)
   console.log(pagination.total)
 </script>
 <script src="/js/admin/visit-vehicle.js"></script>

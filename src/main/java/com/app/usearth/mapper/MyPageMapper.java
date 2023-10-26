@@ -37,6 +37,7 @@ public interface MyPageMapper {
     //프로필 이지지 수정
     public void updatePhoto(UserProfileVO userProfileVO);
 
+
     //게시글 상세보기
     public Optional<ComplainDTO> selectPostDetail(Long id);
 
@@ -57,7 +58,7 @@ public interface MyPageMapper {
     public List<ReserveCarDTO> selectVisit(@Param("pagination")Pagination pagination,Long id);
 
     //방문 차량 전체 개수
-    public  int selectTotal(Long id);
+    public  int selectTotal(@Param("searchDTO") SearchVisitDTO searchVisitDTO,Long id);
 
     //관리자 방문 차량 검색 리스트
     public List<AdminVisitDTO>  selectSearch(@Param("searchDTO") SearchVisitDTO searchDTO,@Param("pagination") Pagination pagination,Long id);
@@ -66,5 +67,8 @@ public interface MyPageMapper {
     public Optional<Long> selectHo(UserVO userVO);
 
     public void insertAdminBooking(ReserveCarDTO reserveCarDTO);
+
+    //게시글 삭제
+    public void deleteBooking(Long id);
 
 }

@@ -1,16 +1,14 @@
 package com.app.usearth.controller;
 
+import com.app.usearth.domain.AdminVO;
 import com.app.usearth.domain.Pagination;
-import com.app.usearth.domain.ReserveCarDTO;
+import com.app.usearth.domain.SearchVisitDTO;
 import com.app.usearth.service.MypageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -20,18 +18,14 @@ import javax.servlet.http.HttpSession;
 public class AdminVisitController {
     private final MypageService mypageService;
     @GetMapping("visit-vehicle")
-    public void allVisit(Pagination pagination, Model model, HttpSession session){
-        Long id=1L;
-        pagination.setTotal(mypageService.getTotal(id));
+    public String allVisit(SearchVisitDTO searchVisitDTO, Pagination pagination, Model model, HttpSession session){
+       AdminVO adminVO= ((AdminVO)session.getAttribute("admin"));
+        Long id=adminVO.getId();
+        pagination.setTotal(mypageService.getTotal(searchVisitDTO,id));
         pagination.progress();
         model.addAttribute("pagination", pagination);
+            return "/admin/visit-vehicle";
+    }
 
-    }
-    @PostMapping("visit-vehicle")
-    public RedirectView adminBooking(@RequestBody ReserveCarDTO reserveCarDTO){
-        mypageService.adminBooking(reserveCarDTO);
-        return new RedirectView("/admin/visit-vehicle");
-    }
 }
-
 
