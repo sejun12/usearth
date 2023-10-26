@@ -17,4 +17,32 @@
         WHERE P.POST_CATEGORY = '자유'
         ORDER BY P.POST_MODIFY_DATE DESC
     </select>
+    <select id="selectByFreeRead" parameterType="long" resultType="postDTO">
+        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               P.POST_VIEW_COUNT, P.POST_LIKE_COUNT, U.USER_NAME,
+               (
+                   SELECT COUNT(*)
+                   FROM TBL_LIKE L
+                   WHERE L.POST_ID = P.ID
+               ) AS LIKE_COUNT
+        FROM TBL_POST P
+                 JOIN TBL_USER U ON P.USER_ID = U.ID
+        WHERE P.POST_CATEGORY = '자유' AND P.ID = #{postId}
+        ORDER BY P.POST_WRITE_DATE DESC
+
+    </select>
+    <select id="selectCommentsByPostId" resultType="commentDTO">
+        SELECT C.ID AS COMMENT_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY,
+               P.POST_VIEW_COUNT, U.USER_NAME, COUNT(L.ID) AS LIKE_COUNT
+        FROM TBL_COMMENT C
+                 INNER JOIN TBL_POST P ON C.POST_ID = P.ID
+                 INNER JOIN TBL_USER U ON C.USER_ID = U.ID
+                 LEFT JOIN TBL_LIKE L ON P.ID = L.POST_ID
+        GROUP BY C.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY, P.POST_VIEW_COUNT, U.USER_NAME, C.COMMENT_WRITE_DATE
+        ORDER BY C.COMMENT_WRITE_DATE DESC
+    </select>
+    <insert id="insertComment">
+        INSERT INTO TBL_COMMENT(ID, POST_ID, USER_ID, COMMENT_CONTENT)
+        VALUES(SEQ_COMMENT.NEXTVAL, #{postId}, #{userId}, #{commentContent})
+    </insert>
 </mapper>

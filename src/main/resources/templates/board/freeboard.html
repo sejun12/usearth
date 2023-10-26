@@ -7,12 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>자유 게시판</title>
     <link rel="stylesheet" href="/css/board/freeboard.css">
+    <link rel="stylesheet" href="/css/fix/nav/nav.css">
+    <link rel="stylesheet" href="/css/fix/footer/mainfooter.css">
 </head>
 <body>
     <div id="__nuxt">
         <div id="__layout">
             <div>
                 <!-- header를 감싸고있는 div -->
+                <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
                 <div></div>
                 <!-- 게시글을 감싸고있는 div -->
                 <div class="postsGrid" style="min-height: calc(100vh - 324px);">
@@ -21,6 +24,7 @@
                             <div class="postsBox">
                                 <section class="postsSection">
                                     <div class="posts">
+                                        <div id="postsList">
                                         <!-- 게시글 주소 -->
                                         <a href="">
                                             <article class="agentCard">
@@ -819,11 +823,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="FooterMain" th:replace="~{/fix/footer/mobilefooter :: mobile-footer}"></div>
                 <!-- nav를 감싸는 div -->
                 <div></div>
             </div>
         </div>
     </div>
 </body>
+<script src="/js/fix/nav/nav.js"></script>
 <script src="/js/board/freeboard.js"></script>
 </html>
