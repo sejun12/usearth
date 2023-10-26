@@ -60,7 +60,8 @@ function appendPost(complain) {
       `
     first.appendChild(newDiv);
     //답변이있을때 밑에가 실행입니다
-    if (complain.replyId !== null) {
+    console.log(complain.complainReplyContent);
+    if (complain.complainReplyContent !== null) {
         // 답변을 추가
         const replyLayoutBox = document.createElement('div');
         replyLayoutBox.className = 'replyLayoutBox';
@@ -95,9 +96,6 @@ function appendPost(complain) {
                                                         <div class="infoWrapper">
                                                            <div class="userNameWrapper">
                                                                 <div class="iconNameWrapper">
-                                                                    <div class="nameWrapper">
-                                                                        <div class="userInfoNameEllipsis" style="color: inherit; font-weight: 600;">${complain.complainReplyTitle} </div>
-                                                                    </div>
                                                                     <div class="userInfoWrapper">
                                                                         <div class="adminInfoCompany">
                                                                             <div class="adminCompanyName" style="color: rgb(148, 155, 160);"> Us Earth </div>

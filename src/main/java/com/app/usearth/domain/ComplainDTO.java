@@ -29,8 +29,6 @@ public class ComplainDTO {
     private Long replyId;
     @ApiModelProperty(value = "답변 관리자 번호", example = "비공개")
     private Long adminId;
-    @ApiModelProperty(value = "민원 답변 제목", example = "테스트 답변 제목")
-    private String complainReplyTitle;
     @ApiModelProperty(value = "민원 답변 내용", example = "테스트 답변 내용")
     private String complainReplyContent;
     @ApiModelProperty(value = "민원 처리 날짜", example = "YYYY/MM/DD/hh/mm/ss")

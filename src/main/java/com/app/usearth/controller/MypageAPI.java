@@ -6,12 +6,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,18 +99,36 @@ public class MypageAPI {
    }
 
    @GetMapping("visit/{id}")
-    public List<ReserveCarDTO> visitList(Pagination pagination,@PathVariable Long id){
-       pagination.setTotal(mypageService.getTotal(id));
+    public List<ReserveCarDTO> visitList(SearchVisitDTO searchVisitDTO, Pagination pagination, @PathVariable Long id, HttpServletResponse response){
+       pagination.setTotal(mypageService.getTotal(searchVisitDTO,id));
        pagination.progress();
+
+       response.setHeader("X-Initial-Total-Count", String.valueOf(pagination.getTotal()));
         return mypageService.visitBookingList(pagination,id);
    }
 
     @GetMapping("results/search/{id}")
-    public List<AdminVisitDTO> getResult(@PathVariable Long id,SearchVisitDTO searchDTO, Pagination pagination)  {
-        pagination.setTotal(mypageService.getTotal(id));
+    public List<AdminVisitDTO> getResult(SearchVisitDTO searchVisitDTO,@PathVariable Long id,SearchVisitDTO searchDTO, Pagination pagination,HttpServletResponse response)  {
+        pagination.setTotal(mypageService.getTotal(searchVisitDTO,id));
         pagination.progress();
+
+        response.setHeader("X-Total-Count", String.valueOf(pagination.getTotal()));
+        response.setHeader("X-Start-Page", String.valueOf(pagination.getStartPage()));
+        response.setHeader("X-End-Page", String.valueOf(pagination.getEndPage()));
         return  mypageService.selectSearch(searchDTO,pagination,id);
     }
+    @DeleteMapping("delete/{id}")
+    public String deleteVisit(@PathVariable Long id){
+            mypageService.removeBooking(id);
+            return "/admin/visit-vehicle";
+    }
+    @PostMapping("visit-update")
+    public void adminBooking(@RequestBody ReserveCarDTO reserveCarDTO, HttpSession session){
+        AdminVO adminVO= ((AdminVO)session.getAttribute("admin"));
+        reserveCarDTO.setApartmentId(adminVO.getApartmentId());
+        mypageService.adminBooking(reserveCarDTO);
+    }
+
 }
 
 

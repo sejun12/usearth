@@ -204,14 +204,12 @@ function registrationMessageUpDown() {
             registrationMessageWrap.style.display = 'none';
         }, 200);
     }, 2000);
-}alWrapperGray = document.querySelector(".modalWrapperGray");
+}
 
 document.querySelector(".resetBtn").addEventListener("click", function() {
     location.reload(); // 현재 페이지를 새로고침합니다.
 });
-//----------------------------------------------------------------------------------------
 
-const maintenanceFeeSpan = document.querySelector("#total");
 function showStatus(button) {
         let isToggled = false;
 
@@ -229,15 +227,37 @@ function showStatus(button) {
             isToggled = !isToggled;
         });
 }
+//----------------------------------------------------------------------------------------
 
+
+const maintenanceFeeSpan = document.querySelector("#total");
+const maintenanceFeeContent = document.querySelector(".maintenanceFeeContent");
+
+//처음 화면에 뿌릴 데이터
 async function getVisit(){
-    const response=await fetch("/lists/api/visit/1")
+    //데이터 경로
+    const response=await fetch(`/lists/api/visit/${adminId}`)
    if(response.ok){
        return await response.json();
    }
 }
+
+//시간 바꾸는 함수!!!(시분초 자르기)
+function timeChange(visit){
+    const startDate = visit.visitBookingStartDate;
+    const endDate = visit.visitBookingEndDate;
+
+    const startDateParts = startDate.split(' ')[0].split('-');
+    const endDateParts = endDate.split(' ')[0].split('-');
+
+    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
+    const endDateFormatted = `${endDateParts[0]}-${endDateParts[1]}-${endDateParts[2]}`;
+
+    return { startDateFormatted, endDateFormatted };
+}
+
+//기존 데이터를 넣어서 html만들어서 뿌리기
 function appendVisit(visit) {
-    const maintenanceFeeContent = document.querySelector(".maintenanceFeeContent");
     const first = document.querySelector('.first');
     if (visit) {
         const li = document.createElement('li');
@@ -256,55 +276,88 @@ function appendVisit(visit) {
     `;
 
     first.appendChild(li);
+
+    // 예약취소 버튼 만들고 삭제
     const showDetailButton = li.querySelector('.showDetailBtn');
-    showStatus(showDetailButton);
+        showStatus(showDetailButton);
+        // //예약 취소 눌르면 삭제
+        showDetailButton.addEventListener("click",async ()=>{
+            const visitId=visit.id;
+            const deleteEndpoint = `/lists/api/delete/${visitId}`;
+            const response =await fetch(deleteEndpoint, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json', // Adjust the content type if needed
+                }
+            });
+            if(response.ok){
+                window.location.reload();
+            }
+        })
 }
 else{
     maintenanceFeeContent.style.display='flex';
 }
-
 }
-//시간 바꾸기
-function timeChange(visit){
-    const startDate = visit.visitBookingStartDate;
-    const endDate = visit.visitBookingEndDate;
-
-    const startDateParts = startDate.split(' ')[0].split('-');
-    const endDateParts = endDate.split(' ')[0].split('-');
-
-    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
-    const endDateFormatted = `${endDateParts[0]}-${endDateParts[1]}-${endDateParts[2]}`;
-
-    return { startDateFormatted, endDateFormatted };
+//여기서 위쪽데이터 foreach로하나씩 다뿌리는걸 사용
+async function showList() {
+    const visit = await getVisit();
+    visit.forEach((visit) => {
+        appendVisit(visit);
+    });
 }
-
-let page = 1;
-let isLoading = false;
-
-function showList() {
-    if (isLoading) return;
-
-    isLoading = true;
-    getVisit().then((visit) => {
-        // maintenanceFeeSpan.innerHTML = `총 ${visit.length}건`;
-        // const rowCount = 51;
-        // const offset = (page - 1) * rowCount;
-        // const limit = offset + rowCount;
-        // visit = visit.slice(offset, limit);
-
-        if(visit.length > 0) {
-            visit.forEach((visit) => {
-                appendVisit(visit);
-            });
-            page++;
-        }
-        isLoading = false;
-    })
-}
+//처음화면 뿌려보자~~
 showList();
+// ____________________________________________
+async function getPosts(page) {
+    const id=adminId;
+    const url = `/lists/api/visit/${id}?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            const data = await response.json();
+            //페이지이동후 랜더링
+            renderData(data);
+            const initialCount = response.headers.get('X-Initial-Total-Count');
+            maintenanceFeeSpan.innerText = `총 ${initialCount}건`;
+        } else {
+            console.error('데이터를 가져오는데 실패했습니다.');
+        }
+    } catch (error) {
+        console.error('데이터를 가져오는데 실패했습니다.', error);
+    }
+}
+//검색 하기전 페이지 이동
+async function updatePagination() {
+    await getPosts(currentPage);
+}
 
+// 데이터를 화면에 렌더링하는 함수
+function renderData(data) {
+    const first = document.querySelector('.first');
+    first.innerHTML = ''; // 기존 데이터 지우기
+    data.forEach((resident) => {
+        appendVisit(resident);
+    });
+    // 요소의 텍스트 내용 변경 검색시 바뀔 총 데이터 수
+    if (maintenanceFeeSpan) {
+        maintenanceFeeSpan.innerText = `총 ${total}건`;
+    }
+}
+// --------------------------------------------------------------------------------------
 //검색 !!
-async function fetchData() {
+let total = 0;
+let startPage = 0;
+let endPage = 0;
+let currentPage = 1; // 현재 페이지
+
+//검색할 키워드들 데이터 가지고오기  페이지도 붙여서
+async function fetchData(page) {
 // 검색 버튼 클릭 이벤트 핸들러
         // 여기에서 필요한 데이터 가져오는 로직을 작성합니다.
         const searchTitle = document.getElementById("searchTitle").value.trim();
@@ -312,10 +365,12 @@ async function fetchData() {
         const endDate = document.querySelector(".searchContainer input[type='date']:nth-of-type(2)").value;
         const searchDong = document.getElementById("categorySpan").textContent.match(/\d+/g);
         const searchHo = document.getElementById("searchHo").value.trim();
-        const id = 1;  // 예시로 사용한 ID
+        const id = adminId;  // 예시로 사용한 ID
         const baseUrl = `/lists/api/results/search/${id}`;
         let url = baseUrl;
         const params = [];
+        //페이지도 붙여서 보내자 검색
+        params.push(`page=${page}`);
         if (searchTitle) {
             params.push(`visitBookingCarNumber=${searchTitle}`);
         }
@@ -336,74 +391,62 @@ async function fetchData() {
         if (params.length > 0) {
             const paramString = params.join("&");
             url = `${baseUrl}?${paramString}`;
-            console.log(url)
         }
-
         try {
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
             }
-            // 데이터를 처리
-            return await response.json();
+            // HTTP 응답 헤더에서 pagination 정보를 읽어옴
+            total = response.headers.get('X-Total-Count');
+            startPage = response.headers.get('X-Start-Page');
+            endPage = response.headers.get('X-End-Page');
+            return await response.json(); // JSON 데이터를 가져옵니다.
         } catch (error) {
             // 오류 처리
             console.error("오류 발생: ", error);
         }
-    };
-
-// 화면 업데이트
-function updateUI(data) {
-    const maintenanceFeeContent = document.querySelector(".maintenanceFeeContent");
-    const first = document.querySelector('.first');
-    first.innerHTML = ""; // 이전 내용을 지우고 새로운 내용으로 갱신
-
-    if (data.length > 0) {
-        data.forEach((visit) => {
-            const li = document.createElement('li');
-            const time = timeChange(visit);
-            li.innerHTML = `
-                <div class="maintenanceFeeList">
-                    <div class="barBtnOne">${visit.userDong}</div>
-                    <div class="barBtnOne">${visit.userHo}</div>
-                    <div style="width: 140px;" class="barBtnOne">${visit.visitBookingCarNumber}</div>
-                    <div style="width: 200px;" class="barBtnOne">${time.startDateFormatted + "~" + time.endDateFormatted}</div>
-                    <div style="width: 140px;" class="barBtnOne">${visit.visitBookingPurpose}</div>
-                    <div style="width: 140px;" class="barBtnOne">
-                        <button type="button" class="showDetailBtn">취소하기</button>
-                    </div>
-                </div>
-            `;
-            first.appendChild(li);
-            const showDetailButton = li.querySelector('.showDetailBtn');
-            showStatus(showDetailButton);
-            maintenanceFeeContent.style.display='none';
-        });
-    } else {
-        maintenanceFeeContent.style.display = 'flex';
     }
-}
 
-// 검색 버튼 클릭 이벤트 핸들러
+// 검색 버튼 클릭 이벤트 fetchData여기서 받은 데이터 가져와서 사용
+//none 처리를 위한 선언
+const maintenanceFeeBar=document.querySelector(".maintenanceFeeBar");
+const pageBtn=document.querySelector("#pagination");
+//검색버튼눌렀을때 아닐때 구분을 위해 isSearchMode 선언
+let isSearchMode = false;
 document.getElementById("registerMaintenanceFeeBtn").addEventListener("click", async () => {
-    const ulElement = document.querySelector('.pageButtonLists');
-    ulElement.innerHTML = '';
-    fetchData().then((visit) => {
-        maintenanceFeeSpan.innerHTML = `총 ${visit.length}건`;
-        updateUI(visit);
-    });
-    createPaginationButtons(); // 검색 결과에 따라 새로운 페이지 버튼 생성
-
-    // currentPage = 1; // 검색 결과에 따라 현재 페이지를 다시 1로 설정
-    // await updatePagination(); // 첫 번째 페이지 데이터 가져오기
+         currentPage =1; //처음 페이지 이동하고 검색하면 안나옴 페이지 초기화
+        isSearchMode = true; // 검색 버튼을 누를 때 검색 모드로 설정
+         const visit = await fetchData(currentPage);
+        if(visit.length>0){
+            await updatePaginationAfterSearch(visit);
+            maintenanceFeeContent.style.display='none';
+            maintenanceFeeBar.style.display='';
+            pageBtn.style.display='block';
+        }
+        else {
+            createPaginationButtons();
+            renderData(visit)
+            maintenanceFeeContent.style.display='flex';
+            maintenanceFeeBar.style.display='none';
+            pageBtn.style.display='none';
+        }
+    // });
 });
-
+//기존에 페이지 이동후  검색후 페이지 이동식 데이터
+async function updatePaginationAfterSearch(data) {
+            pagination.total = total;
+            pagination.startPage = startPage;
+            pagination.endPage = endPage;
+            createPaginationButtons(); // pagination 정보를 업데이트한 후 버튼을 다시 생성
+            renderData(data);//검색결과에 따라 랜더링
+}
+// ______________________________________________________________________________________________-
+//  버튼 만들기 버튼 클래스 타입 추가
 
 function createPaginationButtons() {
-
     const ulElement = document.querySelector('.pageButtonLists');
-    ulElement.innerHTML = ''; // 기존 버튼을 지웁니다.
-
+    ulElement.innerHTML = ''; // Clear existing buttons
 
     for (let i = pagination.startPage; i <= pagination.endPage; i++) {
         const liElement = document.createElement('li');
@@ -415,10 +458,10 @@ function createPaginationButtons() {
 
         const spanElement = document.createElement('span');
         spanElement.classList.add('content-primary');
-        spanElement.textContent = i; // 페이지 번호
+        spanElement.textContent = i; // Page number
 
         if (i === pagination.startPage) {
-            spanElement.classList.add('blueText'); // 첫 번째 페이지 번호에 blueText 클래스 추가
+            spanElement.classList.add('blueText');
         }
 
         buttonElement.appendChild(spanElement);
@@ -427,105 +470,77 @@ function createPaginationButtons() {
     }
 }
 
-createPaginationButtons();
-
-
-const paginations = document.getElementById('pagination');
-const first = document.querySelector('.first');
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
-let currentPage = 1; // 현재 페이지
-
-// 페이지 번호 클릭 이벤트 처리
-paginations.addEventListener('click', async function (event) {
+async function handlePageNumberClick(event) {
     if (event.target.classList.contains('buttonNumber')) {
-        // 모든 페이지 번호에서 파란색 스타일 제거
-        const pageButtons = document.querySelectorAll('.content-primary');
-        pageButtons.forEach(button => button.classList.remove('blueText'));
-
         const newPage = parseInt(event.target.textContent);
         if (!isNaN(newPage)) {
             currentPage = newPage;
-         await updatePagination();
-
-            // 클릭한 페이지 번호에 파란색 스타일 추가
-            event.target.querySelector('.content-primary').classList.add('blueText');
+            //검색인지 아닌지 검색일떄 구분
+            if (isSearchMode) {
+                updateButtonHighlights();
+                await  updatePaginationAfterSearch(await fetchData(currentPage));
+            } else {
+                await  updatePagination();
+            }
+            updateButtonHighlights();
         }
     }
-});
+}
 
-
-// 이전 페이지 버튼 클릭 이벤트 처리
-prevButton.addEventListener('click', async function () {
+//이전버튼
+async function handlePrevButtonClick() {
     if (currentPage > 1) {
-        // 모든 페이지 번호에서 파란색 스타일 제거
-        const pageButtons = document.querySelectorAll('.content-primary');
-        pageButtons.forEach(button => button.classList.remove('blueText'));
-
         currentPage--;
-      await updatePagination();
-
-        // 현재 페이지 번호에 파란색 스타일 추가
-        const currentButton = document.querySelector(`.content-primary:nth-child(${currentPage})`);
-        if (currentButton) {
-            currentButton.classList.add('blueText');
+        if (isSearchMode) {
+            await updatePaginationAfterSearch(await fetchData(currentPage));
+        } else {
+            await updatePagination();
         }
+        updateButtonHighlights();
     }
-});
+}
 
-// 다음 페이지 버튼 클릭 이벤트 처리
-nextButton.addEventListener('click', async function () {
-    const pageButtons = document.querySelectorAll('.content-primary'); // 모든 페이지 번호 요소를 선택합니다.
-    const maxPage = pageButtons.length; // 페이지 번호 요소의 개수를 최대 페이지로 설정합니다.
+//다음버튼
+async function handleNextButtonClick() {
+    const pageButtons = document.querySelectorAll('.content-primary');
+    const maxPage = pageButtons.length;
 
-    // 현재 페이지 번호에서 파란색 스타일 제거
-    pageButtons[currentPage - 1].classList.remove('blueText');
-
-    // 다음 페이지로 이동
     currentPage++;
 
     if (currentPage > maxPage) {
         currentPage--;
     }
-
-    // 다음 페이지 번호에 파란색 스타일 추가
-    pageButtons[currentPage - 1].classList.add('blueText');
-
-    await updatePagination();
-});
-
-
-
-// 페이지 업데이트 함수
-async function updatePagination() {
-    await getPosts(currentPage);
-}
-async function getPosts(page) {
-    const id=1;
-    const url = `/lists/api/visit/${id}?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
-    try {
-        const response = await fetch(url)
-        if (response.ok) {
-            const data = await response.json();
-            // 데이터 가져오기 성공
-
-            renderData(data);
-        } else {
-            console.error('데이터를 가져오는데 실패했습니다.');
-        }
-    } catch (error) {
-        console.error('데이터를 가져오는데 실패했습니다.', error);
+    if (isSearchMode) {
+        await updatePaginationAfterSearch(await fetchData(currentPage));
+    } else {
+        await updatePagination();
     }
+    updateButtonHighlights();
 }
-// 데이터를 화면에 렌더링하는 함수
-function renderData(data) {
-    first.innerHTML = ''; // 기존 데이터 지우기
-
-    data.forEach((resident) => {
-        appendVisit(resident);
+//검색하고 버튼 색 초기화 험수
+function updateButtonHighlights() {
+    const pageButtons = document.querySelectorAll('.content-primary');
+    pageButtons.forEach((button, index) => {
+        if (index === currentPage - pagination.startPage) {
+            button.classList.add('blueText');
+        } else {
+            button.classList.remove('blueText');
+        }
     });
 }
 
+//검색 만들기 실행 !!
+createPaginationButtons();
+const pageNumber = document.getElementById('pagination');
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+
+// 클릭이벤트 걸기
+pageNumber.addEventListener('click', handlePageNumberClick);
+prevButton.addEventListener('click', handlePrevButtonClick);
+nextButton.addEventListener('click', handleNextButtonClick);
+
+// _____________________________________________________________________________--
 //방문차량 등록
 confirmRegistrationBtn.addEventListener("click", async () => {
     const data = {
@@ -537,22 +552,23 @@ confirmRegistrationBtn.addEventListener("click", async () => {
         visitBookingCarNumber: document.querySelector("input[name='visitBookingCarNumber']").value
     };
 
-   await postDataToServer(data);
-
+    await postDataToServer(data);
+    window.location.reload();
 })
 
 async function postDataToServer(data) {
     try {
-        const response = await fetch('/admin/visit-vehicle', {
+        const response = await fetch('/lists/api/visit-update', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json;charset=utf-8"
+                "Content-Type": "application/json;charset=utf-8",
             },
             body: JSON.stringify(data),
         });
 
         if (response.ok) {
             return await response.text();
+
         } else {
             console.error('서버에서 오류 응답을 받았습니다.');
             return null; // 또는 다른 오류 처리
@@ -562,4 +578,3 @@ async function postDataToServer(data) {
         return null; // 또는 다른 오류 처리
     }
 }
-
