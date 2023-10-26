@@ -1,8 +1,10 @@
 package com.app.usearth.mapper;
 
-import com.app.usearth.domain.AdminVO;
+import com.app.usearth.domain.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Optional;
 @Mapper
 public interface AdminComplainMapper {
@@ -11,4 +13,25 @@ public interface AdminComplainMapper {
 
 //    관리자 아이디 찾기
     public Optional<AdminVO> selectByEmail(AdminVO adminVO);
+
+//    아파트 아이디로 민원목록 불러오기
+    public List<ComplainAdminDTO> selectComplainByAptId(@Param("pagination")Pagination pagination, Long apartmentId, @Param("searchComplain") SearchComplain searchComplain);
+
+//    아파트 민원 전체 수 조회
+    public int selectTotalByAptId(Long apartmentId, @Param("searchComplain") SearchComplain searchComplain);
+
+//    민원 접수완료 수 조회
+    public int selectReceptionByAptId(Long apartmentId, @Param("searchComplain") SearchComplain searchComplain);
+
+//    민원 처리중 수 조회
+    public int selectProcessingByAptId(Long apartmentId, @Param("searchComplain") SearchComplain searchComplain);
+
+//    민원 처리완료 수 조회
+    public int selectCompleteByAptId(Long apartmentId, @Param("searchComplain") SearchComplain searchComplain);
+
+//    민원 정보 조회
+    public Optional<ComplainAdminDTO> selectComplainById(Long apartmentId, Long id);
+
+//    민원 상태 수정
+    public void updateComplainStatus(ComplainVO complainVO);
 }

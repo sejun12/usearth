@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -296,7 +296,7 @@
                                 <div>
                                     <div>
                                         <div style="background-color: rgba(213,227,246,0.18);" class="imposingMonthLabel">
-                                            <div class="imposingYear"></div>
+                                            <div class="imposingYear" th:text="${complain.complainTitle}"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -344,5 +344,8 @@
 
 </div>
 </body>
+<script th:inline="javascript">
+    const complain = [[${complain}]]
+</script>
 <script src="/js/admin/complain-reply.js"></script>
 </html>

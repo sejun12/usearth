@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.AdminComplainMapper">
+
     <select id="selectByLogin" resultType="adminVO">
         SELECT ID, APARTMENT_ID, ADMIN_IDENTIFICATION, ADMIN_PASSWORD, ADMIN_NAME FROM TBL_ADMIN
         WHERE ADMIN_IDENTIFICATION = #{adminIdentification} AND ADMIN_PASSWORD = #{adminPassword}
@@ -10,4 +11,154 @@
         SELECT ADMIN_IDENTIFICATION, ADMIN_PASSWORD FROM TBL_ADMIN
         WHERE ADMIN_IDENTIFICATION = #{adminIdentification}
     </select>
+
+    <select id="selectComplainByAptId" resultType="complainAdminDTO">
+        SELECT AC2.ID, USER_NAME, USER_DONG, USER_HO, APARTMENT_ID, USER_ID, CATEGORY_COMPLAIN_ID, COMPLAIN_TITLE, COMPLAIN_CONTENT, COMPLAIN_DATE, COMPLAIN_STATUS, COMPLAIN_PROCESSING_DATE, CATEGORY_COMPLAIN_NAME
+        FROM (
+                 SELECT ROWNUM R, AC.ID, USER_NAME, USER_DONG, USER_HO, APARTMENT_ID, USER_ID, CATEGORY_COMPLAIN_ID, COMPLAIN_TITLE, COMPLAIN_CONTENT, COMPLAIN_DATE, COMPLAIN_STATUS, COMPLAIN_PROCESSING_DATE, CATEGORY_COMPLAIN_NAME
+                 FROM (
+                          SELECT C.ID, USER_NAME, USER_DONG, USER_HO, APARTMENT_ID, USER_ID, CATEGORY_COMPLAIN_ID, COMPLAIN_TITLE, COMPLAIN_CONTENT, COMPLAIN_DATE, COMPLAIN_STATUS, COMPLAIN_PROCESSING_DATE, CATEGORY_COMPLAIN_NAME
+                          FROM TBL_USER U
+                          JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID
+                          JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                          WHERE U.APARTMENT_ID = #{apartmentId}
+                          <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
+                               AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
+                          </if>
+                          <if test="searchComplain.keyword != null and !searchComplain.keyword.equals('')">
+                               AND USER_NAME LIKE '%' || #{searchComplain.keyword} || '%' OR COMPLAIN_TITLE LIKE '%' || #{searchComplain.keyword} || '%'
+                          </if>
+                          <if test="searchComplain.complainStatus != null and !searchComplain.complainStatus.equals('')">
+                               AND COMPLAIN_STATUS LIKE '%' || #{searchComplain.complainStatus} || '%'
+                          </if>
+                          <if test="searchComplain.startDate != null and !searchComplain.startDate.equals('')">
+                               AND COMPLAIN_DATE &gt;= #{searchComplain.startDate}
+                          </if>
+                          <if test="searchComplain.endDate != null and !searchComplain.endDate.equals('')">
+                               AND COMPLAIN_DATE &lt;= #{searchComplain.endDate}
+                          </if>
+                          ORDER BY C.ID DESC
+                      ) AC
+    <![CDATA[
+                 WHERE ROWNUM <= #{pagination.endRow}
+             ) AC2
+        WHERE AC2.R >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotalByAptId" resultType="int">
+        SELECT COUNT(AC.ID)
+        FROM (
+                 SELECT C.ID
+                 FROM TBL_USER U
+                 JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 WHERE U.APARTMENT_ID = #{apartmentId}
+                 <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
+                      AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
+                 </if>
+                 <if test="searchComplain.keyword != null and !searchComplain.keyword.equals('')">
+                      AND USER_NAME LIKE '%' || #{searchComplain.keyword} || '%' OR COMPLAIN_TITLE LIKE '%' || #{searchComplain.keyword} || '%'
+                 </if>
+                 <if test="searchComplain.complainStatus != null and !searchComplain.complainStatus.equals('')">
+                      AND COMPLAIN_STATUS LIKE '%' || #{searchComplain.complainStatus} || '%'
+                 </if>
+                 <if test="searchComplain.startDate != null and !searchComplain.startDate.equals('')">
+                      AND COMPLAIN_DATE &gt;= #{searchComplain.startDate}
+                 </if>
+                 <if test="searchComplain.endDate != null and !searchComplain.endDate.equals('')">
+                      AND COMPLAIN_DATE &lt;= #{searchComplain.endDate}
+                 </if>
+             ) AC
+    </select>
+
+    <select id="selectReceptionByAptId" resultType="int">
+        SELECT COUNT(AC.ID)
+        FROM (
+                 SELECT C.ID
+                 FROM TBL_USER U
+                 JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID AND C.COMPLAIN_STATUS = '접수완료'
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 WHERE U.APARTMENT_ID = #{apartmentId}
+                 <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
+                      AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
+                 </if>
+                 <if test="searchComplain.keyword != null and !searchComplain.keyword.equals('')">
+                      AND USER_NAME LIKE '%' || #{searchComplain.keyword} || '%' OR COMPLAIN_TITLE LIKE '%' || #{searchComplain.keyword} || '%'
+                 </if>
+                 <if test="searchComplain.complainStatus != null and !searchComplain.complainStatus.equals('')">
+                      AND COMPLAIN_STATUS LIKE '%' || #{searchComplain.complainStatus} || '%'
+                 </if>
+                 <if test="searchComplain.startDate != null and !searchComplain.startDate.equals('')">
+                      AND COMPLAIN_DATE &gt;= #{searchComplain.startDate}
+                 </if>
+                 <if test="searchComplain.endDate != null and !searchComplain.endDate.equals('')">
+                      AND COMPLAIN_DATE &lt;= #{searchComplain.endDate}
+                 </if>
+             ) AC
+    </select>
+
+    <select id="selectProcessingByAptId" resultType="int">
+        SELECT COUNT(AC.ID)
+        FROM (
+                 SELECT C.ID
+                 FROM TBL_USER U
+                 JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID AND C.COMPLAIN_STATUS = '진행중'
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 WHERE U.APARTMENT_ID = #{apartmentId}
+                 <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
+                      AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
+                 </if>
+                 <if test="searchComplain.keyword != null and !searchComplain.keyword.equals('')">
+                      AND USER_NAME LIKE '%' || #{searchComplain.keyword} || '%' OR COMPLAIN_TITLE LIKE '%' || #{searchComplain.keyword} || '%'
+                 </if>
+                 <if test="searchComplain.complainStatus != null and !searchComplain.complainStatus.equals('')">
+                      AND COMPLAIN_STATUS LIKE '%' || #{searchComplain.complainStatus} || '%'
+                 </if>
+                 <if test="searchComplain.startDate != null and !searchComplain.startDate.equals('')">
+                      AND COMPLAIN_DATE &gt;= #{searchComplain.startDate}
+                 </if>
+                 <if test="searchComplain.endDate != null and !searchComplain.endDate.equals('')">
+                      AND COMPLAIN_DATE &lt;= #{searchComplain.endDate}
+                 </if>
+             ) AC
+    </select>
+
+    <select id="selectCompleteByAptId" resultType="int">
+        SELECT COUNT(AC.ID)
+        FROM (
+                 SELECT C.ID
+                 FROM TBL_USER U
+                 JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID AND C.COMPLAIN_STATUS = '처리완료'
+                 JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
+                      AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
+                 </if>
+                 <if test="searchComplain.keyword != null and !searchComplain.keyword.equals('')">
+                      AND USER_NAME LIKE '%' || #{searchComplain.keyword} || '%' OR COMPLAIN_TITLE LIKE '%' || #{searchComplain.keyword} || '%'
+                 </if>
+                 <if test="searchComplain.complainStatus != null and !searchComplain.complainStatus.equals('')">
+                      AND COMPLAIN_STATUS LIKE '%' || #{searchComplain.complainStatus} || '%'
+                 </if>
+                 <if test="searchComplain.startDate != null and !searchComplain.startDate.equals('')">
+                      AND COMPLAIN_DATE &gt;= #{searchComplain.startDate}
+                 </if>
+                 <if test="searchComplain.endDate != null and !searchComplain.endDate.equals('')">
+                      AND COMPLAIN_DATE &lt;= #{searchComplain.endDate}
+                 </if>
+             ) AC
+    </select>
+
+    <select id="selectComplainById" resultType="complainAdminDTO">
+        SELECT C.ID, USER_NAME, USER_DONG, USER_HO, APARTMENT_ID, USER_ID, CATEGORY_COMPLAIN_ID, COMPLAIN_TITLE, COMPLAIN_CONTENT, COMPLAIN_DATE, COMPLAIN_STATUS, COMPLAIN_PROCESSING_DATE, CATEGORY_COMPLAIN_NAME
+        FROM TBL_USER U
+        JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID AND U.APARTMENT_ID = #{apartmentId} AND C.ID = #{id}
+        JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+    </select>
+
+    <update id="updateComplainStatus">
+        UPDATE TBL_COMPLAIN
+        SET COMPLAIN_STATUS = #{complainStatus}
+        WHERE ID = #{id}
+    </update>
 </mapper>
