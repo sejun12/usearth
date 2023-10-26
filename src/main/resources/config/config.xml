@@ -16,5 +16,9 @@
         <typeAlias type="com.app.usearth.domain.ReserveCarDTO" alias="reserveCarDTO" />
         <typeAlias type="com.app.usearth.domain.AdminVisitDTO" alias="adminVisitDTO" />
         <typeAlias type="com.app.usearth.domain.SearchVisitDTO" alias="searchVisitDTO"/>
+        <typeAlias type="com.app.usearth.domain.ComplainVO" alias="complainVO" />
+        <typeAlias type="com.app.usearth.domain.ComplainAdminDTO" alias="complainAdminDTO"/>
+        <typeAlias type="com.app.usearth.domain.SearchComplain" alias="searchComplain"/>
+        <typeAlias type="com.app.usearth.domain.SearchComplainDTO" alias="searchComplainDTO"/>
     </typeAliases>
 </configuration>

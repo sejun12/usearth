@@ -18,7 +18,7 @@
         ORDER BY P.POST_MODIFY_DATE DESC
     </select>
     <select id="selectByRecyclingRead" parameterType="long" resultType="postDTO">
-        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_MODIFY_DATE,
                P.POST_VIEW_COUNT, P.POST_LIKE_COUNT, U.USER_NAME,
                (
                    SELECT COUNT(*)
@@ -28,7 +28,7 @@
         FROM TBL_POST P
                  JOIN TBL_USER U ON P.USER_ID = U.ID
         WHERE P.POST_CATEGORY = '재활용' AND P.ID = #{postId}
-        ORDER BY P.POST_WRITE_DATE DESC
+        ORDER BY P.POST_MODIFY_DATE DESC
     </select>
     <select id="selectCommentsByPostId" resultType="commentDTO">
         SELECT C.ID AS COMMENT_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY,

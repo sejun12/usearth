@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 public class AdminVO implements Serializable {
     private Long id;
-    private String apartmentId;
+    private Long apartmentId;
     private String adminIdentification;
     private String adminPassword;
     private String adminName;
