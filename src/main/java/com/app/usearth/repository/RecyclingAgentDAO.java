@@ -28,21 +28,28 @@ public class RecyclingAgentDAO {
     }
 
 //  주어진 id에 해당하는 재활용 관련 글을 반환
-    public Optional<PostDTO> selectByRecyclingRead(Long id) {
+    public Optional<PostDTO> findByRecyclingReadId(Long id) {
 
         return recyclingAgentMapper.selectByRecyclingRead(id);
     }
 
-//  postId에 해당하는 댓글 목록을 반환
+//  주어진 id에 해당하는 자유 게피물 관련 글을 반환
+    public List<PostDTO> findRelatedPostsById(Long id) {
+
+        return recyclingAgentMapper.selectByReadFree(id);
+    }
+
+    //  postId에 해당하는 댓글 목록을 반환
     public List<CommentDTO> selectCommentsByPostId(Long postId) {
         return recyclingAgentMapper.selectCommentsByPostId(postId);
     }
 
-//  매개변수로 받은 CommentDTO 객체를 사용하여 RecyclingAgentMapper의 insertComment 메서드를 호출
+//  매개변수로 받은 CommentDTO 객체를 사용하여 RecyclingAgentMapper의 insertComment 메소드를 호출
 //  CommentDTO에 담긴 댓글 데이터가 DB에 저장
     public void insertComment(CommentDTO comment) {
 
         recyclingAgentMapper.insertComment(comment);
     }
+
 
 }
