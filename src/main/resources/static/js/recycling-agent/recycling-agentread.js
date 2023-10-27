@@ -100,10 +100,11 @@ function appendPost(post) {
 // 관련 게시물들을 서버에서 가져옴 (주어진 게시물 ID와 관련된 다른 게시물들을 가져옴)
 async function getRelatedPost() {
     const response = await fetch(`/recycling-reads/api/read/${postId}`);
+    const json = await response.json();
     if (!response.ok) {
         throw new Error(`HTTP 오류 상태 : ${response.status}`);
     }
-    return response.json();
+    renderData(json);
 }
 
 function appendRelatedPosts(li, relatedPost){
@@ -137,50 +138,52 @@ function renderData(relatedPosts) {
     })
 }
 
-async function showList() {
-    try {
-        const postDetail = await getPostDetail(postId);
-        appendPost(postDetail);
 
-        const relatedPostsData = await getRelatedPost(postId);
-        console.log(relatedPostsData);  // relatedPostsData의 값 확인
 
-        const relatedPosts = relatedPostsData.randomFreePosts;
-
-        if (Array.isArray(relatedPosts)) {  // relatedPosts가 배열인지 확인
-            relatedPosts.forEach((post) => {
-                const li = document.createElement('li');
-                document.querySelector(".postListTable").appendChild(li);
-                appendRelatedPosts(li, post);
-            });
-        } else {
-            console.error("relatedPosts가 배열이 아닙니다:", relatedPosts);
-        }
-    } catch (error) {
-        console.error("게시글을 불러오는 중 에러 발생:", error);
-    }
-}
-
-showList();
-
-window.onload = async function() {
-    try {
-        // 현재 페이지의 게시글 ID를 가져옴
-        const postId = getCurrentPostId();
-        console.log(postId);
-
-        // 게시물의 정보를 가져옴
-        const post = await getPostDetail(postId);
-        console.log(post);
-
-        // 관련 게시글들을 가져옴
-        const relatedPosts = await getRelatedPost(postId);
-        console.log(relatedPosts);
-
-    } catch (error) {
-        console.error("데이터를 불러오는데 오류가 발생했습니다.", error);
-    }
-}
+// async function showList() {
+//     try {
+//         const postDetail = await getPostDetail(postId);
+//         // appendPost(postDetail);
+//
+//         const relatedPostsData = await getRelatedPost(postId);
+//         console.log(relatedPostsData);  // relatedPostsData의 값 확인
+//
+//         const relatedPosts = relatedPostsData.randomFreePosts;
+//
+//         if (Array.isArray(relatedPosts)) {  // relatedPosts가 배열인지 확인
+//             relatedPosts.forEach((post) => {
+//                 const li = document.createElement('li');
+//                 document.querySelector(".postListTable").appendChild(li);
+//                 appendRelatedPosts(li, post);
+//             });
+//         } else {
+//             console.error("relatedPosts가 배열이 아닙니다:", relatedPosts);
+//         }
+//     } catch (error) {
+//         console.error("게시글을 불러오는 중 에러 발생:", error);
+//     }
+// }
+//
+// showList();
+//
+// window.onload = async function() {
+//     try {
+//         // 현재 페이지의 게시글 ID를 가져옴
+//         const postId = getCurrentPostId();
+//         console.log(postId);
+//
+//         // 게시물의 정보를 가져옴
+//         const post = await getPostDetail(postId);
+//         console.log(post);
+//
+//         // 관련 게시글들을 가져옴
+//         const relatedPosts = await getRelatedPost(postId);
+//         console.log(relatedPosts);
+//
+//     } catch (error) {
+//         console.error("데이터를 불러오는데 오류가 발생했습니다.", error);
+//     }
+// }
 
 
 
@@ -214,3 +217,17 @@ document.getElementById("submitCommentButton").addEventListener("click", functio
         textField.value = "";
     }
 });
+
+
+// 모달 창
+document.querySelector(".buttonIconMedium").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'block'
+})
+
+document.querySelector(".overlay").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'none'
+})
+
+document.querySelector(".cancle").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'none'
+})
