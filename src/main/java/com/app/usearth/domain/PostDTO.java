@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class PostDTO {
     private Long id;
     private Long userId;
+    private String userName;
     private String postTitle;
     private String postContent;
     private String postWriteDate;
