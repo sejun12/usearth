@@ -15,7 +15,9 @@ public interface RecyclingAgentMapper {
 
     public Optional<PostDTO> selectByRecyclingRead(Long id);
 
+    public List<PostDTO> selectByReadFree(Long id);
+
     public List<CommentDTO> selectCommentsByPostId(Long postId);
     public void insertComment(CommentDTO comment);
 
-   }
+}
