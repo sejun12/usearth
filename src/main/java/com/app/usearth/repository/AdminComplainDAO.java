@@ -35,6 +35,15 @@ public class AdminComplainDAO {
     //    민원 정보 조회
     public Optional<ComplainAdminDTO> findComplainById(Long apartmentId, Long id){return adminComplainMapper.selectComplainById(apartmentId, id);}
 
+    //    민원 카테고리 이름으로 해당 아이디 조회
+    public Long findCategoryComplainIdByName(String categoryComplainName){return adminComplainMapper.selectCategoryComplainIdByName(categoryComplainName);}
+
     //    민원 상태 수정
     public void updateComplainStatus(ComplainVO complainVO){adminComplainMapper.updateComplainStatus(complainVO);}
+
+    //    민원 답변 작성
+    public void setComplainReply(ComplainReplyVO complainReplyVO){adminComplainMapper.insertComplainReply(complainReplyVO);}
+
+    //    민원 답변 날짜 및 상태 수정
+    public void updateComplainProcessingDate(ComplainVO complainVO){adminComplainMapper.updateComplainProcessingDate(complainVO);}
 }

@@ -1,18 +1,12 @@
 package com.app.usearth.controller;
 
-import com.app.usearth.domain.AdminVO;
-import com.app.usearth.domain.ComplainAdminDTO;
-import com.app.usearth.domain.Pagination;
-import com.app.usearth.domain.SearchComplain;
+import com.app.usearth.domain.*;
 import com.app.usearth.service.AdminComplainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,6 +40,12 @@ public class AdminComplainController {
         }
     }
 
+    @GetMapping("/logout")
+    public RedirectView logout(HttpSession session){
+        session.invalidate();
+        return new RedirectView("/admin/admin-login");
+    }
+
     @GetMapping("complain-management")
     public void goToAdminComplainManagement() {;}
 
@@ -54,6 +54,22 @@ public class AdminComplainController {
         AdminVO adminVO = ((AdminVO)session.getAttribute("admin"));
         Optional<ComplainAdminDTO> foundComplain = adminComplainService.getComplainById(adminVO.getApartmentId(), id);
         foundComplain.ifPresent(complainAdminDTO -> model.addAttribute("complain", complainAdminDTO));
+
         return "/admin/complain-reply";
+    }
+
+    @PostMapping("complain-reply/{id}")
+    public RedirectView writeReply(@PathVariable Long id, @RequestParam("complainReplyContent")String complainReplyContent, @RequestParam("categoryComplainName")String categoryComplainName, HttpSession session){
+        AdminVO adminVO = ((AdminVO)session.getAttribute("admin"));
+
+        ComplainReplyDTO complainReplyDTO = new ComplainReplyDTO();
+        complainReplyDTO.setComplainId(id);
+        complainReplyDTO.setComplainReplyContent(complainReplyContent);
+        complainReplyDTO.setAdminId(adminVO.getId());
+        complainReplyDTO.setCategoryComplainName(categoryComplainName);
+
+        adminComplainService.writeComplainReply(complainReplyDTO);
+
+        return new RedirectView("/admin/complain-management");
     }
 }

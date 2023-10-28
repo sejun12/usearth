@@ -14,7 +14,7 @@
     <nav class="innerWrapperNav">
       <div>
         <div class="navInner">
-          <a href="">
+          <a href="/admin/resident-list">
             <img class="svg2" src="/images/complain-management-image/usEarth_logo.png"/>
           </a>
           <div class="aBelow"></div>
@@ -23,95 +23,27 @@
           </div>
         </div>
       </div>
-      <div class="innerBody">
-        <div class="relative">
-          <button class="profileBtn">
-                <span
-                  style="
-                    box-sizing: border-box;
-                    display: block;
-                    overflow: hidden;
-                    width: initial;
-                    height: initial;
-                    background: none;
-                    opacity: 1;
-                    border: 0px;
-                    margin: 0px;
-                    padding: 0px;
-                    position: absolute;
-                    inset: 0px;
-                  "
-                ><img
-                  alt="프로필 이미지"
-                  sizes="100vw"
-                  src="/images/complain-management-image/userProfile.png"
-                  decoding="async"
-                  data-nimg="fill"
-                  class="rounded-full"
-                  style="
-                      position: absolute;
-                      inset: 0px;
-                      box-sizing: border-box;
-                      padding: 0px;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0px;
-                      height: 0px;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                      object-fit: cover;
-                      object-position: center center;
-                    "
-                /></span>
-          </button>
-          <!--여기에 프로필 모달 구현 -->
-          <div class="profileModalWrapper">
-            <ul class="profileUl">
-              <li tabindex="-1" class="undefined">
-                <div class="profileLi1">
-                  <span id="profileName">관리자1</span>
-                  <span id="profileEmail">dain1221@naver.com</span>
-                </div>
-              </li>
-              <li tabindex="-1" class="undefined">
-                <button type="button" class="profileModalBtns">관리자 홈</button>
-              </li>
-              <li tabindex="-1" class="undefined">
-                <button type="button" class="profileModalBtns">내 정보 수정</button>
-              </li>
-              <li tabindex="-1" class="undefined">
-                <button type="button" class="profileModalBtns">로그아웃</button>
-              </li>
-            </ul>
-          </div>
-          <!--여기까지 프로필 모달 구현 -->
-        </div>
-      </div>
     </nav>
     <div class="overflow">
       <nav class="surfaceSecondary">
         <div class="surfaceInner">
           <div class="flexCol">
-            <div class="margin12"></div>
+            <div class="margin12">
+              <button class="profileImageBTN">
+                  <span style="box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; inset: 0px;">
+                      <img alt="관리자 이미지" sizes="100vw" decoding="async" src="/images/recycling-agentmanager-image/profile.png" class=" profileIMG">
+                  </span>
+                <span></span>
+              </button>
+            </div>
             <h2 class="userName" th:text="${session.admin.adminName}"></h2>
-            <a href="">
+            <a href="/admin/logout">
               <button type="button" class="myPageButton">
                 <div class="myPageButtonInner">
-                  <div>내 페이지</div>
-                  <svg
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="16px"
-                    width="16px"
-                    class="svg3"
-                  >
+                  <div>로그아웃</div>
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="16px" width="16px" class="svg3">
                     <path d="M11 7a1 1 0 0 0-1-1H4v14h14v-6a1 1 0 1 0-2 0v4H6V8h4a1 1 0 0 0 1-1Z"></path>
-                    <path
-                      d="M19.01 3.829H20v6.656a1 1 0 1 1-2 0V7.244l-5.293 5.293a1 1 0 0 1-1.414-1.415l5.293-5.292h-3.243a1 1 0 1 1 0-2H19.01Z"
-                    ></path>
+                    <path d="M19.01 3.829H20v6.656a1 1 0 1 1-2 0V7.244l-5.293 5.293a1 1 0 0 1-1.414-1.415l5.293-5.292h-3.243a1 1 0 1 1 0-2H19.01Z"></path>
                   </svg>
                 </div>
               </button>
@@ -123,12 +55,11 @@
           <li class="surfaceUlLists">
             <a class="aList" href="/admin/resident-list">
               <img class="svg4" src="/images/complain-management-image/profile-user.png"/>
-
               <span class="surfaceCategory">입주민 목록</span>
             </a>
           </li>
                 <li id="flex" class="surfaceUlLists">
-                    <a class="aList" href="">
+                    <a class="aList" href="/admin/maintenance-fee-view">
                         <img class="svg5" src="/images/complain-management-image/coin.png"/>
                         <span class="surfaceCategory">아파트 관리비</span>
                     </a>
@@ -136,59 +67,44 @@
                         <img style="width: 100%; opacity: 60%" class="svg5" src="/images/complain-management-image/down.png">
                     </button>
                 </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 관리비 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 관리비 업로드</span>
-                            </a>
-                        </li>
-                    </ul>
+                <ul class="feeLists">
+                    <li class="surfaceUlLists">
+                        <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-view">
+                            <span class="surfaceCategory">| 관리비 조회</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
+                            <span class="surfaceCategory">| 관리비 업로드</span>
+                        </a>
+                    </li>
+                </ul>
                 <li style="  background-color: rgba(162, 218, 255, 0.35);" id="flex2" class="surfaceUlLists">
-                    <a class="aList" href="#">
+                    <a class="aList" href="/admin/complain-management">
                         <img class="svg5" src="/images/complain-management-image/feedback.png"/>
                         <span class="surfaceCategory">민원 관리</span>
                     </a>
-                    <button class="toggleButton">
-                        <img style="width: 100%; opacity: 60%"  class="svg5" src="/images/complain-management-image/down.png">
-                    </button>
                 </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 답변</span>
-                            </a>
-                        </li>
-                    </ul>
-            <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/complain-management-image/trash-can.png"/>
-              <span class="surfaceCategory">재활용 대행</span>
-            </a>
-          </li>
+                <li class="surfaceUlLists">
+                    <a class="aList" href="/admin/recycling-agentmanager">
+                        <img class="svg5" src="/images/complain-management-image/trash-can.png"/>
+                        <span class="surfaceCategory">재활용 대행</span>
+                    </a>
+                </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
+            <a class="aList" href="/admin/visit-vehicle">
               <img class="svg5" src="/images/complain-management-image/car-fill-from-frontal-view.png"/>
               <span class="surfaceCategory">방문 차량</span>
             </a>
           </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
+            <a class="aList" href="/admin/announcement-list">
               <img class="svg5" src="/images/complain-management-image/report.png"/>
               <span class="surfaceCategory">공지사항 목록</span>
             </a>
           </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
+            <a class="aList" href="/admin/freeboard-admin">
               <img class="svg5" src="/images/complain-management-image/4.png"/>
               <span class="surfaceCategory">자유게시판</span>
             </a>
@@ -234,10 +150,8 @@
                 <div class="searchContainer">
                   <button id="rangeCategory2Btn" type="button" class="imposeYear">
                     <span id="categorySpan2" class="imposeYearSpan">카테고리 선택</span>
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                         class="imposeYearSvg">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="imposeYearSvg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
                     </svg>
                   </button>
                   <div id="rangeCategory" class="rangeModal">
