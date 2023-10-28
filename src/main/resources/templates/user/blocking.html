@@ -48,5 +48,11 @@
 <script th:inline="javascript">
     const user = [[${session.user}]]
     console.log(user);
+
+    document.querySelectorAll("a.notOperation").forEach((a) => {
+        a.addEventListener("click", (event) =>{
+            event.preventDefault();
+        })
+    })
 </script>
 </html>

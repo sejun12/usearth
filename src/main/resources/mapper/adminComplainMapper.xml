@@ -131,6 +131,7 @@
                  FROM TBL_USER U
                  JOIN TBL_COMPLAIN C ON U.ID = C.USER_ID AND C.COMPLAIN_STATUS = '처리완료'
                  JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
+                 WHERE U.APARTMENT_ID = #{apartmentId}
                  <if test="searchComplain.categoryComplainName != null and !searchComplain.categoryComplainName.equals('')">
                       AND CATEGORY_COMPLAIN_NAME LIKE '%' || #{searchComplain.categoryComplainName} || '%'
                  </if>
@@ -156,9 +157,25 @@
         JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
     </select>
 
+    <select id="selectCategoryComplainIdByName" resultType="long">
+        SELECT ID FROM TBL_CATEGORY_COMPLAIN
+        WHERE CATEGORY_COMPLAIN_NAME = #{categoryComplainName}
+    </select>
+
     <update id="updateComplainStatus">
         UPDATE TBL_COMPLAIN
         SET COMPLAIN_STATUS = #{complainStatus}
+        WHERE ID = #{id}
+    </update>
+
+    <insert id="insertComplainReply">
+        INSERT INTO TBL_COMPLAIN_REPLY(ID, COMPLAIN_ID, ADMIN_ID, COMPLAIN_REPLY_CONTENT)
+        VALUES (SEQ_COMPLAIN_REPLY.NEXTVAL, #{complainId}, #{adminId}, #{complainReplyContent})
+    </insert>
+
+    <update id="updateComplainProcessingDate">
+        UPDATE TBL_COMPLAIN
+        SET COMPLAIN_STATUS = #{complainStatus}, COMPLAIN_PROCESSING_DATE = CURRENT_TIMESTAMP, CATEGORY_COMPLAIN_ID = #{categoryComplainId}
         WHERE ID = #{id}
     </update>
 </mapper>

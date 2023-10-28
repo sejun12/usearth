@@ -75,28 +75,6 @@ document.addEventListener("click", (event) => {
     }
 });
 
-
-
-
-// 프로필모달
-const profileModal = document.getElementsByClassName("profileModalWrapper")[0];
-const profileBtn = document.getElementsByClassName("profileBtn")[0];
-let isShow = false;
-
-profileBtn.addEventListener("click", (event) => {
-    event.stopPropagation(); // 클릭 이벤트 전파를 막습니다.
-
-    if (!isShow) {
-        console.log(isShow);
-        profileModal.style.display = "block";
-        isShow = true;
-    } else if (isShow) {
-        console.log(isShow);
-        profileModal.style.display = "none";
-        isShow = false;
-    }
-});
-
 // 전체 HTML을 클릭하는 이벤트 리스너 추가
 document.addEventListener("click", (event) => {
     if (isShow && event.target !== profileModal && event.target !== profileBtn) {
@@ -147,8 +125,37 @@ approvalBtns.forEach((btn) => {
     });
 });
 
-document.querySelector(".resetBtn").addEventListener("click", function() {
-    location.reload(); // 현재 페이지를 새로고침합니다.
-});
+// 민원에 대한 정보를 넣어주는 함수
+function getData(){
+    document.getElementById("categorySpan2").textContent = complain.categoryComplainName;
+    document.getElementById("userName").textContent = complain.userName;
+    document.getElementById("dongHo").textContent = `${complain.userDong}동 ${complain.userHo}호`;
+    document.getElementById("complainTitle").textContent = complain.complainTitle;
+    document.getElementById("complainContent").textContent = complain.complainContent;
+}
 
+document.addEventListener("DOMContentLoaded", () => {
+    getData();
+})
 
+// 등록하기 클릭 이벤트
+const complainReplyForm = document.querySelector("form[name='complain-reply-form']");
+const register = document.getElementById("register");
+register.addEventListener("click", () => {
+    console.log("등록 실행")
+    const categoryInput = document.createElement('input');
+
+    categoryInput.name = "categoryComplainName"
+    categoryInput.value = categorySpan2.textContent;
+    categoryInput.type = "hidden";
+
+    complainReplyForm.appendChild(categoryInput);
+
+    complainReplyForm.submit();
+})
+
+// 취소 클릭 이벤트
+document.getElementById("cancle").addEventListener("click", () => {
+    console.log("취소 실행")
+    location.href = '/admin/complain-management';
+})

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>KAKAO-LOGIN</title>
+    <title>로그인</title>
 </head>
 <link rel="stylesheet" href="/css/user/login.css">
 <link rel="stylesheet" href="/css/fix/nav/nav.css">
@@ -56,6 +56,11 @@
     <!--  -->
     </div>
 </body>
-<script src="/js/fix/nav/nav.js"></script>
-<script src="/js/fix/footer/mainfooter.js"></script>
+<script>
+    document.querySelectorAll(".notOperation").forEach((a) => {
+        a.addEventListener("click", (event) =>{
+            event.preventDefault();
+        })
+    })
+</script>
 </html>

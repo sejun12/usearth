@@ -32,6 +32,15 @@ public interface AdminComplainMapper {
 //    민원 정보 조회
     public Optional<ComplainAdminDTO> selectComplainById(Long apartmentId, Long id);
 
+//    민원 카테고리 이름으로 해당 아이디 조회
+    public Long selectCategoryComplainIdByName(String categoryComplainName);
+
 //    민원 상태 수정
     public void updateComplainStatus(ComplainVO complainVO);
+
+//    민원 답변 작성
+    public void insertComplainReply(ComplainReplyVO complainReplyVO);
+
+//    민원 답변 날짜 및 상태 수정
+    public void updateComplainProcessingDate(ComplainVO complainVO);
 }
