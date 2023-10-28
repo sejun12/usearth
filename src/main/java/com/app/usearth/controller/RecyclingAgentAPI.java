@@ -5,6 +5,7 @@ import com.app.usearth.service.RecyclingAgentService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -57,5 +58,6 @@ public class RecyclingAgentAPI {
         // 최종적으로 만든 result 맵을 반환
         return result;
     }
+
 
 }

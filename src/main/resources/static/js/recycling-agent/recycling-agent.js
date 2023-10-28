@@ -14,11 +14,12 @@ writeContainers.forEach((writeContainer) => writeContainer.addEventListener("cli
     }
 }))
 
-
+// 재활용 게시글 리스트를 선택
 const postsListRecycling = document.getElementById('postsList');
 let page = 1;
 // const perPage = 10;  // 페이지당 데이터 개수
 
+// 게시글 데이터를 가져오는 함수
 async function getPosts() {
     // fetch에 데이터를 가져 올 주소 입력
     const response = await fetch("/recycling-reads/api/recycling-list")
@@ -104,5 +105,13 @@ function handleScroll() {
 // 스크롤 이벤트가 발생할 때마다 스크롤바의 위치를 검사하여 새로운 콘텐츠를 불러오게 된다.
 window.addEventListener("scroll", handleScroll);
 
-// 최초 실행하여 1페이지를 보여준다
+// 최초 실행하여 1페이지를 줌
 showList();
+
+// 재활용 대행 신청하기 위해 'agentWriteHeader' 요소 선택
+const agentWriteBTM = document.querySelector(".agentWriteBTM");
+
+agentWriteBTM.addEventListener("click", function() {
+    location.href = "/recycling-agent/recycling-agentwrite";
+});
+
