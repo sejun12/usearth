@@ -35,4 +35,7 @@ public interface AdminComplainService {
 
 //    민원 상태 수정
     public void modifyComplainStatus(ComplainVO complainVO);
+
+//    민원 답변 작성
+    public void writeComplainReply(ComplainReplyDTO complainReplyDTO);
 }

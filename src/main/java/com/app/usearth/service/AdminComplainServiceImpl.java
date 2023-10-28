@@ -50,16 +50,33 @@ public class AdminComplainServiceImpl implements AdminComplainService {
     @Override
     public SearchComplainDTO getSearch(Pagination pagination, Long apartmentId, SearchComplain searchComplain){
         SearchComplainDTO searchComplainDTO = new SearchComplainDTO();
-        searchComplainDTO.setComplainAdmins(adminComplainDAO.findComplainByAptId(pagination, apartmentId, searchComplain));
-        searchComplainDTO.setReceptionCount(adminComplainDAO.findReceptionByAptId(apartmentId, searchComplain));
-        searchComplainDTO.setProcessingCount(adminComplainDAO.findProcessingByAptId(apartmentId, searchComplain));
-        searchComplainDTO.setCompleteCount(adminComplainDAO.findCompleteByAptId(apartmentId, searchComplain));
-        searchComplainDTO.setSearchTotalCount(adminComplainDAO.findTotalByAptId(apartmentId, searchComplain));
+        searchComplainDTO.setComplainAdmins(getComplainByAptId(pagination, apartmentId, searchComplain));
+        searchComplainDTO.setReceptionCount(getReceptionByAptId(apartmentId, searchComplain));
+        searchComplainDTO.setProcessingCount(getProcessingByAptId(apartmentId, searchComplain));
+        searchComplainDTO.setCompleteCount(getCompleteByAptId(apartmentId, searchComplain));
+        searchComplainDTO.setSearchTotalCount(getTotalByAptId(apartmentId, searchComplain));
         return searchComplainDTO;
     }
 
     @Override
     public void modifyComplainStatus(ComplainVO complainVO) {
         adminComplainDAO.updateComplainStatus(complainVO);
+    }
+
+    @Override
+    public void writeComplainReply(ComplainReplyDTO complainReplyDTO) {
+        ComplainReplyVO complainReplyVO = new ComplainReplyVO();
+        ComplainVO complainVO = new ComplainVO();
+
+        complainReplyVO.setComplainId(complainReplyDTO.getComplainId());
+        complainReplyVO.setAdminId(complainReplyDTO.getAdminId());
+        complainReplyVO.setComplainReplyContent(complainReplyDTO.getComplainReplyContent());
+
+        complainVO.setId(complainReplyDTO.getComplainId());
+        complainVO.setComplainStatus("진행중");
+        complainVO.setCategoryComplainId(adminComplainDAO.findCategoryComplainIdByName(complainReplyDTO.getCategoryComplainName()));
+
+        adminComplainDAO.setComplainReply(complainReplyVO);
+        adminComplainDAO.updateComplainProcessingDate(complainVO);
     }
 }
