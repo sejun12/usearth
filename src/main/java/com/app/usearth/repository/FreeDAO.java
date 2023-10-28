@@ -19,6 +19,9 @@ public class FreeDAO {
     // 해당 자유게시판 글
     public Optional<PostDTO> freeBoardRead(Long id){return freeMapper.selectByFreeRead(id);}
 
+    // 재활용 글 반환
+    public List<PostDTO> findByRecycling(Long id){return freeMapper.selectByReadRecycling(id);}
+
     //postId의 댓글 목록
     public List<CommentDTO> selectCommentsByPostId(Long postId) {
         return freeMapper.selectCommentsByPostId(postId);}

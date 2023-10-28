@@ -19,37 +19,24 @@ import java.util.Optional;
 public class FreeController {
     private final FreeService freeService;
 
-    @RequestMapping(value = "freelist")
-    @ResponseBody
-    public List<PostDTO> freeList(){
-        // freeService의 freeList 메소드 호출, 그 결과값 반환
-        return freeService.freeList();
-    }
     @GetMapping("freeboard")
     public void goToFree(){;}
 
-    @RequestMapping(value = "freeRead/{id}")
-    @ResponseBody
-    public Optional<PostDTO> freeBoardRead(@PathVariable("id") Long postId){
-        return freeService.freeBoardRead(postId);
-
-    }
-
     @GetMapping("viewpost/{id}")
-    public String showFreeRead(@PathVariable Long id, Model model) {
-        Optional<PostDTO> post = freeService.freeBoardRead(id);
-        if (!post.isPresent()) {
-            return "errorPage";
-        }
-        model.addAttribute("posts",post.get());
+    public String getByFreeRead(@PathVariable Long id){
         return "/board/viewpost";
     }
+    @GetMapping("freeboard-write")
+    public String goToFreeWrite(){
+        return "/board/freeboard-write";
+    }
+
     @GetMapping("/post/{postId}")
     @ResponseBody
     public List<CommentDTO> getCommentsByPostId(@PathVariable Long postId){
         return freeService.getCommentsByPostId(postId);
     }
-    @PostMapping()
+    @PostMapping("addComment")
     public String addComment(CommentDTO commentDTO){
         freeService.addComment(commentDTO);
         return "redirect:/board/viewpost" +commentDTO.getPostId();

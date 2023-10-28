@@ -13,6 +13,8 @@ public interface FreeMapper {
 
     public Optional<PostDTO> selectByFreeRead(Long id);
 
+    public List<PostDTO> selectByReadRecycling(Long id);
+
     public List<CommentDTO> selectCommentsByPostId(Long postId);
     public void insertComment(CommentDTO comment);
 }

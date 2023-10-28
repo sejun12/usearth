@@ -11,6 +11,8 @@ public interface FreeService {
 
     public Optional<PostDTO>freeBoardRead(Long id);
 
+    public List<PostDTO> findByRecycling(Long id);
+
     public List<CommentDTO> getCommentsByPostId(Long postId);
 
     public void addComment(CommentDTO commentDTO);

@@ -24,11 +24,24 @@ public class FreeServiceImpl implements FreeService{
     @Override
     public Optional<PostDTO> freeBoardRead(Long id){return freeDAO.freeBoardRead(id);}
     @Override
-    public List<CommentDTO> getCommentsByPostId(Long postId){
-        return freeDAO.selectCommentsByPostId(postId);
+    public List<PostDTO> findByRecycling(Long id){return freeDAO.findByRecycling(id);}
+
+    @Override
+    public List<CommentDTO> getCommentsByPostId(Long postId) {
+        try {
+            return freeDAO.selectCommentsByPostId(postId);
+        } catch(Exception e) {
+            System.err.println("ID가 있는 게시글의 댓글을 가져오는 중 오류가 발생했습니다.: " + postId + " - " + e.getMessage());
+            throw new RuntimeException("ID가 있는 게시글에 대한 댓글을 가져올 수 없습니다. : " + postId, e);
+        }
     }
     @Override
-    public void addComment(CommentDTO commentDTO){
-        freeDAO.insertComment(commentDTO);
+    public void addComment(CommentDTO commentDTO) {
+        try {
+            freeDAO.insertComment(commentDTO);
+        } catch(Exception e) {
+            System.err.println("댓글 삽입 중 오류 발생: " + e.getMessage());
+            throw new RuntimeException("댓글 삽입 불가", e);
+        }
     }
 }

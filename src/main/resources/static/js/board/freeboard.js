@@ -22,7 +22,7 @@ async function getPosts(){
 }
 function getList(post){
     postsListFree.innerHTML +=`
-                                         <a href="">
+                                         <a href="/board/free">
                                             <article class="agentCard">
                                                 <div class="agentWrap" style="padding: 20px;">
                                                     <div class="agentContentWrap">
