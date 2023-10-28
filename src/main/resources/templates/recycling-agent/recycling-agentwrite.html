@@ -48,34 +48,40 @@
 <!--                                                </div>-->
 <!--                                            </span>-->
 <!--                                        </div>-->
-                                        <div class="titleLineBox">
-                                            <span>
-                                                <div class="lineBoxTitle">
-                                                    <div class="titleBoxLine">
-                                                        <input id="postWriteTitle" placeholder="제목을 입력하세요" name="writePost" label align="left" autocomplete="off" type="text" class="postWrite" style="text-align: left;">
+
+                                        <!-- form 태그 추가함-->
+                                        <form id="recyclingForm" th:action="${post.id != null} ? '/recycling-agent/recycling-agentwrite/' + ${post.id} : '/recycling-agent/recycling-agentwrite'" method="post">
+                                            <div class="titleLineBox">
+                                                <span>
+                                                    <div class="lineBoxTitle">
+                                                        <div class="titleBoxLine">
+                                                            <input id="postWriteTitle" placeholder="제목을 입력하세요" name="postTitle" label align="left" autocomplete="off" type="text" class="postWrite" style="text-align: left;" th:value="${post.postTitle}">
+                                                        </div>
                                                     </div>
+                                                </span>
+                                            </div>
+                                            <span>
+                                                <div class="textAreaWrapper">
+                                                    <!-- 원본코드는 'cols="30" rows="10"'-->
+                                                    <textarea cols="50" rows="20" placeholder="도와주거나 대신할 이웃을 찾아봐요." maxlength="1000" name="postContent" class="writeTextArea" th:text="${post.postContent}"></textarea>
+                                                </div>
+                                                <div class="numberCharacters">
+                                                    글자수 :
+                                                    <span id="characterLength" class="lengthCharacter">0</span> /
+                                                    <!-- 1000에서 사용자가 입력한 글자수 만큼 마이너스 처리하기 위해 span 태그 한줄 추가 -->
+                                                    <span id="remainingLength">1000</span>
                                                 </div>
                                             </span>
-                                        </div>
-                                        <span>
-                                            <div class="textAreaWrapper">
-<!--                                                원본코드는 'cols="30" rows="10"'-->
-                                                <textarea cols="50" rows="20" placeholder="도와주거나 대신할 이웃을 찾아봐요." maxlength="1000" class="writeTextArea"></textarea>
+                                            <div class="postTextSend">
+                                                <div class="textPostSend">
+                                                    <button class="sendTextPost">
+                                                        <div class="sendTextButtonIcon"></div>
+                                                        재활용 대행 신청하기
+                                                        <div class="sendTextButtonIcon"></div>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="numberCharacters">
-                                                글자수 :
-                                                <span id="characterLength" class="lengthCharacter">0</span> / 1000
-                                            </div>
-                                        </span>
-                                        <div class="postTextSend">
-                                            <div class="textPostSend">
-                                                <button class="sendTextPost">
-                                                    <div class="sendTextButtonIcon"></div>
-                                                    재활용 대행 신청하기
-                                                    <div class="sendTextButtonIcon"></div>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -86,4 +92,11 @@
         </div>
     </div>
 </body>
+<!-- 글자수 표시-->
+<script src="/js/recycling-agent/recycling-agentwrite.js"></script>
+<script th:inline="javascript">
+    const user = [[${session.user}]]
+
+    // const post = [[${post}]]
+</script>
 </html>

@@ -20,4 +20,14 @@ public interface RecyclingAgentMapper {
     public List<CommentDTO> selectCommentsByPostId(Long postId);
     public void insertComment(CommentDTO comment);
 
+//    재활용대행 신청
+    public void insertPost(PostDTO postDTO);
+
+    // 재활용대행 수정하기
+
+    public void updatePost(PostDTO id);
+    public PostDTO getPostById(Long id);
+
+
+
 }
