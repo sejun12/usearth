@@ -80,3 +80,9 @@ aptAddressInputs.forEach(aptAddressInput => {
 })
 
 checkInputValue();
+
+document.querySelectorAll(".notOperation").forEach((a) => {
+    a.addEventListener("click", (event) =>{
+        event.preventDefault();
+    })
+})

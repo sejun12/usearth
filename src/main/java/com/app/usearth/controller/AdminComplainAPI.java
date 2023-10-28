@@ -34,7 +34,6 @@ public class AdminComplainAPI {
 
     @PostMapping("update")
     public void update(@RequestBody ComplainVO complainVO){
-        log.info("-----{}", complainVO);
         adminComplainService.modifyComplainStatus(complainVO);
     }
 }

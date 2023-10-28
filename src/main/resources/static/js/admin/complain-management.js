@@ -117,31 +117,6 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// 프로필모달
-const profileModal = document.getElementsByClassName("profileModalWrapper")[0];
-const profileBtn = document.getElementsByClassName("profileBtn")[0];
-let isShow = false;
-
-profileBtn.addEventListener("click", (event) => {
-    event.stopPropagation(); // 클릭 이벤트 전파를 막습니다.
-
-    if (!isShow) {
-        profileModal.style.display = "block";
-        isShow = true;
-    } else if (isShow) {
-        profileModal.style.display = "none";
-        isShow = false;
-    }
-});
-
-// 전체 HTML을 클릭하는 이벤트 리스너 추가
-document.addEventListener("click", (event) => {
-    if (isShow && event.target !== profileModal && event.target !== profileBtn) {
-        profileModal.style.display = "none";
-        isShow = false;
-    }
-});
-
 // 검색 초기화 버튼 클릭 시 새로고침
 document.querySelector(".resetBtn").addEventListener("click", function() {
     location.reload(); // 현재 페이지를 새로고침합니다.
@@ -272,6 +247,7 @@ const complainService = (function(){
 
         const response = await fetch(url);
         const json = await response.json();
+        console.log(json)
 
         renderData(json);
         createPaginationButtons(json);
@@ -310,7 +286,7 @@ const complainService = (function(){
 
 function createUrl(page){
     const categoryComplainName = document.getElementById("categorySpan2").textContent;
-    const keyword = document.getElementById("searchTitle").textContent;
+    const keyword = document.getElementById("searchTitle").value;
     const complainStatus = document.getElementById("categorySpan").textContent;
     const startDate = document.querySelector("input[name='startDate']").value;
     const endDate = document.querySelector("input[name='endDate']").value;
