@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.RecyclingAgentMapper">
-    <select id="selectByRecycling" parameterType="long" resultType="postDTO">
+    <select id="selectByRecycling" resultType="postDTO">
         SELECT P.ID, P.USER_ID, P.POST_TITLE, P.POST_CONTENT,
-               P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
+               P.POST_WRITE_DATE,P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
                (
                    SELECT COUNT(*)
                    FROM TBL_COMMENT C WHERE C.POST_ID = P.ID
@@ -15,24 +15,29 @@
                ) AS LIKE_COUNT
         FROM TBL_POST P
         WHERE P.POST_CATEGORY = '재활용'
-        ORDER BY P.POST_MODIFY_DATE DESC
+        ORDER BY P.POST_WRITE_DATE DESC
+--         특정 게시물에 대한 댓글과 좋아요의 수를 효과적으로 계산하기 위한 편리한 방법
     </select>
     <select id="selectByRecyclingRead" parameterType="long" resultType="postDTO">
-        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_MODIFY_DATE,
-               P.POST_VIEW_COUNT, P.POST_LIKE_COUNT, U.USER_NAME,
-               (
-                   SELECT COUNT(*)
-                   FROM TBL_LIKE L
-                   WHERE L.POST_ID = P.ID
-               ) AS LIKE_COUNT
+        SELECT P.ID, POST_TITLE, POST_CONTENT, POST_WRITE_DATE,
+            POST_MODIFY_DATE, POST_VIEW_COUNT, USER_ID,
+            U.USER_NAME, L.LIKE_COUNT, POST_CATEGORY,
+            POST_STATUS
         FROM TBL_POST P
-                 JOIN TBL_USER U ON P.USER_ID = U.ID
+        JOIN TBL_USER U ON P.USER_ID = U.ID
+        LEFT JOIN (
+            SELECT POST_ID, COUNT(ID) AS LIKE_COUNT
+            FROM TBL_LIKE
+            GROUP BY POST_ID
+        ) L ON P.ID = L.POST_ID
         WHERE P.POST_CATEGORY = '재활용' AND P.ID = #{postId}
-        ORDER BY P.POST_MODIFY_DATE DESC
+        ORDER BY P.POST_WRITE_DATE DESC
     </select>
+
     <select id="selectCommentsByPostId" resultType="commentDTO">
-        SELECT C.ID AS COMMENT_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY,
-               P.POST_VIEW_COUNT, U.USER_NAME, COUNT(L.ID) AS LIKE_COUNT
+        SELECT C.ID AS COMMENT_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               P.POST_CATEGORY,P.POST_VIEW_COUNT, U.USER_NAME,
+               COUNT(L.ID) AS LIKE_COUNT
         FROM TBL_COMMENT C
                  INNER JOIN TBL_POST P ON C.POST_ID = P.ID
                  INNER JOIN TBL_USER U ON C.USER_ID = U.ID
@@ -44,4 +49,28 @@
         INSERT INTO TBL_COMMENT(ID, POST_ID, USER_ID, COMMENT_CONTENT)
         VALUES(SEQ_COMMENT.NEXTVAL, #{postId}, #{userId}, #{commentContent})
     </insert>
+    <select id="selectByReadFree" parameterType="long" resultType="postDTO">
+        SELECT P.ID, U.USER_NAME, P.POST_TITLE, P.POST_CATEGORY, P.POST_WRITE_DATE,
+            P.POST_CONTENT, P.POST_MODIFY_DATE, P.POST_VIEW_COUNT, P.POST_LIKE_COUNT,
+            P.POST_STATUS, P.USER_ID,
+            (
+                SELECT COUNT(L.ID)
+                FROM TBL_LIKE L
+                WHERE L.POST_ID = P.ID
+            ) AS LIKE_COUNT
+        FROM
+            (
+                SELECT *
+                FROM TBL_POST
+                WHERE POST_CATEGORY = '자유'
+                ORDER BY DBMS_RANDOM.VALUE
+            ) P
+        JOIN TBL_USER U ON P.USER_ID = U.ID
+        <![CDATA[WHERE ROWNUM <= 3]]>
+    </select>
+    <!--    <update id="postViewCount" parameterType="int">-->
+<!--        UPDATE TBL_POST-->
+<!--        SET POST_VIEW_COUNT = POST_VIEW_COUNT + 1-->
+<!--        WHERE POST_ID = #{postId}-->
+<!--    </update>-->
 </mapper>

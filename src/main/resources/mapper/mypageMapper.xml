@@ -69,15 +69,9 @@
         WHERE ID=#{id}
     </update>
 
-    <!--    <select id="selectProfile">-->
-    <!--        SELECT *-->
-    <!--        FROM TBL_USER U-->
-    <!--        JOIN TBL_USER_PROFILE P ON U.USER_PROFILE_ID = P.ID-->
-    <!--        WHERE U.ID =#{id}-->
-    <!--    </select>-->
     <select id="selectPostDetail" resultType="complainDTO">
         SELECT C.ID, C.USER_ID, C.CATEGORY_COMPLAIN_ID, C.COMPLAIN_TITLE, C.COMPLAIN_CONTENT, C.COMPLAIN_DATE, C.COMPLAIN_STATUS, CC.CATEGORY_COMPLAIN_NAME,
-         CR.ID AS REPLY_ID, CR.ADMIN_ID, CR.COMPLAIN_REPLY_TITLE, CR.COMPLAIN_REPLY_CONTENT, CR.COMPLAIN_REPLY_DATE
+         CR.ID AS REPLY_ID, CR.ADMIN_ID,CR.COMPLAIN_REPLY_CONTENT, CR.COMPLAIN_REPLY_DATE
         FROM TBL_COMPLAIN C
         JOIN TBL_CATEGORY_COMPLAIN CC ON C.CATEGORY_COMPLAIN_ID = CC.ID
         LEFT JOIN TBL_COMPLAIN_REPLY CR ON C.ID = CR.COMPLAIN_ID
@@ -157,6 +151,21 @@
          JOIN TBL_ADMIN AM ON A.ID = AM.APARTMENT_ID
          JOIN TBL_VISIT_BOOKING V ON U.ID = V.USER_ID
         WHERE AM.ID =#{id}
+        <if test="searchDTO.visitBookingCarNumber != null and searchDTO.visitBookingCarNumber != ''">
+            AND V.VISIT_BOOKING_CAR_NUMBER LIKE '%' || #{searchDTO.visitBookingCarNumber} || '%'
+        </if>
+        <if test="searchDTO.userDong != null and searchDTO.userDong != ''">
+            AND U.USER_DONG LIKE '%' || #{searchDTO.userDong} || '%'
+        </if>
+        <if test="searchDTO.userHo != null and searchDTO.userHo != ''">
+            AND U.USER_HO LIKE '%' || #{searchDTO.userHo} || '%'
+        </if>
+        <if test="searchDTO.visitBookingStartDate != null and searchDTO.visitBookingStartDate != ''">
+            AND V.VISIT_BOOKING_START_DATE &gt;= #{searchDTO.visitBookingStartDate}
+        </if>
+        <if test="searchDTO.visitBookingEndDate != null and searchDTO.visitBookingEndDate != ''">
+            AND V.VISIT_BOOKING_END_DATE &lt;= #{searchDTO.visitBookingEndDate}
+        </if>
     </select>
 
     <delete id="deleteOne">
@@ -229,5 +238,11 @@
       INSERT INTO TBL_VISIT_BOOKING(ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER)
       VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{userId}, #{apartmentId}, #{visitBookingStartDate}, #{visitBookingEndDate}, #{visitBookingPurpose}, #{visitBookingCarNumber})
   </insert>
+
+<delete id="deleteBooking">
+    DELETE TBL_VISIT_BOOKING
+    WHERE ID=#{id}
+</delete>
+
 
 </mapper>

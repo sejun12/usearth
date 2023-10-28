@@ -39,7 +39,9 @@ public class MyPageController {
     @GetMapping("edit-personal")
     public void goToMyEditPersonal(){;}
     @GetMapping("inquiry")
-    public void goToMyInquiry(){;}
+    public String  goToMyInquiry(){
+        return"/mypage/inquiry";
+    }
     @GetMapping("member-withdrawal")
     public void goToMyMemberWithDrawl(){;}
     @PostMapping("member-withdrawal")
@@ -63,6 +65,8 @@ public class MyPageController {
         userProfileVO.setUserProfileName(uuid + "_" + uploadFiles.get(0).getOriginalFilename());
         userProfileVO.setUserProfilePath(getPath());
         mypageService.changeProfile(userProfileVO);
+        userDTO.setUserProfileName(userProfileVO.getUserProfileName());
+        session.setAttribute("user", userDTO);
         return new RedirectView("/mypage/inquiry");
     }
 

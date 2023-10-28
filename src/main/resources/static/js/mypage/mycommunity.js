@@ -267,6 +267,7 @@ function handleScroll() {
 }
 
 
+//처음 페이지 민원!!!
 window.addEventListener("DOMContentLoaded",  () => {
     const dataType = '민원목록';
     showList(dataType);

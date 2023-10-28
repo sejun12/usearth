@@ -13,7 +13,7 @@ const postId = getCurrentPostId();
 // 게시물 데이터를 서버에서 가져옴
 async function getPostDetail() {
     // postId를 사용하여 서버에서 해당 게시물의 정보를 가져옴
-    const response = await fetch(`/api/recycling-reads/${postId}`);
+    const response = await fetch(`/recycling-reads/api/read/${postId}`);
     console.log();
     // 요청이 성공적이지 않은 경우 오류를 발생(오류 메시지에는 HTTP 응답의 상태 코드를 포함)
     if (!response.ok) {
@@ -27,17 +27,25 @@ async function getPostDetail() {
 const postedBox=document.querySelector(".postedBox");
 
 function appendPost(post) {
+    if (!post || typeof post !== 'object') {
+        // post 객체가 없거나 객체가 아닌 경우
+        console.error("게시물 데이터가 유효하지 않습니다.");
+        return;
+    }
     // post 객체의 postWriteDate 속성을 사용하여 특정 포맷의 날짜 문자열을 추출 후
     // 그 날짜를 보여주기 위한 새로운 <div> 요소를 생성하는 작업을 수행
-
+    console.log(post);
     // post 객체의 postWriteDate 속성 값을 startDate라는 상수에 할당
-    const startDate = post.postModifyDate;
+    // postWriteDate가 없을 경우 빈 문자열로 초기화
+
+    const startDate = post.mainPost.postWriteDate;
     // startDate를 공백(' ')을 기준으로 나눠줌 즉, 날짜와 시간 부분을 분리
     // 날짜 부분(즉, 첫 번째 세그먼트)을 '-'로 분리하여 년, 월, 일을 배열의 형태로 startDateParts에 저장
-    const startDateParts = startDate.split(' ')[0].split('-');
+    // .split(' ')공백부분을 기준으로 앞뒤로 잘라줌 공백기준 앞은 [0], 공백기준 뒤는 [1]
+    const startDateParts = startDate.split(' ')[0];
     // 문자열 리터럴 템플릿을 사용하여 startDateParts 배열의 각 세그먼트(년, 월, 일)를 하나의 문자열로 조합
     // startDateFormatted는 "2023-10-24"와 같은 형태의 문자열을 가지게 됨
-    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
+
     // 웹 페이지의 DOM에 새로운 <div> 요소를 생성 후, postContainer라는 상수에 할당
     const postContainer = document.createElement('div');
     // 생성된 postContainer <div> 요소의 클래스 이름을 'postContainer'로 설정
@@ -53,13 +61,13 @@ function appendPost(post) {
 <!--   게시글 -->
             <div id="selectPost">
                 <h2 class="contentTitle" style="color: rgb(4, 5, 5);">
-                    <span class="headlineTitle" style="color: inherit;">${post.postTitle}</span>
+                    <span class="headlineTitle" style="color: inherit;">${post.mainPost.postTitle}</span>
                 </h2>
                 <p class="contentBox" style="color: rgb(32, 35, 37);">
-                    <span class="contentText">${post.postContent}</span>
+                    <span class="contentText">${post.mainPost.postContent}</span>
                 </p>
             </div>
-            <p class="contentDate" style="color: rgb(207, 212, 215);">${startDateFormatted}</p>
+            <p class="contentDate" style="color: rgb(207, 212, 215);">${startDateParts}</p>
             <div>
             <div class="cardActionContainer">
                 <div class="cardActionWrapper">
@@ -68,7 +76,7 @@ function appendPost(post) {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8766 8C11.3452 12.6334 4.65478 12.6334 2.12331 8C4.65478 3.36658 11.3452 3.36658 13.8766 8ZM14.8923 7.78461C12.0525 2.10504 3.94746 2.10504 1.10767 7.78461C1.03988 7.9202 1.03988 8.07979 1.10767 8.21538C3.94746 13.895 12.0525 13.895 14.8923 8.21538C14.9601 8.07979 14.9601 7.9202 14.8923 7.78461Z"></path>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M8 9.5C8.82843 9.5 9.5 8.82843 9.5 8C9.5 7.17157 8.82843 6.5 8 6.5C7.17157 6.5 6.5 7.17157 6.5 8C6.5 8.82843 7.17157 9.5 8 9.5ZM8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5Z"></path>
                         </svg>
-                        <div class="hitsCount" style="color: rgb(148, 155, 160);">${post.postViewCount}</div>
+                        <div class="hitsCount" style="color: rgb(148, 155, 160);">${post.mainPost.postViewCount}</div>
                     </div>
                 </div>
                 <hr class="dividerLineVertical" style="border-color: rgb(234, 236, 238); height: 16px;">
@@ -77,7 +85,7 @@ function appendPost(post) {
                         <svg data-v-bd9f2bcc="" data-v-fbfe33cc="" width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="heartIcon" style="fill: rgb(148, 155, 160);">
                             <path data-v-bd9f2bcc="" fill-rule="evenodd" clip-rule="evenodd" d="M8 5.79179L7.16516 4.5257C6.75467 3.90318 6.05854 3.5 5.27273 3.5C4.02534 3.5 3 4.5219 3 5.8C3 6.46253 3.27323 7.21871 3.78425 8.03207C4.28965 8.8365 4.98019 9.62153 5.69810 10.3215C6.41239 11.0179 7.13067 11.6079 7.67232 12.0246C7.79109 12.116 7.90097 12.1988 8 12.2722C8.09904 12.1988 8.20892 12.116 8.32768 12.0246C8.86934 11.6079 9.58761 11.0179 10.3019 10.3215C11.0198 9.62153 11.7103 8.8365 12.2157 8.03207C12.7268 7.21871 13 6.46253 13 5.8C13 4.5219 11.9747 3.5 10.7273 3.5C9.94146 3.5 9.24533 3.90318 8.83485 4.5257L8 5.79179ZM8 13.5C8 13.5 2 9.5 2 5.8C2 3.97746 3.46525 2.5 5.27273 2.5C6.04320 2.5 6.75149 2.76846 7.31061 3.21768C7.57757 3.43217 7.81052 3.68786 8 3.97522C8.18948 3.68786 8.42244 3.43217 8.68940 3.21768C9.24851 2.76846 9.95680 2.5 10.7273 2.5C12.5348 2.5 14 3.97746 14 5.8C14 9.5 8 13.5 8 13.5Z"></path>
                         </svg>
-                        <div class="detailLikeInfoNumber" style="color: rgb(148, 155, 160);">${post.likeCount}</div>
+                        <div class="detailLikeInfoNumber" style="color: rgb(148, 155, 160);">${post.mainPost.likeCount}</div>
                     </button>
                 </div>
             </div>
@@ -90,47 +98,92 @@ function appendPost(post) {
 
 // 함께 읽을 수 있는 글
 // 관련 게시물들을 서버에서 가져옴 (주어진 게시물 ID와 관련된 다른 게시물들을 가져옴)
-// async function getRelatedPost(postId) {
-//     const response = await fetch(`/recycling-agent/recycling-read/${postId}/related`);
-//     if (!response.ok) {
-//         throw new Error(`HTTP 오류 상태 : ${response.status}`);
+async function getRelatedPost() {
+    const response = await fetch(`/recycling-reads/api/read/${postId}`);
+    const json = await response.json();
+    if (!response.ok) {
+        throw new Error(`HTTP 오류 상태 : ${response.status}`);
+    }
+    renderData(json);
+}
+
+function appendRelatedPosts(li, relatedPost){
+    if (relatedPost) {
+        li.innerHTML = `
+            <div class="postListTitleLine" style="color: inherit;">
+                <span>${relatedPost.title}</span>
+            </div>
+            <div class="contentWrapper" style="color: rgb(60, 65, 68);">${relatedPost.content}</div>
+            <div class="postAuthor">${relatedPost.author}</div>
+            <div class="postDate">${relatedPost.date}</div>`;
+    } else {
+        console.error("relatedPost가 제공되지 않았습니다.");
+    }
+}
+
+
+function renderData(relatedPosts) {
+    console.log(relatedPosts);
+
+    // 관련 게시물들을 추가할 ul 요소를 선택
+    const relatedPostsUl = document.querySelector(".postListTable");
+    // const postsRelatedContainer = document.createElement('div');
+    // 생성된 postContainer <div> 요소의 클래스 이름을 'postContainer'로 설정
+    // CSS 스타일링이나 JavaScript 조작을 위한 선택자로 사용 가능
+
+    relatedPosts.forEach((relatedPost) => {
+        const li = document.createElement('li');
+        relatedPostsUl.appendChild(li);
+        appendRelatedPosts(li, relatedPost)
+    })
+}
+
+
+
+// async function showList() {
+//     try {
+//         const postDetail = await getPostDetail(postId);
+//         // appendPost(postDetail);
+//
+//         const relatedPostsData = await getRelatedPost(postId);
+//         console.log(relatedPostsData);  // relatedPostsData의 값 확인
+//
+//         const relatedPosts = relatedPostsData.randomFreePosts;
+//
+//         if (Array.isArray(relatedPosts)) {  // relatedPosts가 배열인지 확인
+//             relatedPosts.forEach((post) => {
+//                 const li = document.createElement('li');
+//                 document.querySelector(".postListTable").appendChild(li);
+//                 appendRelatedPosts(li, post);
+//             });
+//         } else {
+//             console.error("relatedPosts가 배열이 아닙니다:", relatedPosts);
+//         }
+//     } catch (error) {
+//         console.error("게시글을 불러오는 중 에러 발생:", error);
 //     }
-//     return response.json();
 // }
-
-async function showList() {
-    try {
-        const postDetail = await getPostDetail();
-        appendPost(postDetail);
-    } catch (error) {
-        console.error("게시글을 불러오는 중 에러 발생:", error);
-
-    }
-
-}
-
-showList();
-
-
-window.onload = async function() {
-    try {
-        // 각각의 함수를 호출하여 게시물의 정보, 댓글, 관련 게시글들을 가져옴
-        // 가져온 데이터를 웹 페이지에 표시
-        // 현재 페이지의 게시글 ID를 가져옴
-        const postId = getCurrentPostId();
-        console.log(postId);
-        const post = await getPostDetail(postId);
-        console.log(post);
-        // const relatedPosts = await getRelatedPost(postId);
-        // console.log('들어옴3');
-
-        // viewPost(post);
-        // viewRelatedPosts(relatedPosts);
-    } catch (error) {
-        console.error("데이터를 불러오는데 오류가 발생했습니다.", error);
-    }
-}
-
+//
+// showList();
+//
+// window.onload = async function() {
+//     try {
+//         // 현재 페이지의 게시글 ID를 가져옴
+//         const postId = getCurrentPostId();
+//         console.log(postId);
+//
+//         // 게시물의 정보를 가져옴
+//         const post = await getPostDetail(postId);
+//         console.log(post);
+//
+//         // 관련 게시글들을 가져옴
+//         const relatedPosts = await getRelatedPost(postId);
+//         console.log(relatedPosts);
+//
+//     } catch (error) {
+//         console.error("데이터를 불러오는데 오류가 발생했습니다.", error);
+//     }
+// }
 
 
 
@@ -164,3 +217,17 @@ document.getElementById("submitCommentButton").addEventListener("click", functio
         textField.value = "";
     }
 });
+
+
+// 모달 창
+document.querySelector(".buttonIconMedium").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'block'
+})
+
+document.querySelector(".overlay").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'none'
+})
+
+document.querySelector(".cancle").addEventListener("click",() => {
+    document.querySelector(".dropDownBottom").style.disply = 'none'
+})
