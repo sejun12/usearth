@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.FreeMapper">
+    <insert id="insertFree" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE">
+            SELECT SEQ_POST.NEXTVAL as id FROM dual
+        </selectKey>
+        INSERT INTO TBL_POST(ID, USER_ID, POST_TITLE, POST_CONTENT, POST_CATEGORY)
+        VALUES(#{id}, #{userId}, #{postTitle}, #{postContent}, '자유')
+    </insert>
+
+    <select id="getFreePostById" parameterType="Long" resultType="PostDTO">
+        SELECT ID, POST_TITLE, POST_CONTENT, POST_MODIFY_DATE
+        FROM TBL_POST WHERE ID = #{id}
+    </select>
+
+
     <select id="selectByFreeBoard" parameterType="long" resultType="postDTO">
         SELECT P.ID, P.USER_ID, P.POST_TITLE, P.POST_CONTENT,
                P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
@@ -18,10 +32,9 @@
         ORDER BY P.POST_MODIFY_DATE DESC
     </select>
     <select id="selectByFreeRead" parameterType="long" resultType="postDTO">
-        SELECT P.ID, POST_TITLE, POST_CONTENT, POST_WRITE_DATE,
-               POST_MODIFY_DATE, POST_VIEW_COUNT, USER_ID,
-               U.USER_NAME, L.LIKE_COUNT, POST_CATEGORY,
-               POST_STATUS
+        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               P.POST_MODIFY_DATE, P.POST_VIEW_COUNT, P.POST_CATEGORY, P.POST_STATUS,
+               P.USER_ID, U.USER_NAME, USER_DONG, USER_HO, L.LIKE_COUNT
         FROM TBL_POST P
                  JOIN TBL_USER U ON P.USER_ID = U.ID
                  LEFT JOIN (

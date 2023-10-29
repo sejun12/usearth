@@ -14,13 +14,21 @@ import java.util.OptionalInt;
 @RequiredArgsConstructor
 public class FreeDAO {
     private final FreeMapper freeMapper;
+    // 자유게시판 목록
     public List<PostDTO> freeBoardList(){return freeMapper.selectByFreeBoard();}
 
-    // 해당 자유게시판 글
+    // 게시판 상세보기
     public Optional<PostDTO> freeBoardRead(Long id){return freeMapper.selectByFreeRead(id);}
 
     // 재활용 글 반환
     public List<PostDTO> findByRecycling(Long id){return freeMapper.selectByReadRecycling(id);}
+
+    // 자유게시판 작성
+    public void insertFree(PostDTO postDTO){
+        freeMapper.insertFree(postDTO);
+    }
+
+
 
     //postId의 댓글 목록
     public List<CommentDTO> selectCommentsByPostId(Long postId) {

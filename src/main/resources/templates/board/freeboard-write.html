@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Us Earth 게시판 글작성</title>
     <link rel="stylesheet" href="/css/board/freeboard-write.css">
+    <link rel="stylesheet" href="/css/fix/header/freeboard-writeheader.css">
 </head>
 <body>
-<div th:replace="~{/fix/header/freeboard-writeheader  :: freewrite-header}"></div>
+<div th:replace="~{/fix/header/freeboard-writeheader  :: write-header}"></div>
     <div class="freeBoardMainLayout" style="min-height: calc(100vh - 324px); background-color: rgb(255, 255, 255);">
         <div class="mainLayoutFreeBoard">
             <div class="layoutMainFreeBoard">
@@ -47,11 +48,12 @@
 <!--                                                </div>-->
 <!--                                            </span>-->
 <!--                                        </div>-->
+                                        <form id="freeForm" th:action="${post.id != null} ? '/board/freeboard-write/' + ${post.id} : '/board/freeboard-write'" method="post">
                                         <div class="titleLineBox">
                                             <span>
                                                 <div class="lineBoxTitle">
                                                     <div class="titleBoxLine">
-                                                        <input id="postWriteTitle" placeholder="제목을 입력하세요" name="writePost" label align="left" autocomplete="off" type="text" class="postWrite" style="text-align: left;">
+                                                        <input id="postWriteTitle" placeholder="제목을 입력하세요" name="writePost" label align="left" autocomplete="off" type="text" class="postWrite" style="text-align: left;" th:value="${post.postTitle}">
                                                     </div>
                                                 </div>
                                             </span>
@@ -59,11 +61,12 @@
                                         <span>
                                             <div class="textAreaWrapper">
 <!--                                                원본코드는 'cols="30" rows="10"'-->
-                                                <textarea cols="50" rows="30" placeholder=" 자유롭게 소통해보세요." maxlength="1000" class="writeTextArea"></textarea>
+                                                <textarea cols="50" rows="30" placeholder=" 자유롭게 소통해보세요." maxlength="1000" class="writeTextArea" th:text="${post.postContent}"></textarea>
                                             </div>
                                             <div class="numberCharacters">
                                                 글자수 :
-                                                <span id="characterLength" class="lengthCharacter">0</span> / 1000
+                                                <span id="characterLength" class="lengthCharacter">0</span> /
+                                                <span id="remainingLength">1000</span>
                                             </div>
                                         </span>
                                         <div class="postTextSend">
@@ -75,6 +78,7 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -85,4 +89,8 @@
         </div>
     </div>
 </body>
+<script src="/js/board/board-write.js"></script>
+<script th:inline="javascript">
+    const user=[[${session.user}]]
+</script>
 </html>

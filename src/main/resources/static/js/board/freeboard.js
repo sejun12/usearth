@@ -22,13 +22,13 @@ async function getPosts(){
 }
 function getList(post){
     postsListFree.innerHTML +=`
-                                         <a href="/board/free">
+                                         <a href="/board/free/${post.id}">
                                             <article class="agentCard">
                                                 <div class="agentWrap" style="padding: 20px;">
                                                     <div class="agentContentWrap">
                                                         <div class="agentContentContainer">
-                                                            <div class="agentContentTitle" style="color: rgb(4, 5, 5); font-weight: 500;">힐스테이트 3단지 1305호 리모델링 소음</div>
-                                                            <div class="agentContent" style="color: rgb(89, 95, 99); font-weight: 400;">305동 1305호 리모델링 공사로 소음이 있어 민원접수 중....<span class="moreText">더보기</span></div>
+                                                            <div class="agentContentTitle" style="color: rgb(4, 5, 5); font-weight: 500;">${post.postTitle}</div>
+                                                            <div class="agentContent" style="color: rgb(89, 95, 99); font-weight: 400;">${post.postContent}<span class="moreText">더보기</span></div>
                                                         </div>
                                                     </div>
                                                     <div class="bottomContentWrap">
@@ -37,7 +37,7 @@ function getList(post){
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="hitsSVG" style="fill: rgb(148, 155, 160);">
                                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8766 8C11.3452 12.6334 4.65478 12.6334 2.12331 8C4.65478 3.36658 11.3452 3.36658 13.8766 8ZM14.8923 7.78461C12.0525 2.10504 3.94746 2.10504 1.10767 7.78461C1.03988 7.9202 1.03988 8.07979 1.10767 8.21538C3.94746 13.895 12.0525 13.895 14.8923 8.21538C14.9601 8.07979 14.9601 7.9202 14.8923 7.78461Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 9.5C8.82843 9.5 9.5 8.82843 9.5 8C9.5 7.17157 8.82843 6.5 8 6.5C7.17157 6.5 6.5 7.17157 6.5 8C6.5 8.82843 7.17157 9.5 8 9.5ZM8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5Z"></path>
                                                                 </svg>
-                                                                <div class="hitsCount" style="color: rgb(148, 155, 160);"> 240 </div>
+                                                                <div class="hitsCount" style="color: rgb(148, 155, 160);"> </div>
                                                             </div>
                                                             <div class="reply">
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="replySVG" style="fill: rgb(148, 155, 160);">
@@ -46,18 +46,63 @@ function getList(post){
                                                                     <path d="M8.75 8C8.75 8.41421 8.41421 8.75 8 8.75C7.58579 8.75 7.25 8.41421 7.25 8C7.25 7.58579 7.58579 7.25 8 7.25C8.41421 7.25 8.75 7.58579 8.75 8Z"></path>
                                                                     <path d="M11.5 8C11.5 8.41421 11.1642 8.75 10.75 8.75C10.3358 8.75 10 8.41421 10 8C10 7.58579 10.3358 7.25 10.75 7.25C11.1642 7.25 11.5 7.58579 11.5 8Z"></path>
                                                                 </svg>
-                                                                <div class="replyCount" style="color: rgb(148, 155, 160);"> 2 </div>
-                                                            </div>
-                                                            <div class="bookmark">
-                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="bookmarkSVG" style="fill: rgb(148, 155, 160);">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3H4V12.5504L6.88646 10.6157C7.56015 10.1642 8.43985 10.1642 9.11354 10.6157L12 12.5504V3ZM4 2C3.44772 2 3 2.44772 3 3V13.4875C3 13.8874 3.44619 14.1255 3.77839 13.9028L7.44323 11.4464C7.78008 11.2206 8.21992 11.2206 8.55677 11.4464L12.2216 13.9028C12.5538 14.1255 13 13.8874 13 13.4875V3C13 2.44772 12.5523 2 12 2H4Z"></path>
-                                                                </svg>
-                                                                <div class="bookmarkCount" style="color: rgb(148, 155, 160);"> 24 </div>
-                                                            </div>
+                                                                <div class="replyCount" style="color: rgb(148, 155, 160);">  </div> 
+                                                           </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </article>
-                                        </a>`
+                                        </a>
+                                        `;
+                    }
+//무한스크롤
+let isLoading = false;
+// 한번에 보여줄 리스트의 갯수를 정하고 차츰 페이지를 증가시킨다
+function showList() {
+    // 중복되어 실행되는 경우가 있어 그것을 막기위해 로딩 유무 파악
+    if (isLoading) return;
 
+    isLoading = true;
+    getPosts().then((posts) => {
+        const rowCount = 10;
+        const offset = (page - 1) * rowCount;
+        const limit = offset + rowCount;
+        posts = posts.slice(offset, limit);
+
+        if(posts.length > 0) {
+            posts.forEach((post) => {
+                getList(post);
+            });
+            page++;
+        }
+        isLoading = false;
+    })
 }
+
+// 스크롤의 위치를 검색하고 조건에 맞춰 실행하는 함수
+function handleScroll() {
+    // 현재 문서의 상단에서 스크롤바의 위치까지의 거리를 나타내는 값을 가져온다.
+    const scrollTop = document.documentElement.scrollTop;
+    // 현재 창의 뷰포트 높이를 나타낸다.
+    const windowHeight = window.innerHeight;
+    // 문서의 총 높이를 나타내는 값을 가져온다.
+    const totalHeight = document.documentElement.scrollHeight;
+    // 스크롤바가 문서의 아래쪽 끝에 도달했을 때 아래의 코드를 실행한다.
+    if (scrollTop + windowHeight >= totalHeight - 1) {
+        showList();
+    }
+}
+
+
+// 스크롤 이벤트가 발생할 때마다 스크롤바의 위치를 검사하여 새로운 콘텐츠를 불러오게 된다.
+window.addEventListener("scroll", handleScroll);
+
+// 최초 실행하여 1페이지를 줌
+showList();
+
+// 자유게시판 글 작성을 위해 'agentWriteHeader' 요소 선택
+const agentWriteBTM = document.querySelector(".agentWriteBTM");
+
+agentWriteBTM.addEventListener("click", function() {
+    location.href = "/board/freeboard-write";
+});

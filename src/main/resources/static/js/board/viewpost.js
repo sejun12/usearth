@@ -58,8 +58,65 @@
 //     overlay.style.display = "block";
 // }
 
+// 상세보기, 댓글, 함께 읽는 글
 
+const FreeId=window.location.href.split('/').pop();
 
+const FreeReadService=(function (){
+
+    async function getFreeDetail(){
+        const response=await fetch(`/free-reads/api/read/${postId}`);
+        const json=await response.json();
+        console.log(json);
+
+        const mainPost=json.mainPost;
+        await appendFreePost(mainPost);
+
+        const randomRecyclePosts=json.randomRecyclePosts;
+        await appendRandomRecyclePosts(randomRecyclePosts);
+    }
+    return {detail: getFreeDetail}
+})();
+
+FreeReadService.detail();
+
+//상세보기 html을 만들어주는 함수
+const postedBox=document.querySelector(".postedBox");
+
+function appendFreePost(mainPost){
+    console.log(mainPost);
+
+    document.querySelector(".userInfomationName").textContent = `${mainPost.userName}`;
+    document.querySelector(".aptBuildingNumber").textContent = `${mainPost.userDong}동 ${mainPost.userHo}호`;
+    document.querySelector(".headlineTitle").textContent = `${mainPost.postTitle}`;
+    document.querySelector(".purifiedHtml").textContent = `${mainPost.postContent}`;
+    document.querySelector(".contentDate").textContent = `${mainPost.postModifyDate = mainPost.postWriteDate ? mainPost.postWriteDate.split(' ')[0] : mainPost.postModifyDate.split(' ')[0]}`;
+    document.querySelector("#postViewCount").textContent = `${mainPost.postViewCount}`;
+    document.querySelector("#likeCount").textContent = `${mainPost.likeCount}`;
+}
+function appendRandomRecyclePosts(randomRecyclePosts){
+    randomRecyclePosts.forEach((randomRecyclePost, i)=>{
+        document.querySelector(`#postListTitleLine${i+1}`).textContent=`${randomRecyclePost.postTitle}`;
+        document.querySelector(`#contentWrapper${i+1}`).textContent=`${randomRecyclePost.postContent}`;
+        console.log(randomRecyclePost);
+        console.log(i);
+    })
+}
+
+// 댓글
+document.getElementById("submitComment").addEventListener("click",function (){
+    let textField=document.getElementById("textField");
+    let commentText=textField.value;
+
+    if(commentText.trim() !== ""){
+        let newCommentDiv=document.createElement("div");
+        newCommentDiv.innerText=commentText;
+        let commentsPost=document.getElementById("commentsPost");
+        commentsPost.appendChild(newCommentDiv);
+
+        textField.value="";
+    }
+})
 
 
 

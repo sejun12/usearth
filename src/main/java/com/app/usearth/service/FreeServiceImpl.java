@@ -18,30 +18,27 @@ import java.util.Optional;
 @Slf4j
 public class FreeServiceImpl implements FreeService{
     private final FreeDAO freeDAO;
-
+    // 게시글 작성
+    @Override
+    public void addFree(PostDTO postDTO){
+        freeDAO.insertFree(postDTO);
+    }
+    // 게시글 목록
     @Override
     public List<PostDTO> freeList(){return freeDAO.freeBoardList();}
+   // 게시글 상세보기
     @Override
     public Optional<PostDTO> freeBoardRead(Long id){return freeDAO.freeBoardRead(id);}
+   // 재활용 글 가져오기
     @Override
     public List<PostDTO> findByRecycling(Long id){return freeDAO.findByRecycling(id);}
-
+    // 댓글
     @Override
     public List<CommentDTO> getCommentsByPostId(Long postId) {
-        try {
-            return freeDAO.selectCommentsByPostId(postId);
-        } catch(Exception e) {
-            System.err.println("ID가 있는 게시글의 댓글을 가져오는 중 오류가 발생했습니다.: " + postId + " - " + e.getMessage());
-            throw new RuntimeException("ID가 있는 게시글에 대한 댓글을 가져올 수 없습니다. : " + postId, e);
-        }
+        return freeDAO.selectCommentsByPostId(postId);
     }
+   // 댓글 추가
     @Override
     public void addComment(CommentDTO commentDTO) {
-        try {
-            freeDAO.insertComment(commentDTO);
-        } catch(Exception e) {
-            System.err.println("댓글 삽입 중 오류 발생: " + e.getMessage());
-            throw new RuntimeException("댓글 삽입 불가", e);
-        }
-    }
+        freeDAO.insertComment(commentDTO);}
 }
