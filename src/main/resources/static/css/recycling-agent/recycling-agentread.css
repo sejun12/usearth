@@ -195,18 +195,18 @@ div, h1, h2, h3, h4, h5, h6, p, span {
 }
 
 .avatarMark {
-    height: 24px;
-    line-height: 24px;
-    width: 24px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
     display: inline-block;
     position: relative;
     text-align: center;
 }
 
 .avatarNickName {
-    height: 24px;
-    line-height: 24px;
-    width: 24px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
     border-radius: 100%;
     display: block;
 }
@@ -881,6 +881,46 @@ ol, ul {
     border: 0;
 }
 
+.container {
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+}
+
+.commentAvatar{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.infomationUserName.bodyComment {
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+}
+
+.c-caption1 {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+.commentDrawer {
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.1);
+    min-height: 266px;
+    position: fixed;
+}
+
+.commentBody1 {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    line-height: 25px;
+}
+
 /* 모달창 속성 */
 .modal {
     z-index: 2;
@@ -953,7 +993,60 @@ ol, ul {
 .textFieldAdditional, .buttonWrapper {
     margin: 10px;
 }
+.dividerLine{
+    border-style: solid;
+    border: 0;
+    margin: 0;
+}
 
+
+.dividerLine .horizontal {
+    border-top: 1px;
+    height: 0;
+    width: inherit;
+}
+
+.commentBox, .boxComment {
+    display: block;
+}
+
+.commentBody {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.betweenJust {
+    justify-content: space-between;
+    display: flex;
+}
+
+.commentUserInformation.normal {
+    padding: 2px 0 8px;
+}
+
+.commentUserInformation{
+    align-items: center;
+    display: flex!important;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.commentUserInformation.normal .avatarWrapper {
+    margin-right: 8px;
+}
+
+.commentUserInformation .avatarWrapper {
+    display: flex!important;
+}
+
+.commentUserInformation.normal .informationWrapper {
+    min-height: 33px;
+    display: flex!important;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
 
 
 
@@ -986,6 +1079,29 @@ ol, ul {
     top: 12px;
 }
 
+.nickName1 {
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+}
+
+.avatarComment {
+    border-radius: 100%;
+    display: block;
+}
+
+.commentAvatarItem {
+    display: flex;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.boldSemi {
+    font-weight: 600!important;
+
+}
 
 /*.modalicon {*/
 /*    background: transparent!important;*/

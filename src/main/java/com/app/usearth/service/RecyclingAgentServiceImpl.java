@@ -59,13 +59,20 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
 
     @Override
     public void updatePost(PostDTO postDTO) {
+
         recyclingAgentDAO.updatePost(postDTO);
     }
 
 
-      @Override
+    @Override
     public PostDTO getPostById(Long id) {
+
         return recyclingAgentDAO.getPostById(id);
+    }
+
+    @Override
+    public int getCommentCountByPostId(Long postId) {
+        return recyclingAgentDAO.selectCommentCountByPostId(postId);
     }
 
 }
