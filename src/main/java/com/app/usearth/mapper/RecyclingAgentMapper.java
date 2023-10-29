@@ -28,6 +28,6 @@ public interface RecyclingAgentMapper {
     public void updatePost(PostDTO id);
     public PostDTO getPostById(Long id);
 
-
+    public int selectCommentCountByPostId(Long postId);
 
 }

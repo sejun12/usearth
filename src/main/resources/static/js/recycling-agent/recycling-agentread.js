@@ -57,33 +57,95 @@ document.getElementById("modifyPostButton").addEventListener("click", function()
 
 
 // 댓글 관련
-// HTML 문서에서 ID : "submitCommentButton"를 가진 요소를 찾아 반환
-// 위에서 찾아낸 요소에 클릭 이벤트를 감지하는 리스너를 추가, 버튼이 클릭되면 괄호 안의 함수를 실행
 document.getElementById("submitCommentButton").addEventListener("click", function() {
-    // ID : "textField"라는 ID를 가진 요소를 찾아 textField 변수에 저장
-    // 사용자가 댓글을 입력할 수 있는 입력 필드
-    let textField = document.getElementById("textField");
-    // textField 요소의 현재 값을 가져와 commentText 변수에 저장
-    // 이 값은 사용자가 입력한 댓글의 텍스트
-    let commentText = textField.value;
+    // 댓글 내용 가져오기(id가 "textField"인 입력란의 값을 가져와 commentText 변수에 저장)
+    const commentText = document.getElementById("textField").value;
 
-    // trim() 함수는 문자열 양쪽의 공백을 제거를 의미하고 사용자가 공백만 입력했는지 확인하기 위한 것
-    // 공백만 입력되었다면, 댓글을 추가하지 않음
-    if (commentText.trim() !== "") {
-        // 새로운 댓글을 표시하기 위해 새로운 <div> 요소를 생성
-        let newCommentDiv = document.createElement("div");
-        // 생성한 <div> 요소의 내부 텍스트를 사용자의 댓글 텍스트로 설정
-        newCommentDiv.innerText = commentText;
+    // 사용자 정보 가져오기
+    fetch("/recycling-agent/getCountComment")
+        // JSON 형식으로 파싱하도록 설정
+        .then(response => response.json())
+        // JSON으로 파싱한 응답 데이터를 user 변수로 받아옴(사용자 정보를 담고 있음)
+        .then(user => {
+            // 댓글 생성하기 (나중에 생성한 댓글을 담을 컨테이너 역할)
+            const commentDiv = document.createElement("div");
+            commentDiv.className = "boxComment";
+            // CSS 클래스 "boxComment"를 추가 (배경색을 설정)
+            commentDiv.style.backgroundColor = "rgb(255, 255, 255)";
+            // 패딩을 설정
+            commentDiv.style.padding = "16px";
 
-        // ID : "commentsPost"를 가진 요소를 찾아 commentsPost 변수에 저장
-        // 웹 페이지에 이미 존재하는 댓글들이 표시되는 곳
-        let commentsPost = document.getElementById("commentsPost");
-        // 생성한 새로운 댓글 <div> 요소를 commentsPost 요소의 마지막 자식 요소로 추가
-        // 즉, 웹 페이지에 새로운 댓글이 추가
-        commentsPost.appendChild(newCommentDiv);
+            // 사용자 정보 구조 생성
+            // 즉, userInfo 변수에는 사용자 정보를 나타내는 HTML 문자열이 저장
+            const userInfo = `
+                <div class="betweenJust">
+                    <div class="commentUserInformation normal">
+                        <div class="avatarWrapper">
+                            <div>
+                                <div class="commentAvatar container">
+                                    <i class="avatarComment nickName1" style="background: rgb(145, 207, 211);"></i>
+                                    <div class="commentAvatarItem">
+                                        <div class="commentBody boldSemi" style="color: rgb(255, 255, 255);">${session.user.userName}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="informationWrapper">
+                            <div class="nameCompanyWrapper">
+                                <div class="nameIconWrapper">
+                                    <div class="nameWrapper">
+                                        <div class="infomationUserName bodyComment commentBody" style="color: inherit; font-weight: 600;">${session.user.userName}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="otherWrapper">
+                                <div class="commentTypography c-caption1" style="color: rgb(173, 179, 184);">${session.user.userJoinDate}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
 
-        // 댓글 입력 필드의 값을 빈 문자열로 설정하여 초기화
-        textField.value = "";
-    }
+            // 댓글 내용 추가 (사용자가 입력한 댓글 내용을 포함)
+            const commentContent = `
+                <div class="commentTypography commentBody1" style="color: rgb(60, 65, 68);">
+                    <span class="purifiedHtml">${commentText}</span>
+                </div>
+            `;
+
+            // 사용자 정보와 댓글 내용이 포함된 HTML이 commentDiv에 추가
+            commentDiv.innerHTML = userInfo + commentContent;
+
+            // 댓글 추가 (댓글을 화면에 추가)
+            // 즉,  "userComments"라는 id를 가진 부모 엘리먼트에 commentDiv를 자식 엘리먼트로 추가
+            document.getElementById("userComments").appendChild(commentDiv);
+
+            // 댓글 입력란 초기화
+            document.getElementById("textField").value = "";
+        });
 });
+
+
+// document.getElementById("submitCommentButton").addEventListener("click", function() {
+//     const postId = document.getElementById("postId").value; // 게시글의 ID를 가져옴
+//     const commentText = document.getElementById("commentText").value; // 댓글 내용을 가져옴
+//
+//     // 서버로 댓글 작성 요청을 보낼 때 postId를 함께 보냄
+//     fetch(`/recycling-agent/addComment/${postId}`, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             commentText: commentText,
+//         }),
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             // 댓글 작성 후의 동작을 수행
+//         })
+//         .catch(error => {
+//             // 에러 처리
+//         });
+// });
 

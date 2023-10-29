@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpClient;
 import java.util.List;
 
 @Controller
@@ -107,6 +106,12 @@ public class RecyclingAgentController {
     }
 
 
+    // 댓글 개수 조회
+    @GetMapping("getCountComment")
+    @ResponseBody
+    public int getCommentCount(@RequestParam Long postId) {
+        return recyclingAgentService.getCommentCountByPostId(postId);
+    }
 
 }
 
