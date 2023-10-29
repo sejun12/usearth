@@ -85,9 +85,14 @@
         SELECT ID, POST_TITLE, POST_CONTENT, POST_MODIFY_DATE
         FROM TBL_POST WHERE ID = #{id}
     </select>
-    <!--    <update id="postViewCount" parameterType="int">-->
-<!--        UPDATE TBL_POST-->
-<!--        SET POST_VIEW_COUNT = POST_VIEW_COUNT + 1-->
-<!--        WHERE POST_ID = #{postId}-->
-<!--    </update>-->
+    <!-- 게시물 조회수 증가 -->
+    <update id="postViewCount" parameterType="map">
+        UPDATE TBL_POST
+        SET POST_VIEW_COUNT = POST_VIEW_COUNT + 1
+        WHERE ID = #{postId} AND USER_ID != #{userId}
+    </update>
+    <!-- 댓글 개수 조회 -->
+    <select id="selectCommentCountByPostId" parameterType="Long" resultType="int">
+        SELECT COUNT(*) FROM TBL_COMMENT WHERE POST_ID = #{postId}
+    </select>
 </mapper>

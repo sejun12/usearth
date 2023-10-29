@@ -32,4 +32,8 @@ public interface RecyclingAgentService {
 
     //  댓글을 추가하는 기능, 즉 CommentDTO 객체를 받아 해당 댓글 정보를 DB에 추가
     public void addComment(CommentDTO commentDTO);
-}
+
+    // 댓글의 수
+    public int getCommentCountByPostId(Long postId);
+
+    }

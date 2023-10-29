@@ -59,11 +59,17 @@ public class RecyclingAgentDAO {
 
     // 재활용대행 수정하기
     public void updatePost(PostDTO postDTO) {
+
         recyclingAgentMapper.updatePost(postDTO);
     }
-
-
     public PostDTO getPostById(Long id) {
+
         return recyclingAgentMapper.getPostById(id);
     }
+
+    // 댓글 수 카운트
+    public int selectCommentCountByPostId(Long postId) {
+        return recyclingAgentMapper.selectCommentCountByPostId(postId);
+    }
+
 }
