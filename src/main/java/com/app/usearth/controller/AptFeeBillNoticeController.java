@@ -1,5 +1,6 @@
 package com.app.usearth.controller;
 
+import com.app.usearth.domain.AnnouncementDTO;
 import com.app.usearth.domain.Pagination;
 import com.app.usearth.service.AptFeeBillNoticeService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,8 +31,17 @@ public class AptFeeBillNoticeController {
     }
 
     @PostMapping("announcement")
-    public void goToAnnouncementDetail(){
-        ;
+    public RedirectView goToAnnouncementDetail(Long id, HttpSession session, Model model) {
+        aptFeeBillNoticeService.viewCountUp(id);
+        Optional<AnnouncementDTO> foundPost = aptFeeBillNoticeService.detail(id);
+        if(foundPost.isPresent()){
+            log.info(String.valueOf(foundPost.get()));
+            session.setAttribute("post", foundPost.get());
+            return new RedirectView("notice");
+        } else {
+            log.info("error");
+        }
+        return new RedirectView("announcement");
     }
 
     @GetMapping("notice")

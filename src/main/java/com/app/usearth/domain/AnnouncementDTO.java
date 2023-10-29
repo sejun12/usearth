@@ -3,11 +3,12 @@ package com.app.usearth.domain;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Component
 @Data
-public class AnnouncementDTO {
+public class AnnouncementDTO implements Serializable {
     private Long id;
     private Long adminId;
     private Integer announcementCategoryId;

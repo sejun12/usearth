@@ -34,3 +34,17 @@
 //         });
 //     }
 // });
+
+// 페이지 이동
+$("a.change-page").on("click", function(e){
+    e.preventDefault();
+    let page = $(this).attr("href");
+    let type = $("select[name=type]").val();
+    let keyword = $("#keyword").val();
+    location.href = `/notice/announcement?page=${page}`;
+});
+
+// 상세보기 페이지 이동
+$('.goToDetail').click(function() {
+    $(this).find('.goToPostDetail').submit();
+});
