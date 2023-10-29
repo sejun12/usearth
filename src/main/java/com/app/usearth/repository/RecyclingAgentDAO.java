@@ -18,22 +18,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RecyclingAgentDAO {
 
-//  MyBatis와 연동하여 실제로 데이터베이스 작업을 수행
+    //  MyBatis와 연동하여 실제로 데이터베이스 작업을 수행
     private final RecyclingAgentMapper recyclingAgentMapper;
 
-//  selectByRecycling() : 재활용 관련 글 목록을 반환하는 메서드
+    //  selectByRecycling() : 재활용 관련 글 목록을 반환하는 메서드
     public List<PostDTO> selectByRecycling() {
 
         return recyclingAgentMapper.selectByRecycling();
     }
 
-//  주어진 id에 해당하는 재활용 관련 글을 반환
+    //  주어진 id에 해당하는 재활용 관련 글을 반환
     public Optional<PostDTO> findByRecyclingReadId(Long id) {
 
         return recyclingAgentMapper.selectByRecyclingRead(id);
     }
 
-//  주어진 id에 해당하는 자유 게피물 관련 글을 반환
+    //  주어진 id에 해당하는 자유 게피물 관련 글을 반환
     public List<PostDTO> findRelatedPostsById(Long id) {
 
         return recyclingAgentMapper.selectByReadFree(id);
@@ -44,12 +44,26 @@ public class RecyclingAgentDAO {
         return recyclingAgentMapper.selectCommentsByPostId(postId);
     }
 
-//  매개변수로 받은 CommentDTO 객체를 사용하여 RecyclingAgentMapper의 insertComment 메소드를 호출
+    //  매개변수로 받은 CommentDTO 객체를 사용하여 RecyclingAgentMapper의 insertComment 메소드를 호출
 //  CommentDTO에 담긴 댓글 데이터가 DB에 저장
     public void insertComment(CommentDTO comment) {
 
         recyclingAgentMapper.insertComment(comment);
     }
 
+    // 재활용대행신청
+    public void insertPost(PostDTO postDTO) {
 
+        recyclingAgentMapper.insertPost(postDTO);
+    }
+
+    // 재활용대행 수정하기
+    public void updatePost(PostDTO postDTO) {
+        recyclingAgentMapper.updatePost(postDTO);
+    }
+
+
+    public PostDTO getPostById(Long id) {
+        return recyclingAgentMapper.getPostById(id);
+    }
 }

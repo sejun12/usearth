@@ -9,11 +9,12 @@ public class PostDTO {
     private Long id;
     private Long userId;
     private String userName;
+    private String userDong;
+    private String userHo;
     private String postTitle;
     private String postContent;
     private String postWriteDate;
     private Long postViewCount;
-    private Long postLikeCount;
     private String postStatus;
     private String postCategory;
     private String postModifyDate;
