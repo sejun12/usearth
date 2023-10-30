@@ -111,15 +111,12 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void adminBooking(ReserveCarDTO reserveCarDTO) {
-        UserVO userVO=new UserVO();
-        userVO.setUserDong(reserveCarDTO.getUserDong());
-        userVO.setUserHo(reserveCarDTO.getUserHo());
-        Optional<Long>foundUserId=myPageDAO.searchUserId(userVO);
-        if(foundUserId.isPresent()){
-            long userId = foundUserId.get();
-            reserveCarDTO.setUserId(userId);
             myPageDAO.adminBooking(reserveCarDTO);
-        }
+    }
+
+    @Override
+    public Optional<Long> searchUserId(UserVO userVO) {
+        return myPageDAO.searchUserId(userVO);
     }
 
     @Override

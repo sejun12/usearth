@@ -17,8 +17,7 @@ async function getPosts() {
 }
 function appendPost(complain) {
     const startDate = complain.complainDate;
-    const startDateParts = startDate.split(' ')[0].split('-');
-    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
+    const startDateParts = startDate.split(' ')[0];
     const newDiv = document.createElement('div');
     newDiv.className='application newCol1 readCaseContainer newColSm4 newColLg12'
     newDiv.innerHTML = `
@@ -51,7 +50,7 @@ function appendPost(complain) {
                             </span>
                         </p>
                         <p class="topTitle application typography application content body2 contentCaption" style="color: rgb(207,212,215);">
-                            ${startDateFormatted}
+                            ${startDateParts}
                         </p>
                     </article>
                 </div>

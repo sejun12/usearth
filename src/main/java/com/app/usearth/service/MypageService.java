@@ -35,6 +35,8 @@ public interface MypageService {
 
     public void adminBooking(ReserveCarDTO reserveCarDTO);
 
+    public Optional<Long> searchUserId(UserVO userVO);
+
     public void removeBooking(Long id);
 
 }

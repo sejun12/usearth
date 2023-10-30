@@ -8,18 +8,17 @@ async function getPosts() {
     return posts.reverse(); // 최신순으로 가져오도록 역순으로 정렬
 }
 function appendPost(reserve) {
-    // 시간 바꾸기
-    const startDate = reserve.visitBookingStartDate; // Example: "YYYY-MM-DD HH:mm:ss"
-    const endDate = reserve.visitBookingEndDate;     // Example: "YYYY-MM-DD HH:mm:ss"
+    if (reserve.visitBookingCarType !== null) {
+        // 시간 바꾸기
+        const startDate = reserve.visitBookingStartDate; // Example: "YYYY-MM-DD HH:mm:ss"
+        const endDate = reserve.visitBookingEndDate;     // Example: "YYYY-MM-DD HH:mm:ss"
 
-    const startDateParts = startDate.split(' ')[0].split('-');
-    const endDateParts = endDate.split(' ')[0].split('-');
+        const startDateParts = startDate.split(' ')[0];
+        const endDateParts = endDate.split(' ')[0];
 
-    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
-    const endDateFormatted = `${endDateParts[0]}-${endDateParts[1]}-${endDateParts[2]}`;
 
-    const div = document.createElement('div');
-    div.innerHTML = `
+        const div = document.createElement('div');
+        div.innerHTML = `
     <div>
       <div class="application list myPageCommunityList">
         <div class="application listItem myPageCommunityListItem myPageCommunityCard medium pointer">
@@ -39,10 +38,10 @@ function appendPost(reserve) {
                             </div>
                         </div>
                         <div class="topTitle application typography myPageCommunityListItemTitle body3" style="color: rgb(60,65,68)">방문시작일:
-                            <span class="startDate">${startDateFormatted}</span>
+                            <span class="startDate">${startDateParts}</span>
                         </div>
                         <div class="topTitle application typography myPageCommunityListItemTitle body3" style="color: rgb(60,65,68)">방문종료일:
-                            <span class="endDate">${endDateFormatted}</span>
+                            <span class="endDate">${endDateParts}</span>
                         </div>
                         <div class="topTitle flex flexColumn">
                             <div class="topTitle application typography textRight" style="color: rgb(173,179,184);">${timeForToday(reserve.visitBookingRegisterDate)}</div>
@@ -54,7 +53,8 @@ function appendPost(reserve) {
         </div>
     </div>
    `
-    newColSm4.appendChild(div);
+        newColSm4.appendChild(div);
+    }
 }
 
 let page = 1;
@@ -66,10 +66,10 @@ function showList() {
 
     isLoading = true;
     getPosts().then((posts) => {
-        // const rowCount = 5;
-        // const offset = (page - 1) * rowCount;
-        // const limit = offset + rowCount;
-        // posts = posts.slice(offset, limit);
+        const rowCount = 7;
+        const offset = (page - 1) * rowCount;
+        const limit = offset + rowCount;
+        posts = posts.slice(offset, limit);
         if(posts.length > 0) {
             posts.forEach((post) => {
                 appendPost(post);
