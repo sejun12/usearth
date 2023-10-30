@@ -14,3 +14,4 @@ public class AdminVO implements Serializable {
     private String adminPassword;
     private String adminName;
 }
+
