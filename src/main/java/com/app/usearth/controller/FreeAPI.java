@@ -31,6 +31,7 @@ public class FreeAPI {
     )
     @GetMapping("free-list")
     public List<PostDTO> freeList(){
+
         return freeService.freeList();
     }
     @GetMapping("read/{id}")

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/fix/header/freeboard-writeheader.css">
 </head>
 <body>
-<div th:replace="~{/fix/header/freeboard-writeheader  :: write-header}"></div>
+<div th:replace="~{/fix/header/freeboard-writeheader  :: writeHeader}"></div>
     <div class="freeBoardMainLayout" style="min-height: calc(100vh - 324px); background-color: rgb(255, 255, 255);">
         <div class="mainLayoutFreeBoard">
             <div class="layoutMainFreeBoard">
@@ -53,7 +53,7 @@
                                             <span>
                                                 <div class="lineBoxTitle">
                                                     <div class="titleBoxLine">
-                                                        <input id="postWriteTitle" placeholder="제목을 입력하세요" name="writePost" label align="left" autocomplete="off" type="text" class="postWrite" style="text-align: left;" th:value="${post.postTitle}">
+                                                        <input id="postWriteTitle" placeholder="제목을 입력하세요" name="postTitle"  autocomplete="off" type="text" class="postWrite" style="text-align: left;" th:value="${post.postTitle}">
                                                     </div>
                                                 </div>
                                             </span>
@@ -61,7 +61,7 @@
                                         <span>
                                             <div class="textAreaWrapper">
 <!--                                                원본코드는 'cols="30" rows="10"'-->
-                                                <textarea cols="50" rows="30" placeholder=" 자유롭게 소통해보세요." maxlength="1000" class="writeTextArea" th:text="${post.postContent}"></textarea>
+                                                <textarea name="postContent" cols="50" rows="30" placeholder=" 자유롭게 소통해보세요." maxlength="1000" class="writeTextArea" th:text="${post.postContent}"></textarea>
                                             </div>
                                             <div class="numberCharacters">
                                                 글자수 :

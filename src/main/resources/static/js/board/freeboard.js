@@ -13,16 +13,18 @@ writeContainers.forEach((writeContainer) => writeContainer.addEventListener("cli
         writeContainer.classList.remove("close");
     }
 }))
+
+// 자유게시판 리스트
 const postsListFree=document.getElementById('postsList');
 let page=1;
 async function getPosts(){
     // fetch에 가져올 데이터 주소 입력
-    const response=await fetch("/freeboard/freelist")
+    const response=await fetch("/free-reads/api/free-list")
     return await response.json();
 }
 function getList(post){
     postsListFree.innerHTML +=`
-                                         <a href="/board/free/${post.id}">
+                                         <a href="/board/viewpost/${post.id}">
                                             <article class="agentCard">
                                                 <div class="agentWrap" style="padding: 20px;">
                                                     <div class="agentContentWrap">
@@ -37,7 +39,7 @@ function getList(post){
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="hitsSVG" style="fill: rgb(148, 155, 160);">
                                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8766 8C11.3452 12.6334 4.65478 12.6334 2.12331 8C4.65478 3.36658 11.3452 3.36658 13.8766 8ZM14.8923 7.78461C12.0525 2.10504 3.94746 2.10504 1.10767 7.78461C1.03988 7.9202 1.03988 8.07979 1.10767 8.21538C3.94746 13.895 12.0525 13.895 14.8923 8.21538C14.9601 8.07979 14.9601 7.9202 14.8923 7.78461Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 9.5C8.82843 9.5 9.5 8.82843 9.5 8C9.5 7.17157 8.82843 6.5 8 6.5C7.17157 6.5 6.5 7.17157 6.5 8C6.5 8.82843 7.17157 9.5 8 9.5ZM8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5Z"></path>
                                                                 </svg>
-                                                                <div class="hitsCount" style="color: rgb(148, 155, 160);"> </div>
+                                                                <div class="hitsCount" style="color: rgb(148, 155, 160);">${post.postViewCount} </div>
                                                             </div>
                                                             <div class="reply">
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="black" xmlns="http://www.w3.org/2000/svg" class="replySVG" style="fill: rgb(148, 155, 160);">
@@ -46,7 +48,7 @@ function getList(post){
                                                                     <path d="M8.75 8C8.75 8.41421 8.41421 8.75 8 8.75C7.58579 8.75 7.25 8.41421 7.25 8C7.25 7.58579 7.58579 7.25 8 7.25C8.41421 7.25 8.75 7.58579 8.75 8Z"></path>
                                                                     <path d="M11.5 8C11.5 8.41421 11.1642 8.75 10.75 8.75C10.3358 8.75 10 8.41421 10 8C10 7.58579 10.3358 7.25 10.75 7.25C11.1642 7.25 11.5 7.58579 11.5 8Z"></path>
                                                                 </svg>
-                                                                <div class="replyCount" style="color: rgb(148, 155, 160);">  </div> 
+                                                                <div class="replyCount" style="color: rgb(148, 155, 160);"> ${post.commentCount} </div> 
                                                            </div>
                                                         </div>
                                                     </div>
@@ -101,8 +103,8 @@ window.addEventListener("scroll", handleScroll);
 showList();
 
 // 자유게시판 글 작성을 위해 'agentWriteHeader' 요소 선택
-const agentWriteBTM = document.querySelector(".agentWriteBTM");
+const CommunityWriteBTM = document.querySelector(".communityWriteBTN");
 
-agentWriteBTM.addEventListener("click", function() {
+CommunityWriteBTM.addEventListener("click", function() {
     location.href = "/board/freeboard-write";
 });

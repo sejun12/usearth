@@ -9,9 +9,6 @@ import java.util.Optional;
 
 @Mapper
 public interface FreeMapper {
-    // 게시글 작성
-    public void insertFree(PostDTO postDTO);
-
     // 자유게시판 목록
     public List<PostDTO> selectByFreeBoard();
     // 게시판 상세보기
@@ -22,6 +19,14 @@ public interface FreeMapper {
     public List<CommentDTO> selectCommentsByPostId(Long postId);
     // 댓글 추가
     public void insertComment(CommentDTO comment);
+
+    public int selectCommentCountByPostId(Long postId);
+
+    // 게시글 작성
+    public void insertPost(PostDTO postDTO);
+
+    public void updatePost(PostDTO id);
+    public PostDTO getPostById(Long id);
 
 
 

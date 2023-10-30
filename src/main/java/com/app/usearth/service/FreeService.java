@@ -10,6 +10,10 @@ public interface FreeService {
    //자유게시판 글 작성
     public void addFree(PostDTO postDTO);
 
+    public void updatePost(PostDTO postDTO);
+
+    public PostDTO getPostById(Long id);
+
 
     // 자유게시판 게시글 목록
     public List<PostDTO> freeList();
@@ -25,4 +29,7 @@ public interface FreeService {
 
     // 댓글 추가
     public void addComment(CommentDTO commentDTO);
+
+    // 댓글 수
+    public int getCommentCountByPostId(Long postId);
 }

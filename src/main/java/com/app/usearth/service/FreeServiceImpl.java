@@ -21,24 +21,41 @@ public class FreeServiceImpl implements FreeService{
     // 게시글 작성
     @Override
     public void addFree(PostDTO postDTO){
-        freeDAO.insertFree(postDTO);
+        freeDAO.insertPost(postDTO);
     }
     // 게시글 목록
     @Override
-    public List<PostDTO> freeList(){return freeDAO.freeBoardList();}
+    public List<PostDTO> freeList(){
+        return freeDAO.freeBoardList();}
    // 게시글 상세보기
     @Override
-    public Optional<PostDTO> freeBoardRead(Long id){return freeDAO.freeBoardRead(id);}
+    public Optional<PostDTO> freeBoardRead(Long id){
+        return freeDAO.freeBoardRead(id);}
    // 재활용 글 가져오기
     @Override
-    public List<PostDTO> findByRecycling(Long id){return freeDAO.findByRecycling(id);}
+    public List<PostDTO> findByRecycling(Long id){
+        return freeDAO.findByRecycling(id);}
+
+    @Override
+    public void updatePost(PostDTO postDTO){
+        freeDAO.updatePost(postDTO);
+    }
+
+    @Override
+    public PostDTO getPostById(Long id){
+        return freeDAO.getPostById(id);
+    }
     // 댓글
     @Override
     public List<CommentDTO> getCommentsByPostId(Long postId) {
+
         return freeDAO.selectCommentsByPostId(postId);
     }
    // 댓글 추가
     @Override
     public void addComment(CommentDTO commentDTO) {
         freeDAO.insertComment(commentDTO);}
+
+    @Override
+    public int getCommentCountByPostId(Long postId){return freeDAO.selectCommentCountByPostId(postId);}
 }
