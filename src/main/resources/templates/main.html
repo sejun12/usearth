@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Us Earth</title>
     <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" href="/css/fix/nav/nav.css">
+    <link rel="stylesheet" href="/css/fix/footer/mainfooter.css">
 </head>
 <body>
 <div id="mainWrap">
     <div id="layOut">
         <div class="mainWrapReal">
             <!--                네비 wrap-->
+            <div th:replace="~{/fix/nav/nav  :: recycling-nav}"></div>
 <!--            <div></>div>-->
 <!--                      main-->
             <div class="mainWrap" style="min-height: calc(100vh - 324px);">
@@ -814,12 +817,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!--  -->
+
                         <div class="fourthMain">
                             <div class="fourthMainContainer" style="background-color: inherit;">
                                 <div class="freeLow">
                                     <div class="freeCol">
-                                        <div class="fourthHeadline" style="color: rgb(4, 5, 5); font-weight: 600;">민원 접수</div>
+<!--                                        <div class="fourthHeadline" style="color: rgb(4, 5, 5); font-weight: 600;">민원 접수</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -830,182 +833,182 @@
                                             <!--  -->
                                             <div class="forthSwiperContainer">
                                                 <div class="forthSwiperWrap" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">
-                                                        <a  href="" class="over"style="width: 100%;">
-                                                            <article class="forthCard">
-                                                                <div  class="forthCardImagContainer">
-                                                                    <div da class="forthChipContainer">
-                                                                        <div>
-                                                                            <div class="beforeAfter"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthAdditionButton"></div>
-                                                                    <img src="/images/main/complaints01.jpg" alt="" loading="eager" class="forthCardImage"></div>
-                                                                <div class="forthCardInfoContainer">
-                                                                    <div  class="forthCardSubtitle">
-                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>
-                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>
-                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>
-                                                                    </div>
-                                                                    <div  class="forthTitleMt">
-                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                                <div  class="forthCardTitle" >
-                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthCaption">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>
-                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </a>
-                                                    </div>
-                                                    <!--  -->
-                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">
-                                                        <a  href="" class="over"style="width: 100%;">
-                                                            <article class="forthCard">
-                                                                <div  class="forthCardImagContainer">
-                                                                    <div da class="forthChipContainer">
-                                                                        <div>
-                                                                            <div class="beforeAfter"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthAdditionButton"></div>
-                                                                    <img src="/images/main/complaints02.jpg" alt="" loading="eager" class="forthCardImage"></div>
-                                                                <div class="forthCardInfoContainer">
-                                                                    <div  class="forthCardSubtitle">
-                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>
-                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>
-                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>
-                                                                    </div>
-                                                                    <div  class="forthTitleMt">
-                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                                <div  class="forthCardTitle" >
-                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthCaption">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>
-                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </a>
-                                                    </div>
-                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">
-                                                        <a  href="" class="over"style="width: 100%;">
-                                                            <article class="forthCard">
-                                                                <div  class="forthCardImagContainer">
-                                                                    <div da class="forthChipContainer">
-                                                                        <div>
-                                                                            <div class="beforeAfter"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthAdditionButton"></div>
-                                                                    <img src="/images/main/complaints03.jpg" alt="" loading="eager" class="forthCardImage"></div>
-                                                                <div class="forthCardInfoContainer">
-                                                                    <div  class="forthCardSubtitle">
-                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>
-                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>
-                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>
-                                                                    </div>
-                                                                    <div  class="forthTitleMt">
-                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                                <div  class="forthCardTitle" >
-                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthCaption">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>
-                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </a>
-                                                    </div>
-                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">
-                                                        <a  href="" class="over"style="width: 100%;">
-                                                            <article class="forthCard">
-                                                                <div  class="forthCardImagContainer">
-                                                                    <div da class="forthChipContainer">
-                                                                        <div>
-                                                                            <div class="beforeAfter"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthAdditionButton"></div>
-                                                                    <img src="/images/main/complaints04.jpg" alt="" loading="eager" class="forthCardImage"></div>
-                                                                <div class="forthCardInfoContainer">
-                                                                    <div  class="forthCardSubtitle">
-                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>
-                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>
-                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>
-                                                                    </div>
-                                                                    <div  class="forthTitleMt">
-                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                                <div  class="forthCardTitle" >
-                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthCaption">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>
-                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </a>
-                                                    </div>
-                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">
-                                                        <a  href="" class="over"style="width: 100%;">
-                                                            <article class="forthCard">
-                                                                <div  class="forthCardImagContainer">
-                                                                    <div da class="forthChipContainer">
-                                                                        <div>
-                                                                            <div class="beforeAfter"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthAdditionButton"></div>
-                                                                    <img src="/images/main/complaints05.jpg" alt="" loading="eager" class="forthCardImage"></div>
-                                                                <div class="forthCardInfoContainer">
-                                                                    <div  class="forthCardSubtitle">
-                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>
-                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>
-                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>
-                                                                    </div>
-                                                                    <div  class="forthTitleMt">
-                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">
-                                                                                <div  class="forthCardTitle" >
-                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="forthCaption">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>
-                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">
-                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        </a>
-                                                    </div>
+<!--                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">-->
+<!--                                                        <a  href="" class="over"style="width: 100%;">-->
+<!--                                                            <article class="forthCard">-->
+<!--                                                                <div  class="forthCardImagContainer">-->
+<!--                                                                    <div da class="forthChipContainer">-->
+<!--                                                                        <div>-->
+<!--                                                                            <div class="beforeAfter"></div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthAdditionButton"></div>-->
+<!--                                                                    <img src="/images/main/complaints01.jpg" alt="" loading="eager" class="forthCardImage"></div>-->
+<!--                                                                <div class="forthCardInfoContainer">-->
+<!--                                                                    <div  class="forthCardSubtitle">-->
+<!--                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>-->
+<!--                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>-->
+<!--                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div  class="forthTitleMt">-->
+<!--                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                                <div  class="forthCardTitle" >-->
+<!--                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthCaption">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>-->
+<!--                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </article>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                    &lt;!&ndash;  &ndash;&gt;-->
+<!--                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">-->
+<!--                                                        <a  href="" class="over"style="width: 100%;">-->
+<!--                                                            <article class="forthCard">-->
+<!--                                                                <div  class="forthCardImagContainer">-->
+<!--                                                                    <div da class="forthChipContainer">-->
+<!--                                                                        <div>-->
+<!--                                                                            <div class="beforeAfter"></div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthAdditionButton"></div>-->
+<!--                                                                    <img src="/images/main/complaints02.jpg" alt="" loading="eager" class="forthCardImage"></div>-->
+<!--                                                                <div class="forthCardInfoContainer">-->
+<!--                                                                    <div  class="forthCardSubtitle">-->
+<!--                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>-->
+<!--                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>-->
+<!--                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div  class="forthTitleMt">-->
+<!--                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                                <div  class="forthCardTitle" >-->
+<!--                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthCaption">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>-->
+<!--                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </article>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">-->
+<!--                                                        <a  href="" class="over"style="width: 100%;">-->
+<!--                                                            <article class="forthCard">-->
+<!--                                                                <div  class="forthCardImagContainer">-->
+<!--                                                                    <div da class="forthChipContainer">-->
+<!--                                                                        <div>-->
+<!--                                                                            <div class="beforeAfter"></div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthAdditionButton"></div>-->
+<!--                                                                    <img src="/images/main/complaints03.jpg" alt="" loading="eager" class="forthCardImage"></div>-->
+<!--                                                                <div class="forthCardInfoContainer">-->
+<!--                                                                    <div  class="forthCardSubtitle">-->
+<!--                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>-->
+<!--                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>-->
+<!--                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div  class="forthTitleMt">-->
+<!--                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                                <div  class="forthCardTitle" >-->
+<!--                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthCaption">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>-->
+<!--                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </article>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">-->
+<!--                                                        <a  href="" class="over"style="width: 100%;">-->
+<!--                                                            <article class="forthCard">-->
+<!--                                                                <div  class="forthCardImagContainer">-->
+<!--                                                                    <div da class="forthChipContainer">-->
+<!--                                                                        <div>-->
+<!--                                                                            <div class="beforeAfter"></div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthAdditionButton"></div>-->
+<!--                                                                    <img src="/images/main/complaints04.jpg" alt="" loading="eager" class="forthCardImage"></div>-->
+<!--                                                                <div class="forthCardInfoContainer">-->
+<!--                                                                    <div  class="forthCardSubtitle">-->
+<!--                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>-->
+<!--                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>-->
+<!--                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div  class="forthTitleMt">-->
+<!--                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                                <div  class="forthCardTitle" >-->
+<!--                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthCaption">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>-->
+<!--                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </article>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                    <div  class="forthSwiperSlideActive" style="width: auto; margin-right: 16px;">-->
+<!--                                                        <a  href="" class="over"style="width: 100%;">-->
+<!--                                                            <article class="forthCard">-->
+<!--                                                                <div  class="forthCardImagContainer">-->
+<!--                                                                    <div da class="forthChipContainer">-->
+<!--                                                                        <div>-->
+<!--                                                                            <div class="beforeAfter"></div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthAdditionButton"></div>-->
+<!--                                                                    <img src="/images/main/complaints05.jpg" alt="" loading="eager" class="forthCardImage"></div>-->
+<!--                                                                <div class="forthCardInfoContainer">-->
+<!--                                                                    <div  class="forthCardSubtitle">-->
+<!--                                                                        <div class="forthTypographyCaption" style="color: rgb(60, 65, 68); font-weight: 400;"> IT/SW </div>-->
+<!--                                                                        <div class="forthTypographyCaptionMx" style="color: rgb(207, 212, 215);"> ∙ </div>-->
+<!--                                                                        <div  class="forthTypographyCaption" style="color: rgb(238, 126, 65);"> 129차 앵콜 </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div  class="forthTitleMt">-->
+<!--                                                                        <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                            <div  class="forthTypographyBody" style="color: rgb(4, 5, 5); font-weight: 500;">-->
+<!--                                                                                <div  class="forthCardTitle" >-->
+<!--                                                                                    SQL 입문부터 활용까지 - 데이터 분석 보고서 작성과 대시보드 개발-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="forthCaption">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 2개의 스케쥴 </span>-->
+<!--                                                                        <hr  class="forthDividerVertical" style="border-color: rgb(234, 236, 238);">-->
+<!--                                                                        <span  class="forthCaptionSpan" style="color: rgb(173, 179, 184);"> 10월 10일부터 </span>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </article>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
                                             <svg  width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" class="swiperOutside Prev not" style="fill: rgb(32, 35, 37); transform: rotate(-90deg);" tabIndex="-1" role="button" aria-label="Previous slide" aria-disabled="true">
                                                 <path  fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 7.29289C11.6834 6.90237 12.3166 6.90237 12.7071 7.29289L19.2071 13.7929C19.5976 14.1834 19.5976 14.8166 19.2071 15.2071C18.8166 15.5976 18.1834 15.5976 17.7929 15.2071L12 9.41421L6.20711 15.2071C5.81658 15.5976 5.18342 15.5976 4.79289 15.2071C4.40237 14.8166 4.40237 14.1834 4.79289 13.7929L11.2929 7.29289Z">
                                                 </path>
@@ -1024,11 +1027,14 @@
                 </div>
             </div>
             <!--                footer-->
-            <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>
-<!--         <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>-->
+<!--            <div class="FooterMain" th:replace="~{/fix/footer/mainfooter  :: main-footer}"></div>-->
+         <div class="FooterMain" th:replace="~{/fix/footer/mobilefooter :: mobile-footer}"></div>
+        </div>
+    </div>
         </div>
     </div>
 </div>
 </body>
+<script src="/js/fix/nav/nav.js"></script>
 <script src="/js/main/main.js"></script>
 </html>

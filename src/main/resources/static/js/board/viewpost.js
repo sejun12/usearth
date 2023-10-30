@@ -58,55 +58,101 @@
 //     overlay.style.display = "block";
 // }
 
+// 상세보기, 댓글, 함께 읽는 글
 
+const postId=window.location.href.split('/').pop();
 
+const freeReadService=(function (){
 
+    async function getFreeDetail(){
+        const response=await fetch(`/free-reads/api/read/${postId}`);
+        const json=await response.json();
+        console.log(json);
 
+        const mainPost=json.mainPost;
+        await appendPost(mainPost);
 
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    const overlay = document.getElementById("overlay");
+        const randomRecyclePosts=json.randomRecyclePosts;
+        await appendRandomRecyclePosts(randomRecyclePosts);
+    }
+    return {detail: getFreeDetail}
+})();
 
-    modal.style.transform = "translateY(0)";
-    modal.style.height = "33%";
-    overlay.style.display = "block";
+freeReadService.detail();
+
+//상세보기 html을 만들어주는 함수
+const postedBox=document.querySelector(".postedBox");
+
+function appendPost(mainPost){
+    console.log(mainPost);
+
+    document.querySelector(".userInfomationName").textContent = `${mainPost.userName}`;
+    document.querySelector(".aptBuildingNumber").textContent = `${mainPost.userDong}동 ${mainPost.userHo}호`;
+    document.querySelector(".headlineTitle").textContent = `${mainPost.postTitle}`;
+    document.querySelector(".purifiedHtml").textContent = `${mainPost.postContent}`;
+    document.querySelector(".contentDate").textContent = `${mainPost.postModifyDate = mainPost.postWriteDate ? mainPost.postWriteDate.split(' ')[0] : mainPost.postModifyDate.split(' ')[0]}`;
+    document.querySelector("#postViewCount").textContent = `${mainPost.postViewCount}`;
+    document.querySelector("#likeCount").textContent = `${mainPost.likeCount}`;
+}
+function appendRandomRecyclePosts(randomRecyclePosts){
+    randomRecyclePosts.forEach((randomRecyclePost, i)=>{
+        document.querySelector(`#postListTitleLine${i+1}`).textContent=`${randomRecyclePost.postTitle}`;
+        document.querySelector(`#contentWrapper${i+1}`).textContent=`${randomRecyclePost.postContent}`;
+        console.log(randomRecyclePost);
+        console.log(i);
+    })
 }
 
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    const overlay = document.getElementById("overlay");
 
-    modal.style.transform = "translateY(100%)";
-    modal.style.height = "0";
-    overlay.style.display = "none";
-}
 
-const singoButtons = document.querySelectorAll(".singo");
-const application = document.querySelector(".application");
-const overlay = document.getElementById("overlay");
 
-// 초기에 overlay를 숨김
-overlay.style.display = "none";
-application.style.display = "none"; // 세준씨 코드에 이 줄 추가 modalFirst 대신 application 클래스 사용해 봄
 
-singoButtons.forEach((singo) => {
-    singo.addEventListener("click", () => {
-        const modalId = "modalFirst";
-        closeModal(modalId);
-        application.style.display = "block";  //세준씨 코드에 이 줄 추가
-    });
-});
 
-// singo 클래스 버튼 : 이벤트리스너 설정해봄
-const singoCloseBtn = document.querySelector('.modalCloseButton');
-singoCloseBtn.addEventListener('click', closeSingoModal);
 
-function closeSingoModal() {
-    application.style.display = "none"; // application 숨기기
+// function openModal(modalId) {
+//     const modal = document.getElementById(modalId);
+//     const overlay = document.getElementById("overlay");
+//
+//     modal.style.transform = "translateY(0)";
+//     modal.style.height = "33%";
+//     overlay.style.display = "block";
+// }
 
-    const overlay = document.getElementById("overlay");
-    overlay.style.display = "none";
-}
+// function closeModal(modalId) {
+//     const modal = document.getElementById(modalId);
+//     const overlay = document.getElementById("overlay");
+//
+//     modal.style.transform = "translateY(100%)";
+//     modal.style.height = "0";
+//     overlay.style.display = "none";
+// }
+//
+// const singoButtons = document.querySelectorAll(".singo");
+// const application = document.querySelector(".application");
+// const overlay = document.getElementById("overlay");
+//
+// // 초기에 overlay를 숨김
+// overlay.style.display = "none";
+// application.style.display = "none"; // 세준씨 코드에 이 줄 추가 modalFirst 대신 application 클래스 사용해 봄
+//
+// singoButtons.forEach((singo) => {
+//     singo.addEventListener("click", () => {
+//         const modalId = "modalFirst";
+//         closeModal(modalId);
+//         application.style.display = "block";  //세준씨 코드에 이 줄 추가
+//     });
+// });
+//
+// // singo 클래스 버튼 : 이벤트리스너 설정해봄
+// const singoCloseBtn = document.querySelector('.modalCloseButton');
+// singoCloseBtn.addEventListener('click', closeSingoModal);
+//
+// function closeSingoModal() {
+//     application.style.display = "none"; // application 숨기기
+//
+//     const overlay = document.getElementById("overlay");
+//     overlay.style.display = "none";
+// }
 
 
 

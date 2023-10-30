@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.usearth.mapper.FreeMapper">
+    <select id="selectByFreeBoard" resultType="postDTO">
+        SELECT P.ID, P.USER_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
+               (
+                   SELECT COUNT(*)
+                   FROM TBL_COMMENT C WHERE C.POST_ID = P.ID
+               ) AS COMMENT_COUNT,
+               (
+                   SELECT COUNT(*)
+                   FROM TBL_LIKE L
+                   WHERE L.POST_ID = P.ID
+               ) AS LIKE_COUNT
+        FROM TBL_POST P
+        WHERE P.POST_CATEGORY = '자유'
+        ORDER BY P.POST_MODIFY_DATE DESC
+    </select>
+    <select id="selectByFreeRead" parameterType="long" resultType="postDTO">
+        SELECT P.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
+               P.POST_MODIFY_DATE, P.POST_VIEW_COUNT, P.POST_CATEGORY, P.POST_STATUS,
+               P.USER_ID, U.USER_NAME, USER_DONG, USER_HO, L.LIKE_COUNT
+        FROM TBL_POST P
+            JOIN TBL_USER U ON P.USER_ID = U.ID
+            LEFT JOIN (
+            SELECT POST_ID, COUNT(ID) AS LIKE_COUNT
+            FROM TBL_LIKE
+            GROUP BY POST_ID
+        ) L ON P.ID = L.POST_ID
+        WHERE P.POST_CATEGORY = '자유' AND P.ID = #{postId}
+        ORDER BY P.POST_WRITE_DATE DESC
+
+    </select>
+    <select id="selectCommentsByPostId" resultType="commentDTO">
+        SELECT C.ID AS COMMENT_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY,
+               P.POST_VIEW_COUNT, U.USER_NAME, COUNT(L.ID) AS LIKE_COUNT
+        FROM TBL_COMMENT C
+                 INNER JOIN TBL_POST P ON C.POST_ID = P.ID
+                 INNER JOIN TBL_USER U ON C.USER_ID = U.ID
+                 LEFT JOIN TBL_LIKE L ON P.ID = L.POST_ID
+        GROUP BY C.ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE, P.POST_CATEGORY, P.POST_VIEW_COUNT, U.USER_NAME, C.COMMENT_WRITE_DATE
+        ORDER BY C.COMMENT_WRITE_DATE DESC
+    </select>
+    <insert id="insertComment">
+        INSERT INTO TBL_COMMENT(ID, POST_ID, USER_ID, COMMENT_CONTENT)
+        VALUES(SEQ_COMMENT.NEXTVAL, #{postId}, #{userId}, #{commentContent})
+    </insert>
+    <select id="selectByReadRecycling" parameterType="long" resultType="postDTO">
+        SELECT P.ID, U.USER_NAME, P.POST_TITLE, P.POST_CATEGORY, P.POST_WRITE_DATE,
+               P.POST_CONTENT, P.POST_MODIFY_DATE, P.POST_VIEW_COUNT, P.POST_LIKE_COUNT,
+               P.POST_STATUS, P.USER_ID,
+               (
+                   SELECT COUNT(L.ID)
+                   FROM TBL_LIKE L
+                   WHERE L.POST_ID = P.ID
+               ) AS LIKE_COUNT
+        FROM
+            (
+                SELECT *
+                FROM TBL_POST
+                WHERE POST_CATEGORY = '재활용'
+                ORDER BY DBMS_RANDOM.VALUE
+            ) P
+                JOIN TBL_USER U ON P.USER_ID = U.ID
+        <![CDATA[WHERE ROWNUM <= 3]]>
+    </select>
+    <insert id="insertPost" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE">
+            SELECT SEQ_POST.NEXTVAL as id FROM dual
+        </selectKey>
+        INSERT INTO TBL_POST(ID, USER_ID, POST_TITLE, POST_CONTENT, POST_CATEGORY)
+        VALUES(#{id}, #{userId}, #{postTitle}, #{postContent}, '자유')
+    </insert>
+    <update id="updatePost" parameterType="postDTO">
+        UPDATE TBL_POST
+        SET POST_TITLE = #{postTitle},
+            POST_CONTENT = #{postContent},
+            POST_MODIFY_DATE = CURRENT_TIMESTAMP
+        WHERE ID = #{id}
+    </update>
+    <select id="getPostById" parameterType="Long" resultType="PostDTO">
+        SELECT ID, POST_TITLE, POST_CONTENT, POST_MODIFY_DATE
+        FROM TBL_POST WHERE ID = #{id}
+    </select>
+
+
+
+    <!-- 게시물 조회수 증가 -->
+    <update id="postViewCount" parameterType="map">
+        UPDATE TBL_POST
+        SET POST_VIEW_COUNT = POST_VIEW_COUNT + 1
+        WHERE ID = #{postId} AND USER_ID != #{userId}
+    </update>
+    <!-- 댓글 개수 조회 -->
+    <select id="selectCommentCountByPostId" parameterType="Long" resultType="int">
+        SELECT COUNT(*) FROM TBL_COMMENT WHERE POST_ID = #{postId}
+    </select>
+</mapper>
