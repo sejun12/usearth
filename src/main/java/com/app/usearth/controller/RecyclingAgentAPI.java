@@ -1,6 +1,6 @@
 package com.app.usearth.controller;
 
-import com.app.usearth.domain.PostDTO;
+import com.app.usearth.domain.*;
 import com.app.usearth.service.RecyclingAgentService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,5 +60,13 @@ public class RecyclingAgentAPI {
         return result;
     }
 
+    @GetMapping("comment/{id}")
+    public FindPostCommentDTO getComments(@PathVariable("id") Long id){ return recyclingAgentService.getCommentInfo(id); }
+
+    @PostMapping("setComment")
+    public void setComment(@RequestBody CommentVO commentVO, HttpSession session){
+        commentVO.setUserId(((UserDTO)session.getAttribute("user")).getId());
+        recyclingAgentService.addComment(commentVO);
+    }
 
 }

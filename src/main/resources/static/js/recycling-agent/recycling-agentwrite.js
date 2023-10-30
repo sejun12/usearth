@@ -54,3 +54,6 @@ document.querySelector('.writeTextArea').addEventListener('input', function() {
     document.getElementById('remainingLength').textContent = 1000 - currentLength;
 });
 
+document.querySelector(".arrowIcon").addEventListener("click", () => {
+    window.history.back();
+})

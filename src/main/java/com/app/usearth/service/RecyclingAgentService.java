@@ -1,6 +1,8 @@
 package com.app.usearth.service;
 
 import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.CommentVO;
+import com.app.usearth.domain.FindPostCommentDTO;
 import com.app.usearth.domain.PostDTO;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public interface RecyclingAgentService {
 
     public  PostDTO getPostById(Long id);
 
+    // 재활용대행 조회수
+    public Long updateViewCount(Long id);
+
     // 자유게시판 글(함께 읽는 글)
     public List<PostDTO> getRelatedPostsById(Long id);
 
@@ -31,9 +36,11 @@ public interface RecyclingAgentService {
     public List<CommentDTO> getCommentsByPostId(Long postId);
 
     //  댓글을 추가하는 기능, 즉 CommentDTO 객체를 받아 해당 댓글 정보를 DB에 추가
-    public void addComment(CommentDTO commentDTO);
+    public void addComment(CommentVO commentVO);
 
     // 댓글의 수
     public int getCommentCountByPostId(Long postId);
 
-    }
+    public FindPostCommentDTO getCommentInfo(Long postId);
+
+}

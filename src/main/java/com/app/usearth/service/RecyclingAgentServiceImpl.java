@@ -1,6 +1,8 @@
 package com.app.usearth.service;
 
 import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.CommentVO;
+import com.app.usearth.domain.FindPostCommentDTO;
 import com.app.usearth.domain.PostDTO;
 import com.app.usearth.repository.RecyclingAgentDAO;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +47,8 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
 //  CommentDTO 객체를 매개변수로 받아 댓글 정보를 DB에 추가
 //  즉, DAO의 insertComment 메서드를 호출하여 댓글을 DB에 삽입
     @Override
-    public void addComment(CommentDTO commentDTO) {
-        recyclingAgentDAO.insertComment(commentDTO);
+    public void addComment(CommentVO commentVO) {
+        recyclingAgentDAO.insertComment(commentVO);
     }
 
     // 재활용 대행 신청
@@ -70,9 +72,25 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
         return recyclingAgentDAO.getPostById(id);
     }
 
+    // 게시글 조회수
+    @Override
+    public Long updateViewCount(Long id) {
+        return recyclingAgentDAO.updateViewCount(id);
+    }
+
+
     @Override
     public int getCommentCountByPostId(Long postId) {
+
         return recyclingAgentDAO.selectCommentCountByPostId(postId);
+    }
+
+    @Override
+    public FindPostCommentDTO getCommentInfo(Long postId) {
+        FindPostCommentDTO findPostCommentDTO = new FindPostCommentDTO();
+        findPostCommentDTO.setPostComments(recyclingAgentDAO.findAllCommentByPostId(postId));
+        findPostCommentDTO.setCommentCount(recyclingAgentDAO.findCommentCount(postId));
+        return findPostCommentDTO;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.app.usearth.mapper;
 
 import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.CommentVO;
 import com.app.usearth.domain.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,13 @@ public class CommentTests {
 
     @Test
     public void insertCommentTest(){
-        CommentDTO commentDTO = new CommentDTO();
+        CommentVO commentVO = new CommentVO();
 
         for(int i = 0; i <= 15; i++){
-            commentDTO.setPostId(1L);
-            commentDTO.setUserId(121L);
-            commentDTO.setCommentContent("Test 댓글" + i);
-            recyclingAgentMapper.insertComment(commentDTO);
+            commentVO.setPostId(1L);
+            commentVO.setUserId(121L);
+            commentVO.setCommentContent("Test 댓글" + i);
+            recyclingAgentMapper.insertComment(commentVO);
         }
     }
 }
