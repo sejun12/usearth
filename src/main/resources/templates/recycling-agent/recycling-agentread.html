@@ -146,45 +146,44 @@
                                         <div class="commentBox" style="background-color: rgb(255, 255, 255); padding: 20px 16px 0px;">
                                             <!-- 댓글 -->
                                             <div class="commentBody" style="color: rgb(89, 95, 99);"> 댓글
-                                                <span class="commentTypography" style="color: inherit; font-weight: 500;"> 1 </span>
+                                                <span class="commentTypography" style="color: inherit; font-weight: 500;"></span>
                                             </div>
                                         </div>
 <!--                                        댓글이 (JS로) 동적으로 추가될 위치 -->
                                         <div id="userComments"></div>
                                         <div class="boxComment" style="background-color: rgb(255, 255, 255); padding: 16px;">
-                                            <div class="betweenJust">
-                                                <div class="commentUserInformation normal">
-                                                    <div class="avatarWrapper">
-                                                        <div>
-                                                            <div class="commentAvatar container">
-                                                                <i class="avatarComment nickName1" style="background: rgb(145, 207, 211);"></i>
-                                                                <div class="commentAvatarItem">
-                                                                    <div class="commentBody boldSemi" style="color: rgb(255, 255, 255);"> s </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="informationWrapper">
-                                                        <div class="nameCompanyWrapper">
-                                                            <div class="nameIconWrapper">
-                                                                <div class="nameWrapper">
-<!--                                                                    <div class="infomationUserName bodyComment commentBody" id="postId" name="postId" value="게시글의 ID" style="color: inherit; font-weight: 600;"> s네단s</div>-->
-                                                                    <div class="infomationUserName bodyComment commentBody" style="color: inherit; font-weight: 600;"> s네단s</div>
-                                                                </div>
-                                                                <div class="userInfoWrapper"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="otherWrapper">
-                                                            <div class="commentTypography c-caption1" type="normal" style="color: rgb(173, 179, 184);"> 2023. 10. 29 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="commentDrawer contentActionDropdownBottomSheet"></div>
-                                            </div>
-                                            <div class="commentTypography commentBody1" style="color: rgb(60, 65, 68);">
-                                                <!--                            댓글 내용 -->
-                                                <span class="purifiedHtml">댓글 확인용</span>
-                                            </div>
+<!--                                            <div class="betweenJust">-->
+<!--                                                <div class="commentUserInformation normal">-->
+<!--                                                    <div class="avatarWrapper">-->
+<!--                                                        <div>-->
+<!--                                                            <div class="commentAvatar container">-->
+<!--                                                                <i class="avatarComment nickName1" style="background: rgb(145, 207, 211);"></i>-->
+<!--                                                                <div class="commentAvatarItem">-->
+<!--                                                                    <div class="commentBody boldSemi" style="color: rgb(255, 255, 255);"> s </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="informationWrapper">-->
+<!--                                                        <div class="nameCompanyWrapper">-->
+<!--                                                            <div class="nameIconWrapper">-->
+<!--                                                                <div class="nameWrapper">-->
+<!--                                                                    <div class="infomationUserName bodyComment commentBody" style="color: inherit; font-weight: 600;"> s네단s</div>-->
+<!--                                                                </div>-->
+<!--                                                                <div class="userInfoWrapper"></div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="otherWrapper">-->
+<!--                                                            <div class="commentTypography c-caption1" type="normal" style="color: rgb(173, 179, 184);"> 2023. 10. 29 </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="commentDrawer contentActionDropdownBottomSheet"></div>-->
+<!--                                            </div>-->
+<!--                                            <div class="commentTypography commentBody1" style="color: rgb(60, 65, 68);">-->
+<!--                                                &lt;!&ndash;                            댓글 내용 &ndash;&gt;-->
+<!--                                                <span class="purifiedHtml">댓글 확인용</span>-->
+<!--                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -235,5 +234,9 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    const user = [[${session.user}]]
+    const post = [[${post}]]
+</script>
 <script src="/js/recycling-agent/recycling-agentread.js"></script>
 </html>

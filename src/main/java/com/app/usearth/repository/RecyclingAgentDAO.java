@@ -1,6 +1,8 @@
 package com.app.usearth.repository;
 
 import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.CommentVO;
+import com.app.usearth.domain.PostCommentDTO;
 import com.app.usearth.domain.PostDTO;
 import com.app.usearth.mapper.RecyclingAgentMapper;
 import lombok.RequiredArgsConstructor;
@@ -46,9 +48,8 @@ public class RecyclingAgentDAO {
 
     //  매개변수로 받은 CommentDTO 객체를 사용하여 RecyclingAgentMapper의 insertComment 메소드를 호출
 //  CommentDTO에 담긴 댓글 데이터가 DB에 저장
-    public void insertComment(CommentDTO comment) {
-
-        recyclingAgentMapper.insertComment(comment);
+    public void insertComment(CommentVO commentVO) {
+        recyclingAgentMapper.insertComment(commentVO);
     }
 
     // 재활용대행신청
@@ -67,9 +68,20 @@ public class RecyclingAgentDAO {
         return recyclingAgentMapper.getPostById(id);
     }
 
+    // 게시글 조회수 카운트
+    public Long updateViewCount(Long id) {
+        return recyclingAgentMapper.updateViewCount(id);
+    }
+
     // 댓글 수 카운트
     public int selectCommentCountByPostId(Long postId) {
         return recyclingAgentMapper.selectCommentCountByPostId(postId);
     }
+
+    //    포스트 아이디로 해당 댓글 전체 조회
+    public List<PostCommentDTO> findAllCommentByPostId(Long postId){return recyclingAgentMapper.selectAllCommentByPostId(postId);}
+
+    //    포스트 아이디로 해당 댓글 전체 개수 조회
+    public int findCommentCount(Long postId){return recyclingAgentMapper.selectCommentCount(postId);}
 
 }

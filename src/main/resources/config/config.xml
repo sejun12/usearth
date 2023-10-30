@@ -26,5 +26,8 @@
         <typeAlias type="com.app.usearth.domain.AnnouncementCategoryVO" alias="announcementCategoryVO"/>
         <typeAlias type="com.app.usearth.domain.AnnouncementVO" alias="announcementVO"/>
         <typeAlias type="com.app.usearth.domain.AnnouncementDTO" alias="announcementDTO"/>
+        <typeAlias type="com.app.usearth.domain.PostCommentDTO" alias="postCommentDTO"/>
+        <typeAlias type="com.app.usearth.domain.FindPostCommentDTO" alias="findPostCommentDTO"/>
+        <typeAlias type="com.app.usearth.domain.CommentVO" alias="commentVO"/>
     </typeAliases>
 </configuration>
