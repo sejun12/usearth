@@ -23,5 +23,8 @@
         <typeAlias type="com.app.usearth.domain.ComplainReplyVO" alias="complainReplyVO"/>
         <typeAlias type="com.app.usearth.domain.ComplainReplyDTO" alias="complainReplyDTO"/>
         <typeAlias type="com.app.usearth.domain.CategoryComplainVO" alias="categoryComplainVO"/>
+        <typeAlias type="com.app.usearth.domain.AnnouncementCategoryVO" alias="announcementCategoryVO"/>
+        <typeAlias type="com.app.usearth.domain.AnnouncementVO" alias="announcementVO"/>
+        <typeAlias type="com.app.usearth.domain.AnnouncementDTO" alias="announcementDTO"/>
     </typeAliases>
 </configuration>

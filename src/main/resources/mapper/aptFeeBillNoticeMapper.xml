@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.app.usearth.mapper.aptFeeBillNoticeMapper">
+<mapper namespace="com.app.usearth.mapper.AptFeeBillNoticeMapper">
+    <insert id="insert">
+        INSERT INTO TBL_ANNOUNCEMENT (ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT)
+            VALUES (SEQ_ANNOUNCEMENT.NEXTVAL, #{adminId}, #{announcementCategoryId}, #{announcementTitle}, #{announcementContent})
+    </insert>
+
+    <select id="selectAll" resultType="announcementDTO">
+        SELECT ROWNUM, ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT, ANNOUNCEMENT_DATE, ANNOUNCEMENT_VIEW_COUNT, ANNOUNCEMENT_LIKE_COUNT, ANNOUNCEMENT_CATEGORY_NAME, APARTMENT_ID, ADMIN_IDENTIFICATION
+        FROM
+            (
+                SELECT ROWNUM R, ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT, ANNOUNCEMENT_DATE, ANNOUNCEMENT_VIEW_COUNT, ANNOUNCEMENT_LIKE_COUNT, ANNOUNCEMENT_CATEGORY_NAME, APARTMENT_ID, ADMIN_IDENTIFICATION
+                FROM
+                    (
+                        SELECT A.ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT, ANNOUNCEMENT_DATE, ANNOUNCEMENT_VIEW_COUNT, ANNOUNCEMENT_LIKE_COUNT, ANNOUNCEMENT_CATEGORY_NAME, APARTMENT_ID, ADMIN_IDENTIFICATION
+                        FROM TBL_ANNOUNCEMENT A JOIN TBL_ANNOUNCEMENT_CATEGORY C
+                        ON ANNOUNCEMENT_CATEGORY_ID = C.ID
+                        JOIN TBL_ADMIN D
+                        ON D.ID = A.ADMIN_ID
+                        ORDER BY ID DESC
+                    ) P1
+        <![CDATA[
+                WHERE ROWNUM <= #{pagination.endRow}
+            ) P2
+        WHERE P2.R >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(ID) FROM TBL_ANNOUNCEMENT
+    </select>
+
+    <select id="detail" resultType="announcementDTO">
+        SELECT A.ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT, ANNOUNCEMENT_DATE, ANNOUNCEMENT_VIEW_COUNT, ANNOUNCEMENT_LIKE_COUNT, ANNOUNCEMENT_CATEGORY_NAME, APARTMENT_ID, ADMIN_IDENTIFICATION
+        FROM TBL_ANNOUNCEMENT A JOIN TBL_ANNOUNCEMENT_CATEGORY C
+        ON ANNOUNCEMENT_CATEGORY_ID = C.ID
+        JOIN TBL_ADMIN D
+        ON D.ID = A.ADMIN_ID
+        WHERE A.ID = ${id}
+    </select>
+
+    <update id="viewCountUp">
+        UPDATE TBL_ANNOUNCEMENT
+        SET ANNOUNCEMENT_VIEW_COUNT = ANNOUNCEMENT_VIEW_COUNT + 1
+        WHERE ID = #{id}
+    </update>
 
 </mapper>

@@ -46,5 +46,17 @@ function toggleLike() {
 }
 
 // 좋아요 버튼에 클릭 이벤트 리스너를 추가합니다.
-var likeButton = document.querySelector(".narrowBtn");
-likeButton.addEventListener("click", toggleLike);
+// var likeButton = document.querySelector(".narrowBtn");
+// likeButton.addEventListener("click", toggleLike);
+
+// 날짜 폼 수정
+$(document).ready(function() {
+    let elem = $('.body2.mb12.breakWord.mb12');
+    let text = elem.text().replaceAll('-', '.');
+    text = text.slice(0, 10);
+    elem.text(text);
+});
+
+$('.topBarBackward').on("click", e=>{
+    location.href = `/notice/announcement`;
+})
