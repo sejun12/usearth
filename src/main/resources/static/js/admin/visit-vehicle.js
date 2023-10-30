@@ -116,32 +116,32 @@ document.addEventListener("click", function (event) {
 });
 
 // 프로필모달
-const profileModal = document.getElementsByClassName("profileModalWrapper")[0];
-const profileBtn = document.getElementsByClassName("profileBtn")[0];
-let isShow = false;
-
-profileBtn.addEventListener("click", (event) => {
-    event.stopPropagation(); // 클릭 이벤트 전파를 막습니다.
-
-    if (!isShow) {
-        console.log(isShow);
-        profileModal.style.display = "block";
-        isShow = true;
-    } else if (isShow) {
-        console.log(isShow);
-        profileModal.style.display = "none";
-        isShow = false;
-    }
-});
+// const profileModal = document.getElementsByClassName("profileModalWrapper")[0];
+// const profileBtn = document.getElementsByClassName("profileBtn")[0];
+// let isShow = false;
+//
+// profileBtn.addEventListener("click", (event) => {
+//     event.stopPropagation(); // 클릭 이벤트 전파를 막습니다.
+//
+//     if (!isShow) {
+//         console.log(isShow);
+//         profileModal.style.display = "block";
+//         isShow = true;
+//     } else if (isShow) {
+//         console.log(isShow);
+//         profileModal.style.display = "none";
+//         isShow = false;
+//     }
+// });
 
 // 전체 HTML을 클릭하는 이벤트 리스너 추가
-document.addEventListener("click", (event) => {
-    if (isShow && event.target !== profileModal && event.target !== profileBtn) {
-        console.log(isShow);
-        profileModal.style.display = "none";
-        isShow = false;
-    }
-});
+// document.addEventListener("click", (event) => {
+//     if (isShow && event.target !== profileModal && event.target !== profileBtn) {
+//         console.log(isShow);
+//         profileModal.style.display = "none";
+//         isShow = false;
+//     }
+// });
 
 
 // 토글 버튼 누르기
@@ -180,32 +180,6 @@ cancelRegistrationBtn.addEventListener("click", () => {
     registrationModalWrap.style.display = 'none';
     registrationModalGray.style.display = 'none';
 })
-
-// 방문 차량등록 모달창 내 확인버튼 클릭 시 입력받은 데이터 보내고 모달창 닫기
-const confirmRegistrationBtn = document.querySelector(".confirmRegistrationBtn");
-
-confirmRegistrationBtn.addEventListener("click", () => {
-    registrationModalWrap.style.display = 'none';
-    registrationModalGray.style.display = 'none';
-    registrationMessageUpDown();
-})
-
-// 등록완료 메시지 뛰우는 메소드
-const registrationMessageWrap = document.querySelector(".registrationMessageWrap");
-function registrationMessageUpDown() {
-    registrationMessageWrap.style.display = 'flex';
-
-    registrationMessageWrap.classList.remove('slideDown');
-    registrationMessageWrap.classList.add('slideUp');
-    setTimeout(() => {
-        registrationMessageWrap.classList.remove('slideUp');
-        registrationMessageWrap.classList.add('slideDown');
-        setTimeout(() => {
-            registrationMessageWrap.style.display = 'none';
-        }, 200);
-    }, 2000);
-}
-
 document.querySelector(".resetBtn").addEventListener("click", function() {
     location.reload(); // 현재 페이지를 새로고침합니다.
 });
@@ -247,13 +221,11 @@ function timeChange(visit){
     const startDate = visit.visitBookingStartDate;
     const endDate = visit.visitBookingEndDate;
 
-    const startDateParts = startDate.split(' ')[0].split('-');
-    const endDateParts = endDate.split(' ')[0].split('-');
+    const startDateParts = startDate.split(' ')[0];
+    const endDateParts = endDate.split(' ')[0];
 
-    const startDateFormatted = `${startDateParts[0]}-${startDateParts[1]}-${startDateParts[2]}`;
-    const endDateFormatted = `${endDateParts[0]}-${endDateParts[1]}-${endDateParts[2]}`;
 
-    return { startDateFormatted, endDateFormatted };
+    return { startDateParts, endDateParts };
 }
 
 //기존 데이터를 넣어서 html만들어서 뿌리기
@@ -267,7 +239,7 @@ function appendVisit(visit) {
                 <div class="barBtnOne">${visit.userDong}</div>
                 <div class="barBtnOne">${visit.userHo}</div>
                 <div  style="width: 140px;" class="barBtnOne">${visit.visitBookingCarNumber}</div>
-                <div style="width: 200px;" class="barBtnOne">${time.startDateFormatted + "~" + time.endDateFormatted}</div>
+                <div style="width: 200px;" class="barBtnOne">${time.startDateParts + "~" + time.endDateParts}</div>
                 <div  style="width: 140px;" class="barBtnOne">${visit.visitBookingPurpose}</div>
                 <div style="width: 140px;"  class="barBtnOne">
                   <button type="button" class="showDetailBtn">취소하기</button>
@@ -369,7 +341,7 @@ async function fetchData(page) {
         const baseUrl = `/lists/api/results/search/${id}`;
         let url = baseUrl;
         const params = [];
-        //페이지도 붙여서 보내자 검색
+        //페이지도 붙여서 보내자
         params.push(`page=${page}`);
         if (searchTitle) {
             params.push(`visitBookingCarNumber=${searchTitle}`);
@@ -431,7 +403,6 @@ document.getElementById("registerMaintenanceFeeBtn").addEventListener("click", a
             maintenanceFeeBar.style.display='none';
             pageBtn.style.display='none';
         }
-    // });
 });
 //기존에 페이지 이동후  검색후 페이지 이동식 데이터
 async function updatePaginationAfterSearch(data) {
@@ -469,7 +440,7 @@ function createPaginationButtons() {
         ulElement.appendChild(liElement);
     }
 }
-
+//버튼클릭시 이동
 async function handlePageNumberClick(event) {
     if (event.target.classList.contains('buttonNumber')) {
         const newPage = parseInt(event.target.textContent);
@@ -541,20 +512,85 @@ prevButton.addEventListener('click', handlePrevButtonClick);
 nextButton.addEventListener('click', handleNextButtonClick);
 
 // _____________________________________________________________________________--
-//방문차량 등록
-confirmRegistrationBtn.addEventListener("click", async () => {
-    const data = {
-        visitBookingStartDate: document.querySelector("input[name='visitBookingStartDate']").value,
-        visitBookingEndDate: document.querySelector("input[name='visitBookingEndDate']").value,
-        visitBookingPurpose: document.querySelector("input[name='visitBookingPurpose']").value,
-        userDong: document.querySelector("input[name='userDong']").value,
-        userHo: document.querySelector("input[name='userHo']").value,
-        visitBookingCarNumber: document.querySelector("input[name='visitBookingCarNumber']").value
-    };
+// 방문 차량등록 모달창 내 확인버튼 클릭 시 입력받은 데이터 보내고 모달창 닫기
+const confirmRegistrationBtn = document.querySelector(".confirmRegistrationBtn");
+// 성공 시 동작
+function success(){
+    // 모든 필드가 유효하면 모달을 닫고 메시지를 표시
+    registrationModalWrap.style.display = 'none';
+    registrationModalGray.style.display = 'none';
+    registrationMessageUpDown();
+}
 
-    await postDataToServer(data);
-    window.location.reload();
-})
+const registrationMessageWrapError=document.querySelector(".registrationMessageWrap-error");
+//에러 메시지 뛰우는 메소드
+function error(){
+    registrationMessageWrapError.style.display = 'flex';
+    registrationMessageWrapError.classList.remove('slideDown');
+    registrationMessageWrapError.classList.add('slideUp');
+    setTimeout(() => {
+        registrationMessageWrapError.classList.remove('slideUp');
+        registrationMessageWrapError.classList.add('slideDown');
+        setTimeout(() => {
+            registrationMessageWrapError.style.display = 'none';
+        }, 200);
+    }, 2000);
+}
+
+// 등록완료 메시지 뛰우는 메소드
+const registrationMessageWrap = document.querySelector(".registrationMessageWrap");
+function registrationMessageUpDown() {
+    registrationMessageWrap.style.display = 'flex';
+
+    registrationMessageWrap.classList.remove('slideDown');
+    registrationMessageWrap.classList.add('slideUp');
+    setTimeout(() => {
+        registrationMessageWrap.classList.remove('slideUp');
+        registrationMessageWrap.classList.add('slideDown');
+        setTimeout(() => {
+            registrationMessageWrap.style.display = 'none';
+        }, 200);
+    }, 2000);
+}
+//유효성 검사
+const inputFields = [
+    document.querySelector(".startVisitDateInput"),
+    document.querySelector(".endVisitDateInput"),
+    document.querySelector(".visitPurposeInput"),
+    document.querySelector("input[name=userDong]"),
+    document.querySelector("input[name=userHo]"),
+    document.querySelector(".vehicleNumberInput")
+];
+
+// 유효성 검사
+function validateInputFields(inputFields) {
+    return inputFields.some(field => field.value.trim() === '');
+}
+
+confirmRegistrationBtn.addEventListener("click", async () => {
+    const isAnyFieldEmpty = validateInputFields(inputFields);
+    if (isAnyFieldEmpty) {
+        // 입력 필드 중 하나라도 비어 있으면 오류 메시지를 표시하고 버튼 클릭을 막습니다
+        error();
+    }
+    else if(!flag) {
+        alert("없는 동 호수 입니다!");
+    }else {
+        success();
+        // 모든 필드가 유효하면 서버로 데이터를 보내고 페이지를 새로 고칩니다
+        const data = {
+            visitBookingStartDate: document.querySelector("input[name='visitBookingStartDate']").value,
+            visitBookingEndDate: document.querySelector("input[name='visitBookingEndDate']").value,
+            visitBookingPurpose: document.querySelector("input[name='visitBookingPurpose']").value,
+            userDong: document.querySelector("input[name='userDong']").value,
+            userHo: document.querySelector("input[name='userHo']").value,
+            visitBookingCarNumber: document.querySelector("input[name='visitBookingCarNumber']").value
+        };
+
+        await postDataToServer(data);
+        window.location.reload();
+    }
+});
 
 async function postDataToServer(data) {
     try {

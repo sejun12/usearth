@@ -14,7 +14,7 @@ const buttonService = (function(){
                 }
                 break;
             case '재활용 대행':
-                const response2  = await fetch(`/lists/api/recyle/${user}`);
+                const response2  = await fetch(`/lists/api/recycle/${user}`);
                 if (response2 .ok) {
                     const data = await response2.json();
                     if (callback) {
@@ -37,7 +37,6 @@ const buttonService = (function(){
                 if (response4.ok) {
                     const data = await response4.json();
                     if (callback) {
-                        console.log(data)
                         callback(data)
                     }
                 }
@@ -77,7 +76,7 @@ function showComplainInfo(div, data){
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
                     <div class="c-narrow-button--icon"></div>
-                        취소
+                      ${data.complainStatus}
                     <div class="c-narrow-button--icon"></div>
                     </button>
                     </div>
@@ -110,13 +109,11 @@ function showRecycleInfo(div, data){
                     </div>
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
-                    <div class="c-narrow-button--icon"></div>
-                        취소
-                    <div class="c-narrow-button--icon"></div>
                     </button>
                     </div>
                 </div>
-                <div class="my-page-community">${data.postContent}</div>
+                 <div class="my-page-community">${data.postTitle}</div>
+                <div class="my-page-community-list-item-content">${data.postContent}</div>
                 <div class="flex-column">
                     <div class="text-right">${timeForToday(data.postWriteDate)}</div>
                 </div>
@@ -138,9 +135,6 @@ function  showFreeBoardInfo(div, data) {
                     </div>
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
-                    <div class="c-narrow-button--icon"></div>
-                        취소
-                    <div class="c-narrow-button--icon"></div>
                     </button>
                     </div>
                 </div>
@@ -167,14 +161,11 @@ function  showFreeBoardInfo(div, data) {
                     </div>
                     <div class="align-items-center">
                     <button type="button" class="c-narrow-button">
-                    <div class="c-narrow-button--icon"></div>
-                        취소
-                    <div class="c-narrow-button--icon"></div>
                     </button>
                     </div>
                 </div>
-                <div class="my-page-reply">${data.commentContent}</div>
-                <div class="my-page-community-list-item-content">${data.postContent}</div>
+                <div class="my-page-reply">${data.postTitle}</div>
+                <div class="my-page-community-list-item-content">${data.commentContent}</div>
                 <div class="flex-column">
                     <div class="text-right">${timeForToday(data.commentWriteDate)}</div>
                 </div>
@@ -206,7 +197,6 @@ async function getPosts(dataType, page) {
     }
 }
 
-
 function showList(dataType) {
   // 중복되어 실행되는 경우가 있어 그것을 막기위해 로딩 유무 파악
   if (isLoading) return;
@@ -237,10 +227,12 @@ swiperSlides.forEach((slide) => {
         pages[dataType] =1;
         const response = await buttonService.go(dataType,async (data)=>{
             if (data && data.length>0) {
+                console.log(dataType);
                 infiniteLoadingContainer.style.display = "none";
                     showList(dataType);
             }
             else {
+                console.log(dataType)
                 infiniteLoadingContainer.style.display = "block";
             }
         });

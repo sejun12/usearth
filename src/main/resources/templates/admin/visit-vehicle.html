@@ -25,48 +25,48 @@
       </div>
       <div class="innerBody">
         <div class="relative">
-          <button class="profileBtn">
-                <span
-                  style="
-                    box-sizing: border-box;
-                    display: block;
-                    overflow: hidden;
-                    width: initial;
-                    height: initial;
-                    background: none;
-                    opacity: 1;
-                    border: 0px;
-                    margin: 0px;
-                    padding: 0px;
-                    position: absolute;
-                    inset: 0px;
-                  "
-                ><img
-                  alt="프로필 이미지"
-                  sizes="100vw"
-                  src="/images/visit-vehicle-image/userProfile.png"
-                  decoding="async"
-                  data-nimg="fill"
-                  class="rounded-full"
-                  style="
-                      position: absolute;
-                      inset: 0px;
-                      box-sizing: border-box;
-                      padding: 0px;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0px;
-                      height: 0px;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                      object-fit: cover;
-                      object-position: center center;
-                    "
-                /></span>
-          </button>
+<!--          <button class="profileBtn">-->
+<!--                <span-->
+<!--                  style="-->
+<!--                    box-sizing: border-box;-->
+<!--                    display: block;-->
+<!--                    overflow: hidden;-->
+<!--                    width: initial;-->
+<!--                    height: initial;-->
+<!--                    background: none;-->
+<!--                    opacity: 1;-->
+<!--                    border: 0px;-->
+<!--                    margin: 0px;-->
+<!--                    padding: 0px;-->
+<!--                    position: absolute;-->
+<!--                    inset: 0px;-->
+<!--                  "-->
+<!--                ><img-->
+<!--                  alt="프로필 이미지"-->
+<!--                  sizes="100vw"-->
+<!--                  src="/images/visit-vehicle-image/userProfile.png"-->
+<!--                  decoding="async"-->
+<!--                  data-nimg="fill"-->
+<!--                  class="rounded-full"-->
+<!--                  style="-->
+<!--                      position: absolute;-->
+<!--                      inset: 0px;-->
+<!--                      box-sizing: border-box;-->
+<!--                      padding: 0px;-->
+<!--                      border: none;-->
+<!--                      margin: auto;-->
+<!--                      display: block;-->
+<!--                      width: 0px;-->
+<!--                      height: 0px;-->
+<!--                      min-width: 100%;-->
+<!--                      max-width: 100%;-->
+<!--                      min-height: 100%;-->
+<!--                      max-height: 100%;-->
+<!--                      object-fit: cover;-->
+<!--                      object-position: center center;-->
+<!--                    "-->
+<!--                /></span>-->
+<!--          </button>-->
           <!--여기에 프로필 모달 구현 -->
           <div class="profileModalWrapper">
             <ul class="profileUl">
@@ -95,12 +95,19 @@
       <nav class="surfaceSecondary">
         <div class="surfaceInner">
           <div class="flexCol">
-            <div class="margin12"></div>
-            <h2 class="userName">다인</h2>
-            <a href="http://127.0.0.1:5500/mypage/myinfo.html">
+            <div class="margin12">
+              <button class="profileImageBTN">
+                  <span style="box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; inset: 0px;">
+                      <img alt="관리자 이미지" sizes="100vw" decoding="async" src="/images/recycling-agentmanager-image/profile.png" class=" profileIMG">
+                  </span>
+                <span></span>
+              </button>
+            </div>
+            <h2 class="userName" th:text="${session.admin.adminName}">다인</h2>
+            <a href="/admin/logout">
               <button type="button" class="myPageButton">
                 <div class="myPageButtonInner">
-                  <div>내 페이지</div>
+                  <div>로그아웃</div>
                   <svg
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -121,76 +128,59 @@
         <!-- 사이드바 시작 -->
         <ul class="surfaceUl">
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg4" src="/images/visit-vehicle-image/profile-user.png"/>
-
+            <a class="aList" href="/admin/resident-list">
+              <img class="svg4" src="/images/complain-management-image/profile-user.png"/>
               <span class="surfaceCategory">입주민 목록</span>
             </a>
           </li>
-
-                <li id="flex" class="surfaceUlLists">
-                    <a class="aList" href="">
-                        <img class="svg5" src="/images/visit-vehicle-image/coin.png"/>
-                        <span class="surfaceCategory">아파트 관리비</span>
-                    </a>
-                    <button class="toggleButton">
-                        <img style="width: 100%; opacity: 60%" class="svg5" src="/images/visit-vehicle-image/down.png">
-                    </button>
-                </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 관리비 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 관리비 업로드</span>
-                            </a>
-                        </li>
-                    </ul>
-                <li  id="flex2" class="surfaceUlLists">
-                    <a class="aList" href="#">
-                        <img class="svg5" src="/images/visit-vehicle-image/feedback.png"/>
-                        <span class="surfaceCategory">민원 관리</span>
-                    </a>
-                    <button class="toggleButton">
-                        <img style="width: 100%; opacity: 60%"  class="svg5" src="/images/visit-vehicle-image/down.png">
-                    </button>
-                </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 답변</span>
-                            </a>
-                        </li>
-                    </ul>
+          <li id="flex" class="surfaceUlLists">
+            <a class="aList" href="/admin/maintenance-fee-view">
+              <img class="svg5" src="/images/complain-management-image/coin.png"/>
+              <span class="surfaceCategory">아파트 관리비</span>
+            </a>
+            <button class="toggleButton">
+              <img style="width: 100%; opacity: 60%" class="svg5" src="/images/complain-management-image/down.png">
+            </button>
+          </li>
+          <ul class="feeLists">
             <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/visit-vehicle-image/trash-can.png"/>
+              <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-view">
+                <span class="surfaceCategory">| 관리비 조회</span>
+              </a>
+            </li>
+            <li class="surfaceUlLists">
+              <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
+                <span class="surfaceCategory">| 관리비 업로드</span>
+              </a>
+            </li>
+          </ul>
+          <li  id="flex2" class="surfaceUlLists">
+            <a class="aList" href="/admin/complain-management">
+              <img class="svg5" src="/images/complain-management-image/feedback.png"/>
+              <span class="surfaceCategory">민원 관리</span>
+            </a>
+          </li>
+          <li class="surfaceUlLists">
+            <a class="aList" href="/admin/recycling-agentmanager">
+              <img class="svg5" src="/images/complain-management-image/trash-can.png"/>
               <span class="surfaceCategory">재활용 대행</span>
             </a>
           </li>
-          <li style="  background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/visit-vehicle-image/car-fill-from-frontal-view.png"/>
+          <li style="background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
+            <a class="aList" href="/admin/visit-vehicle">
+              <img class="svg5" src="/images/complain-management-image/car-fill-from-frontal-view.png"/>
               <span class="surfaceCategory">방문 차량</span>
             </a>
           </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/visit-vehicle-image/report.png"/>
+            <a class="aList" href="/admin/announcement-list">
+              <img class="svg5" src="/images/complain-management-image/report.png"/>
               <span class="surfaceCategory">공지사항 목록</span>
             </a>
           </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/visit-vehicle-image/4.png"/>
+            <a class="aList" href="/admin/freeboard-admin">
+              <img class="svg5" src="/images/complain-management-image/4.png"/>
               <span class="surfaceCategory">자유게시판</span>
             </a>
           </li>
@@ -441,17 +431,16 @@
       <div class="registrationMessageWrap-error" style="display: none">
         <div class="registrationMessage-error">방문정보를 입력해주세요! </div>
       </div>
-      <div class="registrationModalGray-error" style="display: none;"></div>
     </div>
 </div>
 </div>
 </body>
 <script th:inline="javascript">
-  const visits=[[${visits}]];
   const pagination=[[${pagination}]];
   const adminId=[[${session.admin.id}]];
-  console.log(adminId)
-  console.log(pagination.total)
+  let flag=[[${dong}]];
+  const name=[[${sess}]]
+  if(flag == null) {flag = true;}
 </script>
 <script src="/js/admin/visit-vehicle.js"></script>
 </html>
