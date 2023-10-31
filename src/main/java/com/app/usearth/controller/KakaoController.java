@@ -19,10 +19,12 @@ import java.util.Optional;
 public class KakaoController {
     private final KakaoService kakaoService;
     private final UserService userService;
-    @GetMapping("kakao/login")
+    @GetMapping("/kakao/login")
     public RedirectView login(String code, HttpSession session){
         String token = kakaoService.getKakaoAccessToken(code);
+        log.info("-{}", token);
         Optional<UserDTO> foundInfo = kakaoService.getKakaoInfo(token);
+        log.info("--{}", foundInfo.get());
 
         if(foundInfo.isPresent()) {
             userService.join(foundInfo.get());

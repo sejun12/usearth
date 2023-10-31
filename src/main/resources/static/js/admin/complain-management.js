@@ -390,8 +390,7 @@ function appendComplains(li, complain){
 
             // 확인 버튼 클릭 시 DB update
             document.querySelector(".confirmBtn").addEventListener("click", () => {
-                console.log(complain.complainStatus)
-                // complainService.update(complainId, complain.complainStatus);
+                complainService.update(complainId, complain.complainStatus);
                 document.querySelector("#modalContainer").style.display = 'none';
             })
 
