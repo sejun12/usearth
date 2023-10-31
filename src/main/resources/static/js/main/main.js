@@ -694,11 +694,7 @@ function clickHandler3(){
     window.location.href="http://localhost:10000/mypage/reserve-car";
 }
 
-// 재활용 게시글 리스트
-const recycleList=document.getElementById('reclyceList');
-let page=1;
 
-//게시글 데이터 가져오기
 
 
 
