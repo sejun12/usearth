@@ -115,35 +115,6 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// 프로필모달
-// const profileModal = document.getElementsByClassName("profileModalWrapper")[0];
-// const profileBtn = document.getElementsByClassName("profileBtn")[0];
-// let isShow = false;
-//
-// profileBtn.addEventListener("click", (event) => {
-//     event.stopPropagation(); // 클릭 이벤트 전파를 막습니다.
-//
-//     if (!isShow) {
-//         console.log(isShow);
-//         profileModal.style.display = "block";
-//         isShow = true;
-//     } else if (isShow) {
-//         console.log(isShow);
-//         profileModal.style.display = "none";
-//         isShow = false;
-//     }
-// });
-
-// 전체 HTML을 클릭하는 이벤트 리스너 추가
-// document.addEventListener("click", (event) => {
-//     if (isShow && event.target !== profileModal && event.target !== profileBtn) {
-//         console.log(isShow);
-//         profileModal.style.display = "none";
-//         isShow = false;
-//     }
-// });
-
-
 // 토글 버튼 누르기
 const toggleButtons = document.querySelectorAll(".toggleButton");
 const feeLists = document.querySelectorAll(".feeLists");
@@ -180,10 +151,6 @@ cancelRegistrationBtn.addEventListener("click", () => {
     registrationModalWrap.style.display = 'none';
     registrationModalGray.style.display = 'none';
 })
-document.querySelector(".resetBtn").addEventListener("click", function() {
-    location.reload(); // 현재 페이지를 새로고침합니다.
-});
-
 function showStatus(button) {
         let isToggled = false;
 
@@ -202,7 +169,24 @@ function showStatus(button) {
         });
 }
 //----------------------------------------------------------------------------------------
+//검색 초기화 함수
+function resetSearchFields() {
+    document.getElementById("searchTitle").value = "";
+    document.querySelector(".searchContainer input[type='date']:nth-of-type(1)").value = "";
+    document.querySelector(".searchContainer input[type='date']:nth-of-type(2)").value = "";
+    document.getElementById("categorySpan").textContent = "전체 동";
+    document.getElementById("searchHo").value = "";
+}
+document.querySelector(".resetBtn").addEventListener("click", function() {
+        resetSearchFields();
+//초기화 검색 다시
+    document.getElementById("registerMaintenanceFeeBtn").click();
+});
 
+let total = 0;
+let startPage = 0;
+let endPage = 0;
+let currentPage = 1; // 현재 페이지
 
 const maintenanceFeeSpan = document.querySelector("#total");
 const maintenanceFeeContent = document.querySelector(".maintenanceFeeContent");
@@ -218,14 +202,10 @@ async function getVisit(){
 
 //시간 바꾸는 함수!!!(시분초 자르기)
 function timeChange(visit){
-    const startDate = visit.visitBookingStartDate;
-    const endDate = visit.visitBookingEndDate;
+    const startDate = visit.visitBookingStartDate.split(' ')[0];
+    const endDate = visit.visitBookingEndDate.split(' ')[0];
 
-    const startDateParts = startDate.split(' ')[0];
-    const endDateParts = endDate.split(' ')[0];
-
-
-    return { startDateParts, endDateParts };
+    return { startDate, endDate };
 }
 
 //기존 데이터를 넣어서 html만들어서 뿌리기
@@ -239,7 +219,7 @@ function appendVisit(visit) {
                 <div class="barBtnOne">${visit.userDong}</div>
                 <div class="barBtnOne">${visit.userHo}</div>
                 <div  style="width: 140px;" class="barBtnOne">${visit.visitBookingCarNumber}</div>
-                <div style="width: 200px;" class="barBtnOne">${time.startDateParts + "~" + time.endDateParts}</div>
+                <div style="width: 200px;" class="barBtnOne">${time.startDate + "~" + time.endDate}</div>
                 <div  style="width: 140px;" class="barBtnOne">${visit.visitBookingPurpose}</div>
                 <div style="width: 140px;"  class="barBtnOne">
                   <button type="button" class="showDetailBtn">취소하기</button>
@@ -285,12 +265,7 @@ async function getPosts(page) {
     const id=adminId;
     const url = `/lists/api/visit/${id}?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
     try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch(url)
         if (response.ok) {
             const data = await response.json();
             //페이지이동후 랜더링
@@ -323,10 +298,7 @@ function renderData(data) {
 }
 // --------------------------------------------------------------------------------------
 //검색 !!
-let total = 0;
-let startPage = 0;
-let endPage = 0;
-let currentPage = 1; // 현재 페이지
+
 
 //검색할 키워드들 데이터 가지고오기  페이지도 붙여서
 async function fetchData(page) {
@@ -389,14 +361,14 @@ let isSearchMode = false;
 document.getElementById("registerMaintenanceFeeBtn").addEventListener("click", async () => {
          currentPage =1; //처음 페이지 이동하고 검색하면 안나옴 페이지 초기화
         isSearchMode = true; // 검색 버튼을 누를 때 검색 모드로 설정
-         const visit = await fetchData(currentPage);
-        if(visit.length>0){
-            await updatePaginationAfterSearch(visit);
-            maintenanceFeeContent.style.display='none';
-            maintenanceFeeBar.style.display='';
-            pageBtn.style.display='block';
-        }
-        else {
+    const visit = await fetchData(currentPage);
+    if(visit.length>0){
+        await updatePaginationAfterSearch(visit);
+        maintenanceFeeContent.style.display='none';
+        maintenanceFeeBar.style.display='';
+        pageBtn.style.display='block';
+    }
+    else {
             createPaginationButtons();
             renderData(visit)
             maintenanceFeeContent.style.display='flex';
@@ -440,7 +412,7 @@ function createPaginationButtons() {
         ulElement.appendChild(liElement);
     }
 }
-//버튼클릭시 이동
+//페이지 번호 클릭시 이동
 async function handlePageNumberClick(event) {
     if (event.target.classList.contains('buttonNumber')) {
         const newPage = parseInt(event.target.textContent);
@@ -448,7 +420,6 @@ async function handlePageNumberClick(event) {
             currentPage = newPage;
             //검색인지 아닌지 검색일떄 구분
             if (isSearchMode) {
-                updateButtonHighlights();
                 await  updatePaginationAfterSearch(await fetchData(currentPage));
             } else {
                 await  updatePagination();

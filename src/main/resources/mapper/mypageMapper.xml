@@ -79,38 +79,38 @@
     </select>
 
     <delete id="deleteComplain">
-        DELETE TBL_COMPLAIN
-        WHERE USER_ID={id}
+        DELETE FROM TBL_COMPLAIN
+        WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deleteFee">
-        DELETE TBL_MAINTENANCE_FEE
-        WHERE USER_ID={id}
+        DELETE FROM TBL_MAINTENANCE_FEE
+        WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deleteLike">
-        DELETE TBL_LIKE
-        WHERE USER_ID={id}
+        DELETE FROM TBL_LIKE
+        WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deleteComment">
-        DELETE TBL_COMMENT
-        WHERE USER_ID={id}
+        DELETE FROM TBL_COMMENT
+        WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deletePost">
-        DELETE TBL_POST
-        WHERE USER_ID={id}
+        DELETE FROM TBL_POST
+        WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deleteVisit">
-        DELETETBL_VISIT_BOOKING
-        WHERE USER_ID={id}
+        DELETE FROM TBL_VISIT_BOOKING
+       WHERE USER_ID=#{id}
     </delete>
 
     <delete id="deleteUser">
-        DELETETBL_VISIT_BOOKING
-        WHERE ID={id}
+        DELETE FROM TBL_USER
+        WHERE ID=#{id}
     </delete>
 
     <select id="selectVisit" resultType="adminVisitDTO">
@@ -169,17 +169,17 @@
     </select>
 
     <delete id="deleteOne">
-        DELETE TBL_VISIT_BOOKING
-        WHERE ID={id}
+        DELETE  FROM TBL_VISIT_BOOKING
+        WHERE ID=#{id}
     </delete>
 
     <delete id="deleteComplainReply">
-        DELETE TBL_COMPLAIN_REPLY
-        WHERE ID={Id}
+        DELETE FROM TBL_COMPLAIN_REPLY
+        WHERE COMPLAIN_ID=#{id}
     </delete>
 
     <select id="selectId" resultType="Long">
-    SELECT R.ID AS REPLY_ID FROM TBL_COMPLAIN_REPLY R
+    SELECT R.COMPLAIN_ID AS REPLY_ID FROM TBL_COMPLAIN_REPLY R
     JOIN TBL_COMPLAIN C
     ON R.COMPLAIN_ID=C.ID
     WHERE  C.USER_ID=#{id}
@@ -240,7 +240,7 @@
   </insert>
 
 <delete id="deleteBooking">
-    DELETE TBL_VISIT_BOOKING
+    DELETE FROM TBL_VISIT_BOOKING
     WHERE ID=#{id}
 </delete>
 

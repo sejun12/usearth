@@ -30,7 +30,6 @@ public interface MypageService {
     public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id);
 
     public  int getTotal(SearchVisitDTO searchVisitDTO,Long id);
-    public void removeComplainReply(Long id);
     public List<AdminVisitDTO> selectSearch(SearchVisitDTO searchDTO ,Pagination pagination,Long id);
 
     public void adminBooking(ReserveCarDTO reserveCarDTO);

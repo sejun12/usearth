@@ -51,7 +51,7 @@ public class MyPageController {
         UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
         Long id=userDTO.getId();
         mypageService.removeAll(id);
-        return new RedirectView("/");
+        return new RedirectView("/user/blocking");
     }
 
     //개인 정보 조회
@@ -67,7 +67,9 @@ public class MyPageController {
         userProfileVO.setUserProfileName(uuid + "_" + uploadFiles.get(0).getOriginalFilename());
         userProfileVO.setUserProfilePath(getPath());
         mypageService.changeProfile(userProfileVO);
+        //프로필 저장한 경로 다시 session 에 저장
         userDTO.setUserProfileName(userProfileVO.getUserProfileName());
+        userDTO.setUserProfilePath(getPath());
         session.setAttribute("user", userDTO);
         return new RedirectView("/mypage/inquiry");
     }
