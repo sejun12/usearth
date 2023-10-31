@@ -78,15 +78,18 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void removeAll(Long id) {
-        removeComplainReply(id);
-        myPageDAO.removeComplain(id);
-        myPageDAO.removeFee(id);
-        myPageDAO.removeLike(id);
-        myPageDAO.removeComment(id);
-        myPageDAO.removePost(id);
-        myPageDAO.removeVisit(id);
-        myPageDAO.removeUser(id);
-    }
+        Long complainId=myPageDAO.searchComplainId(id);
+        if (complainId != null) { // complainId가 null이 아닌 경우에만 실행
+            myPageDAO.removeComplainReply(complainId);
+        }
+            myPageDAO.removeComplain(id);
+            myPageDAO.removeFee(id);
+            myPageDAO.removeLike(id);
+            myPageDAO.removeComment(id);
+            myPageDAO.removePost(id);
+            myPageDAO.removeVisit(id);
+            myPageDAO.removeUser(id);
+        }
 
     @Override
     public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id) {
@@ -96,12 +99,6 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public int getTotal(SearchVisitDTO searchVisitDTO,Long id) {
         return myPageDAO.getTotal(searchVisitDTO,id);
-    }
-
-    @Override
-    public void removeComplainReply(Long id) {
-      Long complainId=  myPageDAO.searchComplainId(id);
-        myPageDAO.removeComplainReply(complainId);
     }
 
     @Override

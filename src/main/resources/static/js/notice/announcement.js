@@ -48,3 +48,8 @@ $("a.change-page").on("click", function(e){
 $('.goToDetail').click(function() {
     $(this).find('.goToPostDetail').submit();
 });
+    const topBarBackward = document.querySelector(".topBarBackward");
+    topBarBackward.addEventListener("click", () => {
+        window.location.href = "/mypage/mypage";
+    })
+
