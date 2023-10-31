@@ -28,7 +28,11 @@ public class FreeController {
 
     //게시글 상세보기
     @GetMapping("viewpost/{id}")
-    public String getByFreeRead(@PathVariable Long id){
+    public String getByFreeRead(@PathVariable Long id, Model model){
+        Optional<PostDTO> foundPost= freeService.freeBoardRead(id);
+
+        freeService.updateViewCount(id);
+        if (foundPost.isPresent()) model.addAttribute("post", foundPost.get());
 
         return "board/viewpost";
     }
@@ -44,11 +48,11 @@ public class FreeController {
     public RedirectView writePost(PostDTO postDTO, HttpSession session){
         UserDTO userDTO=((UserDTO)session.getAttribute("user"));
         postDTO.setUserId(userDTO.getId());
-        log.info("---{}", postDTO);
         freeService.addFree(postDTO);
         Long postId=postDTO.getId();
         return new RedirectView("/board/viewpost/" +postId);
     }
+    // 게시글 수정
     @GetMapping("freeboard-write/{id}")
     public String goToFreeModify(@PathVariable Long id, Model model){
         PostDTO postDTO= freeService.getPostById(id);
@@ -56,7 +60,7 @@ public class FreeController {
         log.info("------------{}", model);
         return "board/freeboard-write";
     }
-
+    // 게시글 수정 후 저장
     @PostMapping("freeboard-write/{id}")
     public RedirectView updatePost(@PathVariable Long id, PostDTO postDTO, HttpSession session) {
         UserDTO userDTO = ((UserDTO) session.getAttribute("user"));
@@ -68,23 +72,5 @@ public class FreeController {
         return new RedirectView("/board/viewpost/" + modifyPostId);
     }
 
-    // 댓글
-    @GetMapping("post/{postId}")
-    @ResponseBody
-    public List<CommentDTO> getCommentsByPostId(@PathVariable Long postId){
-        return freeService.getCommentsByPostId(postId);
-    }
 
-    // 새 댓글
-    @PostMapping("addComment")
-    public String addComment(CommentDTO commentDTO){
-        freeService.addComment(commentDTO);
-        return "redirect:/board/viewpost/" +commentDTO.getPostId();
-    }
-    // 댓글 개수 조회
-    @GetMapping("getCountComment")
-    @ResponseBody
-    public int getCommentCount(@RequestParam Long postId){
-        return freeService.getCommentCountByPostId(postId);
-    }
 }

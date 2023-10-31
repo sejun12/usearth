@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.MainMapper.xml">
-    <select id="selectByFreeBoard" parameterType="long" resultType="postDTO">
-        SELECT P.ID, P.USER_ID, P.POST_TITLE, P.POST_CONTENT,
-               P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
-               (
-                   SELECT COUNT(*)
-                   FROM TBL_COMMENT C WHERE C.POST_ID = P.ID
-               ) AS COMMENT_COUNT,
-               (
-                   SELECT COUNT(*)
-                   FROM TBL_LIKE L
-                   WHERE L.POST_ID = P.ID
-               ) AS LIKE_COUNT
-        FROM TBL_POST P
-        WHERE P.POST_CATEGORY = '자유'
-        ORDER BY P.POST_MODIFY_DATE DESC
+    <select id="selectRecycle" resultType="postVO">
+        SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
+        FROM TBL_POST
+        WHERE POST_CATEGORY='재활용' AND USER_ID=#{userId}
+        ORDER BY POST_MODIFY_DATE DESC
     </select>
-    <update id="updateByFreeBoard" parameterType="postDTO">
-        UPDATE  TBL_POST
-        SET POST_VIEW_COUNT =POST_VIEW_COUNT +1
-        WHERE ID=#{id}
+    <select id="selectFree" resultType="postVO">
+        SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
+        FROM TBL_POST
+        WHERE POST_CATEGORY='자유' AND USER_ID=#{userId}
+        ORDER BY POST_MODIFY_DATE DESC
+    </select>
 
-    </update>
 </mapper>

@@ -92,7 +92,7 @@ public class MypageAPI {
         return mypageService.searchCar(id);
     }
 
-    @ApiOperation(value = "회원의 민원 접수 상세 보가", notes = "회원 아이디 입력시 회원 민원 접수 상세 보기 API")
+    @ApiOperation(value = "회원의 민원 접수 상세 보기", notes = "회원 아이디 입력시 회원 민원 접수 상세 보기 API")
     @ApiImplicitParam(
             name = "id",
             value = "회원 번호",

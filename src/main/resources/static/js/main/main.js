@@ -682,3 +682,23 @@ moBtn.addEventListener("click", clickHandler);
 function clickHandler(){
     window.location.href="http://localhost:10000/recycling-agent/recycling-agent";
 }
+
+const ntBtn=document.querySelector("#landingContentButton2");
+ntBtn.addEventListener("click", clickHandler2);
+function clickHandler2(){
+    window.location.href="http://localhost:10000/notice/announcement";}
+
+const crBtn=document.querySelector("#landingContentButton3");
+crBtn.addEventListener("click", clickHandler3);
+function clickHandler3(){
+    window.location.href="http://localhost:10000/mypage/reserve-car";
+}
+
+// 재활용 게시글 리스트
+const recycleList=document.getElementById('reclyceList');
+let page=1;
+
+//게시글 데이터 가져오기
+
+
+

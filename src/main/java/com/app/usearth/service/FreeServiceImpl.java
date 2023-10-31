@@ -1,8 +1,6 @@
 package com.app.usearth.service;
 
-import com.app.usearth.domain.CommentDTO;
-import com.app.usearth.domain.PostDTO;
-import com.app.usearth.domain.PostVO;
+import com.app.usearth.domain.*;
 import com.app.usearth.repository.FreeDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +15,7 @@ import java.util.Optional;
 @Transactional(rollbackFor = Exception.class)
 @Slf4j
 public class FreeServiceImpl implements FreeService{
+
     private final FreeDAO freeDAO;
     // 게시글 작성
     @Override
@@ -36,6 +35,7 @@ public class FreeServiceImpl implements FreeService{
     public List<PostDTO> findByRecycling(Long id){
         return freeDAO.findByRecycling(id);}
 
+
     @Override
     public void updatePost(PostDTO postDTO){
         freeDAO.updatePost(postDTO);
@@ -53,9 +53,21 @@ public class FreeServiceImpl implements FreeService{
     }
    // 댓글 추가
     @Override
-    public void addComment(CommentDTO commentDTO) {
-        freeDAO.insertComment(commentDTO);}
+    public void addComment(CommentVO commentVO) {
+        freeDAO.insertComment(commentVO);}
 
     @Override
     public int getCommentCountByPostId(Long postId){return freeDAO.selectCommentCountByPostId(postId);}
+
+    @Override
+    public Long updateViewCount(Long id){return freeDAO.updateViewCount(id);}
+
+    @Override
+    public FindPostCommentDTO getCommentInfo(Long postId){
+        FindPostCommentDTO findPostCommentDTO= new FindPostCommentDTO();
+        findPostCommentDTO.setPostComments(freeDAO.findAllCommentByPostId(postId));
+        findPostCommentDTO.setCommentCount(freeDAO.findCommentCount(postId));
+        return findPostCommentDTO;
+    }
+
 }

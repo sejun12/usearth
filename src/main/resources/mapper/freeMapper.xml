@@ -84,16 +84,29 @@
         FROM TBL_POST WHERE ID = #{id}
     </select>
 
-
-
-    <!-- 게시물 조회수 증가 -->
-    <update id="postViewCount" parameterType="map">
+    <update id="updateViewCount" parameterType="map">
         UPDATE TBL_POST
         SET POST_VIEW_COUNT = POST_VIEW_COUNT + 1
-        WHERE ID = #{postId} AND USER_ID != #{userId}
+        WHERE ID = #{id}
     </update>
-    <!-- 댓글 개수 조회 -->
-    <select id="selectCommentCountByPostId" parameterType="Long" resultType="int">
-        SELECT COUNT(*) FROM TBL_COMMENT WHERE POST_ID = #{postId}
+
+    <select id="selectAllCommentByPostId" resultType="postCommentDTO">
+        SELECT C.ID, C.USER_ID, C.POST_ID, C.COMMENT_WRITE_DATE, C.COMMENT_CONTENT,
+               U.USER_NAME, UP.USER_PROFILE_NAME, UP.USER_PROFILE_PATH, UP.USER_KAKAO_PROFILE_URL
+        FROM (
+                 SELECT *
+                 FROM TBL_POST
+                 WHERE ID = #{id}
+             ) P
+                 JOIN TBL_COMMENT C ON P.ID = C.POST_ID
+                 JOIN TBL_USER U ON C.USER_ID = U.ID
+                 LEFT JOIN TBL_USER_PROFILE UP ON U.USER_PROFILE_ID = UP.ID
+        ORDER BY C.ID DESC
     </select>
+    <select id="selectCommentCount" resultType="int">
+        SELECT COUNT(ID) FROM TBL_COMMENT
+        WHERE POST_ID = #{id}
+    </select>
+
+
 </mapper>

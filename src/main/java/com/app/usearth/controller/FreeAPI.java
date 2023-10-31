@@ -1,7 +1,10 @@
 package com.app.usearth.controller;
 
 
+import com.app.usearth.domain.CommentVO;
+import com.app.usearth.domain.FindPostCommentDTO;
 import com.app.usearth.domain.PostDTO;
+import com.app.usearth.domain.UserDTO;
 import com.app.usearth.service.FreeService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -9,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,5 +51,15 @@ public class FreeAPI {
 
         // result 맵 반환
         return result;
+    }
+
+    @GetMapping("comment/{id}")
+    public FindPostCommentDTO getComments(@PathVariable("id") Long id ){
+        return freeService.getCommentInfo(id);
+    }
+    @PostMapping("setComment")
+    public void setComment(@RequestBody CommentVO commentVO, HttpSession session){
+        commentVO.setUserId(((UserDTO)session.getAttribute("user")).getId());
+        freeService.addComment(commentVO);
     }
 }
