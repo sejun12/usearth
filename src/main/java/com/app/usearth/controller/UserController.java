@@ -21,7 +21,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     @GetMapping("address-settings")
-    public void goToJoin(){;}
+    public String goToJoin(){ return "user/address-settings";}
 
     @PostMapping("address-settings")
     public RedirectView addressSettings(HttpSession session, @RequestParam("aptAddress")List<String> aptAddresses){
@@ -42,9 +42,9 @@ public class UserController {
     }
 
     @GetMapping("login")
-    public void goToLogin(){;}
+    public String goToLogin(){ return "user/login";}
 
     @GetMapping("blocking")
-    public void goToBlocking(){;}
+    public String goToBlocking(){ return "user/blocking";}
 
 }
