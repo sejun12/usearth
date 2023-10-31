@@ -122,6 +122,11 @@ function showRecycleInfo(div, data){
       </div>
       <hr class="horizontal line">
       `
+    div.addEventListener('click', function () {
+        const recycle = data.id;
+        window.location.href = `/recycling-agent/recycling-agentread/${recycle}`;
+
+    });
 }
 // 자유
 function  showFreeBoardInfo(div, data) {
@@ -148,6 +153,11 @@ function  showFreeBoardInfo(div, data) {
       </div>
        <hr class="horizontal line">
       `
+    div.addEventListener('click', function () {
+        const free = data.id;
+        window.location.href = `/board/viewpost/${free}`;
+
+    });
 }
 //댓글
   function  showCommentInfo(div,data){
@@ -174,6 +184,15 @@ function  showFreeBoardInfo(div, data) {
       </div>
        <hr class="horizontal line">
       `
+      div.addEventListener('click', function () {
+          const recycle = data.postId;
+          const free = data.postId;
+      if(data.postCategory ==="재활용"){
+          window.location.href = `/recycling-agent/recycling-agentread/${recycle}`;
+      }else{
+          window.location.href = `/board/viewpost/${free}`;
+      }
+      });
 }
 const infiniteLoadingContainer = document.querySelector(".infiniteLoadingContainer");
 const swiperSlides =document.querySelectorAll(".swiperSlide ");

@@ -119,7 +119,12 @@ document.addEventListener("click", function (event) {
 
 // 검색 초기화 버튼 클릭 시 새로고침
 document.querySelector(".resetBtn").addEventListener("click", function() {
-    location.reload(); // 현재 페이지를 새로고침합니다.
+    document.getElementById("categorySpan2").textContent = '카테고리 선택';
+    document.getElementById("searchTitle").value = '';
+    document.getElementById("categorySpan").textContent = '전체';
+    document.querySelector("input[name='startDate']").value = '';
+    document.querySelector("input[name='endDate']").value = '';
+    complainService.allList(currentPage);
 });
 
 
@@ -315,11 +320,12 @@ function createUrl(page){
     }
 
     // URL에 검색 조건 추가
-    if (params.length > 0) {
+    if(params.length > 0){
         const paramString = params.join("&");
         url = `/complains/api/complains-list?${paramString}`;
     }
 
+    console.log(url)
     return url;
 }
 
@@ -373,11 +379,26 @@ function appendComplains(li, complain){
 
     showDetailBtn.addEventListener("click", () =>{
         const complainId = complain.id;
+        const changeStatus = complain.complainStatus === `진행중` ? '처리완료' : '진행중으';
 
         if(showDetailBtn.textContent === '처리시작'){
             window.location.href = `/admin/complain-reply/${complainId}`;
         }else{
-            complainService.update(complainId, complain.complainStatus);
+            // 민원처리 버튼 클릭 시 모달창 활성화
+            document.querySelector(".modalContent").textContent = `해당 민원 처리상태를 ${changeStatus}로 변경하시겠습니까?`
+            document.querySelector("#modalContainer").style.display = 'block';
+
+            // 확인 버튼 클릭 시 DB update
+            document.querySelector(".confirmBtn").addEventListener("click", () => {
+                console.log(complain.complainStatus)
+                // complainService.update(complainId, complain.complainStatus);
+                document.querySelector("#modalContainer").style.display = 'none';
+            })
+
+            // 취소 버튼 클릭 시 모달창 닫기
+            document.querySelector(".cancelBtn").addEventListener("click", () => {
+                document.querySelector("#modalContainer").style.display = 'none';
+            })
         }
     })
 
