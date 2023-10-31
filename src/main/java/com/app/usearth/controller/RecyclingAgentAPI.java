@@ -5,7 +5,6 @@ import com.app.usearth.service.RecyclingAgentService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/recycling-reads/api/")
 public class RecyclingAgentAPI {
     private final RecyclingAgentService recyclingAgentService;
+
 
     @ApiOperation(value = "재활용대행 정보 조회", notes = "재활용대행 정보를 조회할 수 있는 API")
     @ApiImplicitParam(
@@ -61,12 +61,31 @@ public class RecyclingAgentAPI {
     }
 
     @GetMapping("comment/{id}")
-    public FindPostCommentDTO getComments(@PathVariable("id") Long id){ return recyclingAgentService.getCommentInfo(id); }
+    public FindPostCommentDTO getComments(@PathVariable("id") Long id){
+        return recyclingAgentService.getCommentInfo(id);
+    }
 
     @PostMapping("setComment")
     public void setComment(@RequestBody CommentVO commentVO, HttpSession session){
         commentVO.setUserId(((UserDTO)session.getAttribute("user")).getId());
         recyclingAgentService.addComment(commentVO);
     }
+
+
+    // 좋아요 수
+    // 사용자가 게시글에 좋아요를 추가하려고 할 때 호출 즉, toggleLike를 호출하여 좋아요의 상태를 변경
+    @GetMapping("posts/{postId}/likes")
+    // addLike()는 좋아요를 추가하는 동작을 수행
+    public Map<String, Boolean> addLike(@RequestParam Long userId, @PathVariable Long postId) {
+        // 좋아요 상태를 토글 즉, 현재 상태가 좋아요 된 상태라면 좋아요를 취소하고, 그렇지 않으면 좋아요를 추가
+        recyclingAgentService.toggleLike(userId, postId);
+        // 응답을 위한 Map 객체를 생성, 'key : success, value : true'로 응답
+        Map<String, Boolean> response = new HashMap<>();
+        // response Map에 'key : success, value : true' 넣어줌, 요청이 성공적으로 처리되었음을 의미
+        response.put("success", true);
+        // 최종적으로 JSON 형태로 변환되어 클라이언트에게 전달
+        return response;
+    }
+
 
 }

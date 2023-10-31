@@ -39,4 +39,5 @@ public interface RecyclingAgentMapper {
     public int selectCommentCount(Long id);
 
     public Long updateViewCount(Long id);
+
 }

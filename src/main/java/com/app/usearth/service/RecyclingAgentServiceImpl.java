@@ -4,8 +4,10 @@ import com.app.usearth.domain.CommentDTO;
 import com.app.usearth.domain.CommentVO;
 import com.app.usearth.domain.FindPostCommentDTO;
 import com.app.usearth.domain.PostDTO;
+import com.app.usearth.mapper.LikeMapper;
 import com.app.usearth.repository.RecyclingAgentDAO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +16,13 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 @Transactional(rollbackFor = Exception.class)
 public class RecyclingAgentServiceImpl implements RecyclingAgentService {
 
     private final RecyclingAgentDAO recyclingAgentDAO;
 
+    private final LikeMapper likeMapper;
 
     @Override
     public List<PostDTO> getByRecycling() {
@@ -92,5 +96,32 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
         findPostCommentDTO.setCommentCount(recyclingAgentDAO.findCommentCount(postId));
         return findPostCommentDTO;
     }
+
+    // 좋아요 수 증감
+    @Override
+    public void toggleLike(Long userId, Long postId) {
+        // 체크해서 해당 사용자가 이미 좋아요를 했는지 확인
+        Long isLiked = likeMapper.checkUserLikeForPost(userId, postId);
+
+        if (isLiked!=null) {
+            log.info("{}",isLiked);
+            likeMapper.removeLike(userId, postId);
+        } else {
+            likeMapper.addLike(userId, postId);
+            log.info("{}",isLiked);
+        }
+    }
+
+
+    @Override
+    public int getLikeCountByPostId(Long postId) {
+        return likeMapper.selectLikeCount(postId);
+    }
+
+    @Override
+    public boolean userLiked(Long userId, Long postId) {
+        return likeMapper.checkUserLikeForPost(userId, postId) > 0;
+    }
+
 
 }

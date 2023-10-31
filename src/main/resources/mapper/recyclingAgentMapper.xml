@@ -107,7 +107,6 @@
                  LEFT JOIN TBL_USER_PROFILE UP ON U.USER_PROFILE_ID = UP.ID
         ORDER BY C.ID DESC
     </select>
-
     <select id="selectCommentCount" resultType="int">
         SELECT COUNT(ID) FROM TBL_COMMENT
         WHERE POST_ID = #{id}
