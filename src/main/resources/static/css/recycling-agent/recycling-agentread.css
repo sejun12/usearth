@@ -595,6 +595,14 @@ button, input, select, textarea {
     align-items: center;
     display: flex;
 }
+.answerCommentBox1 {
+    padding: 2px 0 16px;
+    align-items: center;
+    /*display: flex!important;*/
+    flex-direction: row;
+    overflow: hidden;
+    margin-bottom: 14px!important;
+}
 
 .answerCommentBox {
     padding: 2px 0 16px;

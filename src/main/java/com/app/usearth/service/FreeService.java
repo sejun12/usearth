@@ -1,6 +1,8 @@
 package com.app.usearth.service;
 
 import com.app.usearth.domain.CommentDTO;
+import com.app.usearth.domain.CommentVO;
+import com.app.usearth.domain.FindPostCommentDTO;
 import com.app.usearth.domain.PostDTO;
 
 import java.util.List;
@@ -21,6 +23,9 @@ public interface FreeService {
     // 게시글 상세보기
     public Optional<PostDTO>freeBoardRead(Long id);
 
+    // 조회수
+    public Long updateViewCount(Long id);
+
     // 재활용 글 가져오기
     public List<PostDTO> findByRecycling(Long id);
 
@@ -28,8 +33,10 @@ public interface FreeService {
     public List<CommentDTO> getCommentsByPostId(Long postId);
 
     // 댓글 추가
-    public void addComment(CommentDTO commentDTO);
+    public void addComment(CommentVO commentVO);
 
     // 댓글 수
     public int getCommentCountByPostId(Long postId);
+
+    public FindPostCommentDTO getCommentInfo(Long postId);
 }
