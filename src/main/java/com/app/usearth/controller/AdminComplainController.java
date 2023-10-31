@@ -21,7 +21,7 @@ import java.util.Optional;
 public class AdminComplainController {
     private final AdminComplainService adminComplainService;
     @GetMapping("admin-login")
-    public void goToAdminLogin(){;}
+    public String goToAdminLogin(){return "admin/admin-login";}
 
     @PostMapping("admin-login")
     public RedirectView login(AdminVO adminVO, HttpSession session, RedirectAttributes redirectAttributes){
@@ -40,14 +40,14 @@ public class AdminComplainController {
         }
     }
 
-    @GetMapping("/logout")
+    @GetMapping("logout")
     public RedirectView logout(HttpSession session){
         session.invalidate();
         return new RedirectView("/admin/admin-login");
     }
 
     @GetMapping("complain-management")
-    public void goToAdminComplainManagement() {;}
+    public String goToAdminComplainManagement() {return "admin/complain-management";}
 
     @GetMapping("complain-reply/{id}")
     public String goToAdminComplainReply(@PathVariable Long id, HttpSession session, Model model){
@@ -55,7 +55,7 @@ public class AdminComplainController {
         Optional<ComplainAdminDTO> foundComplain = adminComplainService.getComplainById(adminVO.getApartmentId(), id);
         foundComplain.ifPresent(complainAdminDTO -> model.addAttribute("complain", complainAdminDTO));
 
-        return "/admin/complain-reply";
+        return "admin/complain-reply";
     }
 
     @PostMapping("complain-reply/{id}")
