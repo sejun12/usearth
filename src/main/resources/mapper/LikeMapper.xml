@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.usearth.mapper.LikeMapper">
+    <!-- 게시글 ID를 기준으로 해당 게시글에 대한 좋아요 수를 조회 -->
+    <select id="selectLikeCount" resultType="int">
+        SELECT COUNT(ID) FROM TBL_LIKE
+        WHERE POST_ID = #{id}
+    </select>
+    <!-- 사용자 ID와 게시글 ID를 사용하여 새로운 좋아요를 TBL_LIKE 테이블에 추가 -->
+    <insert id="addLike">
+        INSERT INTO TBL_LIKE (ID, USER_ID, POST_ID)
+        VALUES (SEQ_LIKE.NEXTVAL, #{userId}, #{postId})
+    </insert>
+    <!-- 사용자 ID와 게시글 ID를 기준으로 TBL_LIKE 테이블에서 좋아요를 삭제 -->
+    <delete id="removeLike">
+        DELETE FROM TBL_LIKE
+        WHERE USER_ID = #{userId} AND POST_ID = #{postId}
+    </delete>
+    <!-- 사용자가 특정 게시글에 좋아요를 했는지 확인하기 위해 TBL_LIKE 테이블을 조회 -->
+    <select id="checkUserLikeForPost" resultType="Long">
+        SELECT ID
+        FROM TBL_LIKE
+        WHERE USER_ID = #{userId} AND POST_ID = #{postId}
+    </select>
+</mapper>

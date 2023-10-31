@@ -43,4 +43,17 @@ public interface RecyclingAgentService {
 
     public FindPostCommentDTO getCommentInfo(Long postId);
 
+
+    // 좋아요 수
+
+    // 게시글에 좋아요를 클릭했는지 확인 : 클릭했다면 좋아요를 제거, 클릭하지 않았다면 좋아요를 추가
+    // 사용자가 게시글에 대한 좋아요를 토글(즉, 좋아요를 추가하거나 제거) 포함
+    public void toggleLike(Long userId, Long postId);
+
+    // 게시글에 대한 좋아요 수를 반환
+    public int getLikeCountByPostId(Long postId);
+
+    //  게시글에 좋아요를 했는지 확인 : 클릭했다면 true, 클릭하지 않았다면 false를 반환
+    // 사용자가 게시글에 좋아요를 이미 눌렀는지 여부를 반환
+    public boolean userLiked(Long userId, Long postId);
 }

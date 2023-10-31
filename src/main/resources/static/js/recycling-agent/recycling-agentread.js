@@ -144,3 +144,34 @@ function modifyButtonStatus() {
 }
 
 modifyButtonStatus();
+
+// 좋아요 수 증감
+const likeButton = document.getElementById("likeButton");
+const likeCount = document.getElementById("likeCount");
+
+likeButton.addEventListener("click", function() {
+    const isLiked = likeButton.style.fill === "red";
+    const postId = likeButton.getAttribute("data-post-id");
+    const userId = likeButton.getAttribute("data-user-id");
+
+    // const method = isLiked ? "DELETE" : "POST";
+
+    // RestController에서 POST 또는 DELETE 요청을 처리하는 URL로 요청을 보냄
+    fetch(`/recycling-reads/api/posts/${post}/likes?userId=${user}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (isLiked) {
+                    likeButton.style.fill = "#949BA0";
+                    likeCount.textContent = Number(likeCount.textContent) - 1;
+                } else {
+                    likeButton.style.fill = "red";
+                    likeCount.textContent = Number(likeCount.textContent) + 1;
+                }
+            }
+        });
+});
+
+
