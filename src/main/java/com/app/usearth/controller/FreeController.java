@@ -18,13 +18,13 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/board/*")
+@RequestMapping("board/*")
 @Slf4j
 public class FreeController {
     private final FreeService freeService;
     // 게시글 목록
     @GetMapping("freeboard")
-    public void goToFree(){;}
+    public String goToFree(){ return "board/freeboard";}
 
     //게시글 상세보기
     @GetMapping("viewpost/{id}")

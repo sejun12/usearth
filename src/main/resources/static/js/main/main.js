@@ -1,6 +1,7 @@
 
 
 
+
 //큰 카테고리 색
 // const navList = document.getElementsByClassName("navList");
 // function handleClick(event) {
@@ -179,6 +180,8 @@
 //
 // // 검색창 클릭 이벤트 리스너 등록
 // searchInput.addEventListener("click", searchInputClickHandler);
+
+
 
 
 
