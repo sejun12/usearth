@@ -23,7 +23,7 @@ public class FileController {
     // 리턴하는 것을 바디에담은 .html을 붙는것을 방지
     @ResponseBody
     public String upload(@RequestParam("uploadFile") List<MultipartFile> uploadFiles) throws IOException {
-        String rootPath = "C:/upload/" + getPath();
+        String rootPath = "/usr/project/upload/" + getPath();
         String uuid  = UUID.randomUUID().toString();
         File file = new File(rootPath);
         if(!file.exists()){
@@ -43,7 +43,7 @@ public class FileController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
     }
     //현재 시간 년월일로 3개폴더로 만들어지게
     private String getPath() {

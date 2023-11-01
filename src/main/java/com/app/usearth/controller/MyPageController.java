@@ -25,10 +25,14 @@ public class MyPageController {
     private final MypageService mypageService;
 
     @GetMapping("mypage")
-    public void goToMyPage(){;}
+    public String goToMyPage(){
+        return "mypage/mypage";
+    }
     //민원 접수
     @GetMapping("complain")
-    public void goToMyComplain(ComplainDTO complainDTO){;}
+    public String goToMyComplain(ComplainDTO complainDTO){
+        return "mypage/complain";
+    }
     @PostMapping("complain")
     public RedirectView complainSubmit(ComplainDTO complainDTO,HttpSession session){
         UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
@@ -39,13 +43,15 @@ public class MyPageController {
     //민원접수 상세 페이지
     @GetMapping("complain-detail/{id}")
     public String goToMyComplainDetail(@PathVariable Long id){
-        return "/mypage/complain-detail";
+        return "mypage/complain-detail";
     }
     //    @GetMapping("edit-personal")
 //    public void goToMyEditPersonal(){;}
     //회원 탈퇴
     @GetMapping("member-withdrawal")
-    public void goToMyMemberWithDrawl(){;}
+    public String goToMyMemberWithDrawl(){
+        return "mypage/member-withdrawal";
+    }
     @PostMapping("member-withdrawal")
     public RedirectView goToMyWithDrawl(HttpSession session){
         UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
@@ -56,7 +62,9 @@ public class MyPageController {
 
     //개인 정보 조회
     @GetMapping("inquiry")
-    public void  goToMyInquiry(){;}
+    public String  goToMyInquiry(){
+        return "mypage/inquiry";
+    }
     @PostMapping("inquiry")
     //업로드 된개수 ,INPUT 3개
     public RedirectView updateProfile(@RequestParam("uuid") String uuid, @RequestParam("uploadFile") List<MultipartFile> uploadFiles ,HttpSession session) {
@@ -79,21 +87,29 @@ public class MyPageController {
     }
     //차량 예약
     @GetMapping("reserve-car")
-    public void goToMyReserveCar(ReserveCarVO reserveCarVO){;}
+    public String goToMyReserveCar(ReserveCarVO reserveCarVO){
+        return "mypage/reserve-car";
+    }
     @PostMapping("reserve-car")
     public RedirectView reserve(ReserveCarVO reserveCarVO,HttpSession session){
+        log.info("reserveCarVO1: {}", reserveCarVO);
         UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        log.info("userDTO: {}", userDTO);
         reserveCarVO.setUserId(userDTO.getId());
+        log.info("reserveCarVO2: {}", reserveCarVO);
         mypageService.saveCar(reserveCarVO);
         return new RedirectView("/mypage/reserve-carlist");
     }
     //차량 예약 리스트
     @GetMapping("reserve-carlist")
-    public void goToMyReserveCarList(){
+    public String goToMyReserveCarList(){
+        return "mypage/reserve-carlist";
     }
     //    내 작성 이동 목록
     @GetMapping("community")
-    public void goToMyCommunity(){;}
+    public String goToMyCommunity(){
+        return "mypage/community";
+    }
 
     @GetMapping("logout")
     public RedirectView logout(HttpSession session){

@@ -65,4 +65,13 @@ function handleSubmit(event) {
     }
 }
 // 폼 제출 이벤트 리스너 등록
-document.querySelector("form").addEventListener("submit", handleSubmit);
+const applyView = document.querySelector(".applyView");
+const form = document.querySelector("form");
+
+applyView.addEventListener("click", (e) => {
+    handleSubmit(e);
+
+    if (!e.defaultPrevented) {
+        form.submit();
+    }
+});
