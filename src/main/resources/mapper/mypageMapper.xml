@@ -10,7 +10,7 @@
 
     <insert id="insertCar">
         INSERT INTO TBL_VISIT_BOOKING(ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_ID,APARTMENT_ID)
-        VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{visitBookingStartDate}, #{visitBookingEndDate}, #{visitBookingPurpose}, #{visitBookingCarNumber}, #{visitBookingCarType}, #{userId}, #{apartmentId})
+        VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, TO_DATE(#{visitBookingStartDate}, 'YYYY-MM-DD'), TO_DATE(#{visitBookingEndDate}, 'YYYY-MM-DD'), #{visitBookingPurpose}, #{visitBookingCarNumber}, #{visitBookingCarType}, #{userId}, #{apartmentId})
     </insert>
 
     <select id="selectComplain" resultType="complainDTO">
@@ -236,7 +236,7 @@
 
   <insert id="insertAdminBooking">
       INSERT INTO TBL_VISIT_BOOKING(ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER)
-      VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{userId}, #{apartmentId}, #{visitBookingStartDate}, #{visitBookingEndDate}, #{visitBookingPurpose}, #{visitBookingCarNumber})
+      VALUES (SEQ_VISIT_RESERVATION.NEXTVAL, #{userId}, #{apartmentId}, TO_DATE(#{visitBookingStartDate}, 'YYYY-MM-DD'), TO_DATE(#{visitBookingEndDate}, 'YYYY-MM-DD'), #{visitBookingPurpose}, #{visitBookingCarNumber})
   </insert>
 
 <delete id="deleteBooking">
