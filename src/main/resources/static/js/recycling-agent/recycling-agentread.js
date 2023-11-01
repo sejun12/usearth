@@ -3,7 +3,7 @@
 // split('/') : 문자열 메소드인 split을 사용하여 URL을 '/' 문자를 기준으로 나눔
 // .pop() : 배열 메소드인 pop을 사용하여 배열의 마지막 요소를 가져옴
 const postId = window.location.href.split('/').pop();
-
+console.log("들어옴")
 const postReadService = (function (){
     async function getPostDetail() {
         // postId를 사용하여 서버에서 해당 게시물의 정보를 가져옴
@@ -17,6 +17,7 @@ const postReadService = (function (){
         const randomFreePosts = json.randomFreePosts;
         await appendRandomFreePosts(randomFreePosts);
     }
+
 
     async function getComment() {
         const response = await fetch(`/recycling-reads/api/comment/${postId}`);
@@ -146,32 +147,66 @@ function modifyButtonStatus() {
 modifyButtonStatus();
 
 // 좋아요 수 증감
-const likeButton = document.getElementById("likeButton");
-const likeCount = document.getElementById("likeCount");
+// const likeButton = document.getElementById("likeButton");
+// const likeCount = document.getElementById("likeCount");
+//
+// likeButton.addEventListener("click", function() {
+//     const isLiked = likeButton.style.fill === "red";
+//     const postId = likeButton.getAttribute("data-post-id");
+//     const userId = likeButton.getAttribute("data-user-id");
+//
+//     // const method = isLiked ? "DELETE" : "POST";
+//
+//     // RestController에서 POST 또는 DELETE 요청을 처리하는 URL로 요청을 보냄
+//     fetch(`/recycling-reads/api/posts/${post}/likes?userId=${user}`, {
+//         method: 'GET'
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 if (isLiked) {
+//                     likeButton.style.fill = "#949BA0";
+//                     likeCount.textContent = Number(likeCount.textContent) - 1;
+//                 } else {
+//                     likeButton.style.fill = "red";
+//                     likeCount.textContent = Number(likeCount.textContent) + 1;
+//                 }
+//             }
+//         });
+// });
 
-likeButton.addEventListener("click", function() {
-    const isLiked = likeButton.style.fill === "red";
-    const postId = likeButton.getAttribute("data-post-id");
-    const userId = likeButton.getAttribute("data-user-id");
+// 좋아요 상태를 저장하는 함수
+function saveLikeStatus(postId, isLiked) {
+    // 좋아요 상태를 'liked' 또는 'not_liked'로 저장
+    window.localStorage[postId] = isLiked ? 'liked' : 'not_liked';
+}
 
-    // const method = isLiked ? "DELETE" : "POST";
+// 좋아요 상태를 불러오는 함수
+function getLikeStatus(postId) {
+    // 좋아요 상태를 반환, 저장된 값이 없으면 'not_liked'를 반환
+    return window.localStorage[postId] || 'not_liked';
+}
 
-    // RestController에서 POST 또는 DELETE 요청을 처리하는 URL로 요청을 보냄
-    fetch(`/recycling-reads/api/posts/${post}/likes?userId=${user}`, {
-        method: 'GET'
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (isLiked) {
-                    likeButton.style.fill = "#949BA0";
-                    likeCount.textContent = Number(likeCount.textContent) - 1;
-                } else {
-                    likeButton.style.fill = "red";
-                    likeCount.textContent = Number(likeCount.textContent) + 1;
-                }
-            }
-        });
+// 좋아요 버튼과 카운트 엘리먼트를 찾음
+let likeButton = document.getElementById('likeButton');
+let likeCountEl = document.getElementById('likeCount');
+
+// 초기 좋아요 상태를 설정 후 UI를 업데이트
+let isLiked = getLikeStatus(post.id) === 'liked';
+likeButton.style.fill = isLiked ? 'red' : '#949BA0';
+likeCountEl.textContent = isLiked ? Number(likeCountEl.textContent) + 1 : likeCountEl.textContent;
+
+// 좋아요 버튼 클릭 이벤트 핸들러
+likeButton.addEventListener('click', function() {
+    // 현재 좋아요 상태를 토글
+    isLiked = !isLiked;
+
+    // UI를 업데이트합니다.
+    likeButton.style.fill = isLiked ? 'red' : '#949BA0';
+    let likeCount = Number(likeCountEl.textContent);
+    likeCountEl.textContent = isLiked ? likeCount + 1 : likeCount - 1;
+
+    // 좋아요 상태를 저장
+    saveLikeStatus(post.id, isLiked);
 });
-
 
