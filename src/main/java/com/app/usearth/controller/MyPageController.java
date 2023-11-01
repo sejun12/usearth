@@ -41,7 +41,7 @@ public class MyPageController {
     public String goToMyComplainDetail(@PathVariable Long id){
         return "/mypage/complain-detail";
     }
-//    @GetMapping("edit-personal")
+    //    @GetMapping("edit-personal")
 //    public void goToMyEditPersonal(){;}
     //회원 탈퇴
     @GetMapping("member-withdrawal")
@@ -60,7 +60,7 @@ public class MyPageController {
     @PostMapping("inquiry")
     //업로드 된개수 ,INPUT 3개
     public RedirectView updateProfile(@RequestParam("uuid") String uuid, @RequestParam("uploadFile") List<MultipartFile> uploadFiles ,HttpSession session) {
-       UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
         //업로드한거만 보냄
         UserProfileVO userProfileVO=new UserProfileVO();
         userProfileVO.setId(userDTO.getUserProfileId());
@@ -82,7 +82,7 @@ public class MyPageController {
     public void goToMyReserveCar(ReserveCarVO reserveCarVO){;}
     @PostMapping("reserve-car")
     public RedirectView reserve(ReserveCarVO reserveCarVO,HttpSession session){
-      UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
+        UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
         reserveCarVO.setUserId(userDTO.getId());
         mypageService.saveCar(reserveCarVO);
         return new RedirectView("/mypage/reserve-carlist");
@@ -91,7 +91,7 @@ public class MyPageController {
     @GetMapping("reserve-carlist")
     public void goToMyReserveCarList(){
     }
-//    내 작성 이동 목록
+    //    내 작성 이동 목록
     @GetMapping("community")
     public void goToMyCommunity(){;}
 

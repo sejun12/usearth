@@ -438,7 +438,8 @@
 <script th:inline="javascript">
   const pagination=[[${pagination}]];
   const adminId=[[${session.admin.id}]];
-  let flag=[[${dong}]];git
+  let flag=[[${check}]];
+  console.log(flag)
   if(flag == null) {flag = true;}
 </script>
 <script src="/js/admin/visit-vehicle.js"></script>
