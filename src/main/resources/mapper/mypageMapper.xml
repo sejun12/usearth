@@ -114,9 +114,10 @@
     </delete>
 
     <select id="selectVisit" resultType="adminVisitDTO">
-        SELECT * FROM
+        SELECT ROWNUM, ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_REGISTER_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_DONG, USER_HO, ADMIN_IDENTIFICATION, ADMIN_NAME
+        FROM
             (
-                SELECT ROWNUM R, AL.*
+                SELECT ROWNUM R, ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_REGISTER_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_DONG, USER_HO, ADMIN_IDENTIFICATION, ADMIN_NAME
                 FROM (
                          SELECT
                              V.ID,
@@ -186,8 +187,10 @@
     </select>
 
     <select id="selectSearch" resultType="searchVisitDTO">
-        SELECT *
-        FROM (SELECT ROWNUM R, AL.*
+        SELECT ROWNUM, ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_REGISTER_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_DONG, USER_HO, ADMIN_IDENTIFICATION, ADMIN_NAME
+        FROM
+          (
+            SELECT ROWNUM R, ID, USER_ID, APARTMENT_ID, VISIT_BOOKING_START_DATE, VISIT_BOOKING_END_DATE, VISIT_BOOKING_REGISTER_DATE, VISIT_BOOKING_PURPOSE, VISIT_BOOKING_CAR_NUMBER, VISIT_BOOKING_CAR_TYPE, USER_DONG, USER_HO, ADMIN_IDENTIFICATION, ADMIN_NAME
               FROM (SELECT V.ID,
                            V.USER_ID,
                            V.APARTMENT_ID,
@@ -206,32 +209,32 @@
                              JOIN TBL_ADMIN AM ON A.ID = AM.APARTMENT_ID
                              JOIN TBL_VISIT_BOOKING V ON U.ID = V.USER_ID
                             WHERE AM.ID = #{id}
-        <if test="searchDTO.visitBookingCarNumber != null and searchDTO.visitBookingCarNumber != ''">
-            AND V.VISIT_BOOKING_CAR_NUMBER LIKE '%' || #{searchDTO.visitBookingCarNumber} || '%'
-        </if>
-        <if test="searchDTO.userDong != null and searchDTO.userDong != ''">
-            AND U.USER_DONG LIKE '%' || #{searchDTO.userDong} || '%'
-        </if>
-        <if test="searchDTO.userHo != null and searchDTO.userHo != ''">
-            AND U.USER_HO LIKE '%' || #{searchDTO.userHo} || '%'
-        </if>
-        <if test="searchDTO.visitBookingStartDate != null and searchDTO.visitBookingStartDate != ''">
-            AND V.VISIT_BOOKING_START_DATE &gt;= #{searchDTO.visitBookingStartDate}
-        </if>
-        <if test="searchDTO.visitBookingEndDate != null and searchDTO.visitBookingEndDate != ''">
-            AND V.VISIT_BOOKING_END_DATE &lt;= #{searchDTO.visitBookingEndDate}
-        </if>
+                <if test="searchDTO.visitBookingCarNumber != null and searchDTO.visitBookingCarNumber != ''">
+                    AND V.VISIT_BOOKING_CAR_NUMBER LIKE '%' || #{searchDTO.visitBookingCarNumber} || '%'
+                </if>
+                <if test="searchDTO.userDong != null and searchDTO.userDong != ''">
+                    AND U.USER_DONG LIKE '%' || #{searchDTO.userDong} || '%'
+                </if>
+                <if test="searchDTO.userHo != null and searchDTO.userHo != ''">
+                    AND U.USER_HO LIKE '%' || #{searchDTO.userHo} || '%'
+                </if>
+                <if test="searchDTO.visitBookingStartDate != null and searchDTO.visitBookingStartDate != ''">
+                    AND V.VISIT_BOOKING_START_DATE &gt;= #{searchDTO.visitBookingStartDate}
+                </if>
+                <if test="searchDTO.visitBookingEndDate != null and searchDTO.visitBookingEndDate != ''">
+                    AND V.VISIT_BOOKING_END_DATE &lt;= #{searchDTO.visitBookingEndDate}
+                </if>
                     ORDER BY ID DESC
                     ) AL
     <![CDATA[
               WHERE ROWNUM <= #{pagination.endRow}) AL2
-        WHERE AL2.R >= #{pagination.startRow}
+         WHERE AL2.R >= #{pagination.startRow}
         ]]>
     </select>
 
     <select id="selectHo" resultType="Long">
         SELECT ID FROM TBL_USER
-        WHERE USER_DONG=#{userDong} AND USER_HO=#{userHo}
+        WHERE USER_DONG=#{userDong} AND USER_HO=#{userHo} AND APARTMENT_ID=#{apartmentId}
     </select>
 
   <insert id="insertAdminBooking">
@@ -243,5 +246,15 @@
     DELETE FROM TBL_VISIT_BOOKING
     WHERE ID=#{id}
 </delete>
+
+    <select id="selectProfileId" resultType="Long">
+        SELECT USER_PROFILE_ID FROM TBL_USER
+        WHERE ID=#{id}
+    </select>
+
+    <delete id="deleteProfile">
+        DELETE FROM TBL_USER_PROFILE
+        WHERE ID=#{id}
+    </delete>
 
 </mapper>

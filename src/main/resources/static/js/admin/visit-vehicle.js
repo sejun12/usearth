@@ -211,7 +211,6 @@ function timeChange(visit){
 //기존 데이터를 넣어서 html만들어서 뿌리기
 function appendVisit(visit) {
     const first = document.querySelector('.first');
-    if (visit) {
         const li = document.createElement('li');
         const time = timeChange(visit);
     li.innerHTML = `
@@ -247,16 +246,23 @@ function appendVisit(visit) {
             }
         })
 }
-else{
-    maintenanceFeeContent.style.display='flex';
-}
-}
 //여기서 위쪽데이터 foreach로하나씩 다뿌리는걸 사용
 async function showList() {
     const visit = await getVisit();
-    visit.forEach((visit) => {
+    if(visit.length>0){
+        maintenanceFeeContent.style.display='none';
+        maintenanceFeeBar.style.display='';
+        pageBtn.style.display='block';
+        visit.forEach((visit) => {
         appendVisit(visit);
     });
+}
+else{
+    console.log("아님")
+    maintenanceFeeContent.style.display='flex';
+    maintenanceFeeBar.style.display='none';
+    pageBtn.style.display='none';
+    }
 }
 //처음화면 뿌려보자~~
 showList();
@@ -510,6 +516,7 @@ function error(){
 
 // 등록완료 메시지 뛰우는 메소드
 const registrationMessageWrap = document.querySelector(".registrationMessageWrap");
+const registrationMessageError=document.querySelector(".registrationMessage-error");
 function registrationMessageUpDown() {
     registrationMessageWrap.style.display = 'flex';
 
@@ -544,10 +551,7 @@ confirmRegistrationBtn.addEventListener("click", async () => {
         // 입력 필드 중 하나라도 비어 있으면 오류 메시지를 표시하고 버튼 클릭을 막습니다
         error();
     }
-    else if(!flag) {
-        alert("없는 동 호수 입니다!");
-    }else {
-        success();
+    else {
         // 모든 필드가 유효하면 서버로 데이터를 보내고 페이지를 새로 고칩니다
         const data = {
             visitBookingStartDate: document.querySelector("input[name='visitBookingStartDate']").value,
@@ -558,30 +562,26 @@ confirmRegistrationBtn.addEventListener("click", async () => {
             visitBookingCarNumber: document.querySelector("input[name='visitBookingCarNumber']").value
         };
 
-        await postDataToServer(data);
-        window.location.reload();
+        const response = await postDataToServer(data);
+        if (response.ok) {
+            const result = await response.text();
+            if (result === "Booking successful") {
+                success();
+                window.location.reload();
+            }
+        } else {
+            // 오류 응답 처리
+            alert("없는 동 호수 입니다!!")
+        }
     }
 });
 
 async function postDataToServer(data) {
-    try {
-        const response = await fetch('/lists/api/visit-update', {
+       return  await fetch('/lists/api/visit-update', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
             },
             body: JSON.stringify(data),
         });
-
-        if (response.ok) {
-            return await response.text();
-
-        } else {
-            console.error('서버에서 오류 응답을 받았습니다.');
-            return null; // 또는 다른 오류 처리
-        }
-    } catch (error) {
-        console.error('POST 요청 중 오류 발생: ', error);
-        return null; // 또는 다른 오류 처리
-    }
 }
