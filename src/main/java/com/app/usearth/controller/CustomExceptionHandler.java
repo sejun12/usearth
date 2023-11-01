@@ -12,6 +12,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
     protected RedirectView handleCustomException(CustomException customException){
+        log.info("ㅎㅇ");
         return new RedirectView("/admin/visit-vehicle?dong=false");
     }
 }
