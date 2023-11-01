@@ -227,10 +227,14 @@ function showList(dataType) {
     const limit = offset + dataPerPage;
       posts = posts.slice(offset, limit);
     if(posts.length > 0) {
+        infiniteLoadingContainer.style.display = "none";
         posts.forEach((post) => {
             showInfo(dataType, post);
       });
         pages[dataType]++;
+    }
+    else{
+        infiniteLoadingContainer.style.display = "block";
     }
     isLoading = false;
   })

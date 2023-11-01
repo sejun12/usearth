@@ -53,6 +53,11 @@ public interface MyPageMapper {
     // complain 답변 삭체 찾기
     public Long selectId(Long id);
 
+    //회원프로필도 삭제...
+    public Long selectProfileId(Long id);
+
+    public void deleteProfile(Long id);
+
 
     //관리자 방문 차량 예약 리스트
     public List<ReserveCarDTO> selectVisit(@Param("pagination")Pagination pagination,Long id);

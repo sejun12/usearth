@@ -7,8 +7,7 @@ const imageElement = document.querySelector('.avatar.image.large');
 const send =document.querySelector("#send");
 const avatarContainer=document.querySelector(".avatarContainer");
 fileInput.addEventListener('change', function (event) {
-    send.style.display='block';
-    avatarContainer.style.bottom='20px';
+    send.style.display = 'none'; // 숨기기
     const selectedFile = event.target.files[0];
     //업로드된 파일 이름(원본 이름)
     const name = selectedFile.name;
@@ -35,6 +34,8 @@ fileInput.addEventListener('change', function (event) {
             input.value = profileUuid;
             input.type = "hidden";
             form.append(input);
+            send.style.display = 'block'; // 파일 업로드 후에 다시 보이기
+            avatarContainer.style.bottom = '20px'; // 파일 업로드 후에 다시 보이기 또는 원래 위치로 이동
         })
 })
 const form=document.querySelector("form[name='file-form']")

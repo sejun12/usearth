@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -137,19 +139,22 @@ public class MypageAPI {
     }
 
     @PostMapping("visit-update")
-    public void adminBooking(@RequestBody ReserveCarDTO reserveCarDTO, HttpSession session) {
+    public ResponseEntity<?> adminBooking(@RequestBody ReserveCarDTO reserveCarDTO, HttpSession session) {
         AdminVO adminVO = ((AdminVO) session.getAttribute("admin"));
         reserveCarDTO.setApartmentId(adminVO.getApartmentId());
         UserVO userVO = new UserVO();
         userVO.setUserDong(reserveCarDTO.getUserDong());
         userVO.setUserHo(reserveCarDTO.getUserHo());
+        userVO.setApartmentId(reserveCarDTO.getApartmentId());
         Optional<Long> foundUserId = mypageService.searchUserId(userVO);
         if (foundUserId.isPresent()) {
             reserveCarDTO.setUserId(foundUserId.get());
             mypageService.adminBooking(reserveCarDTO);
+            return ResponseEntity.ok("Booking successful");
         }
         else{
-            throw new CustomException("사용자를 찾을 수 없습니다.");
+//            throw new CustomException("사용자를 찾을 수 없습니다.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

@@ -45,8 +45,7 @@ public class MyPageController {
     public String goToMyComplainDetail(@PathVariable Long id){
         return "mypage/complain-detail";
     }
-    //    @GetMapping("edit-personal")
-//    public void goToMyEditPersonal(){;}
+
     //회원 탈퇴
     @GetMapping("member-withdrawal")
     public String goToMyMemberWithDrawl(){
@@ -57,6 +56,7 @@ public class MyPageController {
         UserDTO userDTO = ((UserDTO)session.getAttribute("user"));
         Long id=userDTO.getId();
         mypageService.removeAll(id);
+        session.invalidate();
         return new RedirectView("/user/blocking");
     }
 

@@ -80,6 +80,15 @@ public class MyPageDAO {
         myPageMapper.deleteUser(id);
     }
 
+    public Long searchProfileId(Long id){
+        return myPageMapper.selectProfileId(id);
+    }
+
+    public void removeProfile(Long id){
+        myPageMapper.deleteProfile(id);
+    }
+
+
     public List<ReserveCarDTO> visitBookingList(Pagination pagination,Long id){
         return  myPageMapper.selectVisit(pagination,id);
     }
