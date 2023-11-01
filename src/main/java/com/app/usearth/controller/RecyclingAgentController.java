@@ -33,7 +33,9 @@ public class RecyclingAgentController {
     private RecyclingAgentService likeService;
 
     @GetMapping("recycling-agent")
-    public void getByRecycling() {;}
+    public String getByRecycling() {
+        return "recycling-agent/recycling-agent";
+    }
 
     @GetMapping("recycling-agentread/{id}")
     public String getByRecyclingRead(@PathVariable Long id, Model model) {
@@ -93,7 +95,7 @@ public class RecyclingAgentController {
     }
 
     // 좋아요 수 증감
-    @GetMapping("/post/{postId}")
+    @GetMapping("post/{postId}")
     public String viewPost(@PathVariable Long postId, Model model, HttpSession session) {
         // 해당 게시글의 ID를 사용하여 게시글의 상세 정보를 가져오는 getPostById 메서드를 호출 후 결과를 post 변수에 저장
         PostDTO post = recyclingAgentService.getPostById(postId);
@@ -114,7 +116,7 @@ public class RecyclingAgentController {
         model.addAttribute("userLiked", userLiked); // 좋아요 정보도 추가
 
         // "postView"라는 이름의 뷰를 반환
-        return "/recycling-agent/recycling-agentread/";
+        return "recycling-agent/recycling-agentread/";
         //  "postView" 페이지에서 userLiked 값을 사용하여 사용자가 게시글에 좋아요를 눌렀는지 여부를 표시
     }
 
