@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Mapper
-@Repository
 public interface MainMapper {
-  // 재활용 목록
-  public List<PostVO> selectRecycle(Long id);
-  // 자유게시판 목록
-  public List<PostVO> selectFree(Long id);
+
+  public List<PostDTO> selectRecycle(Long id);
+  public List<PostDTO> selectFree(Long id);
+
 }

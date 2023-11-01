@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MainService {
-    public List<PostVO> myRecycleList(Long id);
-    public List<PostVO> myFreeList(Long id);
+
+    public List<PostDTO> mainRecycleList(Long id);
+    public List<PostDTO> mainFreeList(Long id);
 }

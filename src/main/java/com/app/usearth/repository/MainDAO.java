@@ -15,12 +15,11 @@ import java.util.Optional;
 public class MainDAO {
     private final MainMapper mainMapper;
 
-    public List<PostVO> myRecycleList(Long id){
+    public List<PostDTO> mainRecycleList(Long id){
         return mainMapper.selectRecycle(id);
     }
 
-    public List<PostVO> myFreeList(Long id){
+    public List<PostDTO> mainFreeList(Long id){
         return mainMapper.selectFree(id);
     }
-
 }

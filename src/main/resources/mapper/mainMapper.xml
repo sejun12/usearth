@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.app.usearth.mapper.MainMapper.xml">
-    <select id="selectRecycle" resultType="postVO">
+<mapper namespace="com.app.usearth.mapper.MainMapper">
+    <select id="selectRecycle" resultType="postDTO">
         SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
         FROM TBL_POST
         WHERE POST_CATEGORY='재활용' AND USER_ID=#{userId}
         ORDER BY POST_MODIFY_DATE DESC
     </select>
-    <select id="selectFree" resultType="postVO">
+    <select id="selectFree" resultType="postDTO">
         SELECT ID,USER_ID,POST_Title,POST_CONTENT,POST_WRITE_DATE,POST_VIEW_COUNT,POST_STATUS,POST_LIKE_COUNT,POST_CATEGORY,POST_MODIFY_DATE
         FROM TBL_POST
         WHERE POST_CATEGORY='자유' AND USER_ID=#{userId}
         ORDER BY POST_MODIFY_DATE DESC
     </select>
-
 </mapper>
