@@ -55,7 +55,7 @@ public class MyPageDAO {
     public void removeComplainReply(Long id){
         myPageMapper.deleteComplainReply(id);
     }
-    public Long searchComplainId(Long id){
+    public List<Long> searchComplainId(Long id){
       return  myPageMapper.selectId(id);
     }
     public void removeComplain(Long id){
