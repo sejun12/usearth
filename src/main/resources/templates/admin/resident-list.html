@@ -120,81 +120,57 @@
                 </div>
                 <!-- 사이드바 시작 -->
                 <ul class="surfaceUl">
-                    <li style="  background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg4" src="/images/resident-list-image/profile-user.png"/>
+                    <li  style=" background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
+                        <a class="aList" href="/admin/resident-list">
+                            <img class="svg4" src="/images/announcement-admin-image/profile-user.png"/>
 
-                            <span class="surfaceCategory">입주민 승인</span>
+                            <span class="surfaceCategory">입주민 목록</span>
                         </a>
                     </li>
 
                     <li id="flex" class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/resident-list-image/coin.png"/>
+                        <a class="aList" href="/admin/maintenance-fee-view">
+                            <img class="svg5" src="/images/announcement-admin-image/coin.png"/>
                             <span class="surfaceCategory">아파트 관리비</span>
                         </a>
                         <button class="toggleButton">
-                            <img style="width: 100%; opacity: 60%" class="svg5"
-                                 src="/images/resident-list-image/down.png">
+                            <img style="width: 100%; opacity: 60%" class="svg5" src="/images/announcement-admin-image/down.png">
                         </button>
                     </li>
                     <ul class="feeLists">
                         <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-detail">
                                 <span class="surfaceCategory">| 관리비 조회</span>
                             </a>
                         </li>
                         <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
                                 <span class="surfaceCategory">| 관리비 업로드</span>
                             </a>
                         </li>
                     </ul>
-                    <li id="flex2" class="surfaceUlLists">
-                        <a class="aList" href="#">
-                            <img class="svg5" src="/images/resident-list-image/feedback.png"/>
+                    <li  id="flex2" class="surfaceUlLists">
+                        <a class="aList" href="/admin/complain-management">
+                            <img class="svg5" src="/images/announcement-admin-image/feedback.png"/>
                             <span class="surfaceCategory">민원 관리</span>
                         </a>
-                        <button class="toggleButton">
-                            <img style="width: 100%; opacity: 60%" class="svg5"
-                                 src="/images/resident-list-image/down.png">
-                        </button>
-                    </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 답변</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/resident-list-image/trash-can.png"/>
-                            <span class="surfaceCategory">재활용 대행</span>
-                        </a>
                     </li>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5"
-                                 src="/images/resident-list-image/car-fill-from-frontal-view.png"/>
+                        <a class="aList" href="/admin/visit-vehicle">
+                            <img class="svg5" src="/images/announcement-admin-image/car-fill-from-frontal-view.png"/>
                             <span class="surfaceCategory">방문 차량</span>
                         </a>
                     </li>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/resident-list-image/report.png"/>
+                        <a class="aList" href="/admin/announcement-list">
+                            <img class="svg5" src="/images/announcement-admin-image/report.png"/>
                             <span class="surfaceCategory">공지사항 목록</span>
                         </a>
                     </li>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/resident-list-image/4.png"/>
-                            <span class="surfaceCategory">자유게시판</span>
+                        <a class="aList" href="/admin/board-list">
+                            <img class="svg5" src="/images/announcement-admin-image/4.png"/>
+                            <span class="surfaceCategory">게시판 목록</span>
                         </a>
                     </li>
                 </ul>
@@ -374,35 +350,9 @@
 <script th:inline="javascript">
     let paginationInfo = [[${pagination}]];
 
-    function createPaginationButtons() {
-
-        const ulElement = document.querySelector('.pageButtonLists');
-        ulElement.innerHTML = ''; // 기존 버튼을 지웁니다.
 
 
-        for (let i = paginationInfo.startPage; i <= paginationInfo.endPage; i++) {
-            const liElement = document.createElement('li');
-            liElement.classList.add('li-ml');
 
-            const buttonElement = document.createElement('button');
-            buttonElement.type = 'button';
-            buttonElement.classList.add('buttonNumber');
-
-            const spanElement = document.createElement('span');
-            spanElement.classList.add('content-primary');
-            spanElement.textContent = i; // 페이지 번호
-
-            if (i === paginationInfo.startPage) {
-                spanElement.classList.add('blueText'); // 첫 번째 페이지 번호에 blueText 클래스 추가
-            }
-
-            buttonElement.appendChild(spanElement);
-            liElement.appendChild(buttonElement);
-            ulElement.appendChild(liElement);
-        }
-    }
-
-    createPaginationButtons();
 
 
 

@@ -29,5 +29,11 @@
         <typeAlias type="com.app.usearth.domain.PostCommentDTO" alias="postCommentDTO"/>
         <typeAlias type="com.app.usearth.domain.FindPostCommentDTO" alias="findPostCommentDTO"/>
         <typeAlias type="com.app.usearth.domain.CommentVO" alias="commentVO"/>
+        <typeAlias type="com.app.usearth.domain.PostCategoryVO" alias="postCategoryVO" />
+        <typeAlias type="com.app.usearth.domain.MaintenanceFeeDTO" alias="maintenanceFeeDTO" />
+        <typeAlias type="com.app.usearth.domain.ImposingYearVO" alias="imposingYearVO" />
+        <typeAlias type="com.app.usearth.domain.DongVO" alias="dongVO" />
+        <typeAlias type="com.app.usearth.domain.ImposingMonthVO" alias="imposingMonthVO" />
+        <typeAlias type="com.app.usearth.domain.AdminAnnouncementDTO" alias="adminAnnouncementDTO"/>
     </typeAliases>
 </configuration>

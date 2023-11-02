@@ -208,116 +208,121 @@ const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 let currentPage = 1; // 현재 페이지
 
-// 페이지 번호 클릭 이벤트 처리
-pagination.addEventListener('click', function (event) {
-    if (event.target.classList.contains('buttonNumber')) {
-        // 모든 페이지 번호에서 파란색 스타일 제거
-        const pageButtons = document.querySelectorAll('.content-primary');
-        pageButtons.forEach(button => button.classList.remove('blueText'));
+// pagination 생성 코드
+function createPaginationButtons() {
 
-        const newPage = parseInt(event.target.textContent);
-        if (!isNaN(newPage)) {
-            currentPage = newPage;
-            updatePagination();
+    console.log("createPaginationButtons가 실행이됨.");
 
-            // 클릭한 페이지 번호에 파란색 스타일 추가
-            event.target.querySelector('.content-primary').classList.add('blueText');
+    const ulElement = document.querySelector('.pageButtonLists');
+    ulElement.innerHTML = ''; // 기존 버튼을 지웁니다.
+
+
+    for (let i = paginationInfo.startPage; i <= paginationInfo.endPage; i++) {
+        const liElement = document.createElement('li');
+        liElement.classList.add('li-ml');
+
+        const buttonElement = document.createElement('button');
+        buttonElement.type = 'button';
+        buttonElement.classList.add('buttonNumber');
+
+        const spanElement = document.createElement('span');
+        spanElement.classList.add('content-primary');
+        spanElement.textContent = i; // 페이지 번호
+
+        if (i == currentPage) {
+            spanElement.classList.add('blueText'); // 현재 페이지 번호에 blueText 클래스 추가
+            console.log(currentPage, "에 blueText추가")
         }
+
+        buttonElement.appendChild(spanElement);
+        liElement.appendChild(buttonElement);
+        ulElement.appendChild(liElement);
     }
-});
+}
+
+// 페이지 번호 클릭 이벤트 처리
+pagination.addEventListener('click', function (event){
+    if (event.target.classList.contains('buttonNumber') || event.target.classList.contains('content-primary')  ) {
+             currentPage = parseInt(event.target.textContent);
+            if (isSearchMode) {
+                // 검색 모드에서 이전 버튼을 누를 때
+                updatePaginationAfterSearch();
+                console.log(currentPage);
+            } else {
+                // 검색 모드가 아닌 경우
+                updatePagination();
+                console.log(currentPage);
+            }
+    }
+})
 
 
 // 이전 페이지 버튼 클릭 이벤트 처리
 prevButton.addEventListener('click', function () {
-    if (currentPage > 1) {
-        // 모든 페이지 번호에서 파란색 스타일 제거
-        const pageButtons = document.querySelectorAll('.content-primary');
-        pageButtons.forEach(button => button.classList.remove('blueText'));
-
-        currentPage--;
-        updatePagination();
-
-        // 현재 페이지 번호에 파란색 스타일 추가
-        const currentButton = document.querySelector(`.content-primary:nth-child(${currentPage})`);
-        if (currentButton) {
-            currentButton.classList.add('blueText');
-            console.log(currentButton);
+         if (currentPage > 1) {
+            currentPage--;
+        } else if(currentPage<=1 ){
+             currentPage = 1;
+         }
+        if (isSearchMode) {
+            // 검색 모드에서 이전 버튼을 누를 때
+            updatePaginationAfterSearch();
+            console.log(currentPage);
+        } else {
+            // 검색 모드가 아닌 경우
+            updatePagination();
+            console.log(currentPage);
         }
-    }
 });
+
 
 // 다음 페이지 버튼 클릭 이벤트 처리
 nextButton.addEventListener('click', function () {
     const pageButtons = document.querySelectorAll('.content-primary'); // 모든 페이지 번호 요소를 선택합니다.
     const maxPage = pageButtons.length; // 페이지 번호 요소의 개수를 최대 페이지로 설정합니다.
 
-    // 현재 페이지 번호에서 파란색 스타일 제거
-    pageButtons[currentPage - 1].classList.remove('blueText');
+    if (currentPage < maxPage){
+        // 다음 페이지로 이동
+        currentPage++;
 
-    // 다음 페이지로 이동
-    currentPage++;
-
-    if (currentPage > maxPage) {
+    }
+    if (currentPage = maxPage) {
+        currentPage=maxPage;
+    }
+    if (currentPage > maxPage){
         currentPage--;
     }
 
-    // 다음 페이지 번호에 파란색 스타일 추가
-    pageButtons[currentPage - 1].classList.add('blueText');
+    if (isSearchMode) {
+        // 검색 모드에서 이전 버튼을 누를 때
+        updatePaginationAfterSearch();
+        console.log(currentPage);
+    } else {
+        // 검색 모드가 아닌 경우
+        updatePagination();
+        console.log(currentPage);
+    }
 
-    updatePagination()
+
 });
+
+
+
 
 
 
 // 페이지 업데이트 함수
 function updatePagination() {
     getPosts(currentPage);
-    console.log("updatePagination함수 실행됨.");
+    console.log("getPosts-updatePagination함수 실행됨.");
 }
 
 // 서버에서 데이터를 가져오는 메소드
 async function getPosts(page) {
 
-    const searchApproval = document.getElementById("categorySpan2").textContent;
-    const searchDong = document.getElementById("categorySpan").textContent.match(/\d+/g);
-    const searchHo = document.getElementById("searchNumber").value.trim();
-    const searchTitle = document.getElementById("searchTitle").value.trim();
-    const params = [];
 
-    // 변환 함수 추가
-    // 프론트엔드
-    function convertApproval(approval) {
-        if (approval === '대기') {
-            return 0;
-        } else if (approval === '승인') {
-            return 1;
-        } else {
-            return null; // 다른 값이면 null
-        }
-    }
+    const url = `/lists/api/resident/1?page=${page}&userApprovalNumber=3`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
 
-    if (searchApproval) {
-        const userApproval = convertApproval(searchApproval);
-        console.log(userApproval);
-        console.log(searchApproval);
-        if(userApproval !== null){
-            params.push(`userApproval=${userApproval}`);
-        } else{
-            params.push(`userApproval=${1}`);
-            params.push(`userApproval=${0}`);
-        }
-    }
-    if (searchDong && searchDong.length > 0) {
-        params.push(`userDong=${searchDong.join(',')}`);
-    }
-    if (searchHo) {
-        params.push(`userHo=${searchHo}`);
-    }
-    if (searchTitle) {
-        params.push(`userName=${searchTitle}`);
-    }
-
-    const url = `/lists/api/resident/1?page=${page}`; // 실제 서버 API 엔드포인트를 사용해야 합니다.
 
     try {
         const response = await fetch(url, {
@@ -333,6 +338,11 @@ async function getPosts(page) {
             console.log(data);
             renderData(data);
             const initialCount = response.headers.get('X-Initial-Total-Count');
+            paginationInfo.total = initialCount;
+            paginationInfo.startPage = 1;
+            paginationInfo.endPage = Math.ceil(initialCount / 10);
+            createPaginationButtons();
+            console.log(initialCount);
             totalNumberElement.innerText = `총 ${initialCount}건`;
         } else {
             console.error('데이터를 가져오는데 실패했습니다.');
@@ -342,7 +352,6 @@ async function getPosts(page) {
     }
 }
 
-let initialCount = 0;
 
 // 데이터를 화면에 렌더링하는 함수
 function renderData(data) {
@@ -454,7 +463,7 @@ showList();
         // ID가 'totalNumber'인 요소 가져오기
         const totalNumberElement = document.getElementById('totalNumber');
 
-        async function fetchData() {
+        async function fetchData(page) {
             const searchApproval = document.getElementById("categorySpan2").textContent;
             const searchDong = document.getElementById("categorySpan").textContent.match(/\d+/g);
             const searchHo = document.getElementById("searchNumber").value.trim();
@@ -464,8 +473,10 @@ showList();
 
             const id = 1;  // 예시로 사용한 ID
             const baseUrl = `/lists/api/resident/result/${id}`;
+
             let url = baseUrl;
             const params = [];
+            params.push(`page=${page}`);
 
             // 변환 함수 추가
             // 프론트엔드
@@ -475,19 +486,17 @@ showList();
                 } else if (approval === '승인') {
                     return 1;
                 } else {
-                    return null; // 다른 값이면 null
+                    return 3; // 다른 값이면 null
                 }
             }
+
 
             if (searchApproval) {
                 const userApproval = convertApproval(searchApproval);
                 console.log(userApproval);
                 console.log(searchApproval);
-                if(userApproval !== null){
-                    params.push(`userApproval=${userApproval}`);
-                } else{
-                    params.push(`userApproval=${1}`);
-                    params.push(`userApproval=${0}`);
+                if(userApproval){
+                    params.push(`userApprovalNumber=${userApproval}`);
                 }
             }
             if (searchDong && searchDong.length > 0) {
@@ -531,11 +540,35 @@ showList();
             }
           }
 
-document.getElementById("search").addEventListener("click", () => {
-    fetchData().then((data) => {
+// 페이지 업데이트 함수
+function updatePaginationAfterSearch() {
+    fetchData(currentPage).then((data) => {
         if (data !== null) { // 데이터가 유효한 경우에만 렌더링
 
+            console.log("검색 후 랜더링 페이지는 ",currentPage);
+            paginationInfo.total = total;
+            paginationInfo.startPage = startPage;
+            paginationInfo.endPage = endPage;
+            console.log(paginationInfo);
+            createPaginationButtons(); // pagination 정보를 업데이트한 후 버튼을 다시 생성
+            renderData(data);
+            // 요소의 텍스트 내용 변경
+            if (totalNumberElement) {
+                totalNumberElement.innerText = `총 ${total}건`;
+            }
+        }
+    });
+    console.log("fetchData-updatePagination함수 실행됨.");
+}
 
+let isSearchMode = false;
+document.getElementById("search").addEventListener("click", () => {
+    currentPage = 1;
+    isSearchMode = true; // 검색 버튼을 누를 때 검색 모드로 설정
+    fetchData(currentPage).then((data) => {
+        if (data !== null) { // 데이터가 유효한 경우에만 렌더링
+            console.log("검색 후 렌더링 시작!")
+            currentPage = 1;
             paginationInfo.total = total;
             paginationInfo.startPage = startPage;
             paginationInfo.endPage = endPage;
