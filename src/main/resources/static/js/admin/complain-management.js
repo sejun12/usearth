@@ -369,7 +369,7 @@ function appendComplains(li, complain){
             <div style="width: 140px;" class="barBtnOne">${complain.complainProcessingDate === null ? '-' : complain.complainProcessingDate}</div>
             <div class="barBtnOne">${complain.complainStatus}</div>
             <div class="barBtnOne">
-                <button type="button" class="showDetailBtn">${complain.complainStatus === `접수완료` ? `처리시작` : (complain.complainStatus === `진행중` ? `진행중` : `처리완료`)}</button>
+                <button type="button" class="showDetailBtn">${complain.complainStatus === `접수완료` ? `처리시작` : (complain.complainStatus === `진행중` ? `완료` : `취소`)}</button>
             </div>
         </div>
     `;
@@ -402,10 +402,10 @@ function appendComplains(li, complain){
     })
 
     // 처리버튼의 텍스트에 따른 속성 변경
-    if(showDetailBtn.textContent === `진행중`){
-        showDetailBtn.style.backgroundColor = 'rgb(231,231,231)';
-    }else if(showDetailBtn.textContent === `처리완료`){
-        showDetailBtn.style.backgroundColor = 'rgb(252,236,206)';
+    if(showDetailBtn.textContent === `완료`){
+        showDetailBtn.style.backgroundColor = 'rgb(230,249,161)';
+    }else if(showDetailBtn.textContent === `취소`){
+        showDetailBtn.style.backgroundColor = 'rgb(255,155,155)';
     }
 
 }
