@@ -79,6 +79,7 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public void removeAll(Long id) {
         Long complainId=myPageDAO.searchComplainId(id);
+        Long profileId=myPageDAO.searchProfileId(id);
         if (complainId != null) { // complainId가 null이 아닌 경우에만 실행
             myPageDAO.removeComplainReply(complainId);
         }
@@ -89,6 +90,7 @@ public class MypageServiceImpl implements MypageService {
             myPageDAO.removePost(id);
             myPageDAO.removeVisit(id);
             myPageDAO.removeUser(id);
+            myPageDAO.removeProfile(profileId);
         }
 
     @Override
