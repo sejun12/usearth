@@ -2,6 +2,7 @@ package com.app.usearth.controller;
 
 import com.app.usearth.domain.PostDTO;
 import com.app.usearth.domain.UserDTO;
+import com.app.usearth.mapper.MainMapper;
 import com.app.usearth.service.FreeService;
 import com.app.usearth.service.MainService;
 import com.app.usearth.service.RecyclingAgentService;
@@ -27,22 +28,28 @@ import java.util.OptionalInt;
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
-
+    private final MainService mainService;
     @GetMapping("/")
-    public String goToMain(HttpSession session) {
+    public String goToMain(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
         if(user == null){
             return "user/login";
         }else{
-
+            model.addAttribute("recycleList", mainService.mainRecycleList());
+            model.addAttribute("freeboardList", mainService.mainFreeList());
             return "main";
         }
+
     }
+
+
 //    @GetMapping("/")
-//    public String goToMain(){
-//
+//    public String goToMain(Model model){
+//        model.addAttribute("recycleList", mainService.mainRecycleList());
+//        model.addAttribute("freeboardList", mainService.mainFreeList());
 //        return "main";
 //    }
+
 
 
 

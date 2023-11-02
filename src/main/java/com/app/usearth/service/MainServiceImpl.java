@@ -17,11 +17,13 @@ public class MainServiceImpl implements MainService{
     private final MainDAO mainDAO;
 
     @Override
-    public List<PostDTO> mainRecycleList(Long id) {
-        return mainDAO.mainRecycleList(id);
+    public List<PostDTO> mainRecycleList() {
+        return mainDAO.mainRecycleList();
     }
+
+
     @Override
-    public List<PostDTO> mainFreeList(Long id) {
-        return mainDAO.mainFreeList(id);
+    public List<PostDTO> mainFreeList() {
+        return mainDAO.mainFreeList();
     }
 }

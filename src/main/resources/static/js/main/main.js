@@ -1,7 +1,4 @@
 
-
-
-
 //큰 카테고리 색
 // const navList = document.getElementsByClassName("navList");
 // function handleClick(event) {
@@ -683,18 +680,22 @@ function scales(index, factors) {
 const moBtn= document.querySelector(".mlobilePrimaryFull");
 moBtn.addEventListener("click", clickHandler);
 function clickHandler(){
-    window.location.href="http://localhost:10000/recycling-agent/recycling-agent";
+    window.location.href="/recycling-agent/recycling-agent";
 }
-
+const frBtn=document.querySelector("#freeBoardBtn");
+frBtn.addEventListener("click", clickHandler4)
+function clickHandler4(){
+    location.href="/board/freeboard";
+}
 const ntBtn=document.querySelector("#landingContentButton2");
 ntBtn.addEventListener("click", clickHandler2);
 function clickHandler2(){
-    window.location.href="http://localhost:10000/notice/announcement";}
+    window.location.href="/notice/announcement";}
 
 const crBtn=document.querySelector("#landingContentButton3");
 crBtn.addEventListener("click", clickHandler3);
 function clickHandler3(){
-    window.location.href="http://localhost:10000/mypage/reserve-car";
+    window.location.href="/mypage/reserve-car";
 }
 
 

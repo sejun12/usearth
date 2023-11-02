@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface MainService {
 
-    public List<PostDTO> mainRecycleList(Long id);
-    public List<PostDTO> mainFreeList(Long id);
+    public List<PostDTO> mainRecycleList();
+
+
+    public List<PostDTO> mainFreeList();
 }

@@ -11,7 +11,9 @@ import java.util.Optional;
 @Mapper
 public interface MainMapper {
 
-  public List<PostDTO> selectRecycle(Long id);
-  public List<PostDTO> selectFree(Long id);
+  public List<PostDTO> selectRecycle();
+
+  public Optional<PostDTO> selectByRecyclingRead(Long id);
+  public List<PostDTO> selectFree();
 
 }

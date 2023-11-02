@@ -120,15 +120,21 @@ document.querySelector(".arrowBackButton").addEventListener("click", () => {
     window.history.back();
 })
 function modifyButtonStatus(){
-    if(post.userId === user.id){
-        console.log("같음")
-        document.querySelector(".buttonIconMedium").style.display='flex';
+    var button = document.querySelector(".buttonIconMedium");
+    if (!button) {
+        console.error("Button not found");
+        return;
+    }
 
-    }else {
-        console.log("다름")
-        document.querySelector(".buttonIconMedium").style.display='none'
+    if (post.userId === user.id) {
+        console.log("같음");
+        button.style.display = 'flex';
+    } else {
+        console.log("다름");
+        button.style.display = 'none';
     }
 }
+
 modifyButtonStatus();
 
 
