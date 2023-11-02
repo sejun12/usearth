@@ -4,7 +4,7 @@
     <select id="selectUser" resultType="userDTO">
         SELECT ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO
         FROM TBL_USER
-        ORDER BY ID
+        ORDER BY ID DESC
     </select>
 
     <select id="select" resultType="userDTO">
@@ -30,7 +30,7 @@
                                    JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
                                    JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
                           WHERE AM.ID = #{id}
-                          ORDER BY ID
+                          ORDER BY ID DESC
                       ) AL
         <![CDATA[
                  WHERE ROWNUM <= #{pagination.endRow}
@@ -45,15 +45,15 @@
         JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
         WHERE AM.ID = #{id}
         <choose>
-        <when test="userDTO.userApproval == 1">
-            AND U.USER_APPROVAL = 1
-        </when>
-        <when test="userDTO.userApproval == 0">
-            AND U.USER_APPROVAL = 0
-        </when>
-        <otherwise>
-            AND U.USER_APPROVAL IN (1, 0);
-        </otherwise>
+            <when test="userDTO.userApprovalNumber == 1">
+                AND U.USER_APPROVAL = 1
+            </when>
+            <when test="userDTO.userApprovalNumber == 0">
+                AND U.USER_APPROVAL = 0
+            </when>
+            <when test="userDTO.userApprovalNumber == 3">
+                AND U.USER_APPROVAL IN (0, 1)
+            </when>
         </choose>
         <if test="userDTO.userDong != null and userDTO.userDong != ''" >
             AND U.USER_DONG LIKE '%' || #{userDTO.userDong} || '%'
@@ -69,23 +69,23 @@
     <select id="selectSearch" resultType="userDTO">
         SELECT *
         FROM (SELECT ROWNUM R, AL.*
-              FROM (
-                       SELECT
-                           U.ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO, U.APARTMENT_ID, AM. ADMIN_IDENTIFICATION, AM.ADMIN_NAME
-                            FROM TBL_USER U
-                            JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
-                            JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
-                             WHERE AM.ID = #{id}
+        FROM (
+        SELECT
+        U.ID, USER_NAME, USER_APPROVAL, USER_DONG, USER_HO, USER_JOIN_DATE, USER_TEMP_NO, U.APARTMENT_ID, AM. ADMIN_IDENTIFICATION, AM.ADMIN_NAME
+        FROM TBL_USER U
+        JOIN TBL_APARTMENT A ON U.APARTMENT_ID = A.ID
+        JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = A.ID
+        WHERE AM.ID = #{id}
         <choose>
-            <when test="userDTO.userApproval == 1">
+            <when test="userDTO.userApprovalNumber == 1">
                 AND U.USER_APPROVAL = 1
             </when>
-            <when test="userDTO.userApproval == 0">
+            <when test="userDTO.userApprovalNumber == 0">
                 AND U.USER_APPROVAL = 0
             </when>
-            <otherwise>
-                AND U.USER_APPROVAL IN (1, 0);
-            </otherwise>
+            <when test="userDTO.userApprovalNumber == 3">
+                AND U.USER_APPROVAL IN (0, 1)
+            </when>
         </choose>
         <if test="userDTO.userDong != null and userDTO.userDong != ''" >
             AND U.USER_DONG LIKE '%' || #{userDTO.userDong} || '%'
@@ -96,11 +96,292 @@
         <if test="userDTO.userName != null and userDTO.userName != ''">
             AND U.USER_NAME LIKE '%' || #{userDTO.userName} || '%'
         </if>
-                ORDER BY USER_TEMP_NO
-                ) AL
+        ORDER BY USER_TEMP_NO
+        ) AL
         <![CDATA[
               WHERE ROWNUM <= #{pagination.endRow}) AL2
         WHERE AL2.R >= #{pagination.startRow}
         ]]>
     </select>
+
+    <select id="selectCategory" resultType="announcementCategoryVO">
+        SELECT ID, ANNOUNCEMENT_CATEGORY_NAME FROM TBL_ANNOUNCEMENT_CATEGORY
+        ORDER BY ID DESC
+    </select>
+
+    <insert id="insertAdminNotice" parameterType="adminAnnouncementDTO" >
+        INSERT INTO TBL_ANNOUNCEMENT(ID, ADMIN_ID, ANNOUNCEMENT_CATEGORY_ID, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT)
+        VALUES (SEQ_ANNOUNCEMENT.NEXTVAL,#{adminId}, #{announcementCategoryId, jdbcType=NUMERIC}, #{announcementTitle, jdbcType=VARCHAR}, #{announcementContent, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectAnnouncement" resultType="adminAnnouncementDTO">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM R, AL.*
+                 FROM (
+                          SELECT
+                              AN.ID, AN.ADMIN_ID, AC.ANNOUNCEMENT_CATEGORY_NAME, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_CONTENT, ANNOUNCEMENT_DATE, AM.ADMIN_IDENTIFICATION,  AM.ADMIN_NAME
+                          FROM TBL_ANNOUNCEMENT AN
+                                   JOIN TBL_ANNOUNCEMENT_CATEGORY AC ON AN.ANNOUNCEMENT_CATEGORY_ID = AC.ID
+                                   JOIN TBL_ADMIN AM ON AN.ADMIN_ID = AM.ID
+                                   JOIN TBL_APARTMENT AP ON AM.APARTMENT_ID = AP.ID
+                          WHERE AM.ID = #{id}
+                          ORDER BY AN.ID DESC
+                      ) AL
+    <![CDATA[
+                 WHERE ROWNUM <= #{pagination.endRow}
+             ) AL2
+        WHERE AL2.R >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotalAnnouncement" resultType="int">
+        SELECT COUNT(AN.ID) AS ANNOUNCEMENT_COUNT FROM TBL_ANNOUNCEMENT AN
+        JOIN TBL_ANNOUNCEMENT_CATEGORY AC ON AN.ANNOUNCEMENT_CATEGORY_ID = AC.ID
+        JOIN TBL_ADMIN AM ON AN.ADMIN_ID = AM.ID
+        JOIN TBL_APARTMENT AP ON AM.APARTMENT_ID = AP.ID
+        WHERE AM.ID = #{id}
+        <if test="adminAnnouncementDTO.announcementCategoryName != null and adminAnnouncementDTO.announcementCategoryName != ''" >
+            AND AC.ANNOUNCEMENT_CATEGORY_NAME LIKE '%' || #{adminAnnouncementDTO.announcementCategoryName} || '%'
+        </if>
+        <if test="adminAnnouncementDTO.announcementTitle != null and adminAnnouncementDTO.announcementTitle != ''" >
+            AND AN.ANNOUNCEMENT_TITLE LIKE '%' || #{adminAnnouncementDTO.announcementTitle} || '%'
+        </if>
+    </select>
+
+    <select id="selectSearchedAnnouncement" resultType="adminAnnouncementDTO">
+        SELECT *
+        FROM (
+        SELECT ROWNUM R, AL.*
+        FROM (
+        SELECT
+        AN.ID, AN.ADMIN_ID, AC.ANNOUNCEMENT_CATEGORY_NAME, ANNOUNCEMENT_TITLE, ANNOUNCEMENT_DATE, AM.ADMIN_IDENTIFICATION,  AM.ADMIN_NAME
+        FROM TBL_ANNOUNCEMENT AN
+        JOIN TBL_ANNOUNCEMENT_CATEGORY AC ON AN.ANNOUNCEMENT_CATEGORY_ID = AC.ID
+        JOIN TBL_ADMIN AM ON AN.ADMIN_ID = AM.ID
+        JOIN TBL_APARTMENT AP ON AM.APARTMENT_ID = AP.ID
+        WHERE AM.ID = #{id}
+        <if test="adminAnnouncementDTO.announcementCategoryName != null and adminAnnouncementDTO.announcementCategoryName != ''" >
+            AND AC.ANNOUNCEMENT_CATEGORY_NAME LIKE '%' || #{adminAnnouncementDTO.announcementCategoryName} || '%'
+        </if>
+        <if test="adminAnnouncementDTO.announcementTitle != null and adminAnnouncementDTO.announcementTitle != ''" >
+            AND AN.ANNOUNCEMENT_TITLE LIKE '%' || #{adminAnnouncementDTO.announcementTitle} || '%'
+        </if>
+        ORDER BY AN.ID DESC
+        ) AL
+        <![CDATA[
+                      WHERE ROWNUM <= #{pagination.endRow}) AL2
+                WHERE AL2.R >= #{pagination.startRow}
+                ]]>
+    </select>
+
+    <select id="selectPostCategory" resultType="postCategoryVO">
+        SELECT ID, POST_CATEGORY_NAME FROM TBL_POST_CATEGORY
+        ORDER BY ID DESC
+    </select>
+
+
+    <select id="selectFreePost" resultType="postDTO">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM R, AL.*
+                 FROM (
+                          SELECT
+                              P.ID, U.USER_NAME, POST_CATEGORY, POST_TITLE, POST_CONTENT, POST_WRITE_DATE, AM.ADMIN_IDENTIFICATION,  AM.ADMIN_NAME
+                          FROM TBL_POST P
+                                   JOIN TBL_USER U ON P.USER_ID = U.ID
+                                   JOIN TBL_APARTMENT AP ON U.APARTMENT_ID = AP.ID
+                                   JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = AP.ID
+                          WHERE AM.ID = #{id}
+                          ORDER BY P.ID DESC
+                      ) AL
+    <![CDATA[
+                 WHERE ROWNUM <= #{pagination.endRow}
+             ) AL2
+        WHERE AL2.R >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotalFreePost" resultType="int">
+        SELECT COUNT(P.ID) AS FREE_BOARD_COUNT FROM TBL_POST P
+        JOIN TBL_USER U ON P.USER_ID = U.ID
+        JOIN TBL_APARTMENT AP ON U.APARTMENT_ID = AP.ID
+        JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = AP.ID
+        WHERE AM.ID = #{id}
+        <if test="postDTO.postCategory != null and postDTO.postCategory != ''" >
+            AND P.POST_CATEGORY LIKE '%' || #{postDTO.postCategory} || '%'
+        </if>
+        <if test="postDTO.postTitle != null and postDTO.postTitle != ''" >
+            AND P.POST_TITLE LIKE '%' || #{postDTO.postTitle} || '%'
+        </if>
+    </select>
+
+    <select id="selectSearchedFreePost" resultType="postDTO">
+        SELECT *
+        FROM (
+        SELECT ROWNUM R, AL.*
+        FROM (
+        SELECT
+        P.ID, U.USER_NAME, POST_CATEGORY, POST_TITLE, POST_CONTENT, POST_WRITE_DATE, AM.ADMIN_IDENTIFICATION,  AM.ADMIN_NAME
+        FROM TBL_POST P
+        JOIN TBL_USER U ON P.USER_ID = U.ID
+        JOIN TBL_APARTMENT AP ON U.APARTMENT_ID = AP.ID
+        JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = AP.ID
+        WHERE AM.ID = #{id}
+        <if test="postDTO.postCategory != null and postDTO.postCategory != ''" >
+            AND P.POST_CATEGORY LIKE '%' || #{postDTO.postCategory} || '%'
+        </if>
+        <if test="postDTO.postTitle != null and postDTO.postTitle != ''" >
+            AND P.POST_TITLE LIKE '%' || #{postDTO.postTitle} || '%'
+        </if>
+        ORDER BY P.ID DESC
+        ) AL
+        <![CDATA[
+                      WHERE ROWNUM <= #{pagination.endRow}) AL2
+                WHERE AL2.R >= #{pagination.startRow}
+                ]]>
+    </select>
+
+    <delete id="deleteFreePost">
+        DELETE FROM TBL_POST
+        WHERE ID=#{id}
+    </delete>
+
+    <select id="selectPostById" resultType="postDTO">
+        SELECT ID, USER_ID, POST_TITLE, POST_CONTENT, POST_WRITE_DATE, POST_VIEW_COUNT, POST_LIKE_COUNT, POST_STATUS, POST_CATEGORY, POST_MODIFY_DATE
+        FROM TBL_POST
+        WHERE ID = #{id}
+    </select>
+
+    <select id="selectFeeYear" resultType="imposingYearVO">
+        SELECT ID, IMPOSING_YEAR FROM TBL_IMPOSING_YEAR
+        ORDER BY ID DESC
+    </select>
+
+    <select id="selectFeeMonth" resultType="imposingMonthVO">
+        SELECT ID, IMPOSING_MONTH FROM TBL_IMPOSING_MONTH
+        ORDER BY ID DESC
+    </select>
+
+    <insert id="insertFeeList">
+        INSERT INTO TBL_MAINTENANCE_FEE (
+            ID,
+            APARTMENT_ID,
+            APARTMENT_NAME,
+            USER_ID,
+            USER_DONG,
+            USER_HO,
+            GENERAL_FEE,
+            CLEANING_FEE,
+            ELEVATOR_FEE,
+            REPAIR_FEE,
+            LONG_TERM_REPAIR_FUND,
+            SECURITY_FEE,
+            MANAGEMENT_COMMISSION,
+            INSURANCE_FEE,
+            MEETING_OPERATING_FEE,
+            NETWORK_FEE,
+            UNIT_ELECTRICITY_FEE,
+            COMMON_ELECTRICITY_FEE,
+            TV_RECEPTION_FEE,
+            UNIT_WATER_FEE,
+            COMMON_WATER_FEE,
+            UNIT_HEATING_FEE,
+            BASE_HEATING_FEE,
+            COMMON_HEATING_FEE,
+            UNIT_HOT_WATER_FEE,
+            ELECTION_OPERATING_FEE,
+            VEHICLE_REGISTRATION_FEE,
+            COMMUNITY_USAGE_FEE,
+            ON_TIME,
+            AFTER_DUE_DATE,
+            ELECTRICITY_USAGE,
+            HOT_WATER_USAGE,
+            WATER_USAGE,
+            HEATING_USAGE,
+            GAS_USAGE,
+            CURRENT_MONTH_FEE,
+            UNPAID_AMOUNT,
+            UNPAID_LATE_FEE,
+            LATE_FEE_AFTER_DUE_DATE,
+            FEE_IMPOSING_YEAR,
+            FEE_IMPOSING_MONTH,
+            DUE_DATE
+        ) VALUES (
+                     SEQ_MAINTENANCE_FEE.NEXTVAL,
+                     #{apartmentId},
+                     #{apartmentName},
+                     #{userId},
+                     #{userDong},
+                     #{userHo},
+                     #{generalFee},
+                     #{cleaningFee},
+                     #{elevatorFee},
+                     #{repairFee},
+                     #{longTermRepairFund},
+                     #{securityFee},
+                     #{managementCommission},
+                     #{insuranceFee},
+                     #{meetingOperatingFee},
+                     #{networkFee},
+                     #{unitElectricityFee},
+                     #{commonElectricityFee},
+                     #{tvReceptionFee},
+                     #{unitWaterFee},
+                     #{commonWaterFee},
+                     #{unitHeatingFee},
+                     #{baseHeatingFee},
+                     #{commonHeatingFee},
+                     #{unitHotWaterFee},
+                     #{electionOperatingFee},
+                     #{vehicleRegistrationFee},
+                     #{communityUsageFee},
+                     #{onTime},
+                     #{afterDueDate},
+                     #{electricityUsage},
+                     #{hotWaterUsage},
+                     #{waterUsage},
+                     #{heatingUsage},
+                     #{gasUsage},
+                     #{currentMonthFee},
+                     #{unpaidAmount},
+                     #{unpaidLateFee},
+                     #{lateFeeAfterDueDate},
+                     #{feeImposingYear},
+                     #{feeImposingMonth},
+                     #{dueDate}
+                 )
+    </insert>
+
+    <select id="selectDong" resultType="DongVO">
+        SELECT ID, DONG_NUMBER FROM TBL_DONG
+        ORDER BY ID DESC
+    </select>
+
+    <select id="selectSearchedFee" resultType="maintenanceFeeDTO">
+        SELECT
+        M.ID, APARTMENT_ID, M.USER_ID, M.USER_DONG, M.USER_HO, GENERAL_FEE, CLEANING_FEE, ELEVATOR_FEE,
+        REPAIR_FEE, LONG_TERM_REPAIR_FUND, SECURITY_FEE, MANAGEMENT_COMMISSION, INSURANCE_FEE, MEETING_OPERATING_FEE,
+        NETWORK_FEE, UNIT_ELECTRICITY_FEE, COMMON_ELECTRICITY_FEE, TV_RECEPTION_FEE, UNIT_WATER_FEE, COMMON_WATER_FEE,
+        UNIT_HEATING_FEE, BASE_HEATING_FEE, COMMON_HEATING_FEE, UNIT_HOT_WATER_FEE, ELECTION_OPERATING_FEE, VEHICLE_REGISTRATION_FEE,
+        COMMUNITY_USAGE_FEE, ON_TIME, AFTER_DUE_DATE, ELECTRICITY_USAGE, HOT_WATER_USAGE, WATER_USAGE, HEATING_USAGE, GAS_USAGE,
+        CURRENT_MONTH_FEE, UNPAID_AMOUNT, UNPAID_LATE_FEE, LATE_FEE_AFTER_DUE_DATE, FEE_IMPOSING_YEAR, FEE_IMPOSING_MONTH, DUE_DATE, M.APARTMENT_NAME
+        FROM TBL_MAINTENANCE_FEE M
+        JOIN TBL_USER U ON M.USER_ID = U.ID
+        JOIN TBL_APARTMENT AP ON U.APARTMENT_ID = AP.ID
+        JOIN TBL_ADMIN AM ON AM.APARTMENT_ID = AP.ID
+        WHERE AM.ID = #{id}
+        <if test="maintenanceFeeDTO.userDong != null and maintenanceFeeDTO.userDong != ''" >
+            AND M.USER_DONG LIKE '%' || #{maintenanceFeeDTO.userDong} || '%'
+        </if>
+        <if test="maintenanceFeeDTO.userHo != null and maintenanceFeeDTO.userHo != ''" >
+            AND M.USER_HO LIKE '%' || #{maintenanceFeeDTO.userHo} || '%'
+        </if>
+        <if test="maintenanceFeeDTO.feeImposingMonth != null and maintenanceFeeDTO.feeImposingMonth != ''" >
+            AND M.FEE_IMPOSING_MONTH LIKE '%' || #{maintenanceFeeDTO.feeImposingMonth} || '%'
+        </if>
+        ORDER BY M.ID DESC
+    </select>
+
+
 </mapper>

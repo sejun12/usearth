@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>USEARTH: 공지사항 관리</title>
-  <link rel="icon" href="/images/complain-management-image/"/>
+  <link rel="icon" href="/images/announcement-admin-image/"/>
   <link rel="stylesheet" href="/css/admin/announcement-list.css"/>
 </head>
 <body>
@@ -15,7 +15,7 @@
       <div>
         <div class="navInner">
           <a href="">
-            <img class="svg2" src="/images/complain-management-image/usEarth_logo.png"/>
+            <img class="svg2" src="/images/announcement-admin-image/usEarth_logo.png"/>
           </a>
           <div class="aBelow"></div>
           <div class="wrapperBody">
@@ -44,7 +44,7 @@
                 ><img
                   alt="프로필 이미지"
                   sizes="100vw"
-                  src="/images/complain-management-image/userProfile.png"
+                  src="/images/announcement-admin-image/userProfile.png"
                   decoding="async"
                   data-nimg="fill"
                   class="rounded-full"
@@ -121,77 +121,56 @@
         <!-- 사이드바 시작 -->
         <ul class="surfaceUl">
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg4" src="/images/complain-management-image/profile-user.png"/>
+            <a class="aList" href="/admin/resident-list">
+              <img class="svg4" src="/images/announcement-admin-image/profile-user.png"/>
 
               <span class="surfaceCategory">입주민 목록</span>
             </a>
           </li>
 
                 <li id="flex" class="surfaceUlLists">
-                    <a class="aList" href="">
-                        <img class="svg5" src="/images/complain-management-image/coin.png"/>
+                    <a class="aList" href="/admin/maintenance-fee-view">
+                        <img class="svg5" src="/images/announcement-admin-image/coin.png"/>
                         <span class="surfaceCategory">아파트 관리비</span>
                     </a>
                     <button class="toggleButton">
-                        <img style="width: 100%; opacity: 60%" class="svg5" src="/images/complain-management-image/down.png">
+                        <img style="width: 100%; opacity: 60%" class="svg5" src="/images/announcement-admin-image/down.png">
                     </button>
                 </li>
                     <ul class="feeLists">
                         <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-detail">
                                 <span class="surfaceCategory">| 관리비 조회</span>
                             </a>
                         </li>
                         <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
                                 <span class="surfaceCategory">| 관리비 업로드</span>
                             </a>
                         </li>
                     </ul>
                 <li  id="flex2" class="surfaceUlLists">
-                    <a class="aList" href="#">
-                        <img class="svg5" src="/images/complain-management-image/feedback.png"/>
+                    <a class="aList" href="/admin/complain-management">
+                        <img class="svg5" src="/images/announcement-admin-image/feedback.png"/>
                         <span class="surfaceCategory">민원 관리</span>
                     </a>
-                    <button class="toggleButton">
-                        <img style="width: 100%; opacity: 60%"  class="svg5" src="/images/complain-management-image/down.png">
-                    </button>
                 </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 답변</span>
-                            </a>
-                        </li>
-                    </ul>
-            <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/complain-management-image/trash-can.png"/>
-              <span class="surfaceCategory">재활용 대행</span>
-            </a>
-          </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/complain-management-image/car-fill-from-frontal-view.png"/>
+            <a class="aList" href="/admin/visit-vehicle">
+              <img class="svg5" src="/images/announcement-admin-image/car-fill-from-frontal-view.png"/>
               <span class="surfaceCategory">방문 차량</span>
             </a>
           </li>
           <li style="  background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/complain-management-image/report.png"/>
+            <a class="aList" href="/admin/announcement-list">
+              <img class="svg5" src="/images/announcement-admin-image/report.png"/>
               <span class="surfaceCategory">공지사항 목록</span>
             </a>
           </li>
           <li class="surfaceUlLists">
-            <a class="aList" href="">
-              <img class="svg5" src="/images/complain-management-image/4.png"/>
-              <span class="surfaceCategory">자유게시판</span>
+            <a class="aList" href="/admin/board-list">
+              <img class="svg5" src="/images/announcement-admin-image/4.png"/>
+              <span class="surfaceCategory">게시판 목록</span>
             </a>
           </li>
         </ul>
@@ -213,7 +192,7 @@
                     <button type="button" class="resetBtn">
                       <span class="resetSpan">검색 초기화</span>
                     </button>
-                    <button type="button" class="registerMaintenanceFeeBtn">목록 조회</button>
+                    <button type="button" id="search" class="registerMaintenanceFeeBtn">목록 조회</button>
                   </div>
                 </div>
                 <div class="maintenanceFeePicture">
@@ -242,54 +221,6 @@
                   </button>
                   <div id="rangeCategory" class="rangeModal">
                     <ul class="rangeModalUl">
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">카테고리 선택</button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          공동생활
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          엘리베이터
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          공동현관/복도
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          주차장
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          보안/경비
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          도로/인도
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          조명/조경
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          커뮤니티 시설
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="rangeModalBtn categoryBtns2">
-                          기타
-                        </button>
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -300,7 +231,7 @@
             </div>
             <hr style="background-color: rgba(44,136,239,0.31); height: 1.2px">
             <div class="complainTitle">
-              <span class="maintenanceFeeSpan">총 5건</span>
+              <span id="totalNumber" class="maintenanceFeeSpan">총 5건</span>
             </div>
             <div class="maintenanceFeeBar">
               <div  class="barBtnOne">카테고리</div>
@@ -308,50 +239,31 @@
               <div style="width: 300px;" class="barBtnOne">제목</div>
               <div class="barBtnOne">등록일시</div>
             </div>
-            <ul>
-              <li>
-              <div class="maintenanceFeeList">
-                <div class="barBtnOne">보안/경비</div>
-                <div class="barBtnOne">아파트관리자</div>
-                <div style="width: 300px;" class="barBtnOne">승강지 10월 정기점검 안내</div>
-                <div class="barBtnOne">2023.10.16 08:24:25</div>
-              </div>
-              </li>
-              <li>
-              <div class="maintenanceFeeList">
-                <div class="barBtnOne">보안/경비</div>
-                <div class="barBtnOne">아파트관리자</div>
-                <div style="width: 300px;" class="barBtnOne">승강지 10월 정기점검 안내</div>
-                <div class="barBtnOne">2023.10.16 08:24:25</div>
-              </div>
-              </li>
-              <li>
-              <div class="maintenanceFeeList">
-                <div class="barBtnOne">보안/경비</div>
-                <div class="barBtnOne">아파트관리자</div>
-                <div style="width: 300px;" class="barBtnOne">승강지 10월 정기점검 안내</div>
-                <div class="barBtnOne">2023.10.16 08:24:25</div>
-              </div>
-              </li>
-              <li>
-              <div class="maintenanceFeeList">
-                <div class="barBtnOne">보안/경비</div>
-                <div class="barBtnOne">아파트관리자</div>
-                <div style="width: 300px;" class="barBtnOne">승강지 10월 정기점검 안내</div>
-                <div class="barBtnOne">2023.10.16 08:24:25</div>
-              </div>
-              </li>
-              <li>
-              <div class="maintenanceFeeList">
-                <div class="barBtnOne">보안/경비</div>
-                <div class="barBtnOne">아파트관리자</div>
-                <div style="width: 300px;" class="barBtnOne">승강지 10월 정기점검 안내</div>
-                <div class="barBtnOne">2023.10.16 08:24:25</div>
-              </div>
-              </li>
-
-
+            <ul class="first">
             </ul>
+            <!--                        버튼-->
+            <div id="pagination" class="col-span-full margins">
+              <ul class="flex-me">
+                <li>
+                  <button id="prevButton"  type="button" class="rounded-full">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                      </path>
+                    </svg>
+                  </button>
+                </li>
+                <ul class="pageButtonLists"></ul>
+                <li class="li-ml">
+                  <button id="nextButton" type="button" class="rounded-full">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="hw16">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                      </path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <!--                        -->
 <!--   아래는 민원이 한 개도 없을 때 나타나야 할 div입니다.-->
 <!--            <div class="maintenanceFeeContent">-->
 <!--              <svg width="101" height="97" fill="none" xmlns="http://www.w3.org/2000/svg">-->
@@ -393,5 +305,8 @@
   </div>
 </div>
 </body>
+<script th:inline="javascript">
+  let paginationInfo = [[${pagination}]];
+</script>
 <script src="/js/admin/announcement-list.js"></script>
 </html>

@@ -1,14 +1,44 @@
+
+// API로부터 데이터 가져오기
+fetch("/lists/api/announcement/category")
+    .then(response => response.json())
+    .then(data => {
+        const ul = document.querySelector(".rangeModalUl");
+
+        data.forEach(category => {
+            const li = document.createElement("li");
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "rangeModalBtn categoryBtns2";
+            button.textContent = category.announcementCategoryName;
+
+            // 클릭 이벤트 핸들러 추가
+            button.addEventListener("click", function() {
+                categorySpan2.textContent = button.textContent.trim();
+                rangeCategory.style.display = "none";
+                categoryBtn2.style.borderColor = "rgba(0, 0, 0, 0.1)";
+                isShowCategory = false;
+                categorySvg.innerHTML = `
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svgCategory">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
+            </svg>
+        `;
+            });
+
+            // 버튼을 리스트 아이템에 추가
+            li.appendChild(button);
+            ul.appendChild(li);
+        });
+
+    })
+    .catch(error => console.error("Error fetching data:", error));
+
 // 동과 카테고리 모달
-const categoryBtn = document.getElementById("rangeCategoryBtn");
 const categoryBtn2 = document.getElementById("rangeCategory2Btn");
-const rangeBuilding = document.getElementById("rangeBuilding");
 const rangeCategory = document.getElementById("rangeCategory");
-const categorySpan = document.querySelector("#categorySpan");
 const categorySpan2 = document.querySelector("#categorySpan2");
-const categoryBtns = document.querySelectorAll(".categoryBtns");
 const categoryBtns2 = document.querySelectorAll(".categoryBtns2");
 const categorySvg = document.querySelector(".imposeYearSvg");
-let isShowBuilding = false;
 let isShowCategory = false;
 
 // 모달 열기/닫기 함수
@@ -39,34 +69,22 @@ categoryBtn2.addEventListener("click", () => {
     isShowCategory = !isShowCategory;
 });
 
-categoryBtns2.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        const buttonText = btn.textContent.trim();
-        categorySpan2.textContent = buttonText;
-        rangeCategory.style.display = "none";
-        categoryBtn2.style.borderColor = "rgba(0, 0, 0, 0.1)";
-        isShowCategory = false;
-        categorySvg.innerHTML = `
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svgCategory">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"></path>
-            </svg>
-        `;
-    });
-});
+
 
 // 전역 이벤트 리스너 추가
 document.addEventListener("click", (event) => {
     const target = event.target;
 
-    // 모달 영역인지 확인
-    const isModalContent = rangeBuilding.contains(target) || categoryBtn.contains(target) || rangeCategory.contains(target) || categoryBtn2.contains(target);
+    console.log("rangeCategory :", rangeCategory);
+    console.log("categoryBtn2 :", categoryBtn2);
+    console.log(target);
 
-    if (!isModalContent && (isShowBuilding || isShowCategory)) {
-        // 모달이 열려있고, 모달 영역 외부를 클릭한 경우 모달을 닫음
-        if (isShowBuilding) {
-            toggleModal(rangeBuilding, categoryBtn, categorySpan, categorySvg, isShowBuilding);
-            isShowBuilding = false;
-        }
+
+    // 모달 영역인지 확인
+    const isModalContent = rangeCategory.contains(target) || categoryBtn2.contains(target);
+
+    if (!isModalContent && isShowCategory) {
+
 
         if (isShowCategory) {
             toggleModal(rangeCategory, categoryBtn2, categorySpan2, categorySvg, isShowCategory);
@@ -147,8 +165,65 @@ approvalBtns.forEach((btn) => {
     });
 });
 
-document.querySelector(".resetBtn").addEventListener("click", function() {
-    location.reload(); // 현재 페이지를 새로고침합니다.
-});
+let announcementCategoryIdValue = null;
+
+async function findCategoryId() {
+    try {
+        const response = await fetch("/lists/api/announcement/category");
+        const data = await response.json();
+
+        const categorySpan2 = document.getElementById("categorySpan2");
+        const buttonText = categorySpan2.textContent.trim();
+
+        data.forEach(category => {
+            if (category.announcementCategoryName === buttonText) {
+                announcementCategoryIdValue = category.id;
+                console.log("buttonText:", buttonText);
+                console.log("category.announcementCategoryName:", category.announcementCategoryName);
+                console.log("category.id:", category.id);
+                console.log("announcementCategoryId:", announcementCategoryIdValue);
+            }
+        });
+
+        // 이제 announcementCategoryId를 사용하여 적절한 동작 수행
+    } catch (error) {
+        console.error("Error fetching category data:", error);
+    }
+}
+
+
+    // 등록하기 버튼 클릭 이벤트 처리
+    const insertBtn = document.querySelector("#insertBtn");
+    insertBtn.addEventListener("click", () => {
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/admin/announcement-write';
+        findCategoryId().then(async () => {
+        console.log("최종:", announcementCategoryIdValue);
+        // 이제 fetch를 실행할 때 올바른 announcementCategoryId가 사용될 것입니다.
+
+        const announcementTitle = document.createElement('input');
+        const announcementContent = document.createElement('input');
+        const announcementCategoryId = document.createElement('input');
+        announcementTitle.type = 'hidden';
+        announcementContent.type = 'hidden';
+        announcementCategoryId.type = 'hidden';
+        announcementTitle.name = 'announcementTitle'; // 이건 바꾸지말아주세요
+        announcementContent.name = 'announcementContent'; // 이건 바꾸지말아주세요
+        announcementCategoryId.name = 'announcementCategoryId'; // 이건 바꾸지말아주세요
+        announcementTitle.value = document.querySelector("#announcementTitle").value;
+        announcementContent.value =  document.querySelector("#announcementContent").value;
+        announcementCategoryId.value =  announcementCategoryIdValue;
+        form.appendChild(announcementTitle);
+        form.appendChild(announcementContent);
+        form.appendChild(announcementCategoryId);
+
+        document.body.appendChild(form);
+        form.submit();
+        });
+    });
+
+
 
 

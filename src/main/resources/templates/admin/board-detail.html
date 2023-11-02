@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>USEARTH: 게시판 상세보기</title>
+    <link rel="icon" href="/images/maintenance-fee-image/"/>
+    <link rel="stylesheet" href="/css/admin/board-detail.css"/>
+</head>
+<body>
+<div class="wrap">
+    <div class="innerWrapper">
+        <nav class="innerWrapperNav">
+            <div>
+                <div class="navInner">
+                    <a href="">
+                        <img class="svg2" src="/images/maintenance-fee-image/usEarth_logo.png"/>
+                    </a>
+                    <div class="aBelow"></div>
+                    <div class="wrapperBody">
+                        <span>관리자 페이지 | 게시판 상세보기</span>
+                    </div>
+                </div>
+            </div>
+            <div class="innerBody">
+                <div class="relative">
+                    <button class="profileBtn">
+                <span
+                        style="
+                    box-sizing: border-box;
+                    display: block;
+                    overflow: hidden;
+                    width: initial;
+                    height: initial;
+                    background: none;
+                    opacity: 1;
+                    border: 0px;
+                    margin: 0px;
+                    padding: 0px;
+                    position: absolute;
+                    inset: 0px;
+                  "
+                ><img
+                        alt="프로필 이미지"
+                        sizes="100vw"
+                        src="/images/maintenance-fee-image/userProfile.png"
+                        decoding="async"
+                        data-nimg="fill"
+                        class="rounded-full"
+                        style="
+                      position: absolute;
+                      inset: 0px;
+                      box-sizing: border-box;
+                      padding: 0px;
+                      border: none;
+                      margin: auto;
+                      display: block;
+                      width: 0px;
+                      height: 0px;
+                      min-width: 100%;
+                      max-width: 100%;
+                      min-height: 100%;
+                      max-height: 100%;
+                      object-fit: cover;
+                      object-position: center center;
+                    "
+                /></span>
+                    </button>
+                    <!--여기에 프로필 모달 구현 -->
+                    <div class="profileModalWrapper">
+                        <ul class="profileUl">
+                            <li tabindex="-1" class="undefined">
+                                <div class="profileLi1">
+                                    <span id="profileName">관리자1</span>
+                                    <span id="profileEmail">dain1221@naver.com</span>
+                                </div>
+                            </li>
+                            <li tabindex="-1" class="undefined">
+                                <button type="button" class="profileModalBtns">관리자 홈</button>
+                            </li>
+                            <li tabindex="-1" class="undefined">
+                                <button type="button" class="profileModalBtns">내 정보 수정</button>
+                            </li>
+                            <li tabindex="-1" class="undefined">
+                                <button type="button" class="profileModalBtns">로그아웃</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--여기까지 프로필 모달 구현 -->
+                </div>
+            </div>
+        </nav>
+        <div class="overflow">
+            <nav class="surfaceSecondary">
+                <div class="surfaceInner">
+                    <div class="flexCol">
+                        <div class="margin12"></div>
+                        <h2 class="userName">관리자1</h2>
+                        <a href="http://127.0.0.1:5500/mypage/myinfo.html">
+                            <button type="button" class="myPageButton">
+                                <div class="myPageButtonInner">
+                                    <div>마이 페이지</div>
+                                    <svg
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="16px"
+                                            width="16px"
+                                            class="svg3"
+                                    >
+                                        <path d="M11 7a1 1 0 0 0-1-1H4v14h14v-6a1 1 0 1 0-2 0v4H6V8h4a1 1 0 0 0 1-1Z"></path>
+                                        <path
+                                                d="M19.01 3.829H20v6.656a1 1 0 1 1-2 0V7.244l-5.293 5.293a1 1 0 0 1-1.414-1.415l5.293-5.292h-3.243a1 1 0 1 1 0-2H19.01Z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <!-- 사이드바 시작 -->
+                <ul class="surfaceUl">
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="/admin/resident-list">
+                            <img class="svg4" src="/images/announcement-admin-image/profile-user.png"/>
+
+                            <span class="surfaceCategory">입주민 목록</span>
+                        </a>
+                    </li>
+
+                    <li id="flex" class="surfaceUlLists">
+                        <a class="aList" href="/admin/maintenance-fee-view">
+                            <img class="svg5" src="/images/announcement-admin-image/coin.png"/>
+                            <span class="surfaceCategory">아파트 관리비</span>
+                        </a>
+                        <button class="toggleButton">
+                            <img style="width: 100%; opacity: 60%" class="svg5" src="/images/announcement-admin-image/down.png">
+                        </button>
+                    </li>
+                    <ul class="feeLists">
+                        <li class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-detail">
+                                <span class="surfaceCategory">| 관리비 조회</span>
+                            </a>
+                        </li>
+                        <li class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
+                                <span class="surfaceCategory">| 관리비 업로드</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <li  id="flex2" class="surfaceUlLists">
+                        <a class="aList" href="/admin/complain-management">
+                            <img class="svg5" src="/images/announcement-admin-image/feedback.png"/>
+                            <span class="surfaceCategory">민원 관리</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="/admin/visit-vehicle">
+                            <img class="svg5" src="/images/announcement-admin-image/car-fill-from-frontal-view.png"/>
+                            <span class="surfaceCategory">방문 차량</span>
+                        </a>
+                    </li>
+                    <li class="surfaceUlLists">
+                        <a class="aList" href="/admin/announcement-list">
+                            <img class="svg5" src="/images/announcement-admin-image/report.png"/>
+                            <span class="surfaceCategory">공지사항 목록</span>
+                        </a>
+                    </li>
+                    <li style="  background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
+                        <a class="aList" href="/admin/board-list">
+                            <img class="svg5" src="/images/announcement-admin-image/4.png"/>
+                            <span class="surfaceCategory">게시판 목록</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- 여기까지 사이드바 -->
+            </nav>
+            <!--관리자비페이지시작-->
+            <div class="entireWrapper">
+                <div class="entireWrapperInner">
+                    <div class="wrapperInnerGrid">
+                        <header class="innerGridHeader">
+                            <h1 class="maintenanceFeeHeader"><span style="color: #2A7DE1">게시판</span> 상세보기  |</h1>
+                        </header>
+                        <div class="maintenanceFeeBanner">
+                            <div class="flex1">
+                                <div style="max-width: 100%">
+                                    <h1 class="registerFee"> 입주민들의 게시판 상세보기 페이지입니다. 해당 게시물을 작성한 입주민의 동/호수도 오른쪽에 기재되어 있습니다. 삭제하기를 통해서 이 페이지에서도 개별 게시물<br>
+                                        삭제가 가능합니다.
+                                    </h1>
+                                        <div class="grid">
+                                            <span class="maintenanceFeeSpan">카테고리 |</span>
+                                            <span class="maintenanceFeeSpan">작성자명 |</span>
+                                            <span class="maintenanceFeeSpan">동/호 |</span>
+                                        </div>
+                                    <div class="flexGap12">
+                                        <div class="searchContainer">
+                                            <div id="rangeCategory2Btn" type="button" class="imposeYear">
+                                                <span id="categorySpan2" class="imposeYearSpan" th:text="${post.postCategory + '게시판'}" ></span>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex;" class="searchContainer">
+                                            <div style="max-width: 205px; margin-right: 10px; background-color: rgba(219,231,246,0.18)" type="" class="imposeYear" th:text="${user.userName  + '님'}"></div>
+                                            <div style="max-width: 205px; background-color: rgba(219,231,246,0.18)" class="imposeYear" th:text="${user.userDong + '동 ' + user.userHo + '호'}"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <main>
+                            <section class="uploadSection">
+                                <h2 class="imposingMonth">제목</h2>
+                                <div>
+                                    <div>
+                                        <div style="background-color: rgba(213,227,246,0.18);" class="imposingMonthLabel">
+                                            <div class="imposingYear" th:text="${post.postTitle}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="uploadSection">
+                                <h2 class="imposingMonth">내용</h2>
+                                <div>
+                                    <div>
+                                        <div style="background-color: rgba(213,227,246,0.18); height: 130px;" class="imposingMonthLabel">
+                                            <div class="imposingYear" th:text="${post.postContent}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="uploadSection">
+                                <h2 class="imposingMonth">게시물 답글</h2>
+                                <div>
+                                    <div>
+                                        <label style="background-color: rgba(143,199,238,0.18); height: 100px" class="imposingMonthLabel">
+                                            <textarea class="imposingYear" placeholder="답글을 작성하세요."></textarea>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section style="display: flex;column-gap: 12px;" class="uploadSection">
+
+                                <button style="background-color: #757272; " type="button" class="fileUploadBtn">
+                                   목록으로 가기
+                                </button>
+                                <button style="background-color: #3c80d9" type="button" class="fileUploadBtn">
+                                   삭제하기
+                                </button>
+
+                            </section>
+                        </main>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script th:inline="javascript">
+    const post = [[${post}]];
+    const user = [[${user}]];
+</script>
+<script src="/js/admin/board-detail.js"></script>
+</html>

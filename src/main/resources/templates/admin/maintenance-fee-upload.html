@@ -121,80 +121,71 @@
                 <!-- 사이드바 시작 -->
                 <ul class="surfaceUl">
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg4" src="/images/maintenance-fee-image/profile-user.png"/>
+                        <a class="aList" href="/admin/resident-list">
+                            <img class="svg4" src="/images/announcement-admin-image/profile-user.png"/>
 
-                            <span class="surfaceCategory">입주민 승인</span>
+                            <span class="surfaceCategory">입주민 목록</span>
                         </a>
                     </li>
 
-                    <li style="background-color: rgba(162, 218, 255, 0.35);" id="flex" class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/maintenance-fee-image/coin.png"/>
+                    <li style=" background-color: rgba(162, 218, 255, 0.35);" id="flex" class="surfaceUlLists">
+                        <a class="aList" href="/admin/maintenance-fee-view">
+                            <img class="svg5" src="/images/announcement-admin-image/coin.png"/>
                             <span class="surfaceCategory">아파트 관리비</span>
                         </a>
                         <button class="toggleButton">
-                            <img style="width: 100%; opacity: 60%" class="svg5"
-                                 src="/images/maintenance-fee-image/down.png">
+                            <img style="width: 100%; opacity: 60%" class="svg5" src="/images/announcement-admin-image/down.png">
                         </button>
                     </li>
                     <ul class="feeLists">
-                        <li  class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
+                        <li class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-detail">
                                 <span class="surfaceCategory">| 관리비 조회</span>
                             </a>
                         </li>
-                        <li style="background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
+                        <li style=" background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/maintenance-fee-upload">
                                 <span class="surfaceCategory">| 관리비 업로드</span>
                             </a>
                         </li>
                     </ul>
-                    <li id="flex2" class="surfaceUlLists">
-                        <a class="aList" href="#">
-                            <img class="svg5" src="/images/maintenance-fee-image/feedback.png"/>
+                    <li  id="flex2" class="surfaceUlLists">
+                        <a class="aList" href="/admin/complain-management">
+                            <img class="svg5" src="/images/announcement-admin-image/feedback.png"/>
                             <span class="surfaceCategory">민원 관리</span>
                         </a>
-                        <button class="toggleButton">
-                            <img style="width: 100%; opacity: 60%" class="svg5"
-                                 src="/images/maintenance-fee-image/down.png">
-                        </button>
-                    </li>
-                    <ul class="feeLists">
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 조회</span>
-                            </a>
-                        </li>
-                        <li class="surfaceUlLists">
-                            <a style="padding-left: 30px; opacity: 70%" class="aList" href="#">
-                                <span class="surfaceCategory">| 민원 답변</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/maintenance-fee-image/trash-can.png"/>
-                            <span class="surfaceCategory">재활용 대행</span>
-                        </a>
                     </li>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5"
-                                 src="/images/maintenance-fee-image/car-fill-from-frontal-view.png"/>
+                        <a class="aList" href="/admin/visit-vehicle">
+                            <img class="svg5" src="/images/announcement-admin-image/car-fill-from-frontal-view.png"/>
                             <span class="surfaceCategory">방문 차량</span>
                         </a>
                     </li>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/maintenance-fee-image/report.png"/>
+                        <a class="aList" href="/admin/announcement-list">
+                            <img class="svg5" src="/images/announcement-admin-image/report.png"/>
                             <span class="surfaceCategory">공지사항 목록</span>
                         </a>
+                        <button class="toggleButton">
+                            <img style="width: 100%; opacity: 60%" class="svg5" src="/images/announcement-admin-image/down.png">
+                        </button>
                     </li>
+                    <ul class="feeLists">
+                        <li class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/announcement-list">
+                                <span class="surfaceCategory">| 공지사항 목록</span>
+                            </a>
+                        </li>
+                        <li style=" background-color: rgba(162, 218, 255, 0.35);" class="surfaceUlLists">
+                            <a style="padding-left: 30px; opacity: 70%"  class="aList" href="/admin/announcement-write">
+                                <span class="surfaceCategory">| 공지사항 작성</span>
+                            </a>
+                        </li>
+                    </ul>
                     <li class="surfaceUlLists">
-                        <a class="aList" href="">
-                            <img class="svg5" src="/images/maintenance-fee-image/4.png"/>
-                            <span class="surfaceCategory">자유게시판</span>
+                        <a class="aList" href="/admin/board-list">
+                            <img class="svg5" src="/images/announcement-admin-image/4.png"/>
+                            <span class="surfaceCategory">게시판 목록</span>
                         </a>
                     </li>
                 </ul>
@@ -220,7 +211,7 @@
                                         </div>
                                         <div class="searchContainer">
                                             <button id="rangeCategory2Btn" type="button" class="imposeYear">
-                                                <span id="categorySpan2" class="imposeYearSpan">년도 전체</span>
+                                                <span id="categorySpan2" class="imposeYearSpan">년도를 선택하세요.</span>
                                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                                                      class="imposeYearSvg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -228,32 +219,13 @@
                                                 </svg>
                                             </button>
                                             <div id="rangeCategory" class="rangeModal">
-                                                <ul class="rangeModalUl">
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns2">년도 전체
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns2">
-                                                            2023년도
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns2">
-                                                            2022년도
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns2">
-                                                            2021년도
-                                                        </button>
-                                                    </li>
+                                                <ul class="rangeModalUl modal1">
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="searchContainer">
                                             <button id="rangeCategoryBtn" type="button" class="imposeYear">
-                                                <span id="categorySpan" class="imposeYearSpan">월 전체</span>
+                                                <span id="categorySpan" class="imposeYearSpan">월을 선택하세요.</span>
                                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                                                      class="imposeYearSvg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -261,50 +233,7 @@
                                                 </svg>
                                             </button>
                                             <div id="rangeBuilding" class="rangeModal">
-                                                <ul class="rangeModalUl">
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">월 전체</button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <button type="button" class="rangeModalBtn categoryBtns">
-                                                            10월
-                                                        </button>
-                                                    </li>
+                                                <ul class="rangeModalUl modal2">
                                                 </ul>
                                             </div>
                                         </div>
@@ -320,7 +249,7 @@
                                 <div>
                                     <div>
                                         <label class="imposingMonthLabel">
-                                            <input type="date" data-placeholder="납부마감일을 선택해주세요." required aria-required="true" class="imposingYear">
+                                            <input id="dueDate" type="date" data-placeholder="납부마감일을 선택해주세요." required aria-required="true" class="imposingYear">
                                         </label>
                                         <div class="relative flex"></div>
                                     </div>
@@ -333,8 +262,19 @@
                                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="16px" width="16px" class="csvSvg"><path d="m12 2.586 4.707 4.707a1 1 0 0 1-1.414 1.414L13 6.414V13.9a1 1 0 1 1-2 0V6.414L8.707 8.707a1 1 0 0 1-1.414-1.414L12 2.586Z"></path><path d="M6 13a1 1 0 1 0-2 0v7h16v-7a1 1 0 1 0-2 0v5H6v-5Z"></path></svg>
                                         <div>파일 업로드</div>
                                     </div>
-                                    <input type="file" accept="text/csv" class="noViewInput">
+                                    <input id="csvFile" type="file" accept="text/csv" class="noViewInput">
                                 </button>
+                                <ul class="fileResult">
+                                    <li class="fileResultLi">
+                                        <div class="shrink-0">
+                                            <div class="fileThumbNail">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fileThumbNailSvg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.6 4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8.961a2 2 0 0 0-.751-1.561l-3.702-2.962A2 2 0 0 0 13.898 4H6.6Zm11 15.2h-11a.2.2 0 0 1-.2-.2V6c0-.11.09-.2.2-.2h7V8a1 1 0 0 0 1 1h3.2v10a.2.2 0 0 1-.2.2Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.1 12a.9.9 0 0 1 .9-.9h6a.9.9 0 1 1 0 1.8H9a.9.9 0 0 1-.9-.9ZM8.1 15a.9.9 0 0 1 .9-.9h6a.9.9 0 1 1 0 1.8H9a.9.9 0 0 1-.9-.9Z"></path></svg>
+                                            </div>
+                                        </div>
+                                        <p id="fileName" class="uploadedFileName"></p>
+                                        <button type="button" class="fileDeleteBtn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fileDeleteSvg"><path d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"></path></svg></button>
+                                    </li>
+                                </ul>
                                 <div class="registerFee">※엑셀 파일(.xlsx)만 첨부 가능합니다.</div>
                             </section>
                             <section style="display: flex;column-gap: 12px;" class="uploadSection">
@@ -342,7 +282,7 @@
                                 <button style="background-color: #757272" type="button" class="fileUploadBtn">
                                    취소
                                 </button>
-                                <button style="background-color: #3c80d9" type="button" class="fileUploadBtn">
+                                <button style="background-color: #3c80d9" type="button" id="insertBtn" class="fileUploadBtn">
                                    등록하기
                                 </button>
 

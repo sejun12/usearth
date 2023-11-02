@@ -21,4 +21,5 @@ public class UserDTO implements Serializable {
     private String userProfileName;
     private String userProfilePath;
     private String userKakaoProfileUrl;
+    private int userApprovalNumber;
 }
