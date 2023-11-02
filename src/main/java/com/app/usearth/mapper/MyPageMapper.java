@@ -51,7 +51,7 @@ public interface MyPageMapper {
     public void deleteVisit(Long id);
     public void deleteUser(Long id);
     // complain 답변 삭체 찾기
-    public Long selectId(Long id);
+    public List<Long> selectId(Long id);
 
     //회원프로필도 삭제...
     public Long selectProfileId(Long id);
