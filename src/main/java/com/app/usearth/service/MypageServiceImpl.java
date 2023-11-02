@@ -78,10 +78,12 @@ public class MypageServiceImpl implements MypageService {
 
     @Override
     public void removeAll(Long id) {
-        Long complainId=myPageDAO.searchComplainId(id);
+       List<Long> complainIds=myPageDAO.searchComplainId(id);
         Long profileId=myPageDAO.searchProfileId(id);
-        if (complainId != null) { // complainId가 null이 아닌 경우에만 실행
-            myPageDAO.removeComplainReply(complainId);
+        if (complainIds != null && !complainIds.isEmpty()) { // complainId가 null이 아닌 경우 민원 답변이 있는경우
+            for (Long complainId : complainIds) {
+                myPageDAO.removeComplainReply(complainId);
+            }
         }
             myPageDAO.removeComplain(id);
             myPageDAO.removeFee(id);
