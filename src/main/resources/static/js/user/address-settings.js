@@ -24,7 +24,7 @@ async function searchAptList(){
     if(keyword !== '' && searchApts.length > 0){
         let searchAptData = '';
         searchApts.forEach(searchApt => {
-            searchAptData += `<li>`
+            searchAptData += `<li class="searchLi">`
             searchAptData += `<div class="searchList">`
             searchAptData += `<input type="text" name="searchAddressResult" readonly class="searchAddressResult" value="${searchApt.apartmentAddress}">`
             searchAptData += `<button type="button" class="resultSelectBTN">선택하기</button>`
