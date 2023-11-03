@@ -233,9 +233,6 @@ function showList(dataType) {
       });
         pages[dataType]++;
     }
-    else{
-        infiniteLoadingContainer.style.display = "block";
-    }
     isLoading = false;
   })
 }
