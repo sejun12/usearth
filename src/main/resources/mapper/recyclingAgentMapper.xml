@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.usearth.mapper.RecyclingAgentMapper">
-    <select id="selectByRecycling" parameterType="long" resultType="postDTO">
+    <select id="selectByRecycling" resultType="postDTO">
         SELECT P.ID, P.USER_ID, P.POST_TITLE, P.POST_CONTENT, P.POST_WRITE_DATE,
                P.POST_MODIFY_DATE, P.POST_VIEW_COUNT,
                (
@@ -14,7 +14,9 @@
                    WHERE L.POST_ID = P.ID
                ) AS LIKE_COUNT
         FROM TBL_POST P
-        WHERE P.POST_CATEGORY = '재활용'
+        JOIN TBL_USER U
+        ON P.USER_ID = U.ID
+        WHERE U.APARTMENT_ID = 1 AND P.POST_CATEGORY = '재활용'
         ORDER BY P.POST_MODIFY_DATE DESC
 
     </select>

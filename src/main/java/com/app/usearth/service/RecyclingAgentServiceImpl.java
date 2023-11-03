@@ -25,8 +25,8 @@ public class RecyclingAgentServiceImpl implements RecyclingAgentService {
     private final LikeMapper likeMapper;
 
     @Override
-    public List<PostDTO> getByRecycling() {
-        return recyclingAgentDAO.selectByRecycling();
+    public List<PostDTO> getByRecycling(Long id) {
+        return recyclingAgentDAO.selectByRecycling(id);
     }
 
     @Override

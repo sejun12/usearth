@@ -22,7 +22,7 @@ let page = 1;
 // 게시글 데이터를 가져오는 함수
 async function getPosts() {
     // fetch에 데이터를 가져 올 주소 입력
-    const response = await fetch("/recycling-reads/api/recycling-list")
+    const response = await fetch(`/recycling-reads/api/recycling-list/${user}`)
     return await response.json();
 }
 
