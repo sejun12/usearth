@@ -57,7 +57,7 @@ public class MyPageController {
         Long id=userDTO.getId();
         mypageService.removeAll(id);
         session.invalidate();
-        return new RedirectView("/user/blocking");
+        return new RedirectView("/user/login");
     }
 
     //개인 정보 조회
