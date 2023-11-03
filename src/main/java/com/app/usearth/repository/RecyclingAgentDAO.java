@@ -24,9 +24,9 @@ public class RecyclingAgentDAO {
     private final RecyclingAgentMapper recyclingAgentMapper;
 
     //  selectByRecycling() : 재활용 관련 글 목록을 반환하는 메서드
-    public List<PostDTO> selectByRecycling() {
+    public List<PostDTO> selectByRecycling(Long id) {
 
-        return recyclingAgentMapper.selectByRecycling();
+        return recyclingAgentMapper.selectByRecycling(id);
     }
 
     //  주어진 id에 해당하는 재활용 관련 글을 반환

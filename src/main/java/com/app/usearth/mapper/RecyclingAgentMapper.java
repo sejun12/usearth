@@ -13,7 +13,7 @@ import java.util.Optional;
 @Mapper
 @Repository
 public interface RecyclingAgentMapper {
-    public List<PostDTO> selectByRecycling();
+    public List<PostDTO> selectByRecycling(Long id);
 
     public Optional<PostDTO> selectByRecyclingRead(Long id);
 

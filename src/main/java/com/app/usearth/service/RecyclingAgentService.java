@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface RecyclingAgentService {
 
     // 재활용대행 게시글 목록
-    public List<PostDTO> getByRecycling();
+    public List<PostDTO> getByRecycling(Long id);
 
     // 재활용대행 게시글 상세보기
     public Optional<PostDTO> getByRecyclingReadId(Long id);

@@ -60,6 +60,7 @@ const postReadService = (function (){
 
 postReadService.detail();
 postReadService.comment();
+
 // 전달 받은 매개변수 json을 사용하여 상세보기 HTML을 만들어주는 함수
 const postedBox= document.querySelector(".postedBox");
 function appendPost(mainPost) {
@@ -158,7 +159,7 @@ likeButton.addEventListener("click", function() {
     // const method = isLiked ? "DELETE" : "POST";
 
     // RestController에서 POST 또는 DELETE 요청을 처리하는 URL로 요청을 보냄
-    fetch(`/recycling-reads/api/posts/${post}/likes?userId=${user}`, {
+    fetch(`/recycling-reads/api/posts/${post.id}/likes?userId=${user.id}`, {
         method: 'GET'
     })
         .then(response => response.json())
@@ -174,6 +175,8 @@ likeButton.addEventListener("click", function() {
             }
         });
 });
+
+
 
 // 좋아요 상태를 저장하는 함수
 // function saveLikeStatus(postId, isLiked) {
@@ -201,7 +204,7 @@ likeButton.addEventListener("click", function() {
 //     // 현재 좋아요 상태를 토글
 //     isLiked = !isLiked;
 //
-//     // UI를 업데이트합니다.
+//     // UI를 업데이트
 //     likeButton.style.fill = isLiked ? 'red' : '#949BA0';
 //     let likeCount = Number(likeCountEl.textContent);
 //     likeCountEl.textContent = isLiked ? likeCount + 1 : likeCount - 1;

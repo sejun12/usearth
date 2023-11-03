@@ -72,6 +72,9 @@
         </div>
     </div>
 </body>
+<script th:inline="javascript">
+    const user = [[${session.user.apartmentId}]]
+</script>
 <script src="/js/fix/nav/nav.js"></script>
 <script src="/js/recycling-agent/recycling-agent.js"></script>
 </html>

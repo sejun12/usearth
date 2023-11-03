@@ -30,10 +30,10 @@ public class RecyclingAgentAPI {
             defaultValue = "None"
     )
 
-    @GetMapping("recycling-list")
-    public List<PostDTO> getByRecycling() {
+    @GetMapping("recycling-list/{id}")
+    public List<PostDTO> getByRecycling(@PathVariable("id") Long id) {
 //      recyclingAgentService의 getByRecycling 메소드를 호출하고 그 결과를 반환
-        return recyclingAgentService.getByRecycling();
+        return recyclingAgentService.getByRecycling(id);
     }
 
     // '/api/recycling-reads/{id}' 형태의 URL로 오는 GET 요청을 처리
