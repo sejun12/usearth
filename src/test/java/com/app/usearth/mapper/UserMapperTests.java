@@ -30,6 +30,7 @@ public class UserMapperTests {
         userDTO.setUserKakaoEmail("myemail@email.com");
         userDTO.setUserKakaoProfileUrl("sfbaergaqfdgvzsdv");
 
+
         userMapper.insertUser(userDTO);
     }
 }
