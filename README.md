@@ -52,14 +52,14 @@
 - 백엔드 업무 : 마이페이지,방문차량(관리자)
 - AWS 서버 배포 <a href="http://www.usearth.shop/">usearth</a>
 
-### 퍼블리싱 작업(회원가입/로그인) - <a href="https://github.com/code-hyun/JimCarry/wiki/맡은-기능-소개--(퍼블리싱)](https://github.com/sejun12/usearth/wiki/%EB%A7%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C-(%ED%8D%BC%EB%B8%94%EB%A6%AC%EC%8B%B1))" > 상세보기 - WIKI 이동</a>
+### 퍼블리싱 작업(회원가입/로그인) - <a href="https://github.com/sejun12/usearth/wiki/%EB%A7%A1%EC%9D%80-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C-(%ED%8D%BC%EB%B8%94%EB%A6%AC%EC%8B%B1)" > 상세보기 - WIKI 이동</a>
 
 
  1. 회원가입 <br>
  2. 로그인 <br>
  3. 메인 페이지 <br>
 
-### 백엔드 작업(마이 페이지) - <a href="https://github.com/code-hyun/JimCarry/wiki/맡은-기능-소개-(백엔드)](https://github.com/sejun12/usearth/wiki/%EB%A7%A1%EC%9D%80%E2%80%90%EA%B8%B0%EB%8A%A5%E2%80%90%EC%86%8C%EA%B0%9C%E2%80%90(%EB%B0%B1%EC%97%94%EB%93%9C))" >상세보기 - WIKI 이동</a>
+### 백엔드 작업(마이 페이지) - <a href="https://github.com/sejun12/usearth/wiki/%EB%A7%A1%EC%9D%80%E2%80%90%EA%B8%B0%EB%8A%A5%E2%80%90%EC%86%8C%EA%B0%9C%E2%80%90(%EB%B0%B1%EC%97%94%EB%93%9C)">상세보기 - WIKI 이동</a>
 #### 관리자계정 : admin/1234
  1. 민원 접수 (작성) <br>
  2. 내가 쓴 민원,게시글,댓글 목록 (목록, 상세보기)<br>
